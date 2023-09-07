@@ -1,6 +1,6 @@
 //Maya ASCII 2024 scene
 //Name: NewAnim.ma
-//Last modified: Thu, Sep 07, 2023 12:49:49 PM
+//Last modified: Thu, Sep 07, 2023 12:57:13 PM
 //Codeset: 1252
 requires maya "2024";
 requires "stereoCamera" "10.0";
@@ -11,7 +11,7 @@ fileInfo "product" "Maya 2024";
 fileInfo "version" "2024";
 fileInfo "cutIdentifier" "202304191415-7fa20164c6";
 fileInfo "osv" "Windows 10 Home v2009 (Build: 19045)";
-fileInfo "UUID" "4373A642-49C3-A16A-7765-8E955EADF8AC";
+fileInfo "UUID" "A39C1CB8-4B4E-6372-E27C-94A596AB2DB8";
 createNode transform -s -n "persp";
 	rename -uid "84B8068E-42FE-3BF4-4749-089FC75D2B3A";
 	setAttr ".v" no;
