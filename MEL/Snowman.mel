@@ -1,0 +1,16 @@
+//create bottom
+polySphere -radius 3 -subdivisionsX 20 -subdivisionsY 20 -axis 0 1 0 -createUVs 2 -constructionHistory 1 -n bottom;
+move -relative -objectSpace -worldSpaceDistance 0 0 0 ;
+//polySphere-e -radius 1.5;
+
+//create middle
+polySphere -radius 2 -subdivisionsX 20 -subdivisionsY 20 -axis 0 1 0 -createUVs 2 -constructionHistory 1 -n mid;
+move -relative -objectSpace -worldSpaceDistance 0 4 0;
+
+//create head
+polySphere -radius 1 -subdivisionsX 20 -subdivisionsY 20 -axis 0 1 0 -createUVs 2 -constructionHistory 1 -n head;
+move -relative -objectSpace -worldSpaceDistance 0 6.5 0;
+//print(`polySphere -q -subdivisionsY`);
+
+polyCone -r 1 -h 2 -sx 20 -sy 1 -sz 0 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1;
+polyCone -e 

@@ -1,0 +1,40 @@
+//create trunk
+polyCylinder -radius 0.5 -height 4 -subdivisionsX 20 -subdivisionsY 1 -subdivisionsZ 1 -axis 0 1 0 -roundCap 0 -createUVs 3 -constructionHistory 1;
+move -relative -objectSpace -worldSpaceDistance 0 2 0;
+//create leaves
+polyCone -radius 2.6 -height 3 -subdivisionsX 20 -subdivisionsY 1 -subdivisionsZ 0 -axis 0 1 0 -roundCap 0 -cuv 3 -name bottom -constructionHistory 1;
+move -relative -objectSpace -worldSpaceDistance 0 2.595 0;
+
+polyCone -radius 2.2 -height 2 -subdivisionsX 20 -subdivisionsY 1 -subdivisionsZ 0 -axis 0 1 0 -roundCap 0 -cuv 3 -name lowermid -constructionHistory 1;
+move -relative -objectSpace -worldSpaceDistance 0 2.95 0;
+
+polyCone -radius 1.8 -height 2 -subdivisionsX 20 -subdivisionsY 1 -subdivisionsZ 0 -axis 0 1 0 -roundCap 0 -cuv 3 -name uppermid -constructionHistory 1;
+move -relative -objectSpace -worldSpaceDistance 0 3.8 0;
+
+polyCone -radius 1.4 -height 2 -subdivisionsX 20 -subdivisionsY 1 -subdivisionsZ 0 -axis 0 1 0 -roundCap 0 -cuv 3 -name top -constructionHistory 1;
+move -relative -objectSpace -worldSpaceDistance 0 4.724 0;
+//create branches
+polyCylinder -radius 1 -height 2 -subdivisionsX 20 -subdivisionsY 1 -subdivisionsZ 1 -axis 0 1 0 -roundCap 0 -createUVs 3 -constructionHistory 1;
+move -relative -objectSpace -worldSpaceDistance 0.066 0.776 -0.531;
+rotate -relative -objectSpace -forceOrderXYZ -35.3 0 0;
+scale -r 0.06 0.507 0.06;
+
+polyCylinder -radius 1 -height 2 -subdivisionsX 20 -subdivisionsY 1 -subdivisionsZ 1 -axis 0 1 0 -roundCap 0 -createUVs 3 -constructionHistory 1;
+move -relative -objectSpace -worldSpaceDistance -0.353 0.776 0.609;
+rotate -relative -objectSpace -forceOrderXYZ 71.855 -60.554 -42.7;
+scale -r 0.06 0.507 0.06;
+
+polyCylinder -radius 1 -height 2 -subdivisionsX 20 -subdivisionsY 1 -subdivisionsZ 1 -axis 0 1 0 -roundCap 0 -createUVs 3 -constructionHistory 1;
+move -relative -objectSpace -worldSpaceDistance -0.411 2.396 1.783;
+rotate -relative -objectSpace -forceOrderXYZ 36.896 -9.876 16.051;
+scale -r 0.06 0.507 0.06;
+
+polyCylinder -radius 1 -height 2 -subdivisionsX 20 -subdivisionsY 1 -subdivisionsZ 1 -axis 0 1 0 -roundCap 0 -createUVs 3 -constructionHistory 1;
+move -relative -objectSpace -worldSpaceDistance -0.548 2.707 2.126;
+rotate -relative -objectSpace -forceOrderXYZ 92.011 -47.295 -66.931;
+scale -r 0.039 0.326 0.039;
+
+polyCylinder -radius 1 -height 2 -subdivisionsX 20 -subdivisionsY 1 -subdivisionsZ 1 -axis 0 1 0 -roundCap 0 -createUVs 3 -constructionHistory 1;
+move -relative -objectSpace -worldSpaceDistance -0.548 2.827 2.017;
+rotate -relative -objectSpace -forceOrderXYZ 55.466 -73.432 -43.746;
+scale -r 0.039 0.326 0.039;
