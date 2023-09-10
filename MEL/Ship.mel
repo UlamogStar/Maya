@@ -1,0 +1,15 @@
+
+polySphere -r 4 -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+scale -r 0.35 1.272 0.333;
+move -r -os -wd 0.292 4.158 0.197;
+
+polySphere -r 1 -sx 20 -sy 20 -ax 0 5 0 -cuv 2 -ch 1;
+rotate -r -os -wd 0 0 23.6;
+move -r -os -wd 1.686 1.997 0;
+
+polySphere -r 1 -sx 20 -sy 20 -ax 0 5 0 -cuv 2 -ch 1;
+rotate -r -os -wd 0 0 -23.6;
+move -r -os -wd  -1.339 1.855 0;
+
+polyCone -r 1 -h 2 -sx 20 -sy 3 -sz 0 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1;
+
