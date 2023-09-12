@@ -1,0 +1,27 @@
+float $StairHeight = 0;
+int $StairWidth = 2;
+int $StairLength = 2;
+float $StepRotation = 0;
+int $StepDiff = 1;
+float $Offset = 0;
+float $StepPosition = 0;
+int $StairNumber = 0;
+int $TotalSteps = 30;
+float $Radius = 5; 
+float $StepHeight = 1; 
+
+for ($StairNumber = 0; $StairNumber < 30; $StairNumber++)
+{   
+    CreateStair(float $StairHeight, int $StairWidth, int $StairLength, float $StepPosition, float $StepRotation, float $Radius, float $StepHeight);
+    print($StairNumber + "\n");
+    $StairRotation += 20;
+    $StepPosition += $StepHeight;
+}
+print ("Stair done :");
+
+proc CreateStair(float $StairHeight, int $StairWidth, int $StairLength, float $StepPosition, float $StepRotation, float $Radius, float $StepHeight)
+{
+    polyCube -w $StairWidth -h ($StairHeight + 1) -d $StairLength -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1;
+    move -r -os -wd $StepPosition $StepPosition ($StepPosition +3.854);
+    scale -r ($StairLength - 1) ($StairLength - 1.6) ($StairLength + 1);
+}
