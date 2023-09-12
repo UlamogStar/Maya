@@ -1,0 +1,38 @@
+int $size = 5;
+float $length = 1;
+float $position = 1;
+int $fins = 1; //bool 1 is on 0 is off
+string $name;
+
+polySphere -n ($name = "body") -r $size -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+move -r -os -wd 0 ($position + 7) 0;
+scale -r ($length - 0.5) ($length + 1) ($length - 0.5);
+
+polyCone -n ($name + "tip") -r 1 -h ($length + 2) -sx 20 -sy 1 -sz 0 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1;
+move -r -os -wd 0 ($position + 17) 0;
+
+polyCylinder -n ($name + "thruster") -r ($size - 2) -h ($length + 1) -sx 20 -sy 1 -sz 1 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1;
+
+polySphere -n ($name + "top") -r ($size -4) -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+move -r -os -wd 0 ($position + 18) 0;
+
+polyTorus -n ($name + "window") -r ($size - 4) -sr 0.5 -tw 0 -sx 20 -sy 20 -ax 0 1 0 -cuv 1 -ch 1;
+move -r -os -wd -0.045 14.576 1.597;
+rotate -r -os -84.752 -163.104 73.317;
+//add fins optional
+if ($fins == 1)
+{
+    polySphere -n ($name + "fin1") -r ($size - 4) -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+    move -r -os -wd -2.874 ($position + 3) ($position - 0.9);
+    scale -r 5.144 1.576 1;
+    rotate -r -os 0 0 -123.015;
+
+    polySphere -n ($name + "fin2") -r ($size - 4) -sx 20 -sy 20 -ax 0 1 0 -cuv 2 -ch 1;
+    move -r -os -wd ($position + 2.3) ($position + 3) ($position - 0.9);
+    scale -r 5.144 1.576 1;
+    rotate -r -os 0 0 123.015; 
+}
+else if ($fins == 0)
+{
+  print("fins off");
+}
