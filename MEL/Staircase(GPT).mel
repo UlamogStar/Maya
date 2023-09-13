@@ -13,18 +13,16 @@ global float $StepHeight = 1; // Adjust the height of each step
 while ($StairNumber < $TotalSteps)
 {
     CreateStair($StairHeight, $StairWidth, $StairLength, $StepPosition, $StepRotation, $Radius, $StepHeight);
-    $StepRotation += 20; // Adjust the rotation angle for each step
+    $StepRotation += 10; // Adjust the rotation angle for each step
     $StepPosition += $StepHeight;
     $StairNumber++;
 }
 print ("Stair done :");
 
-global proc CreateStair(float $StairHeight, int $StairWidth, int $StairLength, float $StepPosition, float $StepRotation, float $Radius, float $StepHeight,  int $StairNumber)
+global proc CreateStair(float $StairHeight, int $StairWidth, int $StairLength, float $StepPosition, float $StepRotation, float $Radius, float $StepHeight)
 {
     polyCube -w $StairWidth -h ($StairHeight + 1) -d $StairLength -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1;
     move -r -os -wd ($Radius * `cos(deg_to_rad($StepRotation))`) $StepPosition ($Radius * `sin(deg_to_rad($StepRotation))`);
     rotate 0 $StepRotation 0;
     scale -r ($StairLength - 1) ($StairLength - 1.6) ($StairLength + 1);
-    print($StairNumber + "\n");
 }
- 

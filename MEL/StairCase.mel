@@ -6,22 +6,32 @@ int $StepDiff = 1;
 float $Offset = 0;
 float $StepPosition = 0;
 int $StairNumber = 0;
-int $TotalSteps = 30;
-float $Radius = 5; 
-float $StepHeight = 1; 
-
-for ($StairNumber = 0; $StairNumber < 30; $StairNumber++)
-{   
-    CreateStair(float $StairHeight, int $StairWidth, int $StairLength, float $StepPosition, float $StepRotation, float $Radius, float $StepHeight);
-    print($StairNumber + "\n");
-    $StairRotation += 20;
+int $TotalSteps = 40;
+float $Radius = 5;
+float $StepHeight = 1;
+float $StepRotation =1;
+while ($StairNumber < $TotalSteps)
+{
+    CreateStair($StairHeight, $StairWidth, $StairLength, $StepPosition, $StepRotation, $Radius, $StepHeight);
+    $StepRotation += 15; // Adjust the rotation angle for each step
     $StepPosition += $StepHeight;
+    $StairNumber++;
 }
-print ("Stair done :");
 
-proc CreateStair(float $StairHeight, int $StairWidth, int $StairLength, float $StepPosition, float $StepRotation, float $Radius, float $StepHeight)
+global proc CreateStair(float $StairHeight, int $StairWidth, int $StairLength, float $StepPosition, float $StepRotation, float $Radius, float $StepHeight)
 {
     polyCube -w $StairWidth -h ($StairHeight + 1) -d $StairLength -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1;
-    move -r -os -wd $StepPosition $StepPosition ($StepPosition +3.854);
+    move -r -os -wd ($Radius * `cos(deg_to_rad($StepRotation))`) $StepPosition ($Radius * `sin(deg_to_rad($StepRotation))`);
     scale -r ($StairLength - 1) ($StairLength - 1.6) ($StairLength + 1);
+    rotate 0 ($StepRotation + 1) 0;
 }
+
+// Call the CreateStair function within the loop
+for ($StairNumber = 0; $StairNumber < $TotalSteps; $StairNumber++)
+{
+    CreateStair($StairHeight, $StairWidth, $StairLength, $StepPosition, $StepRotation, $Radius, $StepHeight);
+    $StepRotation += 15; // Adjust the rotation angle for each step
+    $StepPosition += $StepHeight;
+}
+
+print ("Stair done \n");
