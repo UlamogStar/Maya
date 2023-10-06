@@ -1,0 +1,61 @@
+float $num1 = 15.0;
+float $num2 = 5.0;
+//proc string NumSelector()
+
+    //string $inputs[] = {15, 18, 5, 20}
+    //int $position = position($inputs);
+
+    //return($num1, $num2, $num3, $num4)
+
+
+global proc float totalSum(float $num1, float $num2) 
+{
+    float $totalSum = $num1 + $num2;
+ 
+    return $totalSum;
+}
+
+float $sumResult = totalSum($num1, $num2);
+print("The Sum is: " + $sumResult + "\n");
+
+global proc float totalDiff(float $num1, float $num2)
+{
+    float $totalDiff = $num1 - $num2;
+
+    return $totalDiff;
+}
+
+float $differenceResult = totalDiff($num1, $num2);
+print("The Difference is: " + $differenceResult + "\n");
+
+global proc float totalProd(float $num1, float $num2)
+{
+    float $totalProd = $num1 * $num2;
+
+    return $totalProd;
+}
+
+float $productResult = totalProd($num1, $num2);
+print("The Product is: " + $productResult + "\n");
+
+global proc float totalDivi(float $num1, float $num2)
+{
+    float $totalDivi= $num1 / $num2;
+    if($num1 ==0 && $num2 == 0)
+    {
+        print("Cannot divide by Zero");
+    }
+    else
+    {
+        return $totalDivi;
+    }
+    
+}
+
+float $divisionResult = totalDivi($num1, $num2);
+print("The Quotient is: " + $divisionResult + "\n");
+
+global proc float totalPower(float $num1, int $exponent)
+{
+    
+}

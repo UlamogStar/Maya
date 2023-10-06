@@ -1,0 +1,44 @@
+//add
+string float $num[] = {15, 13, 19};
+
+float $totalSum;
+
+$totalSum = $num1 + $num2;
+print ("sum is " + $totalSum + "\n");
+
+//Sub
+float $totalDiff;
+
+$totalDiff = $num1 - $num2;
+print ("sum is " + $totalSum);
+
+//Mult
+float $totalProd;
+
+$totalProd = $num1 * $num2;
+print ("sum is " + $totalSum);
+//Div
+float $totalDiv;
+
+$totalDiv = $num1 / $num2;
+print ("sum is " + $totalSum);
+
+if($num1, $num2 == 0)
+{
+    bad time
+}
+//powers
+float $squared;
+float $cubed;
+
+
+$squared = $num1 * $num1;
+print ("sum is " + $totalSum);
+//Mean/Average
+float $mean;
+
+$mean = $num1 + $num2 + $num3 / size($num);
+//Median
+
+//function calls
+
