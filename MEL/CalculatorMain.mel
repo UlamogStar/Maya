@@ -57,23 +57,18 @@ global proc float calculatePower(float $num1, int $powerExponent)
 int $powerExponent = 3;
 float $powerResult = calculatePower($num1, $powerExponent);
 print($num1 + " to the power " + $powerExponent + " is: " + $powerResult + "\n");
-//---------------------------------------------------------------------------------------------------------------------------- The line of code that works
-global proc float calcMean(float $numbers[]) 
+
+//mean doesnt work inside of a function for some reason
+float $sum = 0.0;
+
+for ($i = 0; $i < $numElements; $i++) 
 {
-    int $numberSize = size($numbers); 
-    float $set = 0.0;
-
-    for (int $i = 0; $i < $numberSize; $i++) 
-    {
-        $set += $numbers[$i];
-    }
-
-    float $meanTotal = ($set / $numberSize);
-    return $meanTotal;
+    $sum += $sortedNumbers[$i];
 }
-float $mean = calcMean($numbers);
-print("Mean of the dataset is:" + $mean  + "\n");
-//-------------------------------------------------------------------------------------------------------------------------------------
+
+float $meanTotal = ($sum / $numElements);
+print("Mean of the dataset is: " + $meanTotal + "\n");
+
 global proc float calcMedian(float $numbers[]) 
 {
     float $sortedNumbers[] = `sort $numbers`;
