@@ -79,7 +79,9 @@ global proc float calcMedian(float $numbers[])
     {
         int $mid = $numElements / 2;
         $median = ($sortedNumbers[$mid - 1] + $sortedNumbers[$mid]) / 2;
-    } else 
+    } 
+    
+    else 
     {
         int $mid = ($numElements - 1) / 2;
         $median = $sortedNumbers[$mid];
