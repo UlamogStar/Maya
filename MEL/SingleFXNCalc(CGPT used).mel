@@ -1,0 +1,48 @@
+global proc float calculator(int $operationCode, float $operand1, float $operand2, float $operand3) 
+{
+    float $result = 0;
+
+    if ($operationCode == 1) 
+    { 
+        $result = $operand1 + $operand2;
+    } else if ($operationCode == 2) 
+    { 
+        $result = $operand1 - $operand2;
+    } else if ($operationCode == 3) 
+    { 
+        $result = $operand1 * $operand2;
+    } else if ($operationCode == 4) 
+    { 
+        if ($operand2 != 0 && $operand3 != 0)
+            $result = $operand1 / $operand2;
+        else
+            warning("Cannot divide by zero.");
+    } else if ($operationCode == 5) 
+    { 
+        $result = pow($operand1, $operand2, $operand3);
+    } else if ($operationCode == 6) 
+    { 
+        $result = ($operand1 + $operand2 + $operand3) / 3.0;
+    } else if ($operationCode == 7) 
+    { 
+        
+        float $operands[] = { $operand1, $operand2, $operand3 };
+        sort($operands);
+        $result = $operands[1]; 
+    } else
+    {
+        warning("Invalid operation code. Please provide a valid operation code.");
+    }
+
+    return $result;
+}
+//1-additin, 2-subtraction, 3-multi, 4-division, 5-powers, 6-mean, 7-median
+
+float $operand1 = 10.0;
+float $operand2 = 5.0;
+float $operand3 = 3.0; //here for median and mode
+int $operationCode = 7; 
+//plug in a number to run its matching operation
+float $result = calculator($operationCode, $operand1, $operand2, $operand3);
+print("Result of operation " + $operationCode + " is: "  + $result + "\n");
+ 
