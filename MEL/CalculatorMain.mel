@@ -1,6 +1,6 @@
 float $numbers[] = {5.0, 6.0, 9.0};
-{
-    global proc float totalSum(float $num1, float $num2) 
+
+global proc float totalSum(float $num1, float $num2) 
 {
     float $totalSum = $num1 + $num2;
  
@@ -9,7 +9,7 @@ float $numbers[] = {5.0, 6.0, 9.0};
 
 float $sumResult = totalSum($num1, $num2);
 print("The Sum is: " + $sumResult + "\n");
-}
+
 global proc float totalSum(float $num1, float $num2) 
 {
     float $totalSum = $num1 + $num2;
@@ -102,4 +102,9 @@ global proc float calcMedian(float $numbers[])
 
 float $median = calcMedian($numbers);
 print("Median of the dataset is: " + $median + "\n");
-
+-------------------------------------------------------------------------------------
+windows = window();
+columnLayout -adjustableColumn typeToolCreateUI()u "MayaWindow|mainCreateMenu";
+string $rCollection = `operands`;
+showWindow;
+radioButtonGrp(label = `Operations`)
