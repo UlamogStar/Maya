@@ -104,7 +104,7 @@ float $median = calcMedian($numbers);
 print("Median of the dataset is: " + $median + "\n");
 -------------------------------------------------------------------------------------
 windows = window();
-columnLayout -adjustableColumn typeToolCreateUI()u "MayaWindow|mainCreateMenu";
+columnLayout -adjustableColumn typeToolCreateUI() "MayaWindow|mainCreateMenu";
 string $rCollection = `operands`;
 showWindow;
 radioButtonGrp(label = `Operations`)
