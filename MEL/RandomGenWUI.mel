@@ -1,0 +1,19 @@
+proc randGen(int $numDupes, float $minX, float $minY, float $minZ, float $maxX, float $maxY, float $maxZ)
+{
+    int $numDupes;
+   
+    float $minX;
+    float $minY;
+    float $minZ;
+
+    float $maxX;
+    float $maxY;
+    float $maxZ;
+
+    string $selections[] = ls -selections`
+
+    if(size($selections) == 0)
+    {
+        print("no selections");
+    }
+}

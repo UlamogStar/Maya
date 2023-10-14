@@ -1,7 +1,7 @@
 #Files/Folders
 *.jpg
 
-
+*.tif
 
 *.mp4
 
@@ -16,3 +16,4 @@ projects/WalkCycles/LEG/images/14e.png~
 projects/WalkCycles/LEG/images/14e.png.kra
 projects/WalkCycles/LEG/images/Kaidoh.webp
 projects/WalkCycles/LEG/images/14e.png
+WalkGlobeRender/WalkGlobe/images/tmp/GlobeWalk.0028.tif
