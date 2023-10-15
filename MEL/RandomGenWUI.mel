@@ -1,19 +1,51 @@
-proc randGen(int $numDupes, float $minX, float $minY, float $minZ, float $maxX, float $maxY, float $maxZ)
-{
-    int $numDupes;
-   
-    float $minX;
-    float $minY;
-    float $minZ;
+global proc randGen(int $numDupes, float $min[], float $max[])
+{   int $numDupes = getNumDuplicates();
+    float $min[] = `floatFieldGrp -q -value minFields`;
+    float $max[] = `floatFieldGrp -q -value maxFields`;
+    
+    string $sels[] = `ls -sl`;
 
-    float $maxX;
-    float $maxY;
-    float $maxZ;
-
-    string $selections[] = ls -selections`
-
-    if(size($selections) == 0)
+    if (size($sels) == 0)
     {
-        print("no selections");
+        print("No selections\n");
+        return;
+    }
+
+ for ($i = 0; $i < size($sels); $i++)
+    {
+        for ($j = 0; $j < $numDupes; $j++)
+        {
+            string $dups[] = `duplicate -rr $sels[$i]`;
+            string $dup = $dups[0];
+
+            float $randX = `rand $min[0] $max[0]`; 
+            float $randY = `rand $min[1] $max[1]`;
+            float $randZ = `rand $min[2] $max[2]`;
+
+            xform -worldSpace -translation $randX $randY $randZ $dup;
+        }
     }
 }
+
+global proc int getNumDuplicates()
+{
+    float $floatValue[] = (`floatFieldGrp -q -value numDupesField`);
+    int $intValue = int($floatValue[0]);
+    return $intValue;
+}
+
+string $mWindow = `window -height 100
+                            -title "RandGen"
+                            -sizeable 1
+                            -width 220`;  
+
+string $mColumn = `columnLayout`;
+
+
+floatFieldGrp -numberOfFields 1 -label "Number of Duplicates" -value1 10 -parent $mColumn numDupesField;
+
+floatFieldGrp -numberOfFields 3 -label "Min X, Y ,Z" -value1 0 -value2 0 -value3 0 -parent $mColumn minFields;
+floatFieldGrp -numberOfFields 3 -label "Max X, Y, Z" -value1 50 -value2 20 -value3 50 -parent $mColumn maxFields;
+
+button -parent $mColumn -label "Create Duplicates" -width 600 -command "randGen(10, `floatFieldGrp -q -value minFields`, `floatFieldGrp -q -value maxFields`)";
+showWindow $mWindow;
