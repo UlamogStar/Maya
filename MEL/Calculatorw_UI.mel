@@ -1,0 +1,80 @@
+if (`window -exists calculatorWindow`)
+    deleteUI calculatorWindow;
+
+window -title "Calculator" calculatorWindow;
+columnLayout -adjustableColumn true;
+
+// Input Fields
+string $inputColumn = `columnLayout -columnAttach "left" 5 -columnWidth 200`;
+text -label "Inputs: ";
+floatField num1Field;
+floatField num2Field;
+floatField num3Field;
+setParent -u;
+
+// Exponent Field
+string $exponentColumn = `columnLayout -columnAttach "left" 5 -columnWidth 150`;
+text -label "Exponent:";
+floatField powerExponentField;
+setParent -u;
+
+// Output Field
+string $outputColumn = `columnLayout -columnAttach "left" 5 -columnWidth 150`;
+text -label "Result: ";
+floatField -editable false resultField;
+setParent -u;
+
+// Buttons
+string $buttonColumn = `columnLayout -columnAttach "left" 5 -columnWidth 200`;
+button -label "Sum" -command "calculateOperation(\"sum\")";
+button -label "Difference" -command "calculateOperation(\"difference\")";
+button -label "Product" -command "calculateOperation(\"product\")";
+button -label "Division" -command "calculateOperation(\"division\")";
+button -label "Power" -command "calculateOperation(\"power\")";
+button -label "Mean" -command "calculateOperation(\"mean\")";
+button -label "Median" -command "calculateOperation(\"median\")";
+setParent -u;
+
+showWindow calculatorWindow;
+
+global proc calculateOperation(string $operation) {
+    float $num1 = `floatField -q -value num1Field`;
+    float $num2 = `floatField -q -value num2Field`;
+    float $num3 = `floatField -q -value num3Field`;
+    float $powerExponent = `floatField -q -value powerExponentField`;
+    float $result;
+
+    if ($operation == "sum") {
+        $result = totalSum($num1, $num2);
+        print("Sum result: " + $result + "\n");
+    } 
+    else if ($operation == "difference") {
+        $result = totalDiff($num1, $num2);
+        print("Difference result: " + $result + "\n");
+    } 
+    else if ($operation == "product") {
+        $result = totalProd($num1, $num2);
+        print("Product result: " + $result + "\n");
+    } 
+    else if ($operation == "division") {
+        $result = totalDivi($num1, $num2);
+        print("Division result: " + $result + "\n");
+    } 
+    else if ($operation == "power") {
+        $result = calculatePower($num1, $powerExponent);
+        print("Power result: " + $result + "\n");
+    }
+    else if ($operation == "mean") {
+        $result = calcMean({$num1, $num2, $num3});
+        print("Mean result: " + $result + "\n");
+    }
+    else if ($operation == "median") {
+        $result = calcMedian({$num1, $num2, $num3});
+        print("Median result: " + $result + "\n");
+    }
+
+    if ($result != "") {
+        floatField -edit -value $result resultField;
+    }
+}
+
