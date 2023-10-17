@@ -1,44 +1,30 @@
-proc float setSculptMeshCacheWireframeColor()
+proc colorMeshChange(int $intColor)
 {
-    //select the shape attribute
-    select -r pSphereShape1;
-    //use the checckbox to enable overrides
-    setAttr "pSphereShape1.overrideEnabled" 1;
-    //set color to specified color 0-31
+    //select the shapes
+    string $sels[] = `ls -sl`;
+   if(size($sels) == 0)
+   {
+    error("Select Obj before"); //red stop
+   }
 
+   if($intColor<0 || $intColor>31)
+   {
+    $intColor = 0;
+    warning("value must be within 0-31"); //yellow let gping
+   }
+
+    for($i=0; $i<size($sels); $i++)
+    {
+      string $shapes[] = `listRelatives -shapes $sels[$i]`;
+     
+      for($shape in $shapes) //sort through the shapes that are selected
+      {
+        setAttr ($shape + ".overrideEnabled") 1; //concatonate
+        setAttr ($shape + ".overrideColor") $intColor; //0-31
+      }
+
+    }
+    return;
 }
 
-------------------------------------------------------
-
-/ Result: scriptEditorPanel1Window|scriptEditorPanel1|formLayout92|formLayout94|paneLayout2|cmdScrollFieldReporter1
-setAttr "pSphereShape1.overrideEnabled" 1;
-checkDrawEnabled overrideEnabled overrideDisplayType overrideLevelOfDetail overrideShading overrideTexturing overridePlayback overrideVisibility overrideRGBColors overrideColor overrideColorRGB overrideColorA pSphereShape1;
-attrEnumOptionMenuGrp -e -en true attrEnumOptionMenuGrp13;
-// Result: attrEnumOptionMenuGrp13
-attrEnumOptionMenuGrp -e -en true attrEnumOptionMenuGrp14;
-// Result: attrEnumOptionMenuGrp14
-setParent formLayout147;
-// Result: AttributeEditor|MainAttributeEditorLayout|formLayout1|AErootLayout|AEStackLayout|AErootLayoutPane|AEbaseFormLayout|AEcontrolFormLayout|AttrEdmeshFormLayout|scrollLayout3|columnLayout9|frameLayout49|columnLayout17|frameLayout69|columnLayout57|formLayout147
-checkBoxGrp -e -en1 true valueFld;
-// Result: valueFld
-setParent formLayout148;
-// Result: AttributeEditor|MainAttributeEditorLayout|formLayout1|AErootLayout|AEStackLayout|AErootLayoutPane|AEbaseFormLayout|AEcontrolFormLayout|AttrEdmeshFormLayout|scrollLayout3|columnLayout9|frameLayout49|columnLayout17|frameLayout69|columnLayout57|formLayout148
-checkBoxGrp -e -en1 true valueFld;
-// Result: valueFld
-setParent formLayout149;
-// Result: AttributeEditor|MainAttributeEditorLayout|formLayout1|AErootLayout|AEStackLayout|AErootLayoutPane|AEbaseFormLayout|AEcontrolFormLayout|AttrEdmeshFormLayout|scrollLayout3|columnLayout9|frameLayout49|columnLayout17|frameLayout69|columnLayout57|formLayout149
-checkBoxGrp -e -en1 true valueFld;
-// Result: valueFld
-setParent formLayout150;
-// Result: AttributeEditor|MainAttributeEditorLayout|formLayout1|AErootLayout|AEStackLayout|AErootLayoutPane|AEbaseFormLayout|AEcontrolFormLayout|AttrEdmeshFormLayout|scrollLayout3|columnLayout9|frameLayout49|columnLayout17|frameLayout69|columnLayout57|formLayout150
-checkBoxGrp -e -en1 true valueFld;
-// Result: valueFld
-disable -v false AttributeEditor|MainAttributeEditorLayout|formLayout1|AErootLayout|AEStackLayout|AErootLayoutPane|AEbaseFormLayout|AEcontrolFormLayout|AttrEdmeshFormLayout|scrollLayout3|columnLayout9|frameLayout49|columnLayout17|frameLayout69|columnLayout57|columnLayout101;
-disable -v false AttributeEditor|MainAttributeEditorLayout|formLayout1|AErootLayout|AEStackLayout|AErootLayoutPane|AEbaseFormLayout|AEcontrolFormLayout|AttrEdmeshFormLayout|scrollLayout3|columnLayout9|frameLayout49|columnLayout17|frameLayout69|columnLayout57|columnLayout103;
-disable -v false AttributeEditor|MainAttributeEditorLayout|formLayout1|AErootLayout|AEStackLayout|AErootLayoutPane|AEbaseFormLayout|AEcontrolFormLayout|AttrEdmeshFormLayout|scrollLayout3|columnLayout9|frameLayout49|columnLayout17|frameLayout69|columnLayout57|columnLayout104;
-disable -v false AttributeEditor|MainAttributeEditorLayout|formLayout1|AErootLayout|AEStackLayout|AErootLayoutPane|AEbaseFormLayout|AEcontrolFormLayout|AttrEdmeshFormLayout|scrollLayout3|columnLayout9|frameLayout49|columnLayout17|frameLayout69|columnLayout57|columnLayout102;
-MarkingMenuPopDown;
-if (`popupMenu -exists tempMM`) { deleteUI tempMM; }if (`popupMenu -exists tempMM2`) { deleteUI tempMM2; };
-MarkingMenuPopDown;
-if (`popupMenu -exists tempMM`) { deleteUI tempMM; }if (`popupMenu -exists tempMM2`) { deleteUI tempMM2; };
-S
+colorMeshChange(9);
