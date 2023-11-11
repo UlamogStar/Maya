@@ -3,6 +3,7 @@
 workspace -fr "fluidCache" "cache/nCache/fluid";
 workspace -fr "images" "images";
 workspace -fr "offlineEdit" "scenes/edits";
+workspace -fr "Arnold-USD" "data";
 workspace -fr "furShadowMap" "renderData/fur/furShadowMap";
 workspace -fr "iprImages" "renderData/iprImages";
 workspace -fr "FBX" "data";
@@ -29,7 +30,9 @@ workspace -fr "DAE_FBX export" "data";
 workspace -fr "depth" "renderData/depth";
 workspace -fr "sceneAssembly" "sceneAssembly";
 workspace -fr "teClipExports" "Time Editor/Clip Exports";
+workspace -fr "ASS" "data";
 workspace -fr "movie" "movies";
+workspace -fr "ASS Export" "data";
 workspace -fr "audio" "sound";
 workspace -fr "autoSave" "autosave";
 workspace -fr "mayaAscii" "scenes";
