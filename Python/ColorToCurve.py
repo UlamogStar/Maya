@@ -1,6 +1,3 @@
-#command to change the color of a cuvrve in maya
-#object display - drawing overrides - color index
-
 import maya.cmds as cmds
 
 def changeColor(color):
@@ -12,7 +9,15 @@ def changeColor(color):
                 cmds.setAttr(shape+'.overrideEnabled', 1)
                 cmds.setAttr(shape+'.overrideColor', color)
 
-changeColor(17)
-print('color changed to ' + str(17))
+def createUI():
+    if cmds.window('colorToCurveUI', exists=True):
+        cmds.deleteUI('colorToCurveUI', window=True)
 
+    window = cmds.window('colorToCurveUI', title='Color to Curve', widthHeight=(200, 100))
+    layout = cmds.columnLayout(adjustableColumn=True)
 
+    color_picker = cmds.colorSliderGrp(label='Color', rgb=(0, 0, 0), columnWidth3=(50, 50, 100), changeCommand=changeColor)
+
+    cmds.showWindow(window)
+
+createUI()
