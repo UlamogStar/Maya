@@ -1,6 +1,6 @@
 //Maya ASCII 2023 scene
 //Name: AzureEarlyModel.ma
-//Last modified: Mon, Feb 17, 2025 05:46:31 PM
+//Last modified: Mon, Feb 17, 2025 05:48:39 PM
 //Codeset: 1252
 requires maya "2023";
 requires -nodeType "ngst2SkinLayerData" -dataType "ngst2SkinLayerDataStorage" "ngSkinTools2" "2.2.4";
@@ -13,11 +13,11 @@ fileInfo "product" "Maya 2023";
 fileInfo "version" "2023";
 fileInfo "cutIdentifier" "202405151550-05a853e76d";
 fileInfo "osv" "Windows 11 Home v2009 (Build: 26100)";
-fileInfo "UUID" "7A67FA92-4726-1611-1412-588B2A4097B4";
+fileInfo "UUID" "AA5E5575-4840-6922-3562-E4A203A8C033";
 createNode transform -s -n "persp";
 	rename -uid "5F686D81-4E0F-A3C4-E404-EBA9EBA03E6B";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 3.7743632553708437 8.7801564979324596 43.115843910215169 ;
+	setAttr ".t" -type "double3" 3.1256618575140562 11.468318670695645 42.789763916096753 ;
 	setAttr ".r" -type "double3" -7.1999999998423245 1441.1999999999985 -2.7338887663671066e-16 ;
 	setAttr ".rpt" -type "double3" 1.3528397356015948e-15 -1.2440073159298043e-14 1.4856261391722088e-14 ;
 createNode camera -s -n "perspShape" -p "persp";
@@ -18958,83 +18958,112 @@ createNode mesh -n "AzureTorso:Group6299Shape" -p "AzureTorso:Group6299";
 		0.65122944 -0.29971236 -0.0036041364 0.56715429 -0.33958411 0.016388096 0.44282115 
 		-0.3690187 0.040905014 0.65221345 -0.28961912 0.058386564 0.6616528 -0.27735499 0.058721021 
 		0.69074488 -0.24443653 0.06545946 0.75414288 -0.25358108 0.093403801 0.91465455 -0.31548068 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan -0.16269907 0.26905036 -0.079647154 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan -0.20909803 0.35604805 
-		-0.17427973 nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan -0.20481333 0.52538043 
-		-0.37545437 -0.25003296 0.59530139 -0.27482113 nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		-0.15480508 0.77615154 -0.53611636 -0.23284297 0.8256951 -0.47403529 -0.28450659 
-		0.89005649 -0.37365827 -0.36112517 0.94829124 -0.25316221 nan nan nan;
-	setAttr ".pt[498:663]" nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan 0.17954214 1.1953413 -0.53838277 0.097667217 1.155273 -0.59373385 -0.026572214 
-		1.1435164 -0.60987079 -0.15081148 1.1552734 -0.59373403 -0.23268633 1.1953412 -0.53838295 
-		-0.30948186 1.2266355 -0.46717969 -0.35611707 1.2760659 -0.3523801 nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan 0.25979555 1.6095223 -0.53439289 0.18228343 
-		1.5795077 -0.6086241 0.093526334 1.5533744 -0.66049647 -0.026572214 1.531593 -0.67219085 
-		-0.14667067 1.5533749 -0.66049659 -0.23542747 1.5795076 -0.6086244 -0.31293958 1.6095212 
-		-0.53439313 -0.36045781 1.6604581 -0.41748875 -0.38742056 1.7199988 -0.27953401 nan 
-		nan nan nan nan nan nan nan nan nan nan nan -0.026572224 2.157805 0.36082554 nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan 0.31504291 2.0609493 -0.48339272 
-		0.26109532 2.0303471 -0.600326 0.18747491 1.9865917 -0.68028456 0.098689526 1.9485219 
-		-0.74339229 -0.026572214 1.9323548 -0.75320375 -0.15183377 1.9485219 -0.74339235 
-		-0.24061887 1.9865921 -0.68028504 -0.31423876 2.0303485 -0.60032803 -0.36818135 2.0609572 
-		-0.4834373 -0.39716101 2.1321495 -0.34198216 -0.380714 2.1897233 -0.19300199 -0.33559158 
-		2.2459311 -0.057431459 -0.26268622 2.3069143 0.067295916 -0.16370514 2.3839943 0.19055672 
-		-0.026572229 2.4904997 0.33959746 0.11055794 2.3839936 0.19055629 0.20953104 2.3069406 
-		0.067328498 0.2824274 2.2459862 -0.057351414 nan nan nan 0.34402415 2.1321633 -0.34184128 
-		0.32935211 2.4506648 -0.55305403 0.27975038 2.3928835 -0.68127304 0.20220549 2.3773189 
-		-0.76752555 0.10965205 2.3404639 -0.83626801 -0.026572214 2.327564 -0.84134746 -0.16279635 
-		2.3404639 -0.83626801 -0.25534922 2.3773198 -0.76752621 -0.33289269 2.39289 -0.6812821 
-		-0.38248819 2.450695 -0.55310512 -0.41555029 2.5227022 -0.39853495 -0.40065277 2.5901737 
-		-0.23856035 -0.35271648 2.647361 -0.098072127 -0.27654999 2.7060575 0.028463164 -0.17726731 
-		2.7774987 0.15101343 -0.026572229 2.8671725 0.29001084 0.12411579 2.7774804 0.15100059 
-		0.22339347 2.7060728 0.02848701 0.29955289 2.6474042 -0.098003767 0.34748834 2.5902143 
-		-0.23845422 0.36242256 2.5227046 -0.39840597 0.34524044 2.8650827 -0.6373229 0.30470043 
-		2.7805099 -0.77837181 0.22343777 2.7575712 -0.85882586 0.12440551 2.718081 -0.9254939 
-		-0.026572214 2.7129724 -0.92830139 -0.17755008 2.718081 -0.92549396 -0.27658069 2.7575667 
-		-0.85882598 -0.35784301 2.7805076 -0.77837449 -0.39838004 2.8650954 -0.63736296 -0.43450943 
-		2.9087658 -0.45679855 -0.42762986 2.9873464 -0.26760569 -0.37367722 3.041667 -0.12382057 
-		-0.29217097 3.0937262 -0.0021725828 -0.18969226 3.1513455 0.10688827 -0.026572229 
-		3.2033994 0.21444868 0.13654783 3.1513391 0.10687764 0.23901445 3.0937352 -0.0021609012 
-		0.32051781 3.0416877 -0.12378598 0.37446639 2.9873443 -0.26757804 0.3813763 2.9087615 
-		-0.45670217 0.37114722 3.2505183 -0.74981505 0.3297663 3.1535246 -0.87391436 0.25656053 
-		3.1699839 -0.95874774 0.13190085 3.0789759 -1.0040901 -0.026572214 3.0778878 -1.0107775 
-		-0.18504527 3.0789759 -1.0040901 -0.3097015 3.1699769 -0.95874846 -0.38290805 3.153522 
-		-0.87391812 -0.42428765 3.2505002 -0.74982703 -0.45204228 3.3027067 -0.53476351 -0.45788246 
-		3.3767259 -0.27184922 -0.39926752 3.4286034 -0.13267295 -0.31042531 3.4732466 -0.021846158 
-		-0.17986886 3.5117657 0.06260933 -0.026572227 3.5399845 0.13661072 0.12672438 3.5117657 
-		0.062609494 0.25725731 3.4732482 -0.021844711 0.34611768 3.4286041 -0.13267939 0.40476871 
-		3.3765526 -0.27215782 0.39889598 3.3027015 -0.53478235 0.38241547 3.5312278 -0.78888476 
-		0.33709845 3.4719269 -0.93910217 0.24965228 3.4375651 -1.0242152 0.12578945 3.4227221 
-		-1.0609807 -0.026572214 3.4161062 -1.0773679 -0.1789342 3.4227161 -1.0609953 -0.30279666 
-		3.4375651 -1.0242151 -0.39024287 3.4719269 -0.93910211 -0.43555981 3.5312288 -0.788885 
-		-0.45254347 3.6248813 -0.5602389 -0.43928346 3.7241788 -0.31428254 -0.38637948 3.7835677 
-		-0.16717847 -0.29199091 3.8221016 -0.07173115 -0.16489816 3.8503377 -0.0017911787 
-		-0.026572227 3.871846 0.051484123 0.11175369 3.8503265 -0.0018187006 0.23884641 3.822104 
-		-0.071725227 0.33323497 3.7835875 -0.16712955 0.38613918 3.7242029 -0.31422272 0.39939901 
-		3.6248813 -0.5602389 0.34701747 3.8606663 -0.78738016 0.30068433 3.8001266 -0.93733484 
-		0.21996605 3.7603855 -1.0357722 0.10792722 3.7395966 -1.0872655 -0.026572214 3.7317955 
-		-1.1065886 -0.16107163 3.7395966 -1.0872654 -0.27310726 3.7603049 -1.0359719 -0.35382867 
-		3.8001266 -0.93733478 -0.40016174 3.8606663 -0.78738004 -0.41496897 3.9427111 -0.58415753 
-		-0.398541 4.0248113 -0.38079852 -0.34631813 4.0798531 -0.24446137 -0.25969017 4.1130157 
-		-0.16231859 -0.1466154 4.1395903 -0.096495122 -0.026572226 4.1563592 -0.054958768 
-		0.093470961 4.1395903 -0.096495152;
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -0.16269907 0.26905036 -0.079647154 -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -0.20909803 0.35604805 -0.17427973 -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -0.20481333 0.52538043 -0.37545437 
+		-0.25003296 0.59530139 -0.27482113 -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -0.15480508 0.77615154 -0.53611636 -0.23284297 0.8256951 -0.47403529 -0.28450659 
+		0.89005649 -0.37365827 -0.36112517 0.94829124 -0.25316221 -nan(ind) -nan(ind) -nan(ind);
+	setAttr ".pt[498:663]" nan -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) 0.17954214 1.1953413 -0.53838277 0.097667217 1.155273 
+		-0.59373385 -0.026572214 1.1435164 -0.60987079 -0.15081148 1.1552734 -0.59373403 
+		-0.23268633 1.1953412 -0.53838295 -0.30948186 1.2266355 -0.46717969 -0.35611707 1.2760659 
+		-0.3523801 -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) 0.25979555 1.6095223 -0.53439289 0.18228343 1.5795077 -0.6086241 
+		0.093526334 1.5533744 -0.66049647 -0.026572214 1.531593 -0.67219085 -0.14667067 1.5533749 
+		-0.66049659 -0.23542747 1.5795076 -0.6086244 -0.31293958 1.6095212 -0.53439313 -0.36045781 
+		1.6604581 -0.41748875 -0.38742056 1.7199988 -0.27953401 -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-0.026572224 2.157805 0.36082554 -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) 0.31504291 2.0609493 -0.48339272 0.26109532 2.0303471 -0.600326 0.18747491 
+		1.9865917 -0.68028456 0.098689526 1.9485219 -0.74339229 -0.026572214 1.9323548 -0.75320375 
+		-0.15183377 1.9485219 -0.74339235 -0.24061887 1.9865921 -0.68028504 -0.31423876 2.0303485 
+		-0.60032803 -0.36818135 2.0609572 -0.4834373 -0.39716101 2.1321495 -0.34198216 -0.380714 
+		2.1897233 -0.19300199 -0.33559158 2.2459311 -0.057431459 -0.26268622 2.3069143 0.067295916 
+		-0.16370514 2.3839943 0.19055672 -0.026572229 2.4904997 0.33959746 0.11055794 2.3839936 
+		0.19055629 0.20953104 2.3069406 0.067328498 0.2824274 2.2459862 -0.057351414 -nan(ind) 
+		-nan(ind) -nan(ind) 0.34402415 2.1321633 -0.34184128 0.32935211 2.4506648 -0.55305403 
+		0.27975038 2.3928835 -0.68127304 0.20220549 2.3773189 -0.76752555 0.10965205 2.3404639 
+		-0.83626801 -0.026572214 2.327564 -0.84134746 -0.16279635 2.3404639 -0.83626801 -0.25534922 
+		2.3773198 -0.76752621 -0.33289269 2.39289 -0.6812821 -0.38248819 2.450695 -0.55310512 
+		-0.41555029 2.5227022 -0.39853495 -0.40065277 2.5901737 -0.23856035 -0.35271648 2.647361 
+		-0.098072127 -0.27654999 2.7060575 0.028463164 -0.17726731 2.7774987 0.15101343 -0.026572229 
+		2.8671725 0.29001084 0.12411579 2.7774804 0.15100059 0.22339347 2.7060728 0.02848701 
+		0.29955289 2.6474042 -0.098003767 0.34748834 2.5902143 -0.23845422 0.36242256 2.5227046 
+		-0.39840597 0.34524044 2.8650827 -0.6373229 0.30470043 2.7805099 -0.77837181 0.22343777 
+		2.7575712 -0.85882586 0.12440551 2.718081 -0.9254939 -0.026572214 2.7129724 -0.92830139 
+		-0.17755008 2.718081 -0.92549396 -0.27658069 2.7575667 -0.85882598 -0.35784301 2.7805076 
+		-0.77837449 -0.39838004 2.8650954 -0.63736296 -0.43450943 2.9087658 -0.45679855 -0.42762986 
+		2.9873464 -0.26760569 -0.37367722 3.041667 -0.12382057 -0.29217097 3.0937262 -0.0021725828 
+		-0.18969226 3.1513455 0.10688827 -0.026572229 3.2033994 0.21444868 0.13654783 3.1513391 
+		0.10687764 0.23901445 3.0937352 -0.0021609012 0.32051781 3.0416877 -0.12378598 0.37446639 
+		2.9873443 -0.26757804 0.3813763 2.9087615 -0.45670217 0.37114722 3.2505183 -0.74981505 
+		0.3297663 3.1535246 -0.87391436 0.25656053 3.1699839 -0.95874774 0.13190085 3.0789759 
+		-1.0040901 -0.026572214 3.0778878 -1.0107775 -0.18504527 3.0789759 -1.0040901 -0.3097015 
+		3.1699769 -0.95874846 -0.38290805 3.153522 -0.87391812 -0.42428765 3.2505002 -0.74982703 
+		-0.45204228 3.3027067 -0.53476351 -0.45788246 3.3767259 -0.27184922 -0.39926752 3.4286034 
+		-0.13267295 -0.31042531 3.4732466 -0.021846158 -0.17986886 3.5117657 0.06260933 -0.026572227 
+		3.5399845 0.13661072 0.12672438 3.5117657 0.062609494 0.25725731 3.4732482 -0.021844711 
+		0.34611768 3.4286041 -0.13267939 0.40476871 3.3765526 -0.27215782 0.39889598 3.3027015 
+		-0.53478235 0.38241547 3.5312278 -0.78888476 0.33709845 3.4719269 -0.93910217 0.24965228 
+		3.4375651 -1.0242152 0.12578945 3.4227221 -1.0609807 -0.026572214 3.4161062 -1.0773679 
+		-0.1789342 3.4227161 -1.0609953 -0.30279666 3.4375651 -1.0242151 -0.39024287 3.4719269 
+		-0.93910211 -0.43555981 3.5312288 -0.788885 -0.45254347 3.6248813 -0.5602389 -0.43928346 
+		3.7241788 -0.31428254 -0.38637948 3.7835677 -0.16717847 -0.29199091 3.8221016 -0.07173115 
+		-0.16489816 3.8503377 -0.0017911787 -0.026572227 3.871846 0.051484123 0.11175369 
+		3.8503265 -0.0018187006 0.23884641 3.822104 -0.071725227 0.33323497 3.7835875 -0.16712955 
+		0.38613918 3.7242029 -0.31422272 0.39939901 3.6248813 -0.5602389 0.34701747 3.8606663 
+		-0.78738016 0.30068433 3.8001266 -0.93733484 0.21996605 3.7603855 -1.0357722 0.10792722 
+		3.7395966 -1.0872655 -0.026572214 3.7317955 -1.1065886 -0.16107163 3.7395966 -1.0872654 
+		-0.27310726 3.7603049 -1.0359719 -0.35382867 3.8001266 -0.93733478 -0.40016174 3.8606663 
+		-0.78738004 -0.41496897 3.9427111 -0.58415753 -0.398541 4.0248113 -0.38079852 -0.34631813 
+		4.0798531 -0.24446137 -0.25969017 4.1130157 -0.16231859 -0.1466154 4.1395903 -0.096495122 
+		-0.026572226 4.1563592 -0.054958768 0.093470961 4.1395903 -0.096495152;
 	setAttr ".pt[664:829]" 0.20654576 4.1130157 -0.16231865 0.29317355 4.0798531 
 		-0.24446137 0.34539649 4.0248113 -0.38079855 0.36182451 3.9427114 -0.58415729 0.29394293 
 		4.1431584 -0.78046399 0.25137383 4.0883265 -0.91628027 0.17966942 4.0479989 -1.0161707 
@@ -19067,64 +19096,136 @@ createNode mesh -n "AzureTorso:Group6299Shape" -p "AzureTorso:Group6299";
 		4.6886997 -0.64382041 -0.077169716 4.6980581 -0.62064022 -0.052898049 4.7032933 -0.60767293 
 		-0.026572216 4.7036524 -0.60678369 -0.00024638846 4.7032933 -0.60767299 0.024134669 
 		4.6980581 -0.62064022 0.044007149 4.6887226 -0.6437639 0.057039641 4.675488 -0.67654639 
-		0.061947837 4.6598425 -0.71529984 nan nan nan -0.026572214 4.6850471 -0.73656547 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan;
-	setAttr ".pt[830:995]" nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan;
-	setAttr ".pt[996:1131]" nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan 
-		nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan;
+		0.061947837 4.6598425 -0.71529984 -nan(ind) -nan(ind) -nan(ind) -0.026572214 4.6850471 
+		-0.73656547 -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind);
+	setAttr ".pt[830:995]" nan -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind);
+	setAttr ".pt[996:1131]" nan -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) 
+		-nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind) -nan(ind);
 	setAttr -s 1132 ".vt";
 	setAttr ".vt[0:165]"  -1.63564157 7.12672567 -0.50701565 -0.25700808 6.53974295 -0.11757267
 		 -0.19117875 5.87756968 0.59922558 -1.72844672 6.88334751 0.64466578 -1.79957449 7.074234486 -0.68868154
@@ -21834,20 +21935,20 @@ createNode mesh -n "pPlaneShape1" -p "pPlane1";
 	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "4CC0B64F-4F5A-2438-F9BB-91A555B3E87F";
+	rename -uid "2A612F6A-4D88-055A-6E01-DB817A3DF9A5";
 	setAttr -s 12 ".lnk";
 	setAttr -s 12 ".slnk";
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "3B3D92A9-44A9-E66F-E3BA-1A921443EC93";
+	rename -uid "97E8E9EF-4DF1-7F2A-569B-90B08EEB029F";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "142B912E-414C-A9FD-FC55-97B48F58A18A";
+	rename -uid "DDFAC42D-493E-2BBC-D643-7097BBD49F73";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "36598B50-4C90-4942-9296-E19B72F49F52";
+	rename -uid "066BF915-4D7E-A9B0-2FA1-07AB4CE0BE97";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "E41A630C-49FE-9E51-D2F8-0F896F1D5BE8";
 	setAttr ".ufem" -type "stringArray" 0  ;
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "6E57EC9D-4C71-804C-801C-F1945C5BFBAB";
+	rename -uid "BED78BA1-400B-8EB9-405E-D48E43B7108F";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "B7D31F62-4788-485A-9557-B99F6375826A";
 	setAttr ".g" yes;
@@ -22293,8 +22394,6 @@ select -ne :hardwareRenderGlobals;
 	setAttr -k on ".bswa";
 	setAttr -k on ".shml";
 	setAttr -k on ".hwel";
-select -ne :ikSystem;
-	setAttr -s 4 ".sol";
 connectAttr ":defaultColorMgtGlobals.cme" "ReferenceShape.cme";
 connectAttr ":defaultColorMgtGlobals.cfe" "ReferenceShape.cmcf";
 connectAttr ":defaultColorMgtGlobals.cfp" "ReferenceShape.cmcp";
