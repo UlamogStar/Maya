@@ -1,6 +1,6 @@
 //Maya ASCII 2023 scene
 //Name: Azure_Animation.ma
-//Last modified: Sat, Apr 05, 2025 06:05:32 PM
+//Last modified: Sat, Apr 05, 2025 06:13:48 PM
 //Codeset: 1252
 file -rdi 1 -ns "Azure_Rig" -rfn "Azure_RigRN" -op "v=0;" -typ "mayaAscii" "C:/Users/vigor/Repositories//MAYA//Maya/AzureProject/scenes/Azure_Rig.ma";
 file -r -ns "Azure_Rig" -dr 1 -rfn "Azure_RigRN" -op "v=0;" -typ "mayaAscii" "C:/Users/vigor/Repositories//MAYA//Maya/AzureProject/scenes/Azure_Rig.ma";
@@ -14,12 +14,12 @@ fileInfo "product" "Maya 2023";
 fileInfo "version" "2023";
 fileInfo "cutIdentifier" "202405151550-05a853e76d";
 fileInfo "osv" "Windows 11 Home v2009 (Build: 26100)";
-fileInfo "UUID" "6AB17711-4076-A5BA-8494-77BFD4E83C4C";
+fileInfo "UUID" "9A380C92-4838-2536-BF2D-C4AD395EE1E4";
 createNode transform -s -n "persp";
 	rename -uid "0CBBBE10-4DF7-A482-C486-0AB07F6FFA2D";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 426.60289513882867 195.85924276873939 777.10502617793486 ;
-	setAttr ".r" -type "double3" 0.86164727136316277 748.59999999992203 -5.6602654366510612e-17 ;
+	setAttr ".t" -type "double3" -40.460118947561512 233.69691320870518 886.4323956902407 ;
+	setAttr ".r" -type "double3" -1.5383527286369276 717.79999999991924 -1.8649809054900717e-17 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "4896E9E5-422C-7E23-07C9-0D9E70B01348";
 	setAttr -k off ".v" no;
@@ -80,20 +80,20 @@ createNode camera -s -n "sideShape" -p "side";
 	setAttr ".o" yes;
 	setAttr ".ai_translator" -type "string" "orthographic";
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "05376F51-4801-6500-57E0-FEB35303BE64";
+	rename -uid "A2FF82D4-4C14-4222-673C-94987A78B156";
 	setAttr -s 28 ".lnk";
 	setAttr -s 28 ".slnk";
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "0FEDB5A7-4D94-0C49-2B82-689422A8CAB3";
+	rename -uid "88490AB4-4DB3-60C5-6432-229FF3DD840C";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "D0C91E78-48A3-C8C6-6D59-D9983C057471";
+	rename -uid "3F580684-4D73-C273-A652-7592839BE25D";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "B44C7198-4B0F-16DD-9272-43859BA19B1A";
+	rename -uid "1EAC4FE7-4075-5F4C-B958-9384902BD782";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "D2CE88AA-4EAB-F0F6-78AE-E7A0C0455B76";
 	setAttr ".ufem" -type "stringArray" 0  ;
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "E7A0DAB0-4A8F-7EC3-053B-1793AEF640E8";
+	rename -uid "4DE5F8EF-4DF8-5C3E-B0E6-2F90E1AD29AD";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "153F7E7B-4C2A-4864-E35E-548E223B125D";
 	setAttr ".g" yes;
@@ -493,7 +493,7 @@ createNode reference -n "Azure_RigRN";
 	setAttr ".ed" -type "dataReferenceEdits" 
 		"Azure_RigRN"
 		"Azure_RigRN" 0
-		"Azure_RigRN" 391
+		"Azure_RigRN" 392
 		2 "|Azure_Rig:Character_Node|Azure_Rig:Skeleton_Grp|Azure_Rig:Spine_Jnt_00|Azure_Rig:Spine_Lwr_Jnt|Azure_Rig:L_Leg_Clav_01_Jnt|Azure_Rig:IK_L_Leg_Jnt_Grp|Azure_Rig:L_Leg_IK_01_Jnt" 
 		"rotate" " -type \"double3\" 0.79539835483649879 -0.057461660415363248 0.027599098474804979"
 		
@@ -535,6 +535,7 @@ createNode reference -n "Azure_RigRN";
 		
 		2 "|Azure_Rig:Character_Node|Azure_Rig:Control_Grp|Azure_Rig:COG_Ctrl_Grp|Azure_Rig:COG_Ctrl|Azure_Rig:Spine_Jnt_00_Ctrl_Grp|Azure_Rig:Spine_Jnt_00_Ctrl|Azure_Rig:Spine_Uppr_Jnt_Ctrl_Grp|Azure_Rig:Spine_Uppr_Jnt_Ctrl|Azure_Rig:L_Clav_Jnt_Ctrl_Grp|Azure_Rig:L_Clav_Jnt_Ctrl|Azure_Rig:L_Arm_FK_01_Jnt_Ctrl_Grp" 
 		"rotate" " -type \"double3\" 0 0 0"
+		2 "|Azure_Rig:aiSkyDomeLight1" "visibility" " 0"
 		2 "Azure_Rig:GeometryLayer" "displayType" " 2"
 		5 4 "Azure_RigRN" "|Azure_Rig:Character_Node|Azure_Rig:Geometry_Grp|Azure_Rig:AzureNewGeo:Main.visibility" 
 		"Azure_RigRN.placeHolderList[1]" ""
