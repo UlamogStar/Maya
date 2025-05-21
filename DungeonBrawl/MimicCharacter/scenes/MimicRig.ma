@@ -1,24 +1,23 @@
 //Maya ASCII 2023 scene
-//Name: MimicWhitebox.ma
-//Last modified: Mon, May 12, 2025 08:02:36 PM
+//Name: MimicRig.ma
+//Last modified: Mon, May 12, 2025 08:03:55 PM
 //Codeset: 1252
 requires maya "2023";
 requires "stereoCamera" "10.0";
 requires -nodeType "aiOptions" -nodeType "aiAOVDriver" -nodeType "aiAOVFilter" -nodeType "aiStandardSurface"
 		 "mtoa" "5.2.1.1";
-requires "stereoCamera" "10.0";
 currentUnit -l centimeter -a degree -t film;
 fileInfo "application" "maya";
 fileInfo "product" "Maya 2023";
 fileInfo "version" "2023";
 fileInfo "cutIdentifier" "202405151550-05a853e76d";
 fileInfo "osv" "Windows 11 Home v2009 (Build: 26100)";
-fileInfo "UUID" "020BB444-44D6-07A2-91C5-C99171405B2F";
+fileInfo "UUID" "F84C05D1-4F89-57FB-7FC2-6791E7E9791A";
 createNode transform -s -n "persp";
 	rename -uid "10991DC2-43CB-2479-6908-A0981059AC1A";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" -9.0219257398025032 12.227358014773364 -27.808329907629734 ;
-	setAttr ".r" -type "double3" 713.06164625326721 -13484.999999996959 0 ;
+	setAttr ".t" -type "double3" -4.3946306272386657 12.125802634684096 -37.422138494607957 ;
+	setAttr ".r" -type "double3" 713.66164625320982 -13492.999999994527 0 ;
 	setAttr ".rp" -type "double3" 1.7763568394002505e-15 1.7763568394002505e-15 0 ;
 	setAttr ".rpt" -type "double3" -3.5064486602630045e-15 -2.3821959824217462e-19 4.0382196763488256e-16 ;
 createNode camera -s -n "perspShape" -p "persp";
@@ -26,7 +25,7 @@ createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v" no;
 	setAttr ".pze" yes;
 	setAttr ".fl" 41.029400241506785;
-	setAttr ".coi" 33.407475179782331;
+	setAttr ".coi" 40.683557479747471;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -60676,20 +60675,20 @@ createNode mesh -n "pSphere164_Shape" -p "pSphere164";
 	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "A97DBF7D-486D-AEB8-9EC3-71A572107D3A";
+	rename -uid "0C128D6A-4319-FF5F-2122-15B8C02D2CB2";
 	setAttr -s 62 ".lnk";
 	setAttr -s 62 ".slnk";
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "2A0A22F8-4586-9063-DA0E-78A6D437F468";
+	rename -uid "984FD158-45FE-07A2-45D1-39901C5E4D3A";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "20C2CF3F-4DC6-A671-F099-3AAD7FD74301";
+	rename -uid "DB510E9B-4F27-FDAC-B872-00AF58F92ADD";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "CFE1B911-413F-3AE3-1183-16BDF3ACA0AE";
+	rename -uid "261BB13A-441D-3B33-0551-879550E91E6E";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "679C71B0-4E77-BBE1-101C-A4AC8D77584F";
 	setAttr ".ufem" -type "stringArray" 0  ;
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "0FD5788C-493B-49C6-46B6-A8B34DA004EC";
+	rename -uid "82CF7784-4BB7-FA53-7C04-6B8E2EE49984";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "A9FB93FC-4A0C-A01F-9C12-01B26A02E48D";
 	setAttr ".g" yes;
@@ -61527,7 +61526,7 @@ createNode polyBevel3 -n "polyBevel1";
 createNode polyTweak -n "polyTweak1";
 	rename -uid "D91D98B6-4A9E-CA20-E141-69B0E58D1177";
 	setAttr ".uopa" yes;
-	setAttr -s 477 ".tk";
+	setAttr -s 144 ".tk";
 	setAttr ".tk[7]" -type "float3" 0 -7.1525574e-07 0 ;
 	setAttr ".tk[8]" -type "float3" 5.9604645e-08 -2.3841858e-07 -8.9406967e-08 ;
 	setAttr ".tk[10]" -type "float3" 0 -7.1525574e-07 0 ;
@@ -63918,4 +63917,4 @@ connectAttr "MimicEye.msg" ":defaultShaderList1.s" -na;
 connectAttr "MimicFlesh.msg" ":defaultShaderList1.s" -na;
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
 connectAttr "TongueGeoShape.iog" ":initialShadingGroup.dsm" -na;
-// End of MimicWhitebox.ma
+// End of MimicRig.ma
