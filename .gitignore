@@ -86,3 +86,5 @@ images/
 AzureProject/Textures/
 
 movies/
+
+*.tx
