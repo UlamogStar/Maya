@@ -1,32 +1,31 @@
 //Maya ASCII 2026 scene
 //Name: TITANRIGMA.ma
-//Last modified: Sat, Dec 13, 2025 06:34:37 PM
+//Last modified: Sat, Dec 13, 2025 06:39:08 PM
 //Codeset: 1252
 requires maya "2026";
 requires -nodeType "ngst2SkinLayerData" -dataType "ngst2SkinLayerDataStorage" "ngSkinTools2" "2.4.0";
 requires "stereoCamera" "10.0";
 requires -nodeType "aiOptions" -nodeType "aiAOVDriver" -nodeType "aiAOVFilter" -nodeType "aiStandardSurface"
-		 "mtoa" "5.5.4.2";
-requires "stereoCamera" "10.0";
+		 -nodeType "aiImagerDenoiserOidn" "mtoa" "5.5.4.2";
 currentUnit -l centimeter -a degree -t film;
 fileInfo "application" "maya";
 fileInfo "product" "Maya 2026";
 fileInfo "version" "2026";
 fileInfo "cutIdentifier" "202510291147-60ec9eda33";
 fileInfo "osv" "Windows 11 Home v2009 (Build: 26200)";
-fileInfo "UUID" "46E11425-48E4-E4E1-0E06-98AEE0ACA12F";
+fileInfo "UUID" "6F5C66F7-41FF-8185-1349-7F94F5160DC1";
 createNode transform -s -n "persp";
 	rename -uid "ED7AFE6D-40ED-D528-FB01-C591CA49845E";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 13.670014295544862 144.94627379552088 925.23246979086537 ;
-	setAttr ".r" -type "double3" 1.200000000000002 -719.99999999999943 -9.8754355791305794e-21 ;
+	setAttr ".t" -type "double3" 2.8368960258853804 138.73354695556981 723.86062274495634 ;
+	setAttr ".r" -type "double3" -4.8000000000000584 -721.19999999999948 0 ;
 	setAttr ".rp" -type "double3" 0 2.8421709430404007e-14 2.8421709430404007e-14 ;
 	setAttr ".rpt" -type "double3" 3.9336835231928291e-12 1.1031836845321277e-12 -3.7692646979620935e-12 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "1070F450-4AF1-7410-9FCB-21A886F6B4AF";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999979;
-	setAttr ".coi" 930.82627687932086;
+	setAttr ".coi" 646.5224796907886;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -38726,15 +38725,15 @@ createNode scaleConstraint -n "Skeleton_Grp_scaleConstraint1" -p "Skeleton_Grp";
 	setAttr ".erp" yes;
 	setAttr -k on ".w0";
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "EB187542-4F22-8225-0A8A-E3B9B252955F";
-	setAttr -s 11 ".lnk";
-	setAttr -s 11 ".slnk";
+	rename -uid "D4E31509-4BE1-C81E-DF35-0398568999E0";
+	setAttr -s 19 ".lnk";
+	setAttr -s 19 ".slnk";
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "5237B5B9-46B0-FFAE-10A9-F7B1C0A43365";
+	rename -uid "1789C480-4A87-FB31-DFC7-45809F6C40A1";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "19FDC59F-44E9-E234-ED3A-198BC0444897";
+	rename -uid "9870A6B3-4A75-3E8C-5265-F7B130235FE8";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "A3F62C5E-4263-C6D1-4FD9-329544746A47";
+	rename -uid "E8C33755-4876-F909-DB5D-528D1172D596";
 	setAttr ".cdl" 5;
 	setAttr -s 6 ".dli[1:5]"  1 2 3 4 5;
 	setAttr -s 6 ".dli";
@@ -38742,7 +38741,7 @@ createNode displayLayer -n "defaultLayer";
 	rename -uid "8A5928E6-4D42-48C4-0F20-4FA2EBD9D22F";
 	setAttr ".ufem" -type "stringArray" 0  ;
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "8E180D4C-4B1D-F90A-946E-B2B523A9D6DC";
+	rename -uid "86B1D4EE-4BEF-2F73-2BB3-3D892D9B6CAB";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "34A990F6-4393-7081-3B61-C9B2786C201C";
 	setAttr ".g" yes;
@@ -54257,6 +54256,8 @@ createNode nodeGraphEditorInfo -n "hyperShadePrimaryNodeEditorSavedTabsInfo";
 	setAttr ".tgi[0].tn" -type "string" "Untitled_1";
 	setAttr ".tgi[0].vl" -type "double2" -948.80948610722226 -946.42416510108899 ;
 	setAttr ".tgi[0].vh" -type "double2" 924.99996324380413 958.32892653279816 ;
+createNode aiImagerDenoiserOidn -s -n "defaultArnoldDenoiser";
+	rename -uid "740A274D-46B4-E44F-0515-76935855119C";
 select -ne :time1;
 	setAttr -av -k on ".cch";
 	setAttr -av -cb on ".ihi";
