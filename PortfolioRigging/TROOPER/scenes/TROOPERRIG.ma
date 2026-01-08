@@ -1,6 +1,6 @@
 //Maya ASCII 2026 scene
 //Name: TROOPERRIG.ma
-//Last modified: Sun, Jan 04, 2026 10:53:59 PM
+//Last modified: Wed, Jan 07, 2026 04:48:22 PM
 //Codeset: 1252
 requires maya "2026";
 requires -nodeType "ngst2SkinLayerData" -dataType "ngst2SkinLayerDataStorage" "ngSkinTools2" "2.4.0";
@@ -14,21 +14,23 @@ fileInfo "product" "Maya 2026";
 fileInfo "version" "2026";
 fileInfo "cutIdentifier" "202510291147-60ec9eda33";
 fileInfo "osv" "Windows 11 Home v2009 (Build: 26200)";
-fileInfo "UUID" "F1276E80-430F-A071-3507-FF900CDBE141";
+fileInfo "UUID" "28EAC6E0-412B-4285-8D80-3A92C5413C62";
 createNode transform -s -n "persp";
 	rename -uid "3E8D8454-4E8A-6700-3554-5C8F67C9E260";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 4.5190359496963044 84.633401142250662 374.66052609988594 ;
-	setAttr ".r" -type "double3" 1438.461647238239 -3240.1999999986911 -4.2707903619015343e-18 ;
+	setAttr ".t" -type "double3" 2.6752087073546669 61.719472964398804 328.15389433594527 ;
+	setAttr ".r" -type "double3" 0.26164723411296725 356.99999999959618 -7.7756823802562726e-19 ;
+	setAttr ".rp" -type "double3" -7.1054273576010019e-15 -1.4210854715202004e-14 0 ;
+	setAttr ".rpt" -type "double3" 3.8562821933281078e-14 1.2290301328951877e-15 -4.7862979923878347e-14 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "1E1761B3-47F3-56F8-03CC-A2A90BBA5B27";
 	setAttr -k off ".v" no;
-	setAttr ".fl" 34.999999999999993;
-	setAttr ".coi" 391.50246562253812;
+	setAttr ".fl" 34.999999999999979;
+	setAttr ".coi" 340.95979949755616;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
-	setAttr ".tp" -type "double3" 81.808140118429236 75.174953460693374 -6.7302765846252477 ;
+	setAttr ".tp" -type "double3" 12.34805814239348 88.001320065961835 26.284004382924312 ;
 	setAttr ".hc" -type "string" "viewSet -p %camera";
 createNode transform -s -n "top";
 	rename -uid "A6E49256-495C-53B2-4F54-649FA87EE9B4";
@@ -4307,7 +4309,7 @@ createNode transform -n "Axe_Control_Node" -p "Axe_Node";
 	rename -uid "646018F8-4146-BF33-F390-4E8437DF148A";
 createNode transform -n "Axe_Base_Ctrl_Grp" -p "Axe_Control_Node";
 	rename -uid "954838EB-4726-1674-21A4-FBBF536751CB";
-	setAttr ".r" -type "double3" -90 -91.569354804748983 1.0177774980683254e-13 ;
+	setAttr ".r" -type "double3" -90 -91.569354804748997 1.0177774980683254e-13 ;
 createNode transform -n "Axe_Base_Ctrl" -p "Axe_Base_Ctrl_Grp";
 	rename -uid "859E295A-4066-5AA8-D27A-9E8C6BF9C5B1";
 	setAttr ".s" -type "double3" 1 0.99999999999999989 0.99999999999999989 ;
@@ -4377,7 +4379,7 @@ createNode transform -n "Axe_Head_Ctrl_Grp" -p "Axe_Bend_Ctrl";
 	setAttr ".s" -type "double3" 0.99999999999999978 0.99999999999999956 0.99999999999999989 ;
 	setAttr ".rp" -type "double3" 71.122696144504346 -12.96697975797489 2.9842794901924208e-13 ;
 	setAttr ".sp" -type "double3" 71.12269614450436 -12.966979757974896 2.9842794901924213e-13 ;
-	setAttr ".spt" -type "double3" -1.4210854715202001e-14 5.329070518200749e-15 -5.048709793414475e-29 ;
+	setAttr ".spt" -type "double3" -1.4210854715202001e-14 5.329070518200749e-15 -5.0487097934144756e-29 ;
 createNode transform -n "Axe_Head_Ctrl" -p "Axe_Head_Ctrl_Grp";
 	rename -uid "DA8C0FE3-47AD-AC50-8ADA-C9874BE447C3";
 	setAttr ".s" -type "double3" 0.99999999999999967 0.99999999999999967 1 ;
@@ -4488,7 +4490,7 @@ createNode parentConstraint -n "Axe_Bend_01_Jnt_parentConstraint1" -p "Axe_Bend_
 	setAttr ".tg[0].tot" -type "double3" -7.1054273576010019e-15 -7.815970093361102e-14 
 		7.1054273576008394e-15 ;
 	setAttr ".tg[0].tor" -type "double3" 0 0 9.5416640443905503e-15 ;
-	setAttr ".lr" -type "double3" 0 0 1.9083328088781101e-14 ;
+	setAttr ".lr" -type "double3" 0 0 -1.2722218725854067e-14 ;
 	setAttr ".rst" -type "double3" 38.067757829758264 -4.2632564145606011e-14 -1.0565925309613057e-14 ;
 	setAttr ".rsrr" -type "double3" 0 0 -6.3611093629270335e-15 ;
 	setAttr -k on ".w0";
@@ -4527,7 +4529,7 @@ createNode parentConstraint -n "Axe_Bend_02_Jnt_parentConstraint1" -p "Axe_Bend_
 		2.7000623958883812e-13 ;
 	setAttr ".tg[0].tor" -type "double3" 1.3358329662146771e-13 -9.5416640443905471e-15 
 		-1.2921003393445537e-14 ;
-	setAttr ".lr" -type "double3" 3.434999055980598e-13 9.5416640443904635e-15 2.8624992133171679e-14 ;
+	setAttr ".lr" -type "double3" 3.4349990559805975e-13 9.5416640443905771e-15 -9.5416640443905203e-15 ;
 	setAttr ".rst" -type "double3" 74.857059809900079 0 -6.4156900976257214 ;
 	setAttr ".rsrr" -type "double3" -1.3358329662146776e-13 9.5416640443905708e-15 1.5902773407317574e-14 ;
 	setAttr -k on ".w0";
@@ -4954,7 +4956,7 @@ createNode joint -n "R_Mth_Crnr_Jnt" -p "Face_Joints";
 	setAttr ".mnrl" -type "double3" -360 -360 -360 ;
 	setAttr ".mxrl" -type "double3" 360 360 360 ;
 	setAttr ".jo" -type "double3" -180 0 0 ;
-	setAttr ".bps" -type "matrix" 1 0 0 0 -0 -1 -1.2246467991473532e-16 0 0 1.2246467991473532e-16 -1 0
+	setAttr ".bps" -type "matrix" 1 0 0 0 0 -1 -1.2246467991473532e-16 0 0 1.2246467991473532e-16 -1 0
 		 -10.6897 88.504800000000003 17.158999999999999 1;
 	setAttr ".radi" 4;
 createNode parentConstraint -n "R_Mth_Crnr_Jnt_parentConstraint1" -p "R_Mth_Crnr_Jnt";
@@ -4973,7 +4975,7 @@ createNode parentConstraint -n "R_Mth_Crnr_Jnt_parentConstraint1" -p "R_Mth_Crnr
 	setAttr -k off ".sz";
 	setAttr ".erp" yes;
 	setAttr ".tg[0].tor" -type "double3" 1.4033418597069752e-14 0 0 ;
-	setAttr ".lr" -type "double3" 360 0 0 ;
+	setAttr ".lr" -type "double3" -1.4033418597069752e-14 0 0 ;
 	setAttr ".rst" -type "double3" -10.6897 88.5048 17.159 ;
 	setAttr ".rsrr" -type "double3" -1.4033418597069752e-14 0 0 ;
 	setAttr -k on ".w0";
@@ -5220,7 +5222,7 @@ createNode joint -n "L_Arm_IK_02_Jnt" -p "L_Arm_IK_01_Jnt";
 	setAttr ".uoc" 1;
 	setAttr ".oc" 4;
 	setAttr ".t" -type "double3" 13.718785513433883 4.0518089049603816 -1.0172068474838649 ;
-	setAttr ".r" -type "double3" -4.5700775112363477e-15 -7.6752860355585166e-14 -1.5545184424167334e-13 ;
+	setAttr ".r" -type "double3" -5.8164622870280796e-15 -9.7685458634381135e-14 -1.978478017621298e-13 ;
 	setAttr ".mnrl" -type "double3" -360 -360 -360 ;
 	setAttr ".mxrl" -type "double3" 360 360 360 ;
 	setAttr ".jot" -type "string" "xzy";
@@ -5364,7 +5366,7 @@ createNode parentConstraint -n "L_Arm_FK_02_Jnt_parentConstraint1" -p "L_Arm_FK_
 	setAttr ".tg[0].tot" -type "double3" -7.1054273576010019e-15 -1.7763568394002505e-15 
 		2.8421709430404007e-14 ;
 	setAttr ".tg[0].tor" -type "double3" 0 0 3.1805546814635168e-15 ;
-	setAttr ".lr" -type "double3" 0 0 -3.1805546814635168e-15 ;
+	setAttr ".lr" -type "double3" 0 0 -1.5902773407317584e-15 ;
 	setAttr ".rst" -type "double3" 13.718785513433879 4.0518089016368926 -1.0172067524943316 ;
 	setAttr ".rsrr" -type "double3" 0 0 -3.1805546814635168e-15 ;
 	setAttr -k on ".w0";
@@ -5584,11 +5586,11 @@ createNode joint -n "R_Arm_IK_02_Jnt" -p "R_Arm_IK_01_Jnt";
 	setAttr ".uoc" 1;
 	setAttr ".oc" 4;
 	setAttr ".t" -type "double3" -13.718779837854736 -4.0518031870082716 1.0172592611128692 ;
-	setAttr ".r" -type "double3" 1.4321398241839464e-13 2.4077858167699582e-12 4.89963373210505e-12 ;
+	setAttr ".r" -type "double3" 9.7988514738790563e-14 1.6474324073114756e-12 3.3523809717225735e-12 ;
 	setAttr ".mnrl" -type "double3" -360 -360 -360 ;
 	setAttr ".mxrl" -type "double3" 360 360 360 ;
 	setAttr ".jot" -type "string" "xzy";
-	setAttr ".jo" -type "double3" -5.3236901059510266e-16 -5.2429456077250148e-15 11.595890049848489 ;
+	setAttr ".jo" -type "double3" -5.3236901059510266e-16 -5.2429456077250156e-15 11.595890049848489 ;
 	setAttr ".bps" -type "matrix" 0.99337666163326077 0.013391249071707748 -0.11412047393284688 0
 		 0.11438506145219893 -0.021011291415257597 0.99321426859950002 0 0.010902561118139571 -0.99968955185165498 -0.022403885370681144 0
 		 -48.351404196202274 69.140643847178836 -6.460390235387135 1;
@@ -5623,7 +5625,7 @@ createNode orientConstraint -n "R_Arm_IK_03_Jnt_orientConstraint1" -p "R_Arm_IK_
 	setAttr -k off ".sy";
 	setAttr -k off ".sz";
 	setAttr ".erp" yes;
-	setAttr ".lr" -type "double3" 179.85507224054629 -1.241170244781195 13.138592408673766 ;
+	setAttr ".lr" -type "double3" 179.85507224054626 -1.2411702447811845 13.13859240867377 ;
 	setAttr ".o" -type "double3" 179.85899651828242 -1.2416221151691311 13.138550458184126 ;
 	setAttr ".rsrr" -type "double3" 360 5.9635400277441008e-16 -4.7708320221952767e-15 ;
 	setAttr -k on ".w0";
@@ -5650,7 +5652,7 @@ createNode parentConstraint -n "R_Arm_IK_01_Jnt_parentConstraint1" -p "R_Arm_IK_
 	setAttr ".tg[0].tot" -type "double3" 9.7777102816110073e-05 3.4168980206583655e-05 
 		1.0670594051020998e-05 ;
 	setAttr ".tg[0].tor" -type "double3" 179.61031595902844 -1.1875407861687441 36.332764367727478 ;
-	setAttr ".lr" -type "double3" 1.0833764383735104e-14 3.180554681463516e-15 6.3611093629270335e-15 ;
+	setAttr ".lr" -type "double3" -1.8834847254291763e-14 3.9756933518294172e-16 1.2722218725854067e-14 ;
 	setAttr ".rst" -type "double3" -34.065100000000008 70.322999999999979 -6.8608800000000016 ;
 	setAttr ".rsrr" -type "double3" 1.2921003393445537e-14 1.5902773407317588e-15 -3.1805546814635164e-15 ;
 	setAttr -k on ".w0";
@@ -5733,7 +5735,7 @@ createNode parentConstraint -n "R_Arm_FK_02_Jnt_parentConstraint1" -p "R_Arm_FK_
 	setAttr ".tg[0].tot" -type "double3" 0.00011130349999177724 1.118274107492212e-05 
 		-4.1447284289120034e-05 ;
 	setAttr ".tg[0].tor" -type "double3" 179.85700844558775 -1.2416286245123289 13.138495126611165 ;
-	setAttr ".lr" -type "double3" -7.1922080779127424e-15 -1.467577702102205e-15 9.5416640443905456e-15 ;
+	setAttr ".lr" -type "double3" -3.4544472821210198e-14 3.9072614619578605e-15 1.2722218725854061e-14 ;
 	setAttr ".rst" -type "double3" -13.718779837854719 -4.0518032427933974 1.0172590389174019 ;
 	setAttr ".rsrr" -type "double3" -7.5707789801280823e-15 -3.0489900634413264e-17 
 		6.3611093629270304e-15 ;
@@ -5774,7 +5776,7 @@ createNode parentConstraint -n "R_Arm_FK_01_Jnt_parentConstraint1" -p "R_Arm_FK_
 	setAttr ".tg[0].tot" -type "double3" 9.7777102801899218e-05 3.4168980207027744e-05 
 		1.0670594065231853e-05 ;
 	setAttr ".tg[0].tor" -type "double3" 179.61031595902844 -1.1875407861687441 36.332764367727478 ;
-	setAttr ".lr" -type "double3" 1.0833764383735104e-14 3.180554681463516e-15 6.3611093629270335e-15 ;
+	setAttr ".lr" -type "double3" -1.8834847254291763e-14 3.9756933518294172e-16 1.2722218725854067e-14 ;
 	setAttr ".rst" -type "double3" -34.065100000000008 70.322999999999979 -6.8608800000000025 ;
 	setAttr ".rsrr" -type "double3" 1.2921003393445537e-14 1.5902773407317588e-15 -3.1805546814635164e-15 ;
 	setAttr -k on ".w0";
@@ -5909,7 +5911,7 @@ createNode joint -n "R_Hand_Jnt" -p "Skeleton_Node";
 	setAttr ".mnrl" -type "double3" -360 -360 -360 ;
 	setAttr ".mxrl" -type "double3" 360 360 360 ;
 	setAttr ".jot" -type "string" "none";
-	setAttr ".jo" -type "double3" 91.290210261157753 6.5528424794549727 0.77233614931969774 ;
+	setAttr ".jo" -type "double3" 91.290210261157767 6.5528424794549727 0.77233614931969774 ;
 	setAttr ".bps" -type "matrix" 0.99337688019944326 0.013391425836498154 -0.11411855063611054 0
 		 0.11438238563284854 -0.020941924873046466 0.99321604177517664 0 0.01091071684901016 -0.99969100500938624 -0.022334967229961974 0
 		 -66.117400008843802 68.990600161923012 -3.0935800179756656 1;
@@ -5994,7 +5996,7 @@ createNode parentConstraint -n "R_Pnky_Fngr_01_Jnt_parentConstraint1" -p "R_Pnky
 		3.5527136788005009e-14 ;
 	setAttr ".tg[0].tor" -type "double3" 1.908332808878111e-14 6.3611093629270335e-15 
 		-1.1131941385122309e-14 ;
-	setAttr ".lr" -type "double3" -1.9977859092942712e-14 -9.9392333795734871e-15 7.1562480332929135e-15 ;
+	setAttr ".lr" -type "double3" -7.0568556994971777e-15 -5.5659706925611543e-15 1.5902773407317588e-15 ;
 	setAttr ".rst" -type "double3" -15.088941065921802 -5.5365139069373459 -6.2722665765597014 ;
 	setAttr ".rsrr" -type "double3" -2.5842006786891074e-14 -3.1805546814635156e-15 
 		3.9756933518293967e-15 ;
@@ -6056,8 +6058,8 @@ createNode parentConstraint -n "R_Pntr_Fngr_02_Jnt_parentConstraint1" -p "R_Pntr
 	setAttr ".erp" yes;
 	setAttr ".tg[0].tot" -type "double3" 5.6843418860808015e-14 1.4210854715202004e-14 
 		7.1054273576010019e-15 ;
-	setAttr ".tg[0].tor" -type "double3" 0 0 -1.3358329662146774e-13 ;
-	setAttr ".lr" -type "double3" 0 0 1.2404163257707715e-13 ;
+	setAttr ".tg[0].tor" -type "double3" 0 0 -1.3358329662146776e-13 ;
+	setAttr ".lr" -type "double3" 0 0 1.4312496066585825e-13 ;
 	setAttr ".rst" -type "double3" -7.0562820939471038 -1.0181462002378794e-05 -2.3206428402033907e-05 ;
 	setAttr ".rsrr" -type "double3" 0 0 1.4630551534732177e-13 ;
 	setAttr -k on ".w0";
@@ -6098,7 +6100,7 @@ createNode parentConstraint -n "R_Pntr_Fngr_01_Jnt_parentConstraint1" -p "R_Pntr
 		-4.2632564145606011e-14 ;
 	setAttr ".tg[0].tor" -type "double3" -3.1805546814635183e-15 -6.3611093629270351e-15 
 		0 ;
-	setAttr ".lr" -type "double3" 7.9513867036587935e-15 4.7708320221952759e-15 3.1805546814635176e-15 ;
+	setAttr ".lr" -type "double3" -7.5538173684758519e-15 -3.1805546814635168e-15 3.1805546814635176e-15 ;
 	setAttr ".rst" -type "double3" -13.692414252696139 8.3064642512984506 -8.4442164662781778 ;
 	setAttr ".rsrr" -type "double3" 8.7465253740246735e-15 1.113194138512231e-14 -3.1805546814635168e-15 ;
 	setAttr -k on ".w0";
@@ -6159,7 +6161,7 @@ createNode parentConstraint -n "R_Thmb_02_Jnt_parentConstraint1" -p "R_Thmb_02_J
 	setAttr ".tg[0].tot" -type "double3" 7.1054273576010019e-15 1.4210854715202004e-14 
 		0 ;
 	setAttr ".tg[0].tor" -type "double3" 0 0 -3.180554681463516e-15 ;
-	setAttr ".lr" -type "double3" 0 0 3.1805546814635168e-15 ;
+	setAttr ".lr" -type "double3" 0 0 9.5416640443905503e-15 ;
 	setAttr ".rst" -type "double3" -4.0625852531011155 -3.4580973888864719e-05 -9.4610509293602263e-06 ;
 	setAttr ".rsrr" -type "double3" 0 0 6.3611093629270335e-15 ;
 	setAttr -k on ".w0";
@@ -6241,12 +6243,11 @@ createNode parentConstraint -n "L_Hand_Jnt_parentConstraint2" -p "R_Hand_Jnt";
 		1.4210854715202004e-14 ;
 	setAttr ".tg[0].tor" -type "double3" -1.8486974086006697e-14 -1.6399735076296259e-15 
 		0 ;
-	setAttr ".cpim" -type "matrix" 1 -0 0 -0 -0 1 -0 0 0 -0 1 -0 -3.62396240234375e-05 -55.234733581542969 3.7190735931279715 1;
+	setAttr ".cpim" -type "matrix" 1 0 0 0 0 1 0 0 0 0 1 0 -3.62396240234375e-05 -55.234733581542969 3.7190735931279715 1;
 	setAttr ".lr" -type "double3" 1.2672522558956196e-14 0 0 ;
 	setAttr ".rst" -type "double3" 66.117488118311002 68.990573793054779 -3.0935757740666849 ;
 	setAttr ".cjo" -type "double3" -88.709789738842304 -6.5528424794549593 -0.77233614931975803 ;
 	setAttr ".rsrr" -type "double3" 2.5444437451708128e-14 7.9513867036587899e-16 1.7655625192200626e-31 ;
-	setAttr -k on ".w0";
 createNode scaleConstraint -n "L_Hand_Jnt_scaleConstraint2" -p "R_Hand_Jnt";
 	rename -uid "A3D7BAB0-4F04-9031-3FA0-F285AF7636C8";
 	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "L_Hand_CtrlW0" -dv 1 -min 0 -at "double";
@@ -6266,8 +6267,7 @@ createNode scaleConstraint -n "L_Hand_Jnt_scaleConstraint2" -p "R_Hand_Jnt";
 	setAttr ".tg[0].tpm" -type "matrix" 0.99337677088950327 -0.013391339978224691 0.11411951222613495 0
 		 0.11438372347820161 0.020976595773892548 -0.99321515606287514 0 0.010906642948482009 0.99969027925819443 0.022369414303195612 0
 		 66.117488118311016 68.990573793054764 -3.0935757740666818 1;
-	setAttr ".cpim" -type "matrix" 1 -0 0 -0 -0 1 -0 0 0 -0 1 -0 -3.62396240234375e-05 -55.234733581542969 3.7190735931279715 1;
-	setAttr -k on ".w0";
+	setAttr ".cpim" -type "matrix" 1 0 0 0 0 1 0 0 0 0 1 0 -3.62396240234375e-05 -55.234733581542969 3.7190735931279715 1;
 createNode parentConstraint -n "R_Hand_Jnt_parentConstraint1" -p "R_Hand_Jnt";
 	rename -uid "29935761-4C12-2284-E0DB-9EBFC20EAED9";
 	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "R_Hand_CtrlW0" -dv 1 -min 0 -at "double";
@@ -6286,9 +6286,9 @@ createNode parentConstraint -n "R_Hand_Jnt_parentConstraint1" -p "R_Hand_Jnt";
 	setAttr ".tg[0].tot" -type "double3" 8.670147570910558e-05 1.4826294038261523e-05 
 		2.7065371682510886e-05 ;
 	setAttr ".tg[0].tor" -type "double3" 179.85700844558781 -1.2416286245122619 13.138495126611177 ;
-	setAttr ".lr" -type "double3" -0.0019878522510354962 6.0819288673239697e-06 5.5334433253814649e-05 ;
+	setAttr ".lr" -type "double3" -0.001987852251009854 6.0819288645410303e-06 5.5334433256995278e-05 ;
 	setAttr ".rst" -type "double3" -66.1174 68.990599999999986 -3.0935800000000016 ;
-	setAttr ".rsrr" -type "double3" 1.2622826392058324e-14 2.3854160110976352e-15 5.5659706925611504e-15 ;
+	setAttr ".rsrr" -type "double3" 1.2622826392058326e-14 2.3854160110976352e-15 5.5659706925611512e-15 ;
 	setAttr -k on ".w0";
 createNode scaleConstraint -n "R_Hand_Jnt_scaleConstraint1" -p "R_Hand_Jnt";
 	rename -uid "7222C913-47B3-9789-DED5-7CBE84627EEB";
@@ -6356,7 +6356,7 @@ createNode parentConstraint -n "L_Pnky_Fngr_02_Jnt_parentConstraint1" -p "L_Pnky
 	setAttr ".tg[0].tot" -type "double3" 4.2632564145606011e-14 4.2632564145606011e-14 
 		7.1054273576010019e-15 ;
 	setAttr ".tg[0].tor" -type "double3" 0 -4.6913181551586862e-14 0 ;
-	setAttr ".lr" -type "double3" 0 4.2937488199757481e-14 0 ;
+	setAttr ".lr" -type "double3" 0 4.2142349529391601e-14 0 ;
 	setAttr ".rst" -type "double3" 9.688288083257433 7.1054273576010019e-15 -3.5527136788005009e-15 ;
 	setAttr ".rsrr" -type "double3" 0 4.3732626870123361e-14 0 ;
 	setAttr -k on ".w0";
@@ -6395,7 +6395,7 @@ createNode parentConstraint -n "L_Pnky_Fngr_01_Jnt_parentConstraint1" -p "L_Pnky
 	setAttr ".erp" yes;
 	setAttr ".tg[0].tot" -type "double3" 0 1.4210854715202004e-14 -7.1054273576010019e-15 ;
 	setAttr ".tg[0].tor" -type "double3" -9.5416640443905535e-15 0 1.1131941385122309e-14 ;
-	setAttr ".lr" -type "double3" 6.5598940305185035e-15 4.3732626870123359e-15 -7.1562480332929135e-15 ;
+	setAttr ".lr" -type "double3" -2.9817700138720494e-16 2.7829853462805772e-15 -1.1131941385122309e-14 ;
 	setAttr ".rst" -type "double3" 15.088893563731304 5.5365087950874621 6.2722457088463841 ;
 	setAttr ".rsrr" -type "double3" 1.2324649390671127e-14 1.2827915178708274e-30 -1.1927080055488187e-14 ;
 	setAttr -k on ".w0";
@@ -6457,7 +6457,7 @@ createNode parentConstraint -n "L_Pntr_Fngr_02_Jnt_parentConstraint1" -p "L_Pntr
 	setAttr ".tg[0].tot" -type "double3" 1.4210854715202004e-14 1.4210854715202004e-14 
 		0 ;
 	setAttr ".tg[0].tor" -type "double3" 0 0 -9.5416640443905459e-14 ;
-	setAttr ".lr" -type "double3" 0 0 8.2694421718051442e-14 ;
+	setAttr ".lr" -type "double3" 0 0 8.587497639951495e-14 ;
 	setAttr ".rst" -type "double3" 7.0563401573950983 1.4210854715202004e-14 -7.1054273576010019e-15 ;
 	setAttr ".rsrr" -type "double3" 0 0 9.2236085762441989e-14 ;
 	setAttr -k on ".w0";
@@ -6497,7 +6497,7 @@ createNode parentConstraint -n "L_Pntr_Fngr_01_Jnt_parentConstraint1" -p "L_Pntr
 	setAttr ".tg[0].tot" -type "double3" 0 1.4210854715202004e-14 0 ;
 	setAttr ".tg[0].tor" -type "double3" 1.272221872585407e-14 3.975693351829396e-15 
 		3.4986101496098681e-14 ;
-	setAttr ".lr" -type "double3" -3.2600685485001048e-14 6.3611093629270233e-15 -3.8166656177562201e-14 ;
+	setAttr ".lr" -type "double3" -3.2998254820183988e-14 6.3611093629270233e-15 -3.4986101496098681e-14 ;
 	setAttr ".rst" -type "double3" 13.692360269097335 -8.3064705004363617 8.4442270456105319 ;
 	setAttr ".rsrr" -type "double3" -7.9513867036587903e-15 -3.1805546814635195e-15 
 		-3.8166656177562201e-14 ;
@@ -6559,7 +6559,7 @@ createNode parentConstraint -n "L_Thmb_02_Jnt_parentConstraint1" -p "L_Thmb_02_J
 	setAttr ".tg[0].tot" -type "double3" 7.1054273576010019e-15 2.8421709430404007e-14 
 		-1.4210854715202004e-14 ;
 	setAttr ".tg[0].tor" -type "double3" 0 0 9.5416640443905519e-15 ;
-	setAttr ".lr" -type "double3" 0 0 -1.2722218725854067e-14 ;
+	setAttr ".lr" -type "double3" 0 0 -6.3611093629270335e-15 ;
 	setAttr ".rst" -type "double3" 4.0626112444698528 -1.4210854715202004e-14 0 ;
 	setAttr ".rsrr" -type "double3" 0 0 -9.5416640443905503e-15 ;
 	setAttr -k on ".w0";
@@ -6598,7 +6598,7 @@ createNode parentConstraint -n "L_Thmb_01_Jnt_parentConstraint1" -p "L_Thmb_01_J
 		2.8421709430404007e-14 ;
 	setAttr ".tg[0].tor" -type "double3" 6.3611093629270351e-15 -6.3611093629270351e-15 
 		3.1805546814635176e-15 ;
-	setAttr ".lr" -type "double3" -6.361109362927032e-15 6.361109362927032e-15 -3.1805546814635168e-15 ;
+	setAttr ".lr" -type "double3" 1.5902773407317584e-15 6.361109362927032e-15 3.180554681463516e-15 ;
 	setAttr ".rst" -type "double3" 9.7907152124136303 -6.6434523928012883 -7.9020473763047292 ;
 	setAttr ".rsrr" -type "double3" -6.361109362927032e-15 6.361109362927032e-15 -3.1805546814635168e-15 ;
 	setAttr -k on ".w0";
@@ -6637,7 +6637,7 @@ createNode parentConstraint -n "L_Hand_Jnt_parentConstraint1" -p "L_Hand_Jnt";
 		1.4210854715202004e-14 ;
 	setAttr ".tg[0].tor" -type "double3" -1.8486974086006697e-14 -1.6399735076296259e-15 
 		0 ;
-	setAttr ".lr" -type "double3" 4.9696166897867419e-17 -1.590277340731758e-15 1.590277340731758e-15 ;
+	setAttr ".lr" -type "double3" 2.4848083448933737e-17 -7.9513867036587899e-16 -1.9878466759146972e-15 ;
 	setAttr ".rst" -type "double3" 66.117488118311002 68.990573793054779 -3.0935757740666849 ;
 	setAttr ".rsrr" -type "double3" 2.5444437451708128e-14 7.9513867036587899e-16 1.7655625192200626e-31 ;
 	setAttr -k on ".w0";
@@ -6805,11 +6805,11 @@ createNode mesh -n "Toad_Trooper_V3Shape" -p "Toad_Trooper_V3";
 	setAttr -k off ".v";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.29884999804198742 0.94233500957489014 ;
+	setAttr ".pv" -type "double2" 0.62726001441478729 0.46665000236498599 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
-	setAttr -s 48 ".pt";
+	setAttr -s 179 ".pt";
 	setAttr ".vcs" 2;
 createNode mesh -n "Toad_Trooper_V3ShapeOrig" -p "Toad_Trooper_V3";
 	rename -uid "BE17BAC4-41A7-5E0F-96E1-93A04A2BB565";
@@ -13675,8 +13675,106 @@ createNode nurbsCurve -n "Transform_CtrlShape" -p "Transform_Ctrl";
 		0.080900079787398521 0.8509622718884261 -113.6865425471141
 		-115.03062989563553 0.85096227188842299 -6.1710027977400115
 		;
+createNode transform -n "Hip_Ctrl_Grp" -p "Transform_Ctrl";
+	rename -uid "0D9B71EB-4CE1-6194-4462-89A6F8E26188";
+	setAttr ".t" -type "double3" 0.0002536773681640625 32.406759262084961 -1.068110466003418 ;
+createNode transform -n "Hip_Ctrl" -p "Hip_Ctrl_Grp";
+	rename -uid "AA166C98-40E7-620C-5E2F-AAB277D710DB";
+createNode nurbsCurve -n "Hip_CtrlShape" -p "Hip_Ctrl";
+	rename -uid "5E8B27C2-420F-7525-5149-318774B73C8E";
+	setAttr -k off ".v";
+	setAttr ".ove" yes;
+	setAttr ".ovrgbf" yes;
+	setAttr ".ovrgb" -type "float3" 0.46259999 0 0.45050001 ;
+	setAttr ".cc" -type "nurbsCurve" 
+		3 8 2 no 3
+		13 -2 -1 0 1 2 3 4 5 6 7 8 9 10
+		11
+		54.124530689645617 -0.84517310829318326 32.068116030865355
+		-3.4029868613791403 -0.84517391641203687 38.773259844775041
+		-54.099726653619236 -0.8451801110213033 32.259089291459659
+		-54.099888503609357 -0.84519625658619901 -3.7658733238230493
+		-54.099668752414033 -0.84520965430283823 -40.244878302138403
+		3.3829351064595041 -0.84520854063054429 -46.20014481915986
+		54.12458859085082 -0.84520265157472174 -40.435851562732978
+		54.12475014141733 -0.84518635323310853 -4.0359502990059344
+		54.124530689645617 -0.84517310829318326 32.068116030865355
+		-3.4029868613791403 -0.84517391641203687 38.773259844775041
+		-54.099726653619236 -0.8451801110213033 32.259089291459659
+		;
+createNode transform -n "L_Leg_Ctrl_Grp" -p "Hip_Ctrl";
+	rename -uid "93F99675-48EB-22CB-6A1B-C5A193516585";
+	setAttr ".t" -type "double3" 18.141806125640862 -15.9615831375122 0.42763999209754333 ;
+	setAttr ".r" -type "double3" -65.495857295923969 1.2392487298422243 -99.844120066266086 ;
+	setAttr ".s" -type "double3" 1 1 1.0000000000000002 ;
+createNode transform -n "L_Leg_Ctrl" -p "L_Leg_Ctrl_Grp";
+	rename -uid "AFEC86D0-452A-E15F-CE9C-79971A107947";
+createNode nurbsCurve -n "L_Leg_CtrlShape" -p "L_Leg_Ctrl";
+	rename -uid "D137BD14-495D-E157-8C1C-149FBC1005A1";
+	setAttr -k off ".v";
+	setAttr ".ove" yes;
+	setAttr ".ovrgbf" yes;
+	setAttr ".ovrgb" -type "float3" 0 0 1 ;
+	setAttr ".cc" -type "nurbsCurve" 
+		3 8 2 no 3
+		13 -2 -1 0 1 2 3 4 5 6 7 8 9 10
+		11
+		8.7679456117245689 15.76763590097957 -10.719339223599386
+		11.190480317893112 0.84332168968000953 -16.463631155334301
+		7.4740691762735985 -14.080992521619551 -11.458248809695503
+		-0.2042645697277353 -20.262845877057423 1.3647227201045755
+		-7.3466571481302747 -14.080992521619555 14.493760621833216
+		-9.7691918542988212 0.84332168968000598 20.238052553568149
+		-6.052780712679307 15.767635900979567 15.232670207929351
+		1.6255530333220287 21.949489256417458 2.4096986781292586
+		8.7679456117245689 15.76763590097957 -10.719339223599386
+		11.190480317893112 0.84332168968000953 -16.463631155334301
+		7.4740691762735985 -14.080992521619551 -11.458248809695503
+		;
+createNode transform -n "R_Leg_Ctrl_Grp" -p "Hip_Ctrl";
+	rename -uid "D6E74C21-41DB-DFB5-6A2F-7590A6D2274F";
+	setAttr ".t" -type "double3" -18.14231348037719 -15.9615831375122 0.42763999209754333 ;
+	setAttr ".r" -type "double3" -114.50414270407603 1.2392487298422212 -80.155879933733928 ;
+	setAttr ".s" -type "double3" 0.99999999999999989 0.99999999999999989 0.99999999999999989 ;
+	setAttr ".rp" -type "double3" 3.5527136788004997e-15 -8.8817841970012494e-16 -1.7763568394002499e-15 ;
+	setAttr ".rpt" -type "double3" -4.1693499674725542e-15 -2.8576946237349334e-15 3.2441013129379785e-15 ;
+	setAttr ".sp" -type "double3" 3.5527136788005009e-15 -8.8817841970012523e-16 -1.7763568394002505e-15 ;
+	setAttr ".spt" -type "double3" -1.1832913578315175e-30 2.9582283945787938e-31 5.9164567891575877e-31 ;
+createNode transform -n "R_Leg_Ctrl" -p "R_Leg_Ctrl_Grp";
+	rename -uid "A03332D3-49C2-7B2C-8765-E2B0823D0C00";
+	setAttr ".rp" -type "double3" 3.5527136788005009e-15 -8.8817841970012523e-16 -1.7763568394002505e-15 ;
+	setAttr ".sp" -type "double3" 3.5527136788005009e-15 -8.8817841970012523e-16 -1.7763568394002505e-15 ;
+createNode nurbsCurve -n "R_Leg_CtrlShape" -p "R_Leg_Ctrl";
+	rename -uid "BDD99C82-42A1-9091-3DB0-8D9B3D96CED8";
+	setAttr -k off ".v";
+	setAttr ".ove" yes;
+	setAttr ".ovrgbf" yes;
+	setAttr ".ovrgb" -type "float3" 1 0 0 ;
+	setAttr ".cc" -type "nurbsCurve" 
+		3 8 2 no 3
+		13 -2 -1 0 1 2 3 4 5 6 7 8 9 10
+		11
+		8.7679456117245671 15.767635900979577 10.719339223599388
+		11.19048031789311 0.84332168968001042 16.463631155334308
+		7.4740691762735967 -14.080992521619558 11.458248809695505
+		-0.2042645697277358 -20.262845877057426 -1.3647227201045775
+		-7.346657148130272 -14.080992521619558 -14.493760621833221
+		-9.7691918542988176 0.84332168968000576 -20.238052553568153
+		-6.0527807126793025 15.76763590097957 -15.232670207929356
+		1.6255530333220292 21.949489256417461 -2.4096986781292609
+		8.7679456117245671 15.767635900979577 10.719339223599388
+		11.19048031789311 0.84332168968001042 16.463631155334308
+		7.4740691762735967 -14.080992521619558 11.458248809695505
+		;
+createNode transform -n "L_Leg_Clav_Grp" -p "Hip_Ctrl";
+	rename -uid "C9F6A9D4-4DC7-34DE-7AAD-6A9FD2B1C25D";
+	setAttr ".t" -type "double3" -0.0002536773681640625 -32.406759262084961 1.068110466003418 ;
+createNode transform -n "R_Leg_Clav_Grp" -p "Hip_Ctrl";
+	rename -uid "CE6953D1-4718-5CE3-BAFC-6A9E98A3A485";
+	setAttr ".t" -type "double3" -0.0002536773681640625 -32.406759262084961 1.068110466003418 ;
 createNode transform -n "Spine_01_Ctrl_Grp" -p "Transform_Ctrl";
 	rename -uid "8DCFA2E7-4C57-5F05-21FE-F1922BB1D62E";
+	setAttr ".v" no;
 	setAttr ".t" -type "double3" 0.0002536773681640625 32.406759262084961 -1.068110466003418 ;
 createNode transform -n "Spine_01_Ctrl" -p "Spine_01_Ctrl_Grp";
 	rename -uid "8823DF90-4FB7-8570-644B-80AA5F41D97B";
@@ -13702,9 +13800,9 @@ createNode nurbsCurve -n "Spine_01_CtrlShape" -p "Spine_01_Ctrl";
 		2.9546066614753114e-15 -1.9288550517666863 -44.541631162547155
 		-34.119591175557467 -1.9288550517666869 -37.865845876657986
 		;
-createNode transform -n "Spine_02_Ctrl_Grp" -p "Spine_01_Ctrl";
+createNode transform -n "Spine_02_Ctrl_Grp" -p "Transform_Ctrl";
 	rename -uid "53452500-40A6-0ABA-8393-7FBE3F205E27";
-	setAttr ".t" -type "double3" -0.000217437744140625 22.827974319458008 -2.6509631271245535 ;
+	setAttr ".t" -type "double3" 3.62396240234375e-05 55.234733581542969 -3.7190735931279715 ;
 createNode transform -n "Spine_02_Ctrl" -p "Spine_02_Ctrl_Grp";
 	rename -uid "74E35855-431D-FF0C-646C-5981DA5CBDAD";
 createNode nurbsCurve -n "Spine_02_CtrlShape" -p "Spine_02_Ctrl";
@@ -13813,10 +13911,8 @@ createNode nurbsCurve -n "Cap_02_CtrlShape" -p "Cap_02_Ctrl";
 createNode transform -n "Top_Mth_Ctrl_Grp" -p "Spine_03_Ctrl";
 	rename -uid "8522B163-4E8F-654F-C44B-5CB89F1C33A5";
 	setAttr ".t" -type "double3" -0.49970054253935814 12.951938629150391 16.944415092468262 ;
-createNode transform -n "Top_Mth_Ctrl" -p "Spine_03_Ctrl";
+createNode transform -n "Top_Mth_Ctrl" -p "Top_Mth_Ctrl_Grp";
 	rename -uid "3531B3C6-491C-A84A-DA94-EE910440F4B4";
-	setAttr ".t" -type "double3" -0.50920623553585154 13.032833472631694 20.639328295888252 ;
-	setAttr ".s" -type "double3" 1.026994526689756 1.026994526689756 1.026994526689756 ;
 	setAttr ".rp" -type "double3" 0.0095056929964933874 -0.080894843481296316 0.14706498999096931 ;
 createNode nurbsCurve -n "Top_Mth_CtrlShape" -p "Top_Mth_Ctrl";
 	rename -uid "FA141F71-425A-8542-7D93-EAB42559E09E";
@@ -13843,10 +13939,8 @@ createNode nurbsCurve -n "Top_Mth_CtrlShape" -p "Top_Mth_Ctrl";
 createNode transform -n "Bttm_Mth_Ctrl_Grp" -p "Spine_03_Ctrl";
 	rename -uid "9575CD43-4C62-57EF-B61B-CDB04726F860";
 	setAttr ".t" -type "double3" -0.4870298421010375 7.5430107116699219 17.164501190185547 ;
-createNode transform -n "Bttm_Mth_Ctrl" -p "Spine_03_Ctrl";
+createNode transform -n "Bttm_Mth_Ctrl" -p "Bttm_Mth_Ctrl_Grp";
 	rename -uid "EF8C0330-4A4B-4864-FFB2-F991E65B88A1";
-	setAttr ".t" -type "double3" -0.49619349553637049 7.4778941061198339 20.865355513644406 ;
-	setAttr ".s" -type "double3" 1.026994526689756 1.026994526689756 1.026994526689756 ;
 	setAttr ".rp" -type "double3" 0.0091636534353329805 0.06511660555009334 0.14112386995210116 ;
 createNode nurbsCurve -n "Bttm_Mth_CtrlShape" -p "Bttm_Mth_Ctrl";
 	rename -uid "32B95589-4DCF-447E-E25E-2394F099D839";
@@ -13873,9 +13967,9 @@ createNode nurbsCurve -n "Bttm_Mth_CtrlShape" -p "Bttm_Mth_Ctrl";
 createNode transform -n "L_Mth_Ctrl_Grp" -p "Spine_03_Ctrl";
 	rename -uid "BD42F6F6-46AF-1E68-E250-C18E7BE51D32";
 	setAttr ".t" -type "double3" 11.150453567504883 6.9613533020019531 14.296820640563965 ;
-createNode transform -n "L_Mth_Ctrl" -p "Spine_03_Ctrl";
+createNode transform -n "L_Mth_Ctrl" -p "L_Mth_Ctrl_Grp";
 	rename -uid "132B8B53-4586-CF3A-CE6A-F38C298B7F7D";
-	setAttr ".t" -type "double3" 11.150453567504883 6.9613533020019531 14.296820640563965 ;
+	setAttr ".t" -type "double3" 1.7763568394002505e-15 0 -3.5527136788005009e-15 ;
 createNode nurbsCurve -n "L_Mth_CtrlShape" -p "L_Mth_Ctrl";
 	rename -uid "80ACB3F4-46BC-970F-82D0-E2ABD7935A27";
 	setAttr -k off ".v";
@@ -13902,10 +13996,8 @@ createNode transform -n "R_Mth_Ctrl_Grp" -p "Spine_03_Ctrl";
 	rename -uid "F006C89D-4A1D-AF3A-6903-8FAEF3FA0A26";
 	setAttr ".t" -type "double3" -11.150474421691895 6.9613849304199249 14.296795448303222 ;
 	setAttr ".r" -type "double3" 180 0 0 ;
-createNode transform -n "R_Mth_Ctrl" -p "Spine_03_Ctrl";
+createNode transform -n "R_Mth_Ctrl" -p "R_Mth_Ctrl_Grp";
 	rename -uid "9B0D3951-40BC-7A68-B7EF-5C9E730620AF";
-	setAttr ".t" -type "double3" -11.150474421691895 6.9613849304199249 14.296795448303222 ;
-	setAttr ".r" -type "double3" 180 0 0 ;
 createNode nurbsCurve -n "R_Mth_CtrlShape" -p "R_Mth_Ctrl";
 	rename -uid "963E1AA3-4814-C3F6-9272-F2ACABE69729";
 	setAttr -k off ".v";
@@ -14124,7 +14216,7 @@ createNode ikHandle -n "R_Arm_IK_Handle" -p "R_Arm_IK_02_Ctrl";
 	rename -uid "652D8D5F-4F74-427E-9B19-49AA8899887E";
 	setAttr ".v" no;
 	setAttr ".t" -type "double3" -131.35906697792925 -15.125514150206985 -1.4422127693348159 ;
-	setAttr ".r" -type "double3" 88.718143800125532 -0.62491699950748447 6.5684728576946787 ;
+	setAttr ".r" -type "double3" 88.718143800125546 -0.62491699950748447 6.5684728576946796 ;
 	setAttr ".s" -type "double3" 1 1 0.99999999999999989 ;
 	setAttr ".roc" yes;
 createNode poleVectorConstraint -n "R_Arm_IK_Handle_poleVectorConstraint1" -p "R_Arm_IK_Handle";
@@ -14510,7 +14602,7 @@ createNode parentConstraint -n "L_Hand_Ctrl_Grp_parentConstraint1" -p "L_Hand_Ct
 		-4.2632564145606011e-14 ;
 	setAttr ".tg[0].tor" -type "double3" 1.9083328088781097e-14 1.4908850069360234e-15 
 		0 ;
-	setAttr ".lr" -type "double3" -88.709789738842304 -6.5528424794549593 -0.77233614931975791 ;
+	setAttr ".lr" -type "double3" -88.709789738842304 -6.5528424794549629 -0.7723361493197588 ;
 	setAttr ".rst" -type "double3" 66.117451878686992 13.755840211511796 0.62549781906128921 ;
 	setAttr ".rsrr" -type "double3" -88.709789738842304 -6.5528424794549593 -0.77233614931975791 ;
 	setAttr -k on ".w0";
@@ -14703,7 +14795,7 @@ createNode nurbsCurve -n "R_Pnky_Fngr_02_CtrlShape" -p "R_Pnky_Fngr_02_Ctrl";
 createNode transform -n "R_Thmb_01_Ctrl_Grp" -p "R_Hand_Ctrl";
 	rename -uid "DEC4094F-48E2-F7ED-55B1-AF8B3182657F";
 	setAttr ".t" -type "double3" 7.4120510058864397 -6.9173477643646564 -7.9281696087908706 ;
-	setAttr ".r" -type "double3" 50.295509694594422 -39.535805062275415 33.211560430620892 ;
+	setAttr ".r" -type "double3" 50.295509694594429 -39.535805062275415 33.211560430620892 ;
 	setAttr ".s" -type "double3" 1 1.0000000000000004 1.0000000000000007 ;
 	setAttr ".rp" -type "double3" -102.76464416348509 105.93127173860988 1.9332742617042875 ;
 	setAttr ".rpt" -type "double3" -43.857713282593082 -122.81430311331862 -3.5430941687040658 ;
@@ -14786,8 +14878,8 @@ createNode parentConstraint -n "R_Hand_Ctrl_Grp_parentConstraint1" -p "R_Hand_Ct
 	setAttr ".erp" yes;
 	setAttr ".tg[0].tot" -type "double3" -8.8372448431073281e-05 -5.3537818924809244e-06 
 		2.4981848915972549e-05 ;
-	setAttr ".tg[0].tor" -type "double3" 179.85507355690183 -1.2411708510549049 13.138592380160416 ;
-	setAttr ".lr" -type "double3" -88.711774809605956 -6.5529511291538478 -0.77187795750366794 ;
+	setAttr ".tg[0].tor" -type "double3" 179.85507355690183 -1.2411708510549051 13.138592380160416 ;
+	setAttr ".lr" -type "double3" -88.711774809605913 -6.552951129153846 -0.77187795750368116 ;
 	setAttr ".rst" -type "double3" 66.117451878687035 13.755840211511813 0.62549781906128943 ;
 	setAttr ".rsrr" -type "double3" -88.709789738842304 -6.5528424794549593 -0.77233614931975958 ;
 	setAttr -k on ".w0";
@@ -14807,9 +14899,9 @@ createNode scaleConstraint -n "R_Hand_Ctrl_Grp_scaleConstraint1" -p "R_Hand_Ctrl
 	setAttr -k off ".sz";
 	setAttr ".erp" yes;
 	setAttr -k on ".w0";
-createNode transform -n "Belly_Ctrl_Grp" -p "Spine_01_Ctrl";
+createNode transform -n "Belly_Ctrl_Grp" -p "Transform_Ctrl";
 	rename -uid "D1B7533A-445D-06DE-C8F4-D3A5ADDD10A8";
-	setAttr ".t" -type "double3" -0.00013971328735351562 7.0701783185266294 21.827750556679064 ;
+	setAttr ".t" -type "double3" 0.00011396408081054688 39.47693758061159 20.759640090675646 ;
 createNode transform -n "Belly_Ctrl" -p "Belly_Ctrl_Grp";
 	rename -uid "7F3BD4DB-4C62-FEE9-4944-96BAF716404B";
 createNode nurbsCurve -n "Belly_CtrlShape" -p "Belly_Ctrl";
@@ -14834,120 +14926,24 @@ createNode nurbsCurve -n "Belly_CtrlShape" -p "Belly_Ctrl";
 		-0.04274833904682282 18.656887392079614 27.604118113616106
 		-7.8890663764504021 14.216861230832883 28.789306598866403
 		;
-createNode transform -n "Hip_Ctrl_Grp" -p "Spine_01_Ctrl";
-	rename -uid "0D9B71EB-4CE1-6194-4462-89A6F8E26188";
-createNode transform -n "Hip_Ctrl" -p "Hip_Ctrl_Grp";
-	rename -uid "AA166C98-40E7-620C-5E2F-AAB277D710DB";
-createNode nurbsCurve -n "Hip_CtrlShape" -p "Hip_Ctrl";
-	rename -uid "5E8B27C2-420F-7525-5149-318774B73C8E";
-	setAttr -k off ".v";
-	setAttr ".ove" yes;
-	setAttr ".ovrgbf" yes;
-	setAttr ".ovrgb" -type "float3" 0.46259999 0 0.45050001 ;
-	setAttr ".cc" -type "nurbsCurve" 
-		3 8 2 no 3
-		13 -2 -1 0 1 2 3 4 5 6 7 8 9 10
-		11
-		15.495618085089534 -7.3189776662122483 34.937125798309111
-		0.41884832614508682 -5.7465537380860239 36.225586535203178
-		-14.788241918777191 -6.1560321943172198 36.361115576943945
-		-21.415770905439562 -11.322141569857537 33.510641807710584
-		-15.503010629894757 -17.026171314799239 30.03763162453243
-		-0.41884832614508755 -18.486170077641304 28.814571957545759
-		14.780849373971968 -18.189116786694282 28.613641845897611
-		21.412074633036934 -12.96679482851188 31.496816150084626
-		15.495618085089534 -7.3189776662122483 34.937125798309111
-		0.41884832614508682 -5.7465537380860239 36.225586535203178
-		-14.788241918777191 -6.1560321943172198 36.361115576943945
-		;
-createNode transform -n "L_Leg_Ctrl_Grp" -p "Hip_Ctrl";
-	rename -uid "93F99675-48EB-22CB-6A1B-C5A193516585";
-	setAttr ".t" -type "double3" 18.141806125640862 -15.9615831375122 0.42763999209754333 ;
-	setAttr ".r" -type "double3" -65.495857295923969 1.2392487298422243 -99.844120066266086 ;
-	setAttr ".s" -type "double3" 1 1 1.0000000000000002 ;
-createNode transform -n "L_Leg_Ctrl" -p "L_Leg_Ctrl_Grp";
-	rename -uid "AFEC86D0-452A-E15F-CE9C-79971A107947";
-createNode nurbsCurve -n "L_Leg_CtrlShape" -p "L_Leg_Ctrl";
-	rename -uid "D137BD14-495D-E157-8C1C-149FBC1005A1";
-	setAttr -k off ".v";
-	setAttr ".ove" yes;
-	setAttr ".ovrgbf" yes;
-	setAttr ".ovrgb" -type "float3" 0 0 1 ;
-	setAttr ".cc" -type "nurbsCurve" 
-		3 8 2 no 3
-		13 -2 -1 0 1 2 3 4 5 6 7 8 9 10
-		11
-		8.7679456117245689 15.76763590097957 -10.719339223599386
-		11.190480317893112 0.84332168968000953 -16.463631155334301
-		7.4740691762735985 -14.080992521619551 -11.458248809695503
-		-0.2042645697277353 -20.262845877057423 1.3647227201045755
-		-7.3466571481302747 -14.080992521619555 14.493760621833216
-		-9.7691918542988212 0.84332168968000598 20.238052553568149
-		-6.052780712679307 15.767635900979567 15.232670207929351
-		1.6255530333220287 21.949489256417458 2.4096986781292586
-		8.7679456117245689 15.76763590097957 -10.719339223599386
-		11.190480317893112 0.84332168968000953 -16.463631155334301
-		7.4740691762735985 -14.080992521619551 -11.458248809695503
-		;
-createNode transform -n "R_Leg_Ctrl_Grp" -p "Hip_Ctrl";
-	rename -uid "D6E74C21-41DB-DFB5-6A2F-7590A6D2274F";
-	setAttr ".t" -type "double3" -18.14231348037719 -15.9615831375122 0.42763999209754333 ;
-	setAttr ".r" -type "double3" -114.50414270407603 1.2392487298422212 -80.155879933733928 ;
-	setAttr ".s" -type "double3" 0.99999999999999989 0.99999999999999989 0.99999999999999989 ;
-	setAttr ".rp" -type "double3" 3.5527136788004997e-15 -8.8817841970012494e-16 -1.7763568394002499e-15 ;
-	setAttr ".rpt" -type "double3" -4.1693499674725542e-15 -2.8576946237349334e-15 3.2441013129379785e-15 ;
-	setAttr ".sp" -type "double3" 3.5527136788005009e-15 -8.8817841970012523e-16 -1.7763568394002505e-15 ;
-	setAttr ".spt" -type "double3" -1.1832913578315175e-30 2.9582283945787938e-31 5.9164567891575877e-31 ;
-createNode transform -n "R_Leg_Ctrl" -p "R_Leg_Ctrl_Grp";
-	rename -uid "A03332D3-49C2-7B2C-8765-E2B0823D0C00";
-	setAttr ".rp" -type "double3" 3.5527136788005009e-15 -8.8817841970012523e-16 -1.7763568394002505e-15 ;
-	setAttr ".sp" -type "double3" 3.5527136788005009e-15 -8.8817841970012523e-16 -1.7763568394002505e-15 ;
-createNode nurbsCurve -n "R_Leg_CtrlShape" -p "R_Leg_Ctrl";
-	rename -uid "BDD99C82-42A1-9091-3DB0-8D9B3D96CED8";
-	setAttr -k off ".v";
-	setAttr ".ove" yes;
-	setAttr ".ovrgbf" yes;
-	setAttr ".ovrgb" -type "float3" 1 0 0 ;
-	setAttr ".cc" -type "nurbsCurve" 
-		3 8 2 no 3
-		13 -2 -1 0 1 2 3 4 5 6 7 8 9 10
-		11
-		8.7679456117245671 15.767635900979577 10.719339223599388
-		11.19048031789311 0.84332168968001042 16.463631155334308
-		7.4740691762735967 -14.080992521619558 11.458248809695505
-		-0.2042645697277358 -20.262845877057426 -1.3647227201045775
-		-7.346657148130272 -14.080992521619558 -14.493760621833221
-		-9.7691918542988176 0.84332168968000576 -20.238052553568153
-		-6.0527807126793025 15.76763590097957 -15.232670207929356
-		1.6255530333220292 21.949489256417461 -2.4096986781292609
-		8.7679456117245671 15.767635900979577 10.719339223599388
-		11.19048031789311 0.84332168968001042 16.463631155334308
-		7.4740691762735967 -14.080992521619558 11.458248809695505
-		;
-createNode transform -n "L_Leg_Clav_Grp" -p "Hip_Ctrl";
-	rename -uid "C9F6A9D4-4DC7-34DE-7AAD-6A9FD2B1C25D";
-	setAttr ".t" -type "double3" -0.0002536773681640625 -32.406759262084961 1.068110466003418 ;
-createNode transform -n "R_Leg_Clav_Grp" -p "Hip_Ctrl";
-	rename -uid "CE6953D1-4718-5CE3-BAFC-6A9E98A3A485";
-	setAttr ".t" -type "double3" -0.0002536773681640625 -32.406759262084961 1.068110466003418 ;
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "38B9EFF1-4ED7-1DC5-FB32-EFAE65AC1775";
+	rename -uid "AD274B6E-480E-0D9A-8962-50BAC5159F31";
 	setAttr -s 10 ".lnk";
 	setAttr -s 10 ".slnk";
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "96DA9E97-4834-0B59-9794-5CB1CF26875E";
+	rename -uid "E7FE5523-4D05-0B5D-42B4-8A99D279060E";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "43CEDC6C-4E00-E8BE-079F-419AD51093F0";
+	rename -uid "AAA5EBB8-4096-F13D-5D31-CEB9BDED31DC";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "39C5D6B6-4A41-961D-126C-78A5F9B80286";
+	rename -uid "9DF10833-4486-3BA6-1962-2EB2E95A215A";
 	setAttr ".cdl" 1;
-	setAttr -s 2 ".dli[1:2]"  1 2;
+	setAttr -s 3 ".dli[1:2]"  1 2;
 	setAttr -s 3 ".dli";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "0CFBA5C1-457A-B41D-E213-FC95F60BFCF3";
 	setAttr ".ufem" -type "stringArray" 0  ;
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "F5C967C3-441F-E76C-66EA-06938A21FAAF";
+	rename -uid "77DDF0FA-448B-DF61-0C68-1B9E28610606";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "78C8EEC9-4309-230D-0EC3-728293ECB046";
 	setAttr ".g" yes;
@@ -14988,17 +14984,17 @@ createNode script -n "uiConfigurationScriptNode";
 		"// Maya Mel UI Configuration File.\n//\n//  This script is machine generated.  Edit at your own risk.\n//\n//\n\nglobal string $gMainPane;\nif (`paneLayout -exists $gMainPane`) {\n\n\tglobal int $gUseScenePanelConfig;\n\tint    $useSceneConfig = $gUseScenePanelConfig;\n\tint    $nodeEditorPanelVisible = stringArrayContains(\"nodeEditorPanel1\", `getPanel -vis`);\n\tint    $nodeEditorWorkspaceControlOpen = (`workspaceControl -exists nodeEditorPanel1Window` && `workspaceControl -q -visible nodeEditorPanel1Window`);\n\tint    $menusOkayInPanels = `optionVar -q allowMenusInPanels`;\n\tint    $nVisPanes = `paneLayout -q -nvp $gMainPane`;\n\tint    $nPanes = 0;\n\tstring $editorName;\n\tstring $panelName;\n\tstring $itemFilterName;\n\tstring $panelConfig;\n\n\t//\n\t//  get current state of the UI\n\t//\n\tsceneUIReplacement -update $gMainPane;\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Top View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Top View\")) -mbv $menusOkayInPanels  $panelName;\n"
 		+ "\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"|top\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 1\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n"
 		+ "            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n"
-		+ "            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -bluePencil 1\n            -greasePencils 0\n            -excludeObjectPreset \"All\" \n            -shadows 0\n            -captureSequenceNumber -1\n            -width 655\n            -height 330\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n"
+		+ "            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -bluePencil 1\n            -greasePencils 0\n            -excludeObjectPreset \"All\" \n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1\n            -height 1\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n"
 		+ "\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Side View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Side View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"|side\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 1\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n"
 		+ "            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n"
 		+ "            -interactiveBackFaceCull 0\n            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -bluePencil 1\n            -greasePencils 0\n            -excludeObjectPreset \"All\" \n"
-		+ "            -shadows 0\n            -captureSequenceNumber -1\n            -width 655\n            -height 329\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Front View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Front View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"|front\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n"
+		+ "            -shadows 0\n            -captureSequenceNumber -1\n            -width 1\n            -height 1\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Front View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Front View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"|front\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n"
 		+ "            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 1\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n"
 		+ "            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n"
-		+ "            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -bluePencil 1\n            -greasePencils 0\n            -excludeObjectPreset \"All\" \n            -shadows 0\n            -captureSequenceNumber -1\n            -width 655\n            -height 329\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Persp View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Persp View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n"
-		+ "        modelEditor -e \n            -camera \"|persp\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 1\n            -activeComponentsXray 0\n            -displayTextures 1\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n"
+		+ "            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -bluePencil 1\n            -greasePencils 0\n            -excludeObjectPreset \"All\" \n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1\n            -height 1\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Persp View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Persp View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n"
+		+ "            -camera \"|persp\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 1\n            -activeComponentsXray 0\n            -displayTextures 1\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n"
 		+ "            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 1\n"
-		+ "            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -bluePencil 1\n            -greasePencils 0\n            -excludeObjectPreset \"All\" \n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1319\n            -height 706\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n"
+		+ "            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -bluePencil 1\n            -greasePencils 0\n            -excludeObjectPreset \"All\" \n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1166\n            -height 706\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n"
 		+ "\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"outlinerPanel\" (localizedPanelLabel(\"ToggledOutliner\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\toutlinerPanel -edit -l (localizedPanelLabel(\"ToggledOutliner\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        outlinerEditor -e \n            -docTag \"isolOutln_fromSeln\" \n            -showShapes 0\n            -showAssignedMaterials 0\n            -showTimeEditor 1\n            -showReferenceNodes 1\n            -showReferenceMembers 1\n            -showAttributes 0\n            -showConnected 0\n            -showAnimCurvesOnly 0\n            -showMuteInfo 0\n            -organizeByLayer 1\n            -organizeByClip 1\n            -showAnimLayerWeight 1\n            -autoExpandLayers 1\n            -autoExpand 0\n            -showDagOnly 1\n            -showAssets 1\n            -showContainedOnly 1\n            -showPublishedAsConnected 0\n            -showParentContainers 0\n            -showContainerContents 1\n"
 		+ "            -ignoreDagHierarchy 0\n            -expandConnections 0\n            -showUpstreamCurves 1\n            -showUnitlessCurves 1\n            -showCompounds 1\n            -showLeafs 1\n            -showNumericAttrsOnly 0\n            -highlightActive 1\n            -autoSelectNewObjects 0\n            -doNotSelectNewObjects 0\n            -dropIsParent 1\n            -transmitFilters 0\n            -setFilter \"defaultSetFilter\" \n            -showSetMembers 1\n            -allowMultiSelection 1\n            -alwaysToggleSelect 0\n            -directSelect 0\n            -isSet 0\n            -isSetMember 0\n            -showUfeItems 1\n            -displayMode \"DAG\" \n            -expandObjects 0\n            -setsIgnoreFilters 1\n            -containersIgnoreFilters 0\n            -editAttrName 0\n            -showAttrValues 0\n            -highlightSecondary 0\n            -showUVAttrsOnly 0\n            -showTextureNodesOnly 0\n            -attrAlphaOrder \"default\" \n            -animLayerFilterOptions \"allAffecting\" \n            -sortOrder \"none\" \n"
 		+ "            -longNames 0\n            -niceNames 1\n            -selectCommand \"print(\\\"\\\")\" \n            -showNamespace 1\n            -showPinIcons 0\n            -mapMotionTrails 0\n            -ignoreHiddenAttribute 0\n            -ignoreOutlinerColor 0\n            -renderFilterVisible 0\n            -renderFilterIndex 0\n            -selectionOrder \"chronological\" \n            -expandAttribute 0\n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"outlinerPanel\" (localizedPanelLabel(\"Outliner\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\toutlinerPanel -edit -l (localizedPanelLabel(\"Outliner\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        outlinerEditor -e \n            -showShapes 0\n            -showAssignedMaterials 0\n            -showTimeEditor 1\n            -showReferenceNodes 0\n            -showReferenceMembers 0\n            -showAttributes 0\n            -showConnected 0\n"
@@ -15026,8 +15022,8 @@ createNode script -n "uiConfigurationScriptNode";
 		+ "                -interactiveBackFaceCull 0\n                -sortTransparent 1\n                -controllers 1\n                -nurbsCurves 1\n                -nurbsSurfaces 1\n                -polymeshes 1\n                -subdivSurfaces 1\n                -planes 1\n                -lights 1\n                -cameras 1\n                -controlVertices 1\n                -hulls 1\n                -grid 1\n                -imagePlane 1\n                -joints 1\n                -ikHandles 1\n                -deformers 1\n                -dynamics 1\n                -particleInstancers 1\n                -fluids 1\n                -hairSystems 1\n                -follicles 1\n                -nCloths 1\n                -nParticles 1\n                -nRigids 1\n                -dynamicConstraints 1\n                -locators 1\n                -manipulators 1\n                -pluginShapes 1\n                -dimensions 1\n                -handles 1\n                -pivots 1\n                -textures 1\n                -strokes 1\n                -motionTrails 1\n"
 		+ "                -clipGhosts 1\n                -bluePencil 1\n                -greasePencils 0\n                -excludeObjectPreset \"All\" \n                -shadows 0\n                -captureSequenceNumber -1\n                -width 0\n                -height 0\n                -sceneRenderFilter 0\n                -displayMode \"centerEye\" \n                -viewColor 0 0 0 1 \n                -useCustomBackground 1\n                $editorName;\n            stereoCameraView -e -viewSelected 0 $editorName;\n            stereoCameraView -e \n                -pluginObjects \"gpuCacheDisplayFilter\" 1 \n                $editorName; };\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"componentEditorPanel\" (localizedPanelLabel(\"Component Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Component Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n"
 		+ "\t\t}\n\t}\n\n\n\tif ($useSceneConfig) {\n        string $configName = `getPanel -cwl (localizedPanelLabel(\"Current Layout\"))`;\n        if (\"\" != $configName) {\n\t\t\tpanelConfiguration -edit -label (localizedPanelLabel(\"Current Layout\")) \n\t\t\t\t-userCreated false\n\t\t\t\t-defaultImage \"vacantCell.xP:/\"\n\t\t\t\t-image \"\"\n\t\t\t\t-sc false\n\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"single\\\" -ps 1 100 100 $gMainPane;\"\n\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Persp View\")) \n\t\t\t\t\t\"modelPanel\"\n"
-		+ "\t\t\t\t\t\"$panelName = `modelPanel -unParent -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 1\\n    -activeComponentsXray 0\\n    -displayTextures 1\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -bluePencil 1\\n    -greasePencils 0\\n    -excludeObjectPreset \\\"All\\\" \\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1319\\n    -height 706\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
-		+ "\t\t\t\t\t\"modelPanel -edit -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 1\\n    -activeComponentsXray 0\\n    -displayTextures 1\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -bluePencil 1\\n    -greasePencils 0\\n    -excludeObjectPreset \\\"All\\\" \\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1319\\n    -height 706\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
+		+ "\t\t\t\t\t\"$panelName = `modelPanel -unParent -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 1\\n    -activeComponentsXray 0\\n    -displayTextures 1\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -bluePencil 1\\n    -greasePencils 0\\n    -excludeObjectPreset \\\"All\\\" \\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1166\\n    -height 706\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
+		+ "\t\t\t\t\t\"modelPanel -edit -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 1\\n    -activeComponentsXray 0\\n    -displayTextures 1\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -bluePencil 1\\n    -greasePencils 0\\n    -excludeObjectPreset \\\"All\\\" \\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1166\\n    -height 706\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
 		+ "\t\t\t\t$configName;\n\n            setNamedPanelLayout (localizedPanelLabel(\"Current Layout\"));\n        }\n\n        panelHistory -e -clear mainPanelHistory;\n        sceneUIReplacement -clear;\n\t}\n\n\ngrid -spacing 100 -size 250 -divisions 5 -displayAxes yes -displayGridLines yes -displayDivisionLines yes -displayPerspectiveLabels no -displayOrthographicLabels no -displayAxesBold yes -perspectiveLabelPosition axis -orthographicLabelPosition edge;\nviewManip -drawCompass 0 -compassAngle 0 -frontParameters \"\" -homeParameters \"\" -selectionLockParameters \"\";\n}\n");
 	setAttr ".st" 3;
 createNode script -n "sceneConfigurationScriptNode";
@@ -15087,7 +15083,7 @@ createNode materialInfo -n "materialInfo7";
 createNode bump2d -n "bump2d1";
 	rename -uid "86B3AAEF-4402-A10B-EB58-0F92E622B6A3";
 	setAttr ".bi" 1;
-	setAttr ".vc1" -type "float3" 0 0.00079000031 0 ;
+	setAttr ".vc1" -type "float3" 0 0.00040999986 0 ;
 	setAttr ".vc2" -type "float3" 9.9999997e-06 9.9999997e-06 0 ;
 createNode aiOptions -s -n "defaultArnoldRenderOptions";
 	rename -uid "FD6A632F-430A-FA64-14E4-A9AE5C8B4AE3";
@@ -15136,7 +15132,7 @@ createNode materialInfo -n "materialInfo8";
 createNode bump2d -n "bump2d2";
 	rename -uid "45157EBA-4CA1-292E-321A-2487D837BC21";
 	setAttr ".bi" 1;
-	setAttr ".vc1" -type "float3" 0 0.0013499991 0 ;
+	setAttr ".vc1" -type "float3" 0 7.9999998e-05 0 ;
 	setAttr ".vc2" -type "float3" 9.9999997e-06 9.9999997e-06 0 ;
 createNode nodeGraphEditorInfo -n "hyperShadePrimaryNodeEditorSavedTabsInfo";
 	rename -uid "4694B94A-405A-E706-07A2-A6B4BCA1DC3A";
@@ -15304,7 +15300,7 @@ createNode skinCluster -n "skinCluster1";
 		3 0 0.00024486100000000003 1 0.315654186 2 0.68410095300000007
 		3 0 0.000104813 1 0.14983876300000001 2 0.85005642400000003
 		1 2 1
-		3 0 2.8286e-05 1 0.043785776999999998 2 0.95618593699999999
+		3 0 2.8285999999999997e-05 1 0.043785776999999998 2 0.95618593699999999
 		1 2 1
 		3 0 0.000717573 1 0.82221745300000004 2 0.17706497400000001
 		3 0 0.001666425 1 0.91326613899999998 2 0.085067435999999996
@@ -16297,14 +16293,14 @@ createNode skinCluster -n "skinCluster1";
 		1 0 1
 		1 0 1;
 	setAttr -s 3 ".pm";
-	setAttr ".pm[0]" -type "matrix" -0.027386983731872809 0.99962490621336064 -2.3229924174418151e-15 -0
-		 1.581094315536316e-16 2.3366749644031865e-15 1 -0 0.99962490621336064 0.02738698373187276 -3.4130353253644434e-16 -0
+	setAttr ".pm[0]" -type "matrix" -0.027386983731872809 0.99962490621336064 -2.3229924174418151e-15 0
+		 1.581094315536316e-16 2.3366749644031865e-15 1 0 0.99962490621336064 0.02738698373187276 -3.4130353253644434e-16 0
 		 -107.60395808576892 -2.4877388160691116 3.5666182268897907e-14 1;
-	setAttr ".pm[1]" -type "matrix" 0.31475198366751994 0.9491739507473651 -2.3229924174418155e-15 -0
-		 9.4459324345848556e-16 2.1430800465748879e-15 1 0 0.9491739507473651 -0.31475198366752 -3.4130353253644429e-16 -0
+	setAttr ".pm[1]" -type "matrix" 0.31475198366751994 0.9491739507473651 -2.3229924174418155e-15 0
+		 9.4459324345848556e-16 2.1430800465748879e-15 1 0 0.9491739507473651 -0.31475198366752 -3.4130353253644429e-16 0
 		 -137.80762469144071 47.281034666069374 4.6232107578510938e-14 1;
-	setAttr ".pm[2]" -type "matrix" 0.31475198366751994 0.9491739507473651 -2.3229924174418155e-15 -0
-		 9.4459324345848556e-16 2.1430800465748879e-15 1 0 0.9491739507473651 -0.31475198366752 -3.4130353253644429e-16 -0
+	setAttr ".pm[2]" -type "matrix" 0.31475198366751994 0.9491739507473651 -2.3229924174418155e-15 0
+		 9.4459324345848556e-16 2.1430800465748879e-15 1 0 0.9491739507473651 -0.31475198366752 -3.4130353253644429e-16 0
 		 -173.13909813901287 47.281034666069374 4.6232107578510982e-14 1;
 	setAttr ".gm" -type "matrix" 1 0 0 0 0 0 1 0 0 -1 0 0 0 0 108.51854221885986 1;
 	setAttr -s 3 ".ma";
@@ -16352,7 +16348,7 @@ createNode skinCluster -n "skinCluster2";
 		3 0 0.00033726300000000003 1 0.95548149900000001 2 0.044181237999999998
 		3 0 0.00045788699999999998 1 0.90388869499999991 2 0.095653418000000004
 		3 0 0.99997106999999996 1 2.6951999999999999e-05 2 1.978e-06
-		3 0 0.99982255999999992 1 0.000166422 2 1.1018e-05
+		3 0 0.99982255999999992 1 0.000166422 2 1.1017999999999999e-05
 		3 0 0.99978355399999996 1 0.00020212600000000001 2 1.432e-05
 		3 0 0.99993584800000002 1 5.9576e-05 2 4.5759999999999999e-06
 		3 0 0.999822514 1 0.000166465 2 1.1021e-05
@@ -16406,7 +16402,7 @@ createNode skinCluster -n "skinCluster2";
 		3 0 0.99990380800000001 1 8.9717999999999997e-05 2 6.4740000000000002e-06
 		3 0 0.99987904300000008 1 0.000113564 2 7.3930000000000002e-06
 		3 0 0.99990370900000003 1 8.9809999999999996e-05 2 6.4810000000000003e-06
-		3 0 0.99998887199999997 1 1.0372e-05 2 7.5600000000000005e-07
+		3 0 0.99998887199999997 1 1.0371999999999998e-05 2 7.5600000000000005e-07
 		3 0 0.99992756799999993 1 6.7617e-05 2 4.8149999999999996e-06
 		3 0 0.99997736100000001 1 2.1063000000000001e-05 2 1.576e-06
 		3 0 0.99983686199999999 1 0.00015155100000000001 2 1.1586999999999999e-05
@@ -16428,7 +16424,7 @@ createNode skinCluster -n "skinCluster2";
 		3 0 0.99973403999999999 1 0.00025220499999999997 2 1.3755e-05
 		3 0 0.99975494600000003 1 0.00023192699999999999 2 1.3127e-05
 		3 0 0.99960695399999999 1 0.00037333199999999998 2 1.9714000000000001e-05
-		3 0 0.99975821399999998 1 0.000229294 2 1.2492e-05
+		3 0 0.99975821399999998 1 0.000229294 2 1.2492000000000002e-05
 		3 0 0.99999998200000006 1 1.7e-08 2 1.0000000000000001e-09
 		3 0 0.99978807699999994 1 0.00020043400000000001 2 1.1489e-05
 		3 0 0.999740187 1 0.000247008 2 1.2805e-05
@@ -16441,14 +16437,14 @@ createNode skinCluster -n "skinCluster2";
 		3 0 6.1210999999999994e-05 1 0.49996939500000009 2 0.49996939400000001
 		3 0 6.2926e-05 1 0.49996853799999996 2 0.49996853600000002;
 	setAttr -s 3 ".pm";
-	setAttr ".pm[0]" -type "matrix" -0.027386983731872809 0.99962490621336064 -2.3229924174418151e-15 -0
-		 1.581094315536316e-16 2.3366749644031865e-15 1 -0 0.99962490621336064 0.02738698373187276 -3.4130353253644434e-16 -0
+	setAttr ".pm[0]" -type "matrix" -0.027386983731872809 0.99962490621336064 -2.3229924174418151e-15 0
+		 1.581094315536316e-16 2.3366749644031865e-15 1 0 0.99962490621336064 0.02738698373187276 -3.4130353253644434e-16 0
 		 -107.60395808576892 -2.4877388160691116 3.5666182268897907e-14 1;
-	setAttr ".pm[1]" -type "matrix" 0.31475198366751994 0.9491739507473651 -2.3229924174418155e-15 -0
-		 9.4459324345848556e-16 2.1430800465748879e-15 1 0 0.9491739507473651 -0.31475198366752 -3.4130353253644429e-16 -0
+	setAttr ".pm[1]" -type "matrix" 0.31475198366751994 0.9491739507473651 -2.3229924174418155e-15 0
+		 9.4459324345848556e-16 2.1430800465748879e-15 1 0 0.9491739507473651 -0.31475198366752 -3.4130353253644429e-16 0
 		 -137.80762469144071 47.281034666069374 4.6232107578510938e-14 1;
-	setAttr ".pm[2]" -type "matrix" 0.31475198366751994 0.9491739507473651 -2.3229924174418155e-15 -0
-		 9.4459324345848556e-16 2.1430800465748879e-15 1 0 0.9491739507473651 -0.31475198366752 -3.4130353253644429e-16 -0
+	setAttr ".pm[2]" -type "matrix" 0.31475198366751994 0.9491739507473651 -2.3229924174418155e-15 0
+		 9.4459324345848556e-16 2.1430800465748879e-15 1 0 0.9491739507473651 -0.31475198366752 -3.4130353253644429e-16 0
 		 -173.13909813901287 47.281034666069374 4.6232107578510982e-14 1;
 	setAttr ".gm" -type "matrix" 1 0 0 0 0 0 1 0 0 -1 0 0 0 0 108.51854221885986 1;
 	setAttr -s 3 ".ma";
@@ -16564,14 +16560,14 @@ createNode skinCluster -n "skinCluster3";
 		1 2 1
 		1 2 1;
 	setAttr -s 3 ".pm";
-	setAttr ".pm[0]" -type "matrix" -0.027386983731872809 0.99962490621336064 -2.3229924174418151e-15 -0
-		 1.581094315536316e-16 2.3366749644031865e-15 1 -0 0.99962490621336064 0.02738698373187276 -3.4130353253644434e-16 -0
+	setAttr ".pm[0]" -type "matrix" -0.027386983731872809 0.99962490621336064 -2.3229924174418151e-15 0
+		 1.581094315536316e-16 2.3366749644031865e-15 1 0 0.99962490621336064 0.02738698373187276 -3.4130353253644434e-16 0
 		 -107.60395808576892 -2.4877388160691116 3.5666182268897907e-14 1;
-	setAttr ".pm[1]" -type "matrix" 0.31475198366751994 0.9491739507473651 -2.3229924174418155e-15 -0
-		 9.4459324345848556e-16 2.1430800465748879e-15 1 0 0.9491739507473651 -0.31475198366752 -3.4130353253644429e-16 -0
+	setAttr ".pm[1]" -type "matrix" 0.31475198366751994 0.9491739507473651 -2.3229924174418155e-15 0
+		 9.4459324345848556e-16 2.1430800465748879e-15 1 0 0.9491739507473651 -0.31475198366752 -3.4130353253644429e-16 0
 		 -137.80762469144071 47.281034666069374 4.6232107578510938e-14 1;
-	setAttr ".pm[2]" -type "matrix" 0.31475198366751994 0.9491739507473651 -2.3229924174418155e-15 -0
-		 9.4459324345848556e-16 2.1430800465748879e-15 1 0 0.9491739507473651 -0.31475198366752 -3.4130353253644429e-16 -0
+	setAttr ".pm[2]" -type "matrix" 0.31475198366751994 0.9491739507473651 -2.3229924174418155e-15 0
+		 9.4459324345848556e-16 2.1430800465748879e-15 1 0 0.9491739507473651 -0.31475198366752 -3.4130353253644429e-16 0
 		 -173.13909813901287 47.281034666069374 4.6232107578510982e-14 1;
 	setAttr ".gm" -type "matrix" 1 0 0 0 0 0 1 0 0 -1 0 0 0 0 108.51854221885986 1;
 	setAttr -s 3 ".ma";
@@ -16685,65 +16681,86 @@ createNode displayLayer -n "Geometry";
 createNode skinCluster -n "skinCluster4";
 	rename -uid "F402C63A-4D8F-D036-E143-F2ACD65CF62C";
 	setAttr -s 2145 ".wl";
-	setAttr ".wl[0:393].w"
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
+	setAttr ".wl[0:269].w"
+		3 0 0.044973853000000001 5 0.23115328600000001 6 0.72387286100000003
+		3 0 0.029419483999999999 5 0.17516936899999999 6 0.79541114699999993
+		3 9 0.15768354800000001 10 0.087342238000000003 12 0.75497421400000009
+		6 0 0.00048157799999999998 5 0.001128635 6 0.021085567 9 
+		0.001839512 10 0.053224885 12 0.92223982300000007
+		6 0 0.00043519799999999998 5 0.0010175640000000001 6 0.019758253999999999 
+		9 0.002067181 10 0.058279630999999998 11 0.918442172
+		3 9 0.14221803099999999 10 0.092958822999999996 11 0.76482314600000001
+		3 0 0.029427683999999999 5 0.175253189 6 0.79531912700000007
+		3 0 0.044978470999999999 5 0.23123037799999999 6 0.72379115100000002
+		3 0 0.013407516 5 0.087387989999999999 6 0.89920449400000002
+		1 9 1
+		3 9 0.90187767200000002 10 0.049657289 11 0.048465039000000001
+		3 0 0.013410365 5 0.087410551000000003 6 0.89917908399999991
+		3 5 2.4e-08 6 0.99997581099999999 7 2.4165e-05
+		1 9 1
+		1 9 1
+		3 5 2.4e-08 6 0.999951649 7 4.8327e-05
+		5 0 0.078819601000000003 5 0.147155325 6 0.77402432099999996 
+		10 5.1099999999999996e-07 11 2.4200000000000002e-07
+		6 0 0.0026640919999999998 5 0.0050526950000000003 6 0.080267871000000005 
+		9 0.039530708999999997 10 0.51957833900000006 11 0.35290629400000001
+		6 0 0.0030307139999999999 5 0.0057138550000000003 6 0.084038898000000001 
+		9 0.050409017 10 0.52486338799999999 12 0.331944128
+		3 0 0.078844274000000006 5 0.14720182500000001 6 0.77395390099999994
+		4 0 0.090581954000000006 5 0.16389247300000001 6 0.74552273199999997 
+		10 2.841e-06
+		5 0 1.1416999999999999e-05 5 2.1742e-05 6 0.00030405100000000001 
+		10 0.99882320499999999 11 0.00083958500000000001
+		1 10 1
+		3 0 0.090636265999999993 5 0.16399101499999999 6 0.74537271900000002
+		3 0 0.062578338999999997 5 0.15670593099999999 6 0.78071573000000005
+		6 0 0.0031444649999999999 5 0.0064159070000000002 6 0.110094451 
+		9 0.0026550459999999999 10 0.193250055 11 0.68444007600000001
+		3 0 0.062577214000000006 5 0.156691514 6 0.78073127199999992
+		6 0 0.0032539420000000001 5 0.0066382849999999998 6 0.112664999 
+		9 0.0027385830000000002 10 0.19417316200000001 12 0.68053102900000007
+		4 0 0.086821909000000003 5 0.15638665800000001 6 0.75679091399999998 
+		10 5.1900000000000003e-07
+		6 0 0.001156532 5 0.0021777469999999998 6 0.031840804 9 
+		0.001934063 10 0.86828213300000001 11 0.094608721000000007
+		3 0 0.086834628999999997 5 0.15640785500000001 6 0.75675751599999996
+		5 0 0.001472824 5 0.0027666259999999999 6 0.036938813000000001 
+		10 0.85629650499999999 12 0.10252523199999999
+		4 5 2.3000000000000001e-08 6 0.99999898599999992 7 9.8899999999999998e-07 
+		9 2.0000000000000001e-09
+		3 9 0.96738263099999999 10 0.029254776 11 0.0033625930000000001
+		2 6 0.99999901499999999 7 9.850000000000001e-07
+		1 9 1
+		3 9 0.25296913999999998 10 0.073275914999999997 12 0.67375494500000011
+		2 9 0.00056583600000000001 12 0.99943416399999996
+		6 0 0.0077371419999999998 5 0.016287731999999999 6 0.204262534 
+		9 6.3886000000000005e-05 10 0.168703882 12 0.60294482400000005
+		6 0 0.010811944 5 0.020296598999999999 6 0.21903483100000001 
+		9 0.0094727349999999995 10 0.46557604000000014 12 0.27480785099999999
+		5 0 0.0019684390000000002 5 0.003653922 6 0.035327447999999997 
+		10 0.88391852900000001 12 0.075131662000000002
+		1 10 1
+		5 0 4.1727000000000002e-05 5 7.8444999999999999e-05 6 0.00073925599999999998 
+		10 0.99756375599999991 11 0.001576816
+		6 0 0.0022172519999999999 5 0.0041175689999999997 6 0.040186540999999999 
+		9 0.0011981439999999999 10 0.86775039200000004 11 0.084530101999999996
+		6 0 0.010904736999999999 5 0.020534245 6 0.22142439 9 
+		0.0090202240000000003 10 0.45392354600000012 11 0.28419285799999999
+		6 0 0.0077196820000000003 5 0.016243677000000002 6 0.20388558400000001 
+		9 9.9251000000000002e-05 10 0.169545694 11 0.60250611200000004
+		6 0 6.1933999999999994e-05 5 0.000163237 6 0.0022479510000000002 
+		9 0.002967899 10 0.0064568860000000002 11 0.98810209299999996
+		3 9 0.25368725600000003 10 0.073432888000000002 11 0.672879856
+		1 9 1
+		1 9 1
+		1 9 1
+		1 9 1
+		1 9 1
+		1 9 1
+		3 0 0.12547549899999999 5 0.24097755300000001 6 0.633546948
+		3 0 0.117888116 5 0.23449684200000001 6 0.64761504199999997
+		3 0 0.11788822 5 0.23449874600000001 6 0.64761303400000003
+		3 0 0.12547064799999999 5 0.240971873 6 0.63355747900000003
 		2 0 0.40814830000000002 33 0.59185169999999998
 		3 0 0.51809450899999998 5 0.00028987499999999999 33 0.48161561600000002
 		3 0 0.51809450899999998 5 0.00028987499999999999 33 0.48161561600000002
@@ -16766,20 +16783,30 @@ createNode skinCluster -n "skinCluster4";
 		3 0 0.98146655800000004 5 0.00081131499999999995 33 0.017722127000000001
 		1 0 1
 		1 0 1
-		4 0 0.99990576500000006 5 3e-09 6 9.4054000000000004e-05 33 
-		1.7800000000000001e-07
-		3 0 0.99998494400000004 5 1.23e-07 33 1.4932999999999999e-05
-		4 0 0.99990549299999998 5 3e-09 6 9.4326000000000005e-05 33 
-		1.7800000000000001e-07
-		4 0 0.99998483599999999 5 1.23e-07 6 1.09e-07 33 1.4932e-05
-		3 0 0.79736435499999991 5 0.028605433999999999 33 0.17403021099999999
-		3 0 0.80190645100000002 5 0.018408038000000002 33 0.17968551099999999
-		3 0 0.79736432200000007 5 0.028605440999999999 33 0.174030237
-		3 0 0.80190568200000001 5 0.018408054 33 0.17968626400000001
-		3 0 0.199848989 5 0.033934982000000002 33 0.76621602899999997
-		3 0 0.212066596 5 0.022919242999999999 33 0.76501416099999997
-		3 0 0.19983775200000001 5 0.033933743000000002 33 0.76622850500000006
-		3 0 0.212066596 5 0.022919242999999999 33 0.76501416099999997
+		4 0 0.074200022000000004 5 0.72971010199999997 6 0.196089863 
+		33 1.3000000000000001e-08
+		4 0 0.083323893999999996 5 0.71619969500000003 6 0.20047516700000001 
+		33 1.2440000000000001e-06
+		4 0 0.074198063999999994 5 0.72971329699999998 6 0.19608862599999999 
+		33 1.3000000000000001e-08
+		4 0 0.083323327000000003 5 0.71620039999999996 6 0.200475029 
+		33 1.2440000000000001e-06
+		4 0 0.22860481699999999 5 0.69682960500000002 6 0.024671017 
+		33 0.049894560999999997
+		4 0 0.248748366 5 0.66266554899999996 6 0.032848315000000003 
+		33 0.055737769999999999
+		4 0 0.22860477700000001 5 0.696829645 6 0.024671016 33 
+		0.049894562000000003
+		4 0 0.24874875399999999 5 0.66266487800000007 6 0.032848224000000002 
+		33 0.055738144000000003
+		4 0 0.199679474 5 0.034750049999999998 6 4.3630000000000004e-06 
+		33 0.76556611299999999
+		4 0 0.211909984 5 0.023634795 6 6.0279999999999997e-06 33 
+		0.76444919300000003
+		4 0 0.19966826900000001 5 0.034748701999999999 6 4.3619999999999999e-06 
+		33 0.76557866699999999
+		4 0 0.211909984 5 0.023634795 6 6.0279999999999997e-06 33 
+		0.76444919300000003
 		1 33 1
 		1 33 1
 		1 33 1
@@ -16957,11 +16984,12 @@ createNode skinCluster -n "skinCluster4";
 		1 43 1
 		1 43 1
 		1 43 1
+		1 43 1;
+	setAttr ".wl[270:565].w"
 		1 43 1
 		1 43 1
 		1 43 1
 		1 43 1
-		1 43 1
 		1 36 1
 		1 36 1
 		1 36 1
@@ -16970,11 +16998,11 @@ createNode skinCluster -n "skinCluster4";
 		1 36 1
 		1 36 1
 		1 36 1
-		1 41 1
+		2 15 7.1790000000000002e-06 41 0.99999282099999998
 		1 41 1
 		1 34 1
 		1 34 1
-		1 41 1
+		2 15 0.00026664199999999999 41 0.99973335799999996
 		1 34 1
 		1 45 1
 		2 37 0.000229251 38 0.99977074899999996
@@ -17081,10 +17109,9 @@ createNode skinCluster -n "skinCluster4";
 		1 47 1
 		1 47 1
 		1 47 1
-		1 47 1;
-	setAttr ".wl[394:743].w"
 		1 47 1
 		1 47 1
+		1 47 1
 		1 40 1
 		1 40 1
 		1 40 1
@@ -17099,274 +17126,315 @@ createNode skinCluster -n "skinCluster4";
 		1 34 1
 		1 41 1
 		1 34 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		2 0 0.067233480999999998 6 0.93276651899999996
-		2 0 0.91045362799999996 6 0.089546371999999999
-		2 0 0.910447495 6 0.089552505000000004
-		2 0 0.067229116000000005 6 0.93277088399999997
+		3 0 0.047659676999999998 5 0.433979797 6 0.51836052600000004
+		3 0 0.041274955000000002 5 0.35365795799999999 6 0.605067087
+		3 0 0.041275802 5 0.35366806699999997 6 0.605056131
+		3 0 0.047659676999999998 5 0.433979797 6 0.51836052600000004
+		3 0 0.85384269000000002 5 0.10691795799999999 6 0.039239351999999998
+		3 0 0.072331172999999999 5 0.62387212599999997 6 0.303796701
+		3 0 0.072346617000000002 5 0.62386279700000002 6 0.30379058599999997
+		3 0 0.853820943 5 0.106934469 6 0.039244587999999997
+		3 0 0.092843803000000003 5 0.78574863100000003 6 0.12140756599999999
+		3 0 0.06945519 5 0.77552765499999998 6 0.15501715499999999
+		3 0 0.069455355999999996 5 0.77552774000000002 6 0.15501690400000001
+		3 0 0.092846249000000006 5 0.78574942300000006 6 0.12140432800000001
+		1 4 1
+		1 4 1
+		1 4 1
+		1 4 1
+		1 2 1
+		1 2 1
+		1 2 1
+		1 2 1
+		1 4 1
+		1 4 1
+		1 2 1
+		1 2 1
+		1 4 1
+		1 4 1
+		1 2 1
+		1 2 1
+		1 4 1
+		1 2 1
+		2 0 1.0182e-05 4 0.99998981799999997
+		1 4 1
+		1 2 1
+		1 2 1
+		1 4 1
+		1 2 1
+		2 0 0.00044238600000000002 4 0.99955761399999998
+		2 0 0.00044238600000000002 2 0.99955761399999998
+		1 4 1
+		1 2 1
+		1 4 1
+		1 2 1
+		1 4 1
+		1 2 1
+		1 4 1
+		1 2 1
+		1 4 1
+		1 4 1
+		1 4 1
+		1 4 1
+		1 4 1
+		1 4 1
+		1 4 1
+		1 4 1
+		1 2 1
+		1 2 1
+		1 2 1
+		1 2 1
+		1 2 1
+		1 2 1
+		1 2 1
+		1 2 1
+		2 0 0.27101978100000002 4 0.72898021899999998
+		2 0 0.0081077749999999994 4 0.99189222499999996
+		2 0 0.0081011539999999993 2 0.991898846
+		2 0 0.271015848 2 0.728984152
+		2 0 0.32001029199999997 4 0.67998970800000003
+		2 0 0.32000757099999999 2 0.67999242900000001
+		2 0 0.660058963 4 0.339941037
+		2 0 0.51866564800000003 4 0.48133435200000002
+		2 0 0.51850689500000002 2 0.48149310499999998
+		2 0 0.66005887299999999 2 0.33994112700000001
+		2 0 0.683656559 4 0.316343441
+		2 0 0.683658985 2 0.316341015
+		2 0 0.33160150100000002 2 0.66839849900000003
+		2 0 0.33160704600000002 4 0.66839295399999998
+		2 0 0.31627667700000001 2 0.68372332300000005
+		2 0 0.31627886300000002 4 0.68372113700000003
+		2 0 0.27480254100000001 2 0.72519745899999999
+		2 0 0.27481039200000001 4 0.72518960799999999
+		2 0 4.5185000000000002e-05 2 0.99995481500000005
+		2 0 4.5262000000000001e-05 4 0.99995473800000001
+		2 0 0.0043780449999999997 2 0.99562195499999995
+		2 0 0.0043818859999999998 4 0.995618114
+		1 2 1
+		1 2 1
+		2 0 0.045077612000000003 2 0.95492238799999996
+		2 0 0.118397405 2 0.88160259500000004
+		2 0 0.14185426700000001 2 0.85814573299999997
+		2 0 0.124336635 2 0.87566336499999997
+		1 2 1
+		1 2 1
+		2 0 2.0699999999999999e-07 4 0.99999979299999997
+		2 0 1.1489999999999999e-06 4 0.99999885099999997
+		2 0 0.045080849999999999 4 0.95491915000000005
+		2 0 0.118385595 4 0.88161440499999999
+		2 0 0.14184981499999999 4 0.85815018500000007
+		2 0 0.124333918 4 0.87566608199999996
+		1 4 1
+		1 4 1
+		2 0 0.58677678500000008 4 0.41322321499999998
 		1 0 1
 		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 41 1
-		1 41 1
+		2 0 0.58678356200000004 2 0.41321643800000002
+		2 15 0.165154943 41 0.834845057
+		2 15 0.157718149 41 0.84228185099999997
 		1 34 1
 		1 34 1
-		2 14 0.668990101 15 0.331009899
-		2 14 0.680725794 15 0.319274206
-		3 6 1.0000000000000001e-09 24 0.66898966100000001 25 0.33101033800000002
-		2 24 0.68072620100000003 25 0.31927379900000002
-		2 15 0.69896681700000007 41 0.30103318299999998
-		2 15 0.77657666199999997 41 0.223423338
+		6 0 0.619826145 5 0.0015553850000000001 6 3.6800000000000001e-07 
+		14 0.087553445999999993 15 0.26605715400000002 41 0.025007502000000001
+		6 0 0.65993689899999997 5 0.0028965530000000001 6 3.6179999999999999e-06 
+		14 0.077963448000000005 15 0.24751690600000001 41 0.011682576
+		4 5 0.001555694 6 3.6800000000000001e-07 24 0.66794867299999994 
+		25 0.33049526499999998
+		4 5 0.0028965330000000002 6 3.619e-06 24 0.67875199200000003 
+		25 0.31834785599999998
+		4 0 0.085884902999999999 14 0.077305410000000005 15 0.303086519 
+		41 0.53372316799999997
+		4 0 0.161490302 14 0.040004454000000002 15 0.25277359300000002 
+		41 0.54573165099999998
 		2 25 0.69896681700000007 34 0.30103318299999998
 		2 25 0.77657820399999999 34 0.22342179600000001
-		2 14 0.19029660800000001 15 0.80970339199999997
-		1 15 1
-		2 24 0.19030607999999999 25 0.80969392000000007
-		2 24 6.4559999999999997e-06 25 0.99999354399999996
-		1 6 1
-		1 6 1
-		3 0 9.2799999999999992e-06 6 0.99997490099999997 24 1.5818999999999999e-05
-		3 0 1.3489999999999999e-06 6 0.99998615699999993 24 1.2493999999999999e-05
+		5 0 0.39599740499999997 5 1.1379000000000001e-05 14 0.062162218999999998 
+		15 0.24676805700000001 41 0.29506093999999999
+		5 0 0.31348030999999998 5 7.9400000000000002e-06 14 0.067647180000000001 
+		15 0.25215870000000001 41 0.36670587000000004
+		3 5 1.1384e-05 24 0.19030391299999999 25 0.80968470299999995
+		3 5 7.943e-06 24 6.455e-06 25 0.99998560200000008
+		5 0 0.27019826200000002 5 0.57559501000000002 6 0.110387444 
+		14 0.012840546 15 0.030978737999999999
+		5 0 0.114907995 5 0.79443766800000004 6 0.067333753999999996 
+		14 0.0096769809999999994 15 0.013643601999999999
+		4 0 0.116112432 5 0.57557659000000005 6 0.110380851 24 
+		0.19793012700000001
+		4 0 0.013481284 5 0.79439497399999992 6 0.067327614999999993 
+		24 0.12479612700000001
 		1 41 1
 		1 41 1
 		2 34 0.99996298100000003 37 3.7018999999999999e-05
 		1 34 1
 		1 41 1
 		1 34 1
-		1 6 1
-		1 6 1
-		1 6 1
-		2 14 0.68121535700000002 15 0.31878464299999998
-		2 14 0.186449683 15 0.81355031700000002
-		2 15 0.73009120599999999 41 0.26990879400000001
-		1 41 1
-		1 6 1
-		1 6 1
-		3 0 1.2866e-05 6 0.99996177000000008 24 2.5364e-05
-		2 24 0.68122215000000008 25 0.31877784999999997
-		2 24 0.18645617 25 0.81354382999999997
+		3 0 0.171408006 5 0.63384359300000004 6 0.19474840099999999
+		5 0 0.78811452900000001 5 0.17093987399999999 6 0.040937469999999997 
+		14 4.189e-06 15 3.9380000000000002e-06
+		5 0 0.8196697770000001 5 0.039086922000000003 6 0.0058168070000000002 
+		14 0.046144382999999997 15 0.089282110999999997
+		6 0 0.64276182800000004 5 0.00220382 6 1.3823e-05 14 0.082677117999999994 
+		15 0.255629459 41 0.016713952000000001
+		5 0 0.37764585900000014 5 8.7439999999999996e-06 14 0.068327515000000005 
+		15 0.26076898999999998 41 0.29324889199999998
+		4 0 0.13629188 14 0.053209788000000001 15 0.27018910400000001 
+		41 0.54030922799999992
+		2 15 0.15635771900000001 41 0.84364228100000005
+		3 0 0.17142534700000001 5 0.63383123499999994 6 0.194743418
+		4 0 0.78813965799999997 5 0.17092734900000001 6 0.040932989000000003 
+		24 4.0000000000000002e-09
+		4 0 0.32143745499999998 5 0.039084688999999999 6 0.005816229 
+		24 0.63366162700000006
+		4 5 0.0022038969999999998 6 1.3825999999999999e-05 24 0.67971138900000005 
+		25 0.318070888
+		3 5 8.7469999999999994e-06 24 0.186454539 25 0.81353671400000005
 		2 25 0.73008266900000007 34 0.26991733099999998
 		1 34 1
-		1 41 1
-		1 41 1
-		2 15 0.33020853999999999 41 0.66979146000000001
+		2 15 0.309712504 41 0.69028749600000006
+		2 15 0.30558531999999999 41 0.69441468000000006
+		2 15 0.30320219399999998 41 0.69679780600000008
 		1 34 1
 		1 34 1
 		2 25 0.33019765699999998 34 0.66980234300000008
-		5 0 8.6789999999999994e-06 5 1.4236000000000001e-05 14 0.78055637900000008 
-		15 0.21942060699999999 33 9.9e-08
-		2 14 0.75557292100000006 15 0.24442707899999999
-		2 24 0.75559416099999999 25 0.24440583900000001
-		5 0 8.7020000000000007e-06 5 1.4270999999999999e-05 24 0.78058990800000005 
-		25 0.21938701899999999 33 9.9999999999999995e-08
-		3 6 4.0200000000000003e-07 14 0.75125694900000006 15 0.24874264900000001
-		3 6 4.0200000000000003e-07 24 0.75125777500000002 25 0.248741823
-		2 14 0.34448717099999998 15 0.65551282900000007
-		2 14 0.33532510599999998 15 0.66467489400000002
-		2 14 0.32373484000000002 15 0.67626516000000003
-		2 24 0.34448794500000002 25 0.65551205499999998
-		2 24 0.33532431000000001 25 0.66467569000000004
-		3 24 0.32373478700000002 25 0.67626389199999992 34 1.3209999999999999e-06
-		1 15 1
-		2 15 0.80335070799999997 41 0.196649292
-		2 15 0.72884673799999999 41 0.27115326200000001
+		6 0 0.62991179899999983 5 0.00028159099999999998 14 0.072354584999999999 
+		15 0.230399623 33 6.1999999999999999e-08 41 0.067052340000000002
+		5 0 0.61789006400000002 5 7.4944000000000006e-05 14 0.076210331000000006 
+		15 0.24088084100000001 41 0.064943819999999999
+		3 5 7.5313000000000002e-05 24 0.75553725500000002 25 0.24438743199999999
+		3 5 0.00028077000000000001 24 0.78038874699999994 25 0.21933048299999999
+		6 0 0.60973252700000002 5 5.9586000000000002e-05 6 8.9999999999999999e-08 
+		14 0.080577927999999993 15 0.256781963 41 0.052847906
+		3 5 5.9589000000000002e-05 6 8.9999999999999999e-08 24 0.75121324300000003;
+	setAttr ".wl[565:779].w"
+		1 25 0.24872707799999999
+		5 0 0.37551785800000004 5 1.3519999999999999e-06 14 0.060131212000000003 
+		15 0.23619710399999999 41 0.32815247400000003
+		5 0 0.34834370799999992 5 8.7400000000000002e-07 14 0.063487351999999997 
+		15 0.25865236400000002 41 0.32951570200000002
+		5 0 0.324869042 5 1.15e-07 14 0.059596321000000001 15 0.28943497600000001 
+		41 0.32609954599999996
+		3 5 1.353e-06 24 0.34448747899999999 25 0.65551116799999998
+		3 5 8.7400000000000002e-07 24 0.33532401699999997 25 0.66467510900000004
+		4 5 1.15e-07 24 0.32373475000000002 25 0.67626381399999991 34 
+		1.3209999999999999e-06
+		4 0 0.120886281 14 0.042466462000000003 15 0.22174623900000001 
+		41 0.61490101799999997
+		4 0 0.061524124999999999 14 0.061358630999999997 15 0.264204469 
+		41 0.61291277499999997
+		4 0 0.010095084000000001 14 0.032087551999999998 15 0.35195848499999999 
+		41 0.60585887900000002
 		2 25 0.99994182099999995 34 5.8179e-05
 		2 25 0.80334851600000001 34 0.19665148399999999
 		2 25 0.72884673799999999 34 0.27115326200000001
-		1 41 1
-		1 41 1
-		1 41 1
+		2 15 0.28072973699999998 41 0.71927026300000008
+		2 15 0.29188558599999997 41 0.70811441400000008
+		2 15 0.29524074300000003 41 0.70475925699999997
 		2 25 4.0040000000000001e-06 34 0.999995996
 		2 25 1.1511e-05 34 0.99998848900000004
 		2 25 1.2e-08 34 0.99999998800000001
-		2 15 0.077441328000000004 41 0.92255867199999997
-		2 15 0.052431651000000003 41 0.94756834899999998
-		2 15 0.00042340599999999998 41 0.99957659399999998
+		2 15 0.153321555 41 0.846678445
+		2 15 0.21348428699999999 41 0.78651571300000001
+		2 15 0.212460501 41 0.78753949899999998
 		3 25 0.077433409999999994 34 0.92246455799999993 39 0.000102032
 		2 25 0.052419118000000001 34 0.94758088200000001
 		3 25 0.000423387 34 0.99952996199999999 39 4.6650999999999998e-05
-		2 14 0.77389495799999997 15 0.22610504200000001
-		2 14 0.17881782199999999 15 0.82118217800000004
-		2 15 0.99799629999999995 41 0.0020037000000000002
-		2 15 0.46770781 41 0.53229219000000005
-		2 15 0.046005797000000001 41 0.95399420300000004
-		2 24 0.77392523800000002 25 0.22607476200000001
-		2 24 0.17889925200000001 25 0.82110074799999999
+		5 0 0.66382772099999998 5 0.0015334739999999999 14 0.071626228 
+		15 0.233664712 41 0.029347865000000001
+		5 0 0.38394385100000011 5 8.704e-06 14 0.051928123999999999 
+		15 0.214556524 41 0.34956279699999998
+		4 0 0.17035666299999999 14 0.029986558999999999 15 0.22872821400000001 
+		41 0.57092856400000003
+		4 0 2.0000000000000001e-09 14 2.5527000000000001e-05 15 0.29904297600000002 
+		41 0.70093149499999996
+		2 15 0.17550087 41 0.82449912999999997
+		3 5 0.0015561170000000001 24 0.77272091999999992 25 0.225722963
+		3 5 8.7010000000000002e-06 24 0.17889769599999999 25 0.82109360299999989
 		2 25 0.99799629999999995 34 0.0020037000000000002
 		2 25 0.46769291400000002 34 0.53230708599999998
 		2 25 0.046005797000000001 34 0.95399420300000004
-		1 41 1
-		2 15 0.114292465 41 0.88570753499999999
-		1 15 1
-		2 14 0.34184434800000002 15 0.65815565200000004
-		5 0 1.04e-07 5 2.7599999999999998e-07 14 0.78865907899999999 
-		15 0.21134053999999999 33 1.0000000000000001e-09
+		2 15 0.170586184 41 0.82941381599999997
+		3 14 3.6270000000000002e-06 15 0.29034296500000001 41 0.70965340799999999
+		4 0 0.16474687800000001 14 0.029390199999999998 15 0.21333669399999999 
+		41 0.59252622799999999
+		5 0 0.412086544 5 4.296e-06 14 0.055728835999999997 15 0.227738671 
+		41 0.30444165299999998
+		5 0 0.64946062299999996 5 0.00079987600000000004 14 0.069824293999999995 
+		15 0.22768703200000001 41 0.052228175000000002
 		1 34 1
 		2 25 0.114292465 34 0.88570753499999999
 		1 25 1
-		2 24 0.341845124 25 0.658154876
-		5 0 1.04e-07 5 2.7799999999999997e-07 24 0.78872913500000008 
-		25 0.21127048200000001 33 1.0000000000000001e-09
-		2 14 0.72944968399999999 15 0.27055031600000001
-		2 14 0.18836995200000001 15 0.81163004800000005
-		2 15 0.85688853700000001 41 0.14311146299999999
-		2 15 0.49779019299999999 41 0.50220980700000006
-		2 15 0.024848667000000001 41 0.97515133300000001
-		2 24 0.72944968399999999 25 0.27055031600000001
-		2 24 0.18839499600000001 25 0.81160500400000002
+		3 5 4.2950000000000004e-06 24 0.341843656 25 0.65815204900000002
+		3 5 0.00086607299999999997 24 0.78804634000000007 25 0.21108758699999999
+		6 0 0.66978664499999996 5 0.0026593049999999998 6 1.0000000000000001e-09 
+		14 0.074484260999999996 15 0.240878126 41 0.012191662000000001
+		5 0 0.39656646200000006 5 1.3033e-05 14 0.056482232 15 0.231013463 
+		41 0.31592481
+		4 0 0.17041740499999999 14 0.033327714000000001 15 0.24081228099999999 
+		41 0.55544260000000001
+		4 0 1.0000000000000001e-09 14 9.3689999999999996e-06 15 0.30221421999999998 
+		41 0.69777641000000001
+		2 15 0.168111593 41 0.831888407
+		4 5 0.0026593049999999998 6 1.0000000000000001e-09 24 0.72750985400000001 
+		25 0.26983084000000002
+		3 5 1.3045e-05 24 0.188392538 25 0.81159441700000001
 		2 25 0.85688853700000001 34 0.14311146299999999
 		2 25 0.49779019299999999 34 0.50220980700000006
 		2 25 0.024849626999999999 34 0.97515037299999996
-		2 15 0.111463416 41 0.88853658400000002
-		1 41 1
-		1 15 1
-		2 14 0.34862131899999999 15 0.65137868100000007
-		5 0 1.4389000000000001e-05 5 2.8799999999999999e-05 14 0.78987420900000005 
-		15 0.21008242799999999 33 1.74e-07
+		2 15 0.13383450899999999 41 0.86616549100000007
+		2 15 0.27922307000000002 41 0.72077692999999998
+		4 0 0.151248243 14 0.032628385000000003 15 0.20797803200000001 
+		41 0.60814533999999998
+		5 0 0.39712909700000004 5 2.2029999999999999e-06 14 0.056777531999999999 
+		15 0.226590072 41 0.31950109599999998
+		6 0 0.63903159599999992 5 0.00050669899999999999 14 0.070111332999999998 
+		15 0.22641873400000001 33 1.11e-07 41 0.063931527000000002
 		2 25 0.111463416 34 0.88853658400000002
 		2 25 1.3791999999999999e-05 34 0.99998620800000004
 		2 25 0.99998909499999999 34 1.0905e-05
-		2 24 0.34862059499999998 25 0.65137940500000002
-		5 0 1.4389999999999999e-05 5 2.8801000000000001e-05 24 0.78987342699999996 
-		25 0.21008320799999999 33 1.74e-07
+		3 5 2.2029999999999999e-06 24 0.34861982600000002 25 0.65137797099999994
+		3 5 0.00048844100000000005 24 0.78952185799999997 25 0.209989701
 		1 41 1
 		2 34 0.99989535299999999 37 0.000104647
+		2 0 0.52622787199999999 2 0.47377212800000001
+		2 0 0.52623440399999999 4 0.47376559600000001
+		2 0 0.45930274199999999 2 0.54069725800000001
+		2 0 0.45932902799999997 4 0.54067097200000003
+		2 0 0.22476681500000001 2 0.77523318500000005
+		2 0 0.22476849300000001 4 0.77523150699999999
+		2 0 0.28502872499999998 2 0.71497127500000002
+		2 0 0.28502203199999998 4 0.71497796800000002
+		3 0 0.048624784999999997 5 0.86858913599999998 6 0.082786078999999999
+		3 0 0.041535249000000003 5 0.85110928299999999 6 0.107355468
+		3 0 0.041535249000000003 5 0.85110928299999999 6 0.107355468
+		3 0 0.048624680000000003 5 0.86858927200000002 6 0.082786048000000001
+		3 0 0.00044489399999999999 5 0.99705067199999997 6 0.0025044339999999998
+		3 0 0.000105052 5 0.99893293400000005 6 0.00096201399999999997
+		3 0 0.000445029 5 0.99705006399999996 6 0.0025049069999999998
+		3 0 0.000105052 5 0.99893293400000005 6 0.00096201399999999997
+		3 0 0.015707339000000001 5 0.932258425 6 0.052034235999999998
+		3 0 0.013340436000000001 5 0.92211652200000005 6 0.064543041999999995
+		3 0 0.015708313000000002 5 0.93225612699999993 6 0.052035560000000002
+		3 0 0.013340436000000001 5 0.92211652200000005 6 0.064543041999999995
+		3 0 0.00012139200000000001 5 0.99939734400000002 6 0.00048126400000000002
+		3 0 0.00012139200000000001 5 0.99939734400000002 6 0.00048126400000000002
+		1 5 1
+		1 5 1
 		1 0 1
 		1 0 1
 		1 0 1
 		1 0 1
+		2 0 0.684252258 4 0.315747742
+		2 0 0.68424780299999999 2 0.31575219700000001
 		1 0 1
 		1 0 1
 		1 0 1
 		1 0 1
-		2 0 0.73593679099999998 6 0.26406320900000002
-		2 0 0.99559863699999995 6 0.0044013630000000002
-		2 0 0.99559863699999995 6 0.0044013630000000002
-		2 0 0.73593559500000005 6 0.264064405
-		2 0 0.99942838199999995 6 0.00057161799999999997
-		1 0 1
-		2 0 0.99942819000000005 6 0.00057180999999999996
-		1 0 1
-		2 0 0.98509800599999997 6 0.014901994
-		2 0 0.99998679400000001 6 1.3206e-05
-		2 0 0.98509438599999999 6 0.014905613999999999
-		2 0 0.99998679400000001 6 1.3206e-05
-		2 0 0.92826229500000002 6 0.071737704999999999
-		2 0 0.92826229500000002 6 0.071737704999999999
-		2 5 0.088554028000000007 6 0.91144597199999999
-		2 5 0.088554028000000007 6 0.91144597199999999
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		2 0 0.96858351600000003 5 0.031416484000000001
-		2 0 0.96858318799999998 5 0.031416812000000002
-		2 0 0.54394819400000005 6 0.456051806
-		2 0 0.54394819400000005 6 0.456051806
-		1 6 1
-		1 6 1
+		3 0 0.96855137299999994 5 0.031415442000000002 6 3.3185000000000002e-05
+		3 0 0.96855104599999997 5 0.031415769000000003 6 3.3185000000000002e-05
+		3 0 0.012477220000000001 5 0.95459413400000004 6 0.032928645999999999
+		3 0 0.012477220000000001 5 0.95459413400000004 6 0.032928645999999999
+		3 0 0.047812339000000002 5 0.89764026100000005 6 0.054547400000000003
+		3 0 0.047812339000000002 5 0.89764026100000005 6 0.054547400000000003
 		1 5 1
 		1 5 1
 		1 0 1
@@ -17381,22 +17449,22 @@ createNode skinCluster -n "skinCluster4";
 		1 0 1
 		1 0 1
 		1 0 1
-		1 41 1
+		2 15 1.683e-06 41 0.99999831699999997
 		2 34 0.99974571199999995 35 0.00025428799999999997
 		1 41 1
 		1 34 1
-		1 41 1
+		2 15 4.087e-06 41 0.99999591300000001
+		1 34 1
+		2 15 0.00032667200000000002 41 0.99967332799999997
 		1 34 1
 		1 41 1
 		1 34 1
-		1 41 1
-		1 34 1
 		1 0 1
+		2 0 0.49349687800000003 2 0.50650312200000003
+		2 0 0.50433409900000004 2 0.49566590100000002
 		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
+		2 0 0.49348866699999999 4 0.50651133300000006
+		2 0 0.50431794000000008 4 0.49568205999999998
 		1 0 1
 		1 0 1
 		1 0 1
@@ -17419,143 +17487,177 @@ createNode skinCluster -n "skinCluster4";
 		1 0 1
 		1 0 1
 		1 0 1
-		2 0 0.98669879100000002 5 0.013301209
-		2 5 2.0000000000000001e-09 6 0.99999999799999995
-		2 0 0.99788289399999996 6 0.0021171060000000001
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		2 0 0.93401598600000002 5 0.065984013999999994
-		2 0 0.93401598600000002 5 0.065984013999999994
+		3 0 0.98664858200000005 5 0.013300533 6 5.0884999999999998e-05
 		1 5 1
 		1 5 1
-		2 0 0.71417565100000002 5 0.28582434899999998
-		2 0 0.71417359899999999 5 0.28582640100000001
+		1 5 1
+		1 5 1
+		1 0 1
+		1 0 1
+		3 0 0.93396736899999999 5 0.065980579999999997 6 5.2051e-05
+		3 0 0.93396736899999999 5 0.065980579999999997 6 5.2051e-05
+		1 5 1
+		1 5 1
+		3 0 0.71416107799999995 5 0.285823626 6 1.5296000000000001e-05
+		3 0 0.71415902599999992 5 0.285825677 6 1.5296999999999999e-05
 		2 0 0.999999423 5 5.7700000000000004e-07
 		1 0 1
-		3 0 0.79496259199999997 5 0.12088046700000001 33 0.084156940999999999
-		2 0 0.98160266699999998 6 0.018397332999999998
-		2 0 0.98160268900000003 6 0.018397311
-		3 0 0.79496013399999998 5 0.120878728 33 0.084161137999999996
-		2 0 0.28928900299999999 5 0.70052975399999995;
-	setAttr ".wl[743:1010].w"
-		1 33 0.010181243
-		2 0 0.937699387 6 0.062300612999999998
-		2 0 0.93769939199999996 6 0.062300608
-		3 0 0.28932076499999998 5 0.70049846800000004 33 0.010180767
+		4 0 0.15679140699999999 5 0.82654570299999996 6 6.4517999999999995e-05 
+		33 0.016598372
+		2 5 0.85879478300000001 6 0.14120521699999999
+		2 5 0.85879371999999998 6 0.14120627999999999
+		4 0 0.15678673900000001 5 0.82654968500000003 6 6.4819000000000004e-05 
+		33 0.016598756999999999
+		3 0 5.0200000000000002e-07 5 0.99999948100000002 33 1.7e-08
+		2 5 0.99023685500000003 6 0.0097631450000000009
+		2 5 0.99023686099999997 6 0.0097631390000000005
+		3 0 4.89e-07 5 0.99999949399999999 33 1.7e-08
 		1 5 1
-		2 0 0.86452401300000004 6 0.13547598699999999
-		2 0 0.86452400900000004 6 0.13547599099999999
-		3 0 2.1503000000000001e-05 5 0.99997721099999992 33 1.2860000000000001e-06
-		3 0 0.969404606 5 0.0030079289999999999 33 0.027587464999999999
-		3 0 0.97324580900000002 5 0.003663927 33 0.023090263999999999
-		3 0 0.99991457500000003 5 5.6981000000000002e-05 33 2.8444000000000001e-05
-		1 0 1
-		3 0 0.99773714699999994 5 0.0022609470000000001 33 1.906e-06
-		3 0 0.96940479000000002 5 0.003007872 33 0.027587337999999999
-		3 0 0.97324572499999995 5 0.0036639250000000002 33 0.023090349999999999
-		4 0 0.99991447199999994 5 5.7037000000000003e-05 6 2.0000000000000001e-09 
-		33 2.8489000000000001e-05
-		2 0 0.99999976800000001 6 2.3200000000000001e-07
-		3 0 0.99773195199999998 5 0.0022661180000000001 33 1.9300000000000002e-06
-		3 0 0.8004861929999999 5 0.047541786000000003 33 0.15197202100000001
-		3 0 0.97690884300000003 5 0.0047037870000000001 33 0.01838737
-		4 0 0.999420325 5 1.6000000000000001e-08 6 0.00057942599999999996 
-		33 2.3300000000000001e-07
-		3 0 0.80048594900000003 5 0.047542148999999999 33 0.15197190199999999
-		3 0 0.97690946199999995 5 0.004703718 33 0.018386820000000002
-		4 0 0.99940304400000002 5 1.6000000000000001e-08 6 0.00059670700000000003 
-		33 2.3300000000000001e-07
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		2 0 0.99624368500000005 6 0.0037563150000000001
-		3 0 0.98912362899999995 5 0.003291726 33 0.0075846450000000001
-		3 0 0.82186982900000005 5 0.072894750999999994 33 0.10523542
-		2 0 0.99624264500000004 6 0.003757355
-		3 0 0.98912217699999994 5 0.0032922770000000001 33 0.0075855460000000003
-		3 0 0.82186680499999998 5 0.072896662000000001 33 0.10523653299999999
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		2 0 1.9259999999999999e-06 6 0.99999807399999996
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		2 0 1.7380999999999998e-05 6 0.99998261899999996
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		3 0 0.20986174699999999 5 0.048519226999999998 33 0.74161902600000007
-		3 0 0.20986174699999999 5 0.048519226999999998 33 0.74161902600000007
-		3 0 0.46104506699999998 5 0.089683651000000003 33 0.44927128199999999
-		3 0 0.46104506699999998 5 0.089683651000000003 33 0.44927128199999999
-		3 0 0.67781469800000005 5 0.116405624 33 0.20577967799999999
-		3 0 0.67781469800000005 5 0.116405624 33 0.20577967799999999
-		3 0 0.82647555200000011 5 0.14766615799999999 33 0.025858289999999999
-		3 0 0.82647444999999997 5 0.14766565100000001 33 0.025859898999999999
-		3 0 0.85087791199999996 5 0.14325115399999999 33 0.0058709340000000004
-		3 0 0.85087757400000008 5 0.14325120699999999 33 0.0058712189999999996
-		3 0 1.1000000000000001e-06 5 0.999998893 33 6.9999999999999998e-09
-		3 0 0.51165226900000005 5 0.458361988 33 0.029985742999999999
-		3 0 0.66414529299999991 5 0.18835438800000001 33 0.14750031899999999
-		3 0 0.49429439399999997 5 0.17904494400000001 33 0.32666066199999999
-		3 0 0.36439737799999999 5 0.14807567099999999 33 0.48752695099999999
-		3 0 0.40394592200000001 5 0.068612708999999994 33 0.52744136899999994
-		3 0 0.42669040699999999 5 0.039227308000000002 33 0.53408228499999999
-		3 0 0.42669040699999999 5 0.039227308000000002 33 0.53408228499999999
-		3 0 0.40394592200000001 5 0.068612708999999994 33 0.52744136899999994
-		3 0 0.36439737799999999 5 0.14807567099999999 33 0.48752695099999999
-		3 0 0.49429439399999997 5 0.17904494400000001 33 0.32666066199999999
-		3 0 0.66415316200000007 5 0.188355513 33 0.14749132500000001
-		3 0 0.51165297499999995 5 0.45836125500000002 33 0.029985769999999998
+		3 0 1.97e-07 5 0.99997556700000001 6 2.4236e-05
+		2 5 0.99997576399999999 6 2.4236e-05
+		2 0 1.0000000000000001e-09 5 0.99999999900000003
+		4 0 0.13420621899999999 5 0.76735024299999999 6 0.094624277000000007 
+		33 0.003819261
+		4 0 0.123047367 5 0.78602916899999997 6 0.088004164999999995 
+		33 0.0029192990000000002
+		4 0 8.7336999999999994e-05 5 0.99187515799999992 6 0.0080375029999999997 
+		33 2.0000000000000001e-09
+		1 5 1
+		1 5 1
+		4 0 0.13420429 5 0.7673527309999999 6 0.094623790999999999 
+		33 0.0038191879999999998
+		4 0 0.12304744300000001 5 0.786029003 6 0.088004241999999996 
+		33 0.0029193119999999999
+		4 0 8.8935000000000001e-05 5 0.99187173099999992 6 0.0080393319999999997 
+		33 2.0000000000000001e-09
+		1 5 1
+		1 5 1
+		4 0 0.19347946899999999 5 0.75425007799999999 6 0.015538444 
+		33 0.036732009000000003
+		4 0 0.084148767999999999 5 0.84742677299999991 6 0.066840611999999994 
+		33 0.001583847
+		4 0 0.049836428000000002 5 0.77220216499999994 6 0.17796139599999999 
+		33 1.0999999999999999e-08
+		4 0 0.193479401 5 0.75425028700000007 6 0.015538333999999999 
+		33 0.036731977999999998
+		4 0 0.084145888000000002 5 0.84743100199999988 6 0.066839365999999997 
+		33 0.001583744
+		4 0 0.049836933 5 0.77219835999999997 6 0.17796469600000001 
+		33 1.0999999999999999e-08
+		3 0 0.109426304 5 0.22319799900000001 6 0.66737569699999999
+		3 0 0.10942634499999999 5 0.223198808 6 0.66737484699999994
+		3 0 0.089220285999999996 5 0.24188341499999999 6 0.66889629900000003
+		3 0 0.089220285999999996 5 0.24188341499999999 6 0.66889629900000003
+		3 0 0.025390841000000001 5 0.811056471 6 0.163552688
+		4 0 0.032007514000000001 5 0.9249417270000001 6 0.042805323999999999 
+		33 0.00024543500000000001
+		4 0 0.12894678400000001 5 0.84743982400000006 6 0.0071025430000000002 
+		33 0.016510849000000001
+		3 0 0.025389516000000001 5 0.81105875999999999 6 0.16355172400000001
+		4 0 0.032010071000000001 5 0.92493989099999996 6 0.042804554000000002 
+		33 0.00024548400000000002
+		4 0 0.12894710500000001 5 0.84743951499999992 6 0.0071022539999999997 
+		33 0.016511126000000001
+		3 0 0.060275316000000002 5 0.37074294499999999 6 0.56898173899999993
+		3 0 0.060274453999999998 5 0.37075418599999999 6 0.56897136000000004
+		2 0 0.048144737 5 0.53926521500000002;
+	setAttr ".wl[779:939].w"
+		1 6 0.41259004799999999
+		3 0 0.048143475999999998 5 0.539265035 6 0.41259148899999998
+		3 0 0.055758203999999999 5 0.51121682800000001 6 0.43302496800000001
+		3 0 0.060890584999999997 5 0.57753956200000001 6 0.361569853
+		3 0 0.055757506999999998 5 0.51120953299999994 6 0.43303296000000002
+		3 0 0.060889708000000001 5 0.577537458 6 0.36157283400000001
+		3 0 0.057348424000000002 5 0.67346743799999997 6 0.26918413800000002
+		3 0 0.057348837 5 0.67346721000000009 6 0.26918395299999998
+		3 0 0.032447110000000001 5 0.79502711500000001 6 0.17252577499999999
+		3 0 0.03245613 5 0.79502012799999999 6 0.17252374200000001
+		3 0 0.0050929570000000004 5 0.92529941000000004 6 0.069607633000000002
+		3 0 0.0050919429999999998 5 0.92530149000000006 6 0.069606566999999994
+		3 0 0.12903848400000001 5 0.36779747499999998 6 0.50316404100000012
+		3 0 0.12140743599999999 5 0.36292675099999999 6 0.51566581300000003
+		3 0 0.11626303 5 0.34862425000000002 6 0.53511271999999988
+		3 0 0.114707173 5 0.32794410699999998 6 0.55734872000000002
+		3 0 0.062145222 5 0.48053139299999986 6 0.45732338500000003
+		3 0 0.037517923000000002 5 0.65593621899999999 6 0.306545858
+		3 0 0.12903919 5 0.36780009400000002 6 0.50316071600000001
+		3 0 0.121407164 5 0.36291701399999998 6 0.51567582200000006
+		3 0 0.116262988 5 0.34862374299999999 6 0.535113269
+		3 0 0.11470609 5 0.327944764 6 0.55734914599999996
+		3 0 0.062144017000000003 5 0.48053499999999993 6 0.45732098300000001
+		3 0 0.037517923000000002 5 0.65593621899999999 6 0.306545858
+		3 0 0.018823036000000001 5 0.78733362200000001 6 0.193843342
+		3 0 0.045432867000000002 5 0.59674260300000004 6 0.35782452999999997
+		3 0 0.080460527000000004 5 0.52763259799999995 6 0.39190687499999999
+		3 0 0.080828066000000004 5 0.55073402299999996 6 0.36843791100000001
+		3 0 0.090828126999999995 5 0.55110945499999997 6 0.35806241799999999
+		3 0 0.098370350999999995 5 0.55014022699999998 6 0.351489422
+		3 0 0.018822955999999998 5 0.78733417500000002 6 0.193842869
+		3 0 0.045433184000000001 5 0.59674074499999996 6 0.35782607100000002
+		3 0 0.080458550000000004 5 0.52763641699999997 6 0.39190503300000001
+		3 0 0.080828083999999994 5 0.55073313400000001 6 0.36843878200000002
+		3 0 0.090828056000000004 5 0.55110789199999999 6 0.35806405200000002
+		3 0 0.098369604999999999 5 0.55014349600000001 6 0.35148689900000002
+		2 9 0.74676081100000002 12 0.25323918899999998
+		2 9 0.00013857799999999999 12 0.99986142200000006
+		5 0 0.020009566999999999 5 0.044894915000000001 6 0.383217101 
+		10 0.117309556 12 0.43456886100000003
+		6 0 0.028215344 5 0.052711841000000002 6 0.40608778099999993 
+		9 3.3538999999999999e-05 10 0.34791198200000001 12 0.165039513
+		1 10 1
+		1 10 1
+		4 0 0.00069540200000000002 5 0.001284084 6 0.0083481089999999994 
+		10 0.98967240499999998
+		6 0 0.0019906289999999998 5 0.0036337219999999998 6 0.024713160000000001 
+		9 6e-09 10 0.96962936999999993 11 3.3113e-05
+		6 0 0.028565706999999999 5 0.053366716000000002 6 0.41024179399999999 
+		9 3.3198999999999998e-05 10 0.34439546700000001 11 0.16339711700000001
+		6 0 0.020017605000000001 5 0.044899072999999998 6 0.38321955000000002 
+		9 5.7000000000000001e-08 10 0.117638148 11 0.43422556699999992
+		2 9 0.00068516699999999998 11 0.99931483300000001
+		3 9 0.74473905899999993 10 0.000351357 11 0.25490958400000002
+		1 9 1
+		1 9 1
+		1 9 1
+		1 9 1
+		1 9 1
+		1 9 1
+		4 0 0.20974543600000001 5 0.049045327 6 1.2330000000000001e-06 
+		33 0.74120800399999998
+		4 0 0.20974543600000001 5 0.049045327 6 1.2330000000000001e-06 
+		33 0.74120800399999998
+		4 0 0.46092118800000004 5 0.089928197000000001 6 4.9999999999999998e-08 
+		33 0.449150565
+		4 0 0.46092118800000004 5 0.089928197000000001 6 4.9999999999999998e-08 
+		33 0.449150565
+		3 0 0.67770921900000003 5 0.116543126 33 0.205747655
+		3 0 0.67770921900000003 5 0.116543126 33 0.205747655
+		3 0 0.82646377900000001 5 0.14767829900000001 33 0.025857921999999998
+		3 0 0.8264626759999999 5 0.147677793 33 0.025859531000000002
+		3 0 0.85087574199999993 5 0.14325333900000001 33 0.0058709189999999996
+		3 0 0.85087540299999997 5 0.14325339300000001 33 0.0058712039999999997
+		3 0 9.1299999999999998e-07 5 0.9999990809999999 33 6e-09
+		3 0 0.47313045799999998 5 0.49914139700000004 33 0.027728144999999999
+		4 0 0.576122625 5 0.29588982699999999 6 3.6222e-05 33 0.127951326
+		4 0 0.38432302999999995 5 0.36122948799999999 6 0.00046277900000000002 
+		33 0.25398470299999998
+		4 0 0.266710532 5 0.37493952399999997 6 0.0015181439999999999 
+		33 0.35683179999999998
+		4 0 0.28289366700000002 5 0.34423320600000001 6 0.0034924359999999998 
+		33 0.36938069099999993
+		4 0 0.28763161399999998 5 0.34709803299999997 6 0.0052459710000000003 
+		33 0.36002438199999992
+		4 0 0.28763161399999998 5 0.34709803299999997 6 0.0052459710000000003 
+		33 0.36002438199999992
+		4 0 0.28289366700000002 5 0.34423320600000001 6 0.0034924359999999998 
+		33 0.36938069099999993
+		4 0 0.266710532 5 0.37493952399999997 6 0.0015181439999999999 
+		33 0.35683179999999998
+		4 0 0.38432302999999995 5 0.36122948799999999 6 0.00046277900000000002 
+		33 0.25398470299999998
+		4 0 0.57613012300000011 5 0.29588999399999999 6 3.6210000000000001e-05 
+		33 0.12794367300000001
+		3 0 0.473131413 5 0.49914039900000007 33 0.027728188000000001
 		1 5 1
 		1 33 1
 		3 0 6.3829999999999997e-06 5 1.4750000000000001e-06 33 0.99999214199999997
@@ -17568,135 +17670,169 @@ createNode skinCluster -n "skinCluster4";
 		1 0 1
 		3 0 0.99999972599999998 5 2.6399999999999998e-07 33 1e-08
 		1 0 1
-		3 0 0.748455965 5 0.25153959599999998 33 4.4390000000000002e-06
-		3 0 0.74846569899999993 5 0.25152986199999999 33 4.4390000000000002e-06
+		3 0 0.74845399299999993 5 0.25154156799999999 33 4.4390000000000002e-06
+		3 0 0.74846372699999997 5 0.25153183400000001 33 4.4390000000000002e-06
 		1 0 1
 		1 0 1
-		3 0 0.66798424700000003 5 0.33051433099999999 33 0.0015014220000000001
+		3 0 0.66798140499999992 5 0.33051718000000002 33 0.0015014150000000001
 		3 0 0.99997833699999994 5 2.1566e-05 33 9.6999999999999995e-08
-		3 0 0.66798435699999992 5 0.33051422400000002 33 0.0015014189999999999
-		1 6 1
-		1 6 1
-		1 6 1
-		3 0 3.5080000000000001e-06 6 0.99998866199999992 24 7.8299999999999996e-06
-		5 0 0.23292949700000001 5 0.00021524000000000001 6 0.10517887300000001 
-		14 0.66167559399999998 33 7.9599999999999998e-07
-		5 0 0.232930628 5 0.00021595499999999999 6 0.10517389000000001 
-		24 0.66167872999999999 33 7.9699999999999995e-07
-		4 0 0.219980062 5 0.22338022199999999 14 0.55625187600000003 
-		33 0.00038783999999999997
-		4 0 0.219962994 5 0.22343937999999999 24 0.55620967600000004 
-		33 0.00038795000000000002
-		4 0 0.108280565 5 0.74474661599999992 14 0.145615096 33 
-		0.0013577229999999999
-		4 0 0.10827191 5 0.74476721899999998 24 0.145603238 33 0.001357633
+		3 0 0.66798151400000005 5 0.33051707299999999 33 0.0015014130000000001
+		5 0 0.038133774000000002 5 0.87333501400000002 6 0.084178276999999996 
+		14 0.001166687 15 0.003186248
+		4 0 0.016401995999999999 5 0.87331794900000004 6 0.084180501000000005 
+		24 0.026099554000000001
+		5 0 0.0031379419999999999 5 0.96680037399999996 6 0.029625876999999998 
+		14 0.00011448899999999999 15 0.00032131800000000002
+		4 0 0.001106314 5 0.96679875000000004 6 0.029626005 24 
+		0.0024689310000000002
+		5 0 1.8950000000000001e-06 5 0.99683294200000006 6 0.0031648689999999998 
+		14 7.7000000000000001e-08 15 2.17e-07
+		4 0 5.7299999999999996e-07 5 0.99683291500000004 6 0.003164881 
+		24 1.6309999999999999e-06
+		5 0 1.4348000000000001e-05 5 0.99998272300000002 14 7.8000000000000005e-07 
+		15 2.142e-06 33 6.9999999999999998e-09
+		4 0 8.7269999999999996e-06 5 0.99995960400000006 24 3.1665000000000003e-05 
+		33 4.0000000000000002e-09
+		5 0 0.045412748000000003 5 0.92277049700000002 14 0.0088116449999999999 
+		15 0.022762263000000001 33 0.000242847
+		4 0 0.0099141869999999997 5 0.818552218 24 0.17148057799999999 
+		33 5.3016999999999997e-05
+		3 5 0.85907326500000003 14 0.045227062999999998 15 0.095699672
+		3 0 1.0999999999999999e-08 5 0.194425868 24 0.80557412099999992
+		4 5 0.778118211 6 2.148e-06 14 0.074344754999999998 15 0.147534886
+		4 0 2.0358999999999999e-05 5 0.143609018 6 2.148e-06 24 
+		0.85636847500000002
+		4 5 0.76393467800000003 6 3.1171999999999999e-05 14 0.080440923999999997 
+		15 0.155593226
+		6 0 0.6014542570000001 5 0.00014311200000000001 6 2.9299999999999999e-06 
+		14 0.083984609000000002 15 0.27214491400000002 41 0.042270177999999999
+		4 5 0.000143094 6 2.9299999999999999e-06 24 0.73570701800000005 
+		25 0.26414695799999999
+		4 0 5.8999999999999999e-08 5 0.098539688 6 3.1161999999999997e-05 
+		24 0.90142909100000002
+		6 0 0.58689082799999992 5 0.00048493100000000002 6 2.5224000000000001e-05 
+		14 0.089035984999999998 15 0.28643738299999999 41 0.037125648999999997
 		1 5 1
-		2 0 8.6999999999999998e-08 5 0.99999991300000002
-		1 5 1
-		4 0 2.2075000000000001e-05 5 0.99985706799999996 24 0.000120851 
-		33 6e-09
-		1 5 1
-		3 6 4.8980000000000004e-06 14 0.73583139999999991 15 0.264163702
-		3 6 4.8969999999999999e-06 24 0.73581086100000004 25 0.26418424200000001
-		3 0 5.8999999999999999e-08 5 0.99999939500000001 24 5.4600000000000005e-07
-		3 6 4.6628999999999997e-05 14 0.66836493600000002 15 0.33158843500000001
-		4 0 0.040178237999999998 5 0.43900515000000007 6 0.27928941000000002 
-		14 0.241527202
-		3 6 4.6657999999999999e-05 24 0.66839012399999997 25 0.33156321799999999
-		4 0 0.040180994999999997 5 0.43897702599999994 6 0.279288696 
-		24 0.24155328300000001
-		1 41 1
+		4 5 0.00048509699999999998 6 2.5238000000000001e-05 24 0.66808019299999999 
+		25 0.33140947199999998
+		4 0 4.4109999999999998e-06 5 0.99994738999999999 6 9.3099999999999996e-07 
+		24 4.7268000000000002e-05
+		2 15 0.132035649 41 0.86796435100000002
 		1 34 1
-		1 41 1
+		2 15 0.29050437000000001 41 0.70949563000000004
 		1 34 1
-		2 15 0.71565512600000003 41 0.28434487400000003
+		4 0 0.0036560009999999999 14 0.0049606379999999999 15 0.39733701500000002 
+		41 0.59404634599999995
 		2 25 0.71565512600000003 34 0.28434487400000003
-		2 14 0.30323835300000002 15 0.69676164699999998
+		4 0 0.31076691499999998 14 0.054556710000000001 15 0.31361260899999999 
+		41 0.32106376599999992
 		2 24 0.30324588699999999 25 0.69675411300000001
-		1 15 1
+		4 0 0.25204344499999998 14 0.046658908999999998 15 0.29202640800000002 
+		41 0.40927123799999993
 		2 24 3.1420000000000001e-05 25 0.99996858
-		2 15 0.76531890199999997 41 0.234681098
+		4 0 0.00049347699999999998 14 0.0029443440000000002 15 0.44133086300000002 
+		41 0.55523131599999997
 		2 25 0.76531482900000003 34 0.234685171
-		2 15 0.20514780099999999 41 0.79485219900000004
+		2 15 0.30641131599999999 41 0.69358868400000007
 		2 25 0.20514434100000001 34 0.79485565899999999
-		1 41 1
+		2 15 0.18138400900000001 41 0.81861599100000004
 		1 34 1
-		1 41 1
-		1 41 1
-		2 15 0.68189972200000004 41 0.31810027800000001
-		1 15 1
-		3 6 5.4659999999999998e-06 14 0.66568816000000008 15 0.33430637400000002
-		3 0 0.004875 6 0.95000000000000007 14 0.045125
+		2 15 0.17750297500000001 41 0.82249702499999999
+		2 15 0.31346206799999998 41 0.68653793200000002
+		4 0 0.02458337 14 0.088336352000000007 15 0.35401669099999999 
+		41 0.53306358700000001
+		5 0 0.286147451 5 4.9110000000000001e-06 14 0.069337401000000007 
+		15 0.274044599 41 0.37046563799999993
+		6 0 0.60233383299999987 5 0.002511597 6 1.235e-06 14 0.090402710999999997 
+		15 0.27472571600000001 41 0.030024907999999999
+		5 0 0.060644658999999997 5 0.89257403400000002 6 0.029699518000000001 
+		14 0.0074674470000000003 15 0.0096143419999999997
 		1 34 1
 		1 34 1
 		2 25 0.68189966700000004 34 0.31810033300000001
-		2 24 2.4899999999999999e-06 25 0.99999751000000003
-		3 6 5.4659999999999998e-06 24 0.6656871230000001 25 0.334307411
-		3 0 0.0048770419999999998 6 0.94999302499999994 24 0.045129932999999997
-		4 0 0.032254396999999997 5 0.00031293199999999998 6 0.77353879799999992 
-		14 0.19389387299999999
-		3 6 2.0454000000000001e-05 14 0.67037812800000007 15 0.32960141799999998
-		1 15 1
-		2 15 0.69278551100000008 41 0.30721448899999998
-		2 15 0.091808699999999993 41 0.90819130000000003
-		1 41 1
-		4 0 0.032256666000000003 5 0.00031291899999999999 6 0.77351771300000005 
-		24 0.19391270199999999
-		3 6 2.0534999999999999e-05 24 0.67044732800000006 25 0.329532137
-		2 24 4.4999999999999999e-08 25 0.99999995500000005
+		3 5 4.9130000000000002e-06 24 2.4899999999999999e-06 25 0.99999259699999998
+		4 5 0.0025115950000000001 6 1.235e-06 24 0.66401799400000006 
+		25 0.33346917599999998
+		4 0 0.0075801760000000001 5 0.892577807 6 0.029698511 24 
+		0.070143505999999994
+		5 0 0.0016052670000000001 5 0.99596786800000003 6 0.0019975119999999999 
+		14 0.000193449 15 0.000235904
+		6 0 0.59386568999999989 5 0.002414668 6 8.6270000000000006e-06 
+		14 0.091550512000000001 15 0.28246666199999998 41 0.029693840999999999
+		5 0 0.26814464100000002 5 2.5349999999999999e-06 14 0.062070346999999998 
+		15 0.291870984 41 0.37791149299999993
+		4 0 0.0066813250000000001 14 0.051130978000000001 15 0.40613099699999999 
+		41 0.53605670000000005
+		2 15 0.31519638300000002 41 0.68480361700000003
+		2 15 0.18468627100000001 41 0.81531372899999999
+		4 0 0.00029266699999999998 5 0.995949258 6 0.0019981410000000002 
+		24 0.0017599340000000001
+		4 5 0.0024185600000000002 6 8.6589999999999996e-06 24 0.66883374100000004 
+		25 0.32873903999999998
+		3 5 2.5339999999999998e-06 24 4.4999999999999999e-08 25 0.999997421
 		2 25 0.69278672400000008 34 0.30721327599999998
 		2 25 0.091840086000000001 34 0.90815991399999996
 		1 34 1
-		4 0 0.032860612999999997 5 0.180481313 6 0.58911999799999992 
-		14 0.19753807600000001
-		3 6 4.1374000000000001e-05 14 0.68007456899999996 15 0.319884057
-		1 15 1
-		2 15 0.72213404800000003 41 0.27786595200000003
-		2 15 0.192836488 41 0.80716351200000003
-		1 41 1
-		4 0 0.032864620999999997 5 0.18046757499999999 6 0.58909663499999998 
-		24 0.19757116899999999
-		3 6 4.1430000000000001e-05 24 0.68011130399999997 25 0.31984726600000002
-		2 24 8.2000000000000006e-08 25 0.99999991799999999
+		1 5 1
+		6 0 0.59121130700000002 5 0.0012905849999999999 6 2.2410999999999999e-05 
+		14 0.091310780999999994 15 0.28809604 41 0.028068876
+		1 0 0.25756183700000002;
+	setAttr ".wl[939:1163].w"
+		4 5 6.9599999999999999e-07 14 0.052908876000000001 15 0.29724998200000002 
+		41 0.39227860899999994
+		4 0 0.0024188040000000001 14 0.018406170999999999 15 0.43622748099999997 
+		41 0.542947544
+		2 15 0.31314641799999998 41 0.68685358200000002
+		2 15 0.186512024 41 0.813487976
+		4 0 6.0809999999999999e-06 5 0.99994834600000004 6 9.6099999999999999e-07 
+		24 4.4611999999999999e-05
+		4 5 0.00129148 6 2.2438000000000001e-05 24 0.67924583499999991 
+		25 0.31944024700000001
+		3 5 6.9599999999999999e-07 24 8.2000000000000006e-08 25 0.99999922200000002
 		2 25 0.72212059900000003 34 0.27787940100000003
 		2 25 0.1928552 34 0.8071448
 		2 25 6.0820000000000004e-06 34 0.99999391800000004
-		1 5 1
-		3 6 2.5358999999999999e-05 14 0.71399441000000008 15 0.28598023099999997
-		2 14 0.18875546600000001 15 0.81124453399999996
-		2 15 0.72700684400000004 41 0.27299315600000001
-		1 41 1
-		1 41 1
-		1 5 1
-		3 6 2.5398999999999999e-05 24 0.71405626600000005 25 0.28591833500000002
+		4 5 0.75495092399999997 6 0.00075773300000000002 14 0.091130539999999996 
+		15 0.15316080300000001
+		6 0 0.59301043800000008 5 0.00017516600000000001 6 1.3062e-05 
+		14 0.086984222999999999 15 0.28349712399999999 41 0.036319986999999998
+		4 0 0.28503714400000002 14 0.050229307000000001 15 0.31300946099999999 
+		41 0.35172408799999999
+		4 0 0.001360205 14 0.002509383 15 0.42078864599999999 41 
+		0.57534176599999998
+		2 15 0.29633163899999998 41 0.70366836100000008
+		2 15 0.16528969600000001 41 0.83471030400000001
+		3 5 0.103952367 6 0.00075773300000000002 24 0.89528989999999997
+		4 5 0.00017532499999999999 6 1.3081999999999999e-05 24 0.71393986700000001 
+		25 0.28587172599999999
 		2 24 0.18877801999999999 25 0.81122198000000001
 		2 25 0.72700684400000004 34 0.27299315600000001
 		1 34 1
 		1 34 1
 		1 41 1
 		2 34 0.99983188099999998 39 0.00016811899999999999
-		1 41 1
+		2 15 0.015092499000000001 41 0.98490750100000002
 		2 25 2.4547000000000001e-05 34 0.99997545300000001
-		1 41 1
+		2 15 0.018012765999999999 41 0.98198723399999999
 		2 34 0.99999953399999997 39 4.6600000000000002e-07
+		2 15 5.6842000000000002e-05 41 0.999943158
 		1 41 1
 		1 41 1
 		1 41 1
-		1 41 1
-		1 41 1
-		1 41 1
-		1 41 1
-		1 41 1
-		1 41 1
-		1 41 1
-		1 41 1
-		1 41 1
-		1 41 1
-		1 41 1
-		1 41 1
-		1 41 1
-		1 41 1
-		1 41 1
+		2 15 3.2223e-05 41 0.99996777699999995
+		2 15 0.033134143999999997 41 0.96686585599999997
+		2 15 0.069154776000000001 41 0.93084522400000003
+		2 15 0.072108497999999993 41 0.92789150200000003
+		2 15 0.049027158000000001 41 0.95097284199999998
+		2 15 0.0069914130000000001 41 0.99300858700000005
+		2 15 0.0010068950000000001 41 0.99899310500000005
+		2 15 0.025024389000000001 41 0.97497561099999996
+		2 15 0.062939005000000006 41 0.93706099499999995
+		2 15 0.077974729000000007 41 0.92202527099999998
+		2 15 0.081849276999999998 41 0.918150723
+		2 15 0.077626614999999996 41 0.92237338499999999
+		2 15 0.058535284999999999 41 0.94146471499999995
+		2 15 0.017925713999999999 41 0.98207428600000002
 		1 34 1
 		1 34 1
 		1 34 1
@@ -17717,280 +17853,316 @@ createNode skinCluster -n "skinCluster4";
 		1 34 1
 		1 33 1
 		1 33 1
+		2 5 0.99729305700000004 6 0.0027069429999999998
+		2 5 0.99572651999999995 6 0.0042734799999999996
+		2 5 0.99849927599999999 6 0.0015007239999999999
+		3 0 3.2999999999999998e-08 5 0.98101713499999998 6 0.018982832000000002
+		3 0 8.6799999999999999e-06 5 0.99849052800000004 6 0.0015007919999999999
+		3 0 2.7000000000000001e-07 5 0.99572639600000001 6 0.0042733340000000002
+		2 5 0.99728999699999998 6 0.0027100029999999999
 		1 5 1
 		1 5 1
 		1 5 1
-		2 0 3.4e-08 5 0.99999996599999996
-		2 0 8.6929999999999996e-06 5 0.99999130700000005
-		2 0 2.72e-07 5 0.99999972800000003;
-	setAttr ".wl[1011:1360].w"
 		1 5 1
-		3 0 0.027071377000000001 5 0.92678476200000004 6 0.046143861000000001
-		3 0 0.278073611 5 0.1549084 6 0.567017989
-		1 6 1
-		1 6 1
-		3 0 1.1202999999999999e-05 5 1.0000000000000001e-09 6 0.99998879600000001
-		3 0 0.278073611 5 0.1549084 6 0.567017989
-		3 0 0.0270805 5 0.92675978800000003 6 0.046159711999999999
-		3 0 0.26322143799999997 5 0.0063670020000000001 6 0.73041155999999996
-		3 0 0.33657928399999998 5 8.4399999999999999e-07 6 0.66341987200000008
-		2 0 0.222109212 6 0.777890788
-		1 6 1
-		2 0 0.22211024900000001 6 0.77788975100000002
-		3 0 0.336570855 5 8.4399999999999999e-07 6 0.66342830100000005
-		3 0 0.26322143799999997 5 0.0063670020000000001 6 0.73041155999999996
-		1 6 1
-		1 6 1
-		2 0 0.28859519 6 0.71140481
-		2 0 0.10529505 6 0.89470495000000005
-		2 0 0.28859179800000001 6 0.71140820199999999
-		1 6 1
-		1 6 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
+		1 5 1
+		1 5 1
+		2 5 0.99999997600000001 6 2.4e-08
+		3 0 0.0012246659999999999 5 0.99668554499999995 6 0.0020897889999999999
+		3 0 0.00013567200000000001 5 0.999549837 6 0.00031449100000000002
+		1 5 1
+		1 5 1
+		2 5 0.99999999100000003 6 8.9999999999999995e-09
+		3 0 0.000135721 5 0.99954966599999995 6 0.00031461299999999999
+		3 0 0.0012246659999999999 5 0.99668554499999995 6 0.0020897889999999999
+		3 0 0.025549045999999999 5 0.94058959399999997 6 0.03386136
+		3 0 0.0044303459999999999 5 0.98509148899999999 6 0.010478164999999999
+		3 0 3.7270000000000001e-06 5 0.99998652099999996 6 9.7520000000000008e-06
+		1 5 1
+		3 0 3.7359999999999999e-06 5 0.99998639099999997 6 9.8730000000000002e-06
+		3 0 0.0044303459999999999 5 0.98509148899999999 6 0.010478164999999999
+		3 0 0.025549045999999999 5 0.94058959399999997 6 0.03386136
+		1 0 1
+		1 0 1
+		1 0 1
+		2 0 0.57209169800000004 2 0.42790830200000002
+		2 0 0.29345462700000002 2 0.70654537299999998
+		2 0 0.112225274 2 0.88777472599999996
+		2 0 0.0092146669999999993 2 0.99078533300000005
+		1 2 1
+		1 2 1
+		1 2 1
+		1 2 1
+		1 2 1
+		1 2 1
+		1 2 1
+		2 0 0.00017465100000000001 2 0.99982534899999997
+		2 0 0.23119304299999999 2 0.76880695700000001
+		2 0 0.56513417200000005 2 0.43486582800000001
+		1 0 1
+		2 0 0.56513153199999999 4 0.43486846800000001
+		2 0 0.23117923200000001 4 0.76882076799999999
+		2 0 0.00017465100000000001 4 0.99982534899999997
+		1 4 1
+		1 4 1
+		1 4 1
+		1 4 1
+		1 4 1
+		1 4 1
+		2 0 2.8299999999999998e-07 4 0.99999971700000001
+		2 0 0.0092157230000000003 4 0.99078427700000005
+		2 0 0.112225274 4 0.88777472599999996
+		2 0 0.29345462700000002 4 0.70654537299999998
+		2 0 0.57209169800000004 4 0.42790830200000002
+		1 0 1
+		1 0 1
+		1 0 1
+		1 0 1
+		1 0 1
+		1 0 1
+		2 0 0.99999821799999999 4 1.782e-06
+		2 0 0.392011463 4 0.607988537
+		2 0 0.21401873699999999 4 0.78598126300000004
+		2 0 0.083852909000000003 4 0.91614709100000002
+		1 4 1
+		1 4 1
+		1 4 1
+		1 4 1
+		1 4 1
+		1 4 1
+		1 4 1
+		2 0 0.0043669240000000003 4 0.99563307599999995
+		2 0 0.27767480100000003 4 0.72232519900000003
+		2 0 0.59501296800000003 4 0.40498703200000002
+		1 0 1
+		2 0 0.59501575699999998 2 0.40498424300000002
+		2 0 0.27765828999999997 2 0.72234171000000003
+		2 0 0.0043671229999999997 2 0.99563287700000003
+		1 2 1
+		1 2 1
+		1 2 1
+		1 2 1
+		1 2 1
+		1 2 1
+		1 2 1
+		2 0 0.083852909000000003 2 0.91614709100000002
+		2 0 0.21401873699999999 2 0.78598126300000004
+		2 0 0.391949561 2 0.608050439
 		1 0 1
 		1 0 1
 		1 0 1
 		1 0 1
 		3 0 0.39438162199999999 5 0.013563357999999999 33 0.59205501999999999
 		3 0 0.39436887199999998 5 0.013561638000000001 33 0.59206948999999998
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		2 0 0.34437847599999999 6 0.65562152400000007
-		2 0 0.34437847599999999 6 0.65562152400000007
-		2 0 0.99984292600000002 6 0.00015707399999999999
-		2 0 0.99984284800000001 6 0.000157152
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		1 0 1
-		2 6 0.74814321000000006 14 0.25185679
-		2 6 0.57797460300000003 14 0.42202539700000002
-		2 6 0.37909338599999998 14 0.62090661400000002
-		2 6 0.202412124 14 0.79758787600000003
-		2 6 0.10972883 14 0.89027117
-		5 0 2.3969e-05 5 5.2082e-05 6 0.063764459999999995 14 0.93615916099999996 
-		33 3.2800000000000003e-07
-		4 0 0.0036930259999999999 5 0.0093324240000000006 14 0.98692147100000005 
-		33 5.3078999999999998e-05
-		4 0 0.0038470610000000001 5 0.0063331230000000004 14 0.98976652300000001 
-		33 5.3292999999999999e-05
-		4 0 2.5720000000000001e-06 5 3.1990000000000002e-06 14 0.999994206 
-		33 2.3000000000000001e-08
-		2 6 1.8512000000000002e-05 14 0.99998148799999997
-		2 6 0.000470094 14 0.99952990600000002
-		3 5 2.2894000000000001e-05 6 0.0042009059999999999 14 0.9957762
-		3 5 0.00040808000000000001 6 0.01049166 14 0.98910025999999995
-		3 5 3.7529999999999999e-06 6 0.012000122 14 0.987996125
-		2 6 0.022158813999999999 14 0.97784118600000003
-		2 6 0.74643831100000002 14 0.25356168899999998
-		3 6 0.74789514099999999 24 0.252100459 25 4.4000000000000002e-06
-		3 0 3.8079999999999998e-06 6 0.57798673 24 0.422009462
-		3 0 1.1422e-05 6 0.37912480700000001 24 0.62086377100000001
-		2 6 0.202412124 24 0.79758787600000003
-		3 0 4.6949999999999999e-06 6 0.109745942 24 0.89024936300000002
-		5 0 2.4023999999999999e-05 5 5.2206999999999997e-05 6 0.063757991 
-		24 0.93616544899999998 33 3.2899999999999999e-07
-		4 0 0.0037025389999999999 5 0.0093354500000000003 24 0.98690892500000005 
-		33 5.3086e-05
-		4 0 0.0038462919999999999 5 0.0063318130000000004 24 0.98976861299999996 
-		33 5.3282000000000002e-05
-		4 0 2.5799999999999999e-06 5 3.2100000000000002e-06 24 0.99999418699999998 
-		33 2.3000000000000001e-08
-		4 0 1.2e-08 5 4.6999999999999997e-08 6 1.8505999999999999e-05 
-		24 0.99998143500000003
-		4 0 1.984e-06 5 3.5000000000000002e-08 6 0.00047008199999999998 
-		24 0.99952789900000005
-		3 5 2.2914000000000001e-05 6 0.0042011490000000004 24 0.995775937
-		3 5 0.00040801299999999998 6 0.010490268000000001 24 0.98910171899999999
-		4 5 3.7510000000000002e-06 6 0.011994843 24 0.98798289900000003 
-		25 1.8507000000000001e-05
-		2 6 0.022178593999999999 24 0.977821406
-		2 6 0.746438555 24 0.253561445
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		2 0 0.80364869900000002 7 0.19635130100000001
-		2 0 0.80362585100000006 7 0.196374149
-		2 0 0.91432247 7 0.085677530000000002
-		2 0 0.91432247 7 0.085677530000000002
-		2 0 0.98207376899999999 7 0.017926231000000001
-		2 0 0.98207307799999999 7 0.017926922000000001
-		2 0 0.99711417899999999 7 0.0028858209999999998
-		2 0 0.99711418500000004 7 0.0028858149999999999
-		2 0 0.99941571699999998 7 0.000584283
-		2 0 0.99941571699999998 7 0.000584283
-		2 0 0.99968016699999995 7 0.000319833
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
+		3 0 0.035052447 5 0.29457410499999997 6 0.67037344800000009
+		3 0 0.035052447 5 0.29457410499999997 6 0.67037344800000009
+		3 0 0.049902617000000003 5 0.471610741 6 0.47848664199999996
+		3 0 0.049902617000000003 5 0.471610741 6 0.47848664199999996
+		3 0 0.062252729999999999 5 0.59978041500000001 6 0.33796685500000001
+		3 0 0.062251924 5 0.59977938999999991 6 0.33796868600000002
+		3 0 0.38748519300000001 5 0.45346773399999996 6 0.15904707300000001
+		3 0 0.38748519300000001 5 0.45346773399999996 6 0.15904707300000001
+		3 0 0.055609922999999999 5 0.766832395 6 0.17755768199999999
+		3 0 0.055608858999999997 5 0.76683696300000004 6 0.17755417800000001
+		3 0 0.033550662000000002 5 0.83745191600000002 6 0.128997422
+		3 0 0.033550662000000002 5 0.83745191600000002 6 0.128997422
+		3 0 0.0064610680000000004 5 0.93116497600000003 6 0.062373956000000001
+		3 0 0.0064610680000000004 5 0.93116497600000003 6 0.062373956000000001
+		1 5 1
+		1 5 1
+		1 5 1
+		5 0 0.70747047600000001 5 0.01648782 6 0.00076439699999999999 
+		14 0.081429352999999996 15 0.19384795399999999
+		5 0 0.72666230999999992 5 0.016217313000000001 6 0.001159796 
+		14 0.071523850999999999 15 0.18443672999999999
+		5 0 0.65797937599999989 5 0.11570659699999999 6 0.0076255749999999999 
+		14 0.057541170000000003 15 0.161147282
+		5 0 0.50384819099999989 5 0.317924657 6 0.012857861999999999 
+		14 0.042145067000000001 15 0.12322422299999999
+		5 0 0.29219326000000001 5 0.58493088700000007 6 0.026980042999999999 
+		14 0.024149288000000001 15 0.071746521999999993
+		6 0 0.107714633 5 0.56447962699999998 6 0.29221454600000002 
+		14 0.0089646980000000001 15 0.026626461000000001 33 3.5000000000000002e-08
+		5 0 0.16657366500000001 5 0.77700838299999997 14 0.014350261 
+		15 0.042058765999999997 33 8.9250000000000001e-06
+		5 0 0.38348697599999998 5 0.48326412099999994 14 0.034673481999999999 
+		15 0.098554852999999998 33 2.0568e-05
+		6 0 0.70669282100000008 5 0.038235182 6 1.0000000000000001e-09 
+		14 0.069366282000000001 15 0.185705698 33 1.6000000000000001e-08
+		5 0 0.71909832299999998 5 0.00040533499999999999 6 1.6610000000000001e-06 
+		14 0.079732487000000005 15 0.200762194
+		5 0 0.70107795299999998 5 0.002798025 6 0.00017736999999999999 
+		14 0.085363411 15 0.210583241
+		5 0 0.68486176599999993 5 0.006744796 6 0.001226759 14 
+		0.091126209999999999 15 0.21604046900000001
+		5 0 0.66482057899999991 5 0.023714625 6 0.0029103549999999999 
+		14 0.094533025000000007 15 0.21402141599999999
+		5 0 0.64318193299999982 5 0.055378243000000001 6 0.0028516869999999999 
+		14 0.092942209999999997 15 0.20564592700000001
+		5 0 0.57429984099999998 5 0.160933256 6 0.0057807620000000001 
+		14 0.080927060999999995 15 0.17805908000000001
+		5 0 0.68033818499999998 5 0.029726781000000001 6 0.00079217700000000003 
+		14 0.088992078000000002 15 0.200150779
+		4 5 0.016487281999999999 6 0.00076431399999999999 24 0.98273124999999995 
+		25 1.7153999999999999e-05
+		4 0 8.867e-06 5 0.016217932000000001 6 0.0011598800000000001 
+		24 0.98261332099999998
+		4 0 1.6127999999999999e-05 5 0.11573016999999999 6 0.0076278509999999997 
+		24 0.87662585100000012
+		3 5 0.317924657 6 0.012857861999999999 24 0.66921748099999989
+		4 0 2.046e-06 5 0.58493915600000002 6 0.026980238 24 0.38807856000000002
+		3 5 0.56449258999999996 6 0.292190489 24 0.14331692100000001
+		3 0 2.0490000000000002e-06 5 0.77544695399999997 24 0.224550997
+		2 5 0.48074989099999998 24 0.51925010900000002
+		3 5 0.038232275000000003 6 1.0000000000000001e-09 24 0.96176772399999999
+		3 5 0.00040813200000000002 6 1.671e-06 24 0.99959019699999996
+		4 0 1.979e-06 5 0.0027979789999999999 6 0.00017736499999999999 
+		24 0.99702267700000002
+		3 5 0.006729746 6 0.0012268260000000001 24 0.992043428
+		3 5 0.023440501999999998 6 0.0029099909999999998 24 0.97364950699999997
+		4 5 0.055357282000000001 6 0.0028506159999999998 24 0.94177445999999998 
+		25 1.7642000000000002e-05
+		3 5 0.160928444 6 0.0057805479999999999 24 0.83329100799999989
+		3 5 0.029726301 6 0.00079218599999999995 24 0.96948151300000007
+		2 6 6.8290000000000002e-06 7 0.99999317099999996
+		2 6 4.6411e-05 7 0.99995358899999998
+		2 6 4.7034999999999999e-05 7 0.99995296499999997
+		2 6 6.8290000000000002e-06 7 0.99999317099999996
+		2 6 0.00042590400000000001 7 0.99957409600000002
+		2 6 0.00042597000000000002 7 0.99957403
+		4 0 6.8700000000000005e-07 5 5.8449999999999999e-06 6 5.2930999999999999e-05 
+		7 0.99994053699999996
+		4 0 6.8700000000000005e-07 5 5.8449999999999999e-06 6 5.2930999999999999e-05 
+		7 0.99994053699999996
+		4 0 4.3039999999999998e-06 5 3.9329000000000002e-05 6 0.000107186 
+		7 0.99984918099999998
+		3 0 4.3039999999999998e-06 5 3.9329000000000002e-05 6 0.000107186;
+	setAttr ".wl[1163:1456].w"
+		1 7 0.99984918099999998
+		4 0 6.7000000000000004e-08 5 7.5300000000000003e-07 6 0.000111623 
+		7 0.99988755699999998
+		4 0 6.8229999999999997e-06 5 6.5672000000000004e-05 6 0.00015237900000000001 
+		7 0.99977512600000007
+		4 0 0.80360310000000001 5 1.841e-06 6 3.7399999999999999e-07 
+		7 0.19639468500000001
+		4 0 0.80358040500000005 5 3.4400000000000001e-06 6 9.3600000000000002e-07 
+		7 0.196415219
+		2 5 0.00015186 7 0.99984814
+		2 5 0.00015186 7 0.99984814
+		2 5 4.0595e-05 7 0.99995940500000002
+		4 0 4.0400000000000002e-07 5 7.7888999999999999e-05 6 2.897e-06 
+		7 0.99991880999999994
+		2 5 3.8012000000000001e-05 7 0.99996198800000002
+		2 5 3.8018000000000001e-05 7 0.99996198199999997
+		2 5 0.00016696199999999999 7 0.99983303800000001
+		2 5 0.00016696199999999999 7 0.99983303800000001
+		2 5 5.1900000000000003e-07 7 0.99999948100000002
+		2 10 0.108157024 12 0.89184297599999995
+		1 12 1
+		2 10 0.064882567000000002 11 0.93511743300000005
+		2 10 0.073245648999999996 11 0.92675435100000003
+		2 10 0.33113799399999999 12 0.66886200600000001
+		2 10 0.26777906899999998 11 0.73222093100000007
+		2 9 0.185719105 10 0.814280895
+		3 9 0.00022628000000000001 10 0.82921841699999999 12 0.17055530299999999
+		3 9 0.000186622 10 0.85054876400000001 11 0.14926461399999999
+		6 0 2.5179999999999999e-06 5 4.8940000000000001e-06 6 0.00034694199999999999 
+		9 1.133e-06 10 0.99313447700000002 11 0.0065100360000000003
+		2 10 0.21258185299999999 11 0.78741814700000001
+		2 10 0.20592911699999999 12 0.79407088300000006
+		5 0 1.4999999999999999e-08 5 2.9999999999999997e-08 6 2.0640000000000001e-06 
+		10 0.99993553700000004 11 6.2354000000000006e-05
+		5 0 2.3000000000000001e-08 5 4.4999999999999999e-08 6 2.9270000000000001e-06 
+		10 0.99990862700000005 11 8.8378e-05
+		2 10 0.99573552499999995 12 0.0042644750000000002
+		1 10 1
+		2 9 0.17888623100000001 10 0.82111376899999999
+		1 10 1
+		1 12 1
+		2 10 0.47157708399999998 12 0.52842291600000002
+		2 10 0.47457595499999999 11 0.52542404500000006
+		2 10 0.00087065000000000005 11 0.99912935000000003
+		1 12 1
+		2 10 0.13602512999999999 11 0.86397487000000006
+		1 10 1
+		1 10 1
+		2 10 0.99601747299999999 11 0.0039825269999999996
+		2 10 0.99981725300000002 11 0.000182747
+		2 10 0.97241759999999999 11 0.0275824
+		2 10 0.97654268499999997 12 0.023457314999999999
+		1 10 1
+		2 10 0.999998885 11 1.1149999999999999e-06
+		1 10 1
+		1 10 1
+		1 10 1
+		1 10 1
+		2 10 0.99826701299999998 12 0.0017329870000000001
+		2 10 0.99941848700000002 12 0.00058151299999999997
+		2 10 0.99941848700000002 11 0.00058151299999999997
+		2 10 0.90050100799999999 11 0.099498991999999994
+		2 10 0.98007528799999999 12 0.019924712000000001
+		2 10 0.93538125900000002 11 0.064618740999999993
+		1 10 1
+		1 10 1
+		2 10 0.996878492 11 0.0031215079999999998
+		1 10 1
+		3 9 0.0016736469999999999 10 0.131523114 12 0.866803239
+		2 9 3.1868e-05 12 0.99996813200000001
+		5 0 0.00064238999999999995 5 0.00129229 6 0.033827164999999999 
+		10 0.17985944400000001 12 0.78437871100000001
+		6 0 0.0010172029999999999 5 0.0019465439999999999 6 0.047981606000000003 
+		9 0.000162955 10 0.619539434 12 0.32935225800000001
+		5 0 1.29e-05 5 2.4658999999999999e-05 6 0.00055715500000000004 
+		10 0.98187231900000005 12 0.017532967
+		1 10 1
+		5 0 5.8999999999999999e-08 5 1.14e-07 6 2.6390000000000001e-06 
+		10 0.99991422100000005 11 8.2966999999999994e-05
+		6 0 1.8932000000000001e-05 5 3.6193999999999999e-05 6 0.00082895899999999999 
+		9 9.7300000000000004e-07 10 0.98005616999999989 11 0.019058772000000002
+		6 0 0.00099129399999999999 5 0.0018981619999999999 6 0.047229636999999998 
+		9 0.00015893799999999999 10 0.61901194000000004 11 0.33071002900000002
+		6 0 0.00064069300000000001 5 0.0012886869999999999 6 0.033780736999999998 
+		9 3.4799999999999999e-07 10 0.18272006299999999 11 0.78156947199999993
+		3 9 2.9920000000000002e-05 10 0.010524252 11 0.98944582800000003
+		3 9 0.0012703949999999999 10 0.116949372 11 0.88178023299999997
+		3 9 0.029149178000000001 10 0.43478644 11 0.53606438199999995
+		3 9 0.51188170100000008 10 0.42806947699999998 11 0.060048822000000002
+		3 9 0.92121281499999996 10 0.078787168000000005 11 1.7e-08
+		1 9 1
+		3 9 0.60595731500000005 10 0.35341999400000002 12 0.040622691000000002
+		3 9 0.033879652000000003 10 0.43849736099999997 12 0.52762298699999999
 		2 0 0.40814830000000002 33 0.59185169999999998
 		1 0 1
-		1 7 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		1 6 1
-		3 0 0.99999363899999993 5 3.4e-08 33 6.3269999999999997e-06
-		3 0 0.97273249799999995 5 0.0023038329999999999 33 0.024963669000000001
-		3 0 0.80842334100000002 5 0.014454274 33 0.17712238499999999
-		3 0 0.44181330699999999 5 0.029671966000000001 33 0.52851472700000002
-		3 0 0.22345193299999999 5 0.018533009999999999 33 0.75801505700000005
+		2 6 9.6078999999999999e-05 7 0.99990392100000003
+		6 0 1.7e-08 5 3.5000000000000002e-08 6 0.99999976000000002 
+		7 5.8000000000000003e-08 9 1.17e-07 10 1.3000000000000001e-08
+		1 9 1
+		1 9 1
+		1 9 1
+		2 9 0.99831251399999998 10 0.001687486
+		2 9 0.52644417900000007 10 0.47355582099999999
+		2 9 2.3422e-05 10 0.99997657799999995
+		1 10 1
+		1 10 1
+		1 10 1
+		1 10 1
+		1 10 1
+		1 10 1
+		1 10 1
+		4 0 0.091491418000000005 5 0.16749887599999999 6 0.74100560599999998 
+		10 4.0999999999999997e-06
+		3 0 0.128041775 5 0.24531419099999999 6 0.62664403400000002
+		3 0 0.13495949199999999 5 0.36860263799999998 6 0.49643786999999995
+		3 0 0.10186068099999999 5 0.55280921699999996 6 0.34533010200000003
+		4 0 0.079519602999999994 5 0.72707446200000003 6 0.19340543199999999 
+		33 5.0299999999999999e-07
+		4 0 0.123329511 5 0.78478137499999989 6 0.088724053999999997 
+		33 0.0031650599999999999
+		4 0 0.23874653800000001 5 0.67862354800000002 6 0.030321483999999999 
+		33 0.052308430000000003
+		4 0 0.27191495500000001 5 0.39629360999999996 6 0.0065159040000000003 
+		33 0.32527553100000001
+		4 0 0.22329848999999999 5 0.019202298 6 4.6789999999999996e-06 
+		33 0.75749453300000003
 		3 0 0.00041515999999999998 5 3.3593000000000002e-05 33 0.99955124699999998
 		1 33 1
 		2 0 0.229400083 33 0.77059991699999997
@@ -18084,12 +18256,115 @@ createNode skinCluster -n "skinCluster4";
 		1 7 1
 		1 7 1
 		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 8 1
+		1 8 1
+		1 8 1
+		1 8 1
+		1 8 1
+		1 8 1
+		1 8 1
+		1 8 1
+		1 8 1
+		1 8 1
+		2 7 1.7800000000000001e-07 8 0.99999982200000004
+		2 7 6.2999999999999995e-08 8 0.99999993700000001
+		1 8 1
+		1 8 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		2 7 0.999999992 8 8.0000000000000005e-09
+		2 7 0.99999988799999995 8 1.12e-07
+		1 7 1
+		2 7 0.99936920500000004 8 0.00063079499999999997
+		2 7 0.99762222899999997 8 0.0023777709999999999
+		1 7 1
+		2 7 0.478986731 8 0.521013269
+		2 7 0.497760643 8 0.502239357
+		2 7 0.00047152700000000001 8 0.99952847300000003
+		2 7 0.00042435200000000002 8 0.99957564799999998
+		2 7 0.47779179999999999 8 0.52220820000000001
+		1 8 1
+		1 8 1
+		1 8 1
+		1 8 1
+		1 8 1
+		1 8 1
+		1 8 1
+		1 8 1
+		1 8 1
+		1 8 1
+		2 7 1.0000000000000001e-09 8 0.99999999900000003
+		1 8 1
+		2 7 0.10273958699999999 8 0.89726041300000003
+		2 7 0.00021090400000000001 8 0.99978909599999999
+		2 7 0.00048569800000000001 8 0.99951430200000002
+		2 7 3e-09 8 0.99999999699999997
+		2 7 2.2373000000000001e-05 8 0.99997762700000004
+		2 7 8.9999999999999995e-09 8 0.99999999100000003
+		2 7 1.6000000000000001e-08 8 0.99999998400000001
+		2 7 0.39702295300000001 8 0.60297704699999999
+		2 7 0.41262049000000001 8 0.58737950999999999
+		2 7 0.43807955599999998 8 0.56192044400000007
+		2 7 0.00015958899999999999 8 0.99984041099999998
+		2 7 0.99722282100000004 8 0.0027771789999999998
+		2 7 0.99843800800000004 8 0.0015619919999999999
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
 		1 7 1;
-	setAttr ".wl[1361:1816].w"
+	setAttr ".wl[1457:1842].w"
 		1 7 1
 		1 7 1
 		1 7 1
 		1 7 1
+		2 7 0.99916427399999996 8 0.00083572599999999996
+		2 7 0.99999327000000005 8 6.7299999999999999e-06
+		2 7 0.44659281899999997 8 0.55340718100000008
+		2 7 0.34288324799999997 8 0.65711675200000008
+		2 7 0.99997458100000003 8 2.5418999999999998e-05
+		2 7 0.45250961099999998 8 0.54749038900000002
+		2 7 0.99847406900000002 8 0.0015259309999999999
 		1 7 1
 		1 7 1
 		1 7 1
@@ -18098,58 +18373,6 @@ createNode skinCluster -n "skinCluster4";
 		1 7 1
 		1 7 1
 		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		2 7 0.99999995200000003 8 4.8e-08
-		2 7 0.99999979900000002 8 2.0100000000000001e-07
-		1 7 1
-		2 7 0.47898677200000001 8 0.52101322800000005
-		2 7 0.49700881000000002 8 0.50299119000000003
-		2 7 0.00015722699999999999 8 0.99984277300000002
-		1 8 1
-		2 7 0.47559979499999999 8 0.52440020500000006
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
 		1 8 1
 		1 8 1
 		1 8 1
@@ -18157,95 +18380,43 @@ createNode skinCluster -n "skinCluster4";
 		1 8 1
 		1 8 1
 		1 8 1
-		2 7 0.102739513 8 0.89726048700000005
-		2 7 2.1209e-05 8 0.99997879099999998
-		2 7 0.00011469299999999999 8 0.999885307
 		1 8 1
-		2 7 7.4429999999999997e-06 8 0.999992557
 		1 8 1
 		1 8 1
-		2 7 0.39618859099999998 8 0.60381140900000008
-		2 7 0.41019538100000003 8 0.58980461900000003
-		2 7 0.43785918400000001 8 0.56214081599999999
+		2 7 5.8999999999999999e-08 8 0.999999941
+		2 7 6.2999999999999995e-08 8 0.99999993700000001
 		1 8 1
-		1 7 1
-		2 7 0.99947874400000003 8 0.000521256
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		2 7 0.44414559399999998 8 0.55585440600000002
-		2 7 0.341226531 8 0.658773469
-		1 7 1
-		2 7 0.45224388999999998 8 0.54775611000000002
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 7 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
 		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 7 1
-		1 7 1
 		1 7 1
 		1 7 1
 		1 7 1
 		1 7 1
 		1 7 1
 		1 7 1
-		1 7 1
-		1 7 1
-		2 7 0.49702880700000002 8 0.50297119300000004
-		1 8 1
+		2 7 0.999999992 8 8.0000000000000005e-09
+		2 7 0.99999988699999998 8 1.1300000000000001e-07
+		2 7 0.99936947499999995 8 0.00063052500000000005
+		2 7 0.99762143999999997 8 0.00237856
+		2 7 0.49778031700000003 8 0.50221968299999997
+		2 7 0.00031440199999999998 8 0.99968559800000001
+		2 7 0.00042435200000000002 8 0.99957564799999998
+		2 7 0.47665604 8 0.52334396000000005
 		1 8 1
-		2 7 0.47445404899999999 8 0.52554595100000001
 		1 8 1
 		1 8 1
 		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		2 7 0.39577574199999999 8 0.60422425800000001
-		2 7 0.410187309 8 0.589812691
-		2 7 0.43775143500000002 8 0.56224856499999998
-		1 8 1
-		1 7 1
-		1 7 1
-		1 7 1
+		2 7 0.00018975 8 0.99981025000000001
+		2 7 0.00037103100000000002 8 0.99962896899999998
+		2 7 1.0000000000000001e-09 8 0.99999999900000003
+		2 7 1.4914e-05 8 0.99998508600000002
+		2 7 8.9999999999999995e-09 8 0.99999999100000003
+		2 7 1.6000000000000001e-08 8 0.99999998400000001
+		2 7 0.396611718 8 0.60338828200000005
+		2 7 0.412613063 8 0.587386937
+		2 7 0.43797204899999997 8 0.56202795100000003
+		2 7 0.00015958899999999999 8 0.99984041099999998
+		2 7 0.99722206300000005 8 0.0027779369999999999
+		2 7 0.99895809400000002 8 0.001041906
 		1 7 1
 		1 7 1
 		1 7 1
@@ -18258,9 +18429,12 @@ createNode skinCluster -n "skinCluster4";
 		1 7 1
 		1 7 1
 		1 7 1
-		2 7 0.442921395 8 0.55707860500000006
+		2 7 0.99916388899999997 8 0.00083611099999999995
+		2 7 0.44537585200000002 8 0.55462414800000004
+		2 7 0.99997457999999995 8 2.5420000000000001e-05
+		2 7 0.45237616600000002 8 0.54762383400000003
+		2 7 0.99847386299999996 8 0.0015261369999999999
 		1 7 1
-		2 7 0.45211037399999998 8 0.54788962600000002
 		1 7 1
 		1 7 1
 		1 7 1
@@ -18303,7 +18477,6 @@ createNode skinCluster -n "skinCluster4";
 		1 7 1
 		1 7 1
 		1 7 1
-		2 7 0.96400018700000001 8 0.035999812999999999
 		1 7 1
 		1 7 1
 		1 7 1
@@ -18341,55 +18514,54 @@ createNode skinCluster -n "skinCluster4";
 		1 7 1
 		1 7 1
 		1 7 1
-		1 7 1
-		2 7 0.99632135399999999 8 0.0036786459999999998
-		1 8 1
-		2 7 0.73535952199999999 8 0.26464047800000001
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		2 7 0.47917688600000002 8 0.52082311400000003
-		2 7 0.083504787999999996 8 0.91649521200000006
-		2 7 0.92402094099999998 8 0.075979059000000002
-		2 7 0.177169612 8 0.82283038799999997
-		1 8 1
-		1 8 1
-		2 7 0.058916827999999997 8 0.94108317200000002
-		1 8 1
-		1 8 1
-		1 8 1
+		2 7 0.810431173 8 0.189568827
+		2 7 0.222800736 8 0.77719926400000006
 		1 8 1
+		2 7 0.072007504 8 0.927992496
+		2 7 0.040995754000000002 8 0.959004246
+		2 7 0.082859337000000005 8 0.91714066299999997
+		2 7 0.004923167 8 0.99507683300000005
+		2 7 0.026916134000000001 8 0.97308386599999996
+		2 7 0.03112026 8 0.96887973999999999
+		2 7 0.089574125000000004 8 0.91042587500000005
+		2 7 0.71080497900000006 8 0.289195021
+		2 7 0.32729512900000002 8 0.67270487099999998
+		2 7 0.029048787 8 0.97095121299999998
+		2 7 0.0092076239999999993 8 0.99079237600000003
+		2 7 0.041470018999999997 8 0.95852998099999998
+		2 7 0.068173658999999998 8 0.93182634100000006
+		2 7 0.026317861000000001 8 0.973682139
+		2 7 0.092591250999999999 8 0.90740874900000001
+		2 7 0.040827782999999999 8 0.95917221699999999
+		2 7 0.085156577999999997 8 0.91484342200000002
+		2 7 0.005191836 8 0.99480816400000005
+		2 7 0.0054422450000000001 8 0.99455775499999999
+		2 7 0.00097094900000000003 8 0.99902905099999995
+		2 7 0.0040703149999999997 8 0.99592968500000001
+		2 7 0.016311347 8 0.98368865299999997
+		2 7 0.0031848269999999999 8 0.996815173
+		2 7 0.083891838999999996 8 0.91610816100000003
+		2 7 0.004488059 8 0.99551194099999996
 		1 8 1
 		1 8 1
 		1 8 1
 		1 8 1
+		2 7 0.043145597000000001 8 0.95685440300000002
+		2 7 0.0036582559999999999 8 0.99634174399999997
+		2 7 0.028932739999999998 8 0.97106725999999999
+		2 7 0.0029556809999999999 8 0.99704431900000001
 		1 8 1
 		1 8 1
 		1 8 1
 		1 8 1
 		1 8 1
+		2 7 0.016251247 8 0.98374875299999998
+		2 7 0.00030451399999999998 8 0.99969548600000002
+		2 7 0.0096369969999999996 8 0.99036300300000002
 		1 8 1
 		1 8 1
 		1 8 1
 		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
 		1 7 1
 		1 7 1
 		1 7 1
@@ -18414,54 +18586,54 @@ createNode skinCluster -n "skinCluster4";
 		1 7 1
 		1 7 1
 		1 7 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		2 7 0.25942990399999999 8 0.74057009600000001
-		1 8 1
-		1 8 1
-		1 8 1
-		2 7 0.119543417 8 0.88045658299999996
-		2 7 0.00099597100000000001 8 0.99900402899999996
-		2 7 0.25289050699999999 8 0.74710949300000007
-		2 7 0.059897167000000001 8 0.94010283299999997
 		1 8 1
 		1 8 1
 		1 8 1
+		2 7 0.0038416890000000001 8 0.99615831099999996
+		2 7 0.15781157200000001 8 0.84218842800000004
 		1 8 1
+		2 7 0.070913169999999998 8 0.92908683000000003
+		2 7 0.030805866000000001 8 0.96919413399999998
+		2 7 0.110955278 8 0.88904472199999995
+		2 7 0.032359943000000002 8 0.967640057
+		2 7 0.155551035 8 0.844448965
+		2 7 0.087549211000000002 8 0.91245078899999998
+		2 7 0.0012618600000000001 8 0.99873814000000005
+		2 7 0.016502358000000002 8 0.98349764200000001
+		2 7 0.068134306000000006 8 0.93186569399999997
+		2 7 0.018206188000000002 8 0.98179381200000004
+		2 7 0.0039151129999999996 8 0.99608488699999997
+		2 7 0.019469245 8 0.98053075499999998
+		2 7 0.013316659 8 0.98668334099999999
+		2 7 0.048441725999999997 8 0.95155827400000004
+		2 7 0.016839399000000001 8 0.98316060100000002
+		2 7 0.000202251 8 0.99979774899999996
+		2 7 0.012050910999999999 8 0.987949089
+		2 7 0.0067377449999999998 8 0.99326225499999998
+		2 7 9.1509999999999993e-06 8 0.99999084900000001
 		1 8 1
+		2 7 9.6199999999999994e-06 8 0.99999037999999996
+		2 7 1.0000000000000001e-09 8 0.99999999900000003
+		2 7 3.6718000000000003e-05 8 0.99996328199999995
 		1 8 1
+		2 7 0.010763076999999999 8 0.98923692299999999
+		2 7 1.0000000000000001e-09 8 0.99999999900000003
+		2 7 0.026057029999999998 8 0.97394296999999996
+		2 7 0.019308735 8 0.98069126500000003
+		2 7 0.023364106999999999 8 0.97663589299999998
+		2 7 0.066270094000000002 8 0.93372990600000005
+		2 7 0.0086969009999999999 8 0.99130309900000002
+		2 7 0.024559412999999999 8 0.97544058700000003
+		2 7 0.048602151000000003 8 0.95139784900000002
+		2 7 0.054742694000000001 8 0.94525730600000002
+		2 7 1.0999999999999999e-08 8 0.99999998899999998
+		2 7 0.0068714350000000004 8 0.99312856500000002
 		1 8 1
+		2 7 0.010325759 8 0.98967424100000001
+		2 7 3e-09 8 0.99999999699999997
+		2 7 0.000111319 8 0.99988868099999995
+		2 7 0.0020092140000000001 8 0.99799078600000002
 		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		2 7 0.025977218 8 0.97402278200000003
-		1 8 1
-		2 7 0.023277956999999998 8 0.97672204299999998
-		2 7 0.066219082999999998 8 0.93378091699999999
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
 		1 7 1
 		1 7 1
 		1 7 1
@@ -18494,8 +18666,6 @@ createNode skinCluster -n "skinCluster4";
 		1 7 1
 		1 7 1
 		1 7 1
-		2 7 0.73167969900000007 8 0.26832030099999998
-		2 7 0.76857992399999997 8 0.231420076
 		1 7 1
 		1 7 1
 		1 7 1
@@ -18512,11 +18682,17 @@ createNode skinCluster -n "skinCluster4";
 		1 7 1
 		1 7 1
 		1 7 1
+		2 7 0.99993486799999998 8 6.5131999999999999e-05
+		2 7 0.99999999900000003 8 1.0000000000000001e-09
 		1 7 1
 		1 7 1
+		2 7 0.99990106400000001 8 9.8936000000000003e-05
+		2 7 0.99999999900000003 8 1.0000000000000001e-09
 		1 7 1
 		1 7 1
+		2 7 0.99999987800000001 8 1.2200000000000001e-07
 		1 7 1
+		2 7 0.99999945800000001 8 5.4199999999999996e-07
 		1 7 1
 		1 7 1
 		1 7 1
@@ -18539,11 +18715,6 @@ createNode skinCluster -n "skinCluster4";
 		1 7 1
 		1 7 1
 		1 7 1
-		2 7 0.72194977800000004 8 0.27805022200000001
-		2 7 0.43175258399999999 8 0.56824741600000006
-		1 7 0.65482006800000003;
-	setAttr ".wl[1816:2144].w"
-		1 8 0.34517993200000002
 		1 7 1
 		1 7 1
 		1 7 1
@@ -18568,8 +18739,9 @@ createNode skinCluster -n "skinCluster4";
 		1 7 1
 		1 7 1
 		1 7 1
+		1 7 1;
+	setAttr ".wl[1843:2123].w"
 		1 7 1
-		2 7 0.87820140400000002 8 0.121798596
 		1 7 1
 		1 7 1
 		1 7 1
@@ -18590,16 +18762,11 @@ createNode skinCluster -n "skinCluster4";
 		1 7 1
 		1 7 1
 		1 7 1
-		2 7 0.73502090100000006 8 0.264979099
 		1 7 1
 		1 7 1
 		1 7 1
 		1 7 1
 		1 7 1
-		2 7 0.65595447200000001 8 0.34404552799999999
-		2 7 0.467602833 8 0.53239716700000006
-		2 7 0.54052882499999999 8 0.45947117500000001
-		2 7 0.73368538400000005 8 0.266314616
 		1 7 1
 		1 7 1
 		1 7 1
@@ -18658,13 +18825,11 @@ createNode skinCluster -n "skinCluster4";
 		1 7 1
 		1 7 1
 		1 7 1
-		2 7 0.67914365500000007 8 0.32085634499999999
 		1 7 1
 		1 7 1
 		1 7 1
 		1 7 1
 		1 7 1
-		2 7 0.88230881100000003 8 0.117691189
 		1 7 1
 		1 7 1
 		1 7 1
@@ -18728,37 +18893,43 @@ createNode skinCluster -n "skinCluster4";
 		1 7 1
 		1 7 1
 		1 7 1
-		2 7 0.99990035700000002 8 9.9642999999999994e-05
-		2 7 0.99762189899999998 8 0.0023781010000000001
-		1 8 1
-		1 8 1
-		2 7 0.58382681000000003 8 0.41617319000000003
-		2 7 0.94509879500000005 8 0.054901205000000002
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		2 7 0.638944187 8 0.361055813
-		2 7 0.65593632300000004 8 0.34406367700000001
-		1 8 1
-		1 8 1
-		2 7 0.49933233100000002 8 0.50066766900000004
-		2 7 0.61051820899999998 8 0.38948179100000002
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
-		1 8 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		1 7 1
+		2 7 0.46329409500000002 8 0.53670590500000004
+		2 7 0.48709568600000003 8 0.51290431400000003
 		1 8 1
+		2 7 0.25892994000000003 8 0.74107005999999997
+		2 7 0.45507494799999998 8 0.54492505200000008
+		2 7 0.46290054000000003 8 0.53709945999999997
+		2 7 0.096859727000000007 8 0.90314027299999999
 		1 8 1
+		2 7 0.012337842 8 0.98766215800000001
+		2 7 0.15861997799999999 8 0.84138002200000006
+		2 7 0.301666565 8 0.698333435
+		2 7 0.39143862000000001 8 0.60856138000000004
+		2 7 0.0092088380000000004 8 0.99079116199999995
 		1 8 1
+		2 7 0.40276609099999999 8 0.59723390900000006
+		2 7 0.33614817200000002 8 0.66385182799999998
+		2 7 0.064310570999999997 8 0.93568942899999996
+		2 7 0.010849851000000001 8 0.98915014899999998
+		2 7 0.048100420999999997 8 0.951899579
+		2 7 0.018588104000000001 8 0.98141189600000001
+		2 7 0.035859681999999997 8 0.964140318
+		2 7 0.01976317 8 0.98023682999999995
+		2 7 0.0024986890000000001 8 0.99750131099999995
+		2 7 0.0021666839999999999 8 0.99783331600000003
+		1 7 1
+		1 7 1
+		1 7 1
 		1 7 1
-		2 7 0.80082951899999999 8 0.19917048100000001
 		1 7 1
-		2 7 0.76871763300000007 8 0.23128236699999999
 		1 7 1
 		1 7 1
-		2 7 0.75716157800000006 8 0.242838422
 		1 7 1
 		1 7 1
 		1 7 1
@@ -18792,76 +18963,112 @@ createNode skinCluster -n "skinCluster4";
 		1 7 1
 		1 7 1
 		1 7 1
-		2 14 0.40735367700000003 15 0.59264632299999997
-		2 14 0.37201990899999998 15 0.62798009100000007
-		2 14 0.373497301 15 0.626502699
-		2 14 0.30828286700000002 15 0.69171713300000004
-		2 14 0.090506240000000002 15 0.90949376000000004
-		1 15 1
-		3 6 1.0759999999999999e-06 14 0.13962403400000001 15 0.86037489
-		3 6 1.3239999999999999e-06 14 0.204788784 15 0.79520989200000003
-		3 6 5.9100000000000004e-07 14 0.40936495299999998 15 0.59063445599999997
-		2 14 0.48589988499999998 15 0.51410011500000008
-		2 14 0.50584844900000003 15 0.49415155100000002
-		2 14 0.51562485300000005 15 0.48437514700000001
-		2 14 0.53011903599999999 15 0.46988096400000001
-		2 14 0.53790080299999998 15 0.46209919700000002
-		2 14 0.53942757900000005 15 0.46057242100000001
-		2 14 0.51465973399999998 15 0.48534026600000002
-		2 24 0.40736992999999999 25 0.59263007000000001
-		2 24 0.51461275400000006 25 0.48538724599999999
-		2 24 0.53940454100000002 25 0.46059545899999998
-		2 24 0.53790009599999999 25 0.46209990400000001
-		2 24 0.53010558600000002 25 0.46989441399999998
-		2 24 0.515617412 25 0.484382588
-		2 24 0.50583518900000002 25 0.49416481099999998
-		2 24 0.48589608699999998 25 0.51410391300000002
-		3 6 5.9100000000000004e-07 24 0.40936042 25 0.590638989
-		3 6 1.325e-06 24 0.20481307200000001 25 0.79518560299999996
-		3 6 1.0750000000000001e-06 24 0.139614406 25 0.86038451900000001
-		2 24 1.2200000000000001e-07 25 0.99999987800000001
-		2 24 0.090515339 25 0.90948466100000003
-		2 24 0.30830170299999998 25 0.69169829700000007
-		2 24 0.37350162599999998 25 0.62649837400000008
-		2 24 0.37203834299999999 25 0.62796165700000006
-		1 14 1
-		1 14 1
-		1 14 1
-		3 6 0.00011291299999999999 14 0.92040788399999995 15 0.079479202999999998
-		3 6 0.00031816499999999997 14 0.88733946299999999 15 0.112342372
-		3 6 0.00063704899999999999 14 0.89425518400000004 15 0.105107767
-		3 6 0.00091958700000000003 14 0.94133613199999999 15 0.057744281000000001
-		2 6 0.00087248299999999996 14 0.99912751700000002
-		2 6 0.00040934700000000001 14 0.99959065300000005
-		2 6 6.3785e-05 14 0.99993621499999996
-		2 6 3.0110000000000001e-06 14 0.999996989
-		1 14 1
-		4 0 0.00036350999999999999 5 0.00053459299999999998 14 0.99909741299999999 
-		33 4.4839999999999998e-06
-		4 0 0.00058383999999999997 5 0.001058745 14 0.99834981299999992 
-		33 7.6020000000000002e-06
-		4 0 5.6319999999999996e-06 5 1.3371e-05 14 0.99998092500000002 
-		33 7.1999999999999996e-08
-		1 14 1
-		1 24 1
-		2 24 0.999961294 25 3.8705999999999998e-05
-		2 24 0.99999491699999998 25 5.0830000000000003e-06
-		3 6 0.000112886 24 0.92036036399999999 25 0.079526749999999993
-		3 6 0.00032717400000000001 24 0.88733449799999997 25 0.112338328
-		3 6 0.00063874400000000001 24 0.89427129900000002 25 0.105089957
-		3 6 0.00091945899999999997 24 0.94131141500000004 25 0.057769125999999997
-		3 6 0.00087246999999999997 24 0.99912422300000003 25 3.3069999999999998e-06
-		3 5 3e-09 6 0.000409625 24 0.999590372
-		2 6 6.3795999999999997e-05 24 0.99993620400000005
-		2 6 3.01e-06 24 0.99999698999999997
-		1 24 1
-		4 0 0.00036350999999999999 5 0.00053459299999999998 24 0.99909741299999999 
-		33 4.4839999999999998e-06
-		5 0 0.00058376299999999995 5 0.0010586090000000001 24 0.99833430900000009 
-		25 1.5718000000000001e-05 33 7.6009999999999997e-06
-		5 0 5.6339999999999998e-06 5 1.3377000000000001e-05 6 7.323e-06 
-		24 0.99997359400000008 33 7.1999999999999996e-08
-		2 6 3.1659999999999998e-06 24 0.99999683399999995
+		5 0 0.52846578399999999 5 0.00023757100000000001 14 0.067057549999999994 
+		15 0.23932954300000001 41 0.16490955199999999
+		5 0 0.52716660299999996 5 0.000213902 14 0.071868936999999994 
+		15 0.252058585 41 0.14869197300000001
+		5 0 0.51093877700000001 5 0.000103837 14 0.076677487000000003 
+		15 0.26322922799999998 41 0.149050671
+		5 0 0.47035175900000004 5 0.00014001899999999999 14 0.077899029999999994 
+		15 0.26506738499999999 41 0.186541807
+		5 0 0.41000997599999994 5 0.00022356000000000001 14 0.072383919000000005 
+		15 0.25353821599999998 41 0.26384432899999999
+		5 0 0.37862329199999994 5 0.000116993 14 0.067214055999999994 
+		15 0.251796825 41 0.30224883400000002
+		6 0 0.391881851 5 4.2330999999999998e-05 6 7.5199999999999996e-07 
+		14 0.067446590000000001 15 0.270405434 41 0.27022304200000002
+		6 0 0.39769746500000003 5 1.2465e-05 6 9.7399999999999991e-07 
+		14 0.065797444999999996 15 0.27557925999999999 41 0.26091239100000002
+		6 0 0.43308236299999997 5 3.377e-06 6 4.58e-07 14 0.069312120000000005 
+		15 0.29421567100000001 41 0.20338601100000001
+		5 0 0.45079124500000006 5 3.0910000000000001e-06 14 0.070239345999999994 
+		15 0.289878301 41 0.189088017
+		5 0 0.46193317299999992 5 6.2890000000000003e-06 14 0.07042996 
+		15 0.27276521599999998 41 0.19486536199999999
+		5 0 0.47648948799999996 5 7.2960000000000001e-06 14 0.069551710000000003 
+		15 0.25221722699999999 41 0.20173427899999999
+		5 0 0.49494319700000006 5 1.5406000000000001e-05 14 0.066779600999999994 
+		15 0.236490177 41 0.20177161900000001
+		5 0 0.51158183400000001 5 4.0593999999999998e-05 14 0.064552858000000005 
+		15 0.22968361200000001 41 0.19414110200000001
+		5 0 0.52699079500000001 5 6.9944999999999995e-05 14 0.064307624999999993 
+		15 0.23110097700000001 41 0.17753065800000001
+		5 0 0.53615441800000008 5 0.00015097999999999999 14 0.065484612999999997 
+		15 0.235456731 41 0.16275325800000001
+		3 5 0.00023763500000000001 24 0.40727312500000001 25 0.59248924000000003
+		3 5 0.00015092400000000001 24 0.51453508699999995 25 0.485313989
+		3 5 6.9932999999999996e-05 24 0.53936681899999994 25 0.46056324799999998
+		3 5 4.0590999999999998e-05 24 0.53787826300000008 25 0.462081146
+		3 5 1.5404999999999999e-05 24 0.53009741899999996 25 0.46988717600000002
+		3 5 7.2960000000000001e-06 24 0.51561365000000003 25 0.48437905399999998
+		3 5 6.2890000000000003e-06 24 0.50583200799999994 25 0.49416170300000001
+		3 5 3.0910000000000001e-06 24 0.48589458499999999 25 0.51410232400000011
+		4 5 3.377e-06 6 4.58e-07 24 0.40935909199999998 25 0.59063707300000001
+		4 5 1.2476e-05 6 9.7399999999999991e-07 24 0.20481058899999999 
+		25 0.79517596099999999
+		4 5 4.2327000000000003e-05 6 7.5199999999999996e-07 24 0.139608542 
+		25 0.86034837899999994
+		3 5 0.00011697 24 1.2200000000000001e-07 25 0.99988290800000001
+		3 5 0.00022359499999999999 24 0.090495099999999995 25 0.90928130500000004
+		3 5 0.00014008099999999999 24 0.30825851599999998 25 0.69160140300000006
+		3 5 0.00010385100000000001 24 0.37346283699999999 25 0.62643331199999996
+		3 5 0.00021397199999999999 24 0.37195873699999998 25 0.62782729100000001
+		5 0 0.62962728500000009 5 0.118202881 6 0.00034127799999999998 
+		14 0.062056262000000001 15 0.18977229400000001
+		5 0 0.68188072300000002 5 0.035243647000000003 6 0.0010168569999999999 
+		14 0.070921746999999993 15 0.210937026
+		5 0 0.68956670400000009 5 0.0073324999999999996 6 0.00030538499999999998 
+		14 0.078795147999999995 15 0.22400026300000001
+		6 0 0.66853305600000001 5 0.0130166 6 0.00030927 14 0.085361914999999997 
+		15 0.232699504 41 7.9654999999999995e-05
+		6 0 0.644603068 5 0.028112281999999999 6 7.1409999999999996e-05 
+		14 0.089279351000000007 15 0.23783552299999999 41 9.8366e-05
+		6 0 0.63839131100000002 5 0.023220178000000001 6 0.00018697700000000001 
+		14 0.092574548000000006 15 0.245558158 41 6.8827999999999999e-05
+		6 0 0.64183654499999987 5 0.010636850999999999 6 0.00031349699999999998 
+		14 0.094434491999999995 15 0.252765446 41 1.3169e-05
+		5 0 0.64678524299999984 5 0.003507184 6 0.000282281 14 
+		0.093897280999999999 15 0.255528011
+		5 0 0.653893693 5 0.001423744 6 0.000171282 14 0.091097554999999997 
+		15 0.25341372600000001
+		5 0 0.66606999 5 0.000556677 6 2.2867e-05 14 0.087119219999999997 
+		15 0.24623124599999999
+		5 0 0.68082914100000003 5 0.00013590100000000001 6 3.3099999999999999e-07 
+		14 0.082916707000000006 15 0.23611792000000001
+		4 0 0.69005705699999986 5 0.0093494830000000004 14 0.076861322999999995 
+		15 0.223732137
+		5 0 0.6190669310000001 5 0.125919319 14 0.063793834999999993 
+		15 0.19121713800000001 33 2.7769999999999998e-06
+		5 0 0.46266798200000003 5 0.35256958300000002 14 0.045508321999999997 
+		15 0.13925059200000001 33 3.5209999999999998e-06
+		5 0 0.48332924399999994 5 0.32635171400000001 14 0.046507930000000003 
+		15 0.14381107800000001 33 3.4e-08
+		5 0 0.55256986200000002 5 0.229650413 6 6.6000000000000003e-07 
+		14 0.053200185999999997 15 0.16457887900000001
+		3 5 0.118202881 6 0.00034127799999999998 24 0.88145584100000007
+		4 5 0.035238162000000003 6 0.0010166330000000001 24 0.96370790300000009 
+		25 3.7302000000000003e-05
+		4 5 0.0073324030000000004 6 0.00030537899999999999 24 0.9923571739999999 
+		25 5.0440000000000003e-06
+		4 5 0.013013949 6 0.00030918299999999998 24 0.908200805 25 
+		0.078476062999999999
+		4 5 0.028112189999999999 6 7.1456000000000002e-05 24 0.86260839999999994 
+		25 0.109207954
+		4 5 0.023233335000000001 6 0.00018744000000000001 24 0.8738849609999999 
+		25 0.10269426399999999
+		4 5 0.010635695000000001 6 0.00031346100000000001 24 0.93186165799999998 
+		25 0.057189186000000003
+		4 5 0.0035071439999999998 6 0.00028227699999999999 24 0.996207281 
+		25 3.298e-06
+		3 5 0.0014242669999999999 6 0.00017138400000000001 24 0.99840434899999997
+		3 5 0.00055674000000000001 6 2.2870999999999998e-05 24 0.99942038900000008
+		3 5 0.00013653299999999999 6 3.3200000000000001e-07 24 0.9998631349999999;
+	setAttr ".wl[2124:2144].w"
+		2 5 0.0093504160000000003 24 0.99064958400000003
+		2 5 0.12558819199999999 24 0.87441180800000007
+		3 5 0.35204094800000002 24 0.64794885099999999 25 1.0200999999999999e-05
+		3 5 0.32643167299999998 6 2.2935999999999999e-05 24 0.67354539099999999
+		3 5 0.22966952199999999 6 1.2130000000000001e-06 24 0.77032926499999999
 		1 46 1
 		1 46 1
 		1 46 1
@@ -18879,135 +19086,135 @@ createNode skinCluster -n "skinCluster4";
 		2 39 0.99896991700000004 40 0.001030083
 		2 39 0.99999742899999999 40 2.571e-06;
 	setAttr -s 52 ".pm";
-	setAttr ".pm[0]" -type "matrix" 1 -0 0 -0 -0 1 -0 0 0 -0 1 -0 -0.0002536773681640625 -32.406759262084961 1.068110466003418 1;
-	setAttr ".pm[1]" -type "matrix" 0.38534330086301816 0.41201688922400859 0.8256831253417769 -0
-		 -0.89487066854210906 -0.051521032998823865 0.44334193320926951 0 0.22520441173074718 -0.90971845433238574 0.34884854419088962 -0
+	setAttr ".pm[0]" -type "matrix" 1 0 0 0 0 1 0 0 0 0 1 0 -0.0002536773681640625 -32.406759262084961 1.068110466003418 1;
+	setAttr ".pm[1]" -type "matrix" 0.38534330086301816 0.41201688922400859 0.8256831253417769 0
+		 -0.89487066854210906 -0.051521032998823865 0.44334193320926951 0 0.22520441173074718 -0.90971845433238574 0.34884854419088962 0
 		 20.978425126800925 -7.2102103919333107 -22.047001620901611 1;
-	setAttr ".pm[2]" -type "matrix" -0.17092826356905214 0.41201688922400853 0.89500034173593446 -0
-		 -0.98504608485569856 -0.051521032998823879 -0.16440740211193036 0 -0.021627284243022561 -0.90971845433238574 0.41466202433230653 -0
+	setAttr ".pm[2]" -type "matrix" -0.17092826356905214 0.41201688922400853 0.89500034173593446 0
+		 -0.98504608485569856 -0.051521032998823879 -0.16440740211193036 0 -0.021627284243022561 -0.90971845433238574 0.41466202433230653 0
 		 19.286395498978607 -7.2102103919333072 -13.267862256337807 1;
-	setAttr ".pm[3]" -type "matrix" 0.38534330086301727 0.4120168892240087 0.82568312534177724 -0
-		 0.8948706685421095 0.05152103299882449 -0.44334193320926907 0 -0.22520441173074765 0.90971845433238574 -0.34884854419088951 -0
+	setAttr ".pm[3]" -type "matrix" 0.38534330086301727 0.4120168892240087 0.82568312534177724 0
+		 0.8948706685421095 0.05152103299882449 -0.44334193320926907 0 -0.22520441173074765 0.90971845433238574 -0.34884854419088951 0
 		 -20.978641718534789 7.2100138202366981 22.04663147794346 1;
-	setAttr ".pm[4]" -type "matrix" -0.17092826356905289 0.41201688922400886 0.89500034173593479 -0
-		 0.985046084855699 0.051521032998824531 0.16440740211193089 -0 0.021627284243022068 0.90971845433238607 -0.41466202433230703 -0
+	setAttr ".pm[4]" -type "matrix" -0.17092826356905289 0.41201688922400886 0.89500034173593479 0
+		 0.985046084855699 0.051521032998824531 0.16440740211193089 0 0.021627284243022068 0.90971845433238607 -0.41466202433230703 0
 		 -19.28634043429415 7.2100192841202713 13.267447003701392 1;
-	setAttr ".pm[5]" -type "matrix" 1 -0 0 -0 -0 1 -0 0 0 -0 1 -0 -3.62396240234375e-05 -55.234733581542969 3.7190735931279715 1;
-	setAttr ".pm[6]" -type "matrix" 1 -0 0 -0 -0 1 -0 0 0 -0 1 -0 -0.46077442169189453 -81.543415069580078 -2.8622045516967773 1;
-	setAttr ".pm[7]" -type "matrix" 1 -0 0 -0 -0 1 -0 0 0 -0 1 -0 -3.814697265625e-06 -88.493888854980469 10.355514526367188 1;
-	setAttr ".pm[8]" -type "matrix" 1 -0 0 -0 -0 1 -0 0 0 -0 1 -0 0.012176513671875 -117.71406936645509 13.009464263916016 1;
-	setAttr ".pm[9]" -type "matrix" 1 -0 0 -0 -0 1 -0 0 0 -0 1 -0 0.038926120847463608 -94.495353698730469 -19.806619644165039 1;
-	setAttr ".pm[10]" -type "matrix" 1 -0 0 -0 -0 1 -0 0 0 -0 1 -0 0.026255420409142971 -89.08642578125 -20.026705741882324 1;
-	setAttr ".pm[11]" -type "matrix" 1 -0 0 -0 -0 -1 1.2246467991473532e-16 0 0 -1.2246467991473532e-16 -1 -0
+	setAttr ".pm[5]" -type "matrix" 1 0 0 0 0 1 0 0 0 0 1 0 -3.62396240234375e-05 -55.234733581542969 3.7190735931279715 1;
+	setAttr ".pm[6]" -type "matrix" 1 0 0 0 0 1 0 0 0 0 1 0 -0.46077442169189453 -81.543415069580078 -2.8622045516967773 1;
+	setAttr ".pm[7]" -type "matrix" 1 0 0 0 0 1 0 0 0 0 1 0 -3.814697265625e-06 -88.493888854980469 10.355514526367188 1;
+	setAttr ".pm[8]" -type "matrix" 1 0 0 0 0 1 0 0 0 0 1 0 0.012176513671875 -117.71406936645509 13.009464263916016 1;
+	setAttr ".pm[9]" -type "matrix" 1 0 0 0 0 1 0 0 0 0 1 0 0.038926120847463608 -94.495353698730469 -19.806619644165039 1;
+	setAttr ".pm[10]" -type "matrix" 1 0 0 0 0 1 0 0 0 0 1 0 0.026255420409142971 -89.08642578125 -20.026705741882324 1;
+	setAttr ".pm[11]" -type "matrix" 1 0 0 0 0 -1 1.2246467991473532e-16 0 0 -1.2246467991473532e-16 -1 0
 		 10.6897 88.504800000000003 17.158999999999988 1;
-	setAttr ".pm[12]" -type "matrix" 1 -0 0 -0 -0 1 -0 0 0 -0 1 -0 -11.611227989196777 -88.504768371582031 -17.159025192260742 1;
-	setAttr ".pm[13]" -type "matrix" 0.95010962014512057 0.31172544786604989 0.010906642948482054 -0
-		 -0.017334474617848112 0.017856694722059988 0.99969027925819431 0 0.3114341434355235 -0.9500044124141287 0.022369414303195154 -0
+	setAttr ".pm[12]" -type "matrix" 1 0 0 0 0 1 0 0 0 0 1 0 -11.611227989196777 -88.504768371582031 -17.159025192260742 1;
+	setAttr ".pm[13]" -type "matrix" 0.95010962014512057 0.31172544786604989 0.010906642948482054 0
+		 -0.017334474617848112 0.017856694722059988 0.99969027925819431 0 0.3114341434355235 -0.9500044124141287 0.022369414303195154 0
 		 -19.248807911433726 -15.190016332441484 -70.407221482039446 1;
-	setAttr ".pm[14]" -type "matrix" 0.95010962014512057 0.31172544786604989 0.010906642948482054 -0
-		 -0.017334474617848112 0.017856694722059988 0.99969027925819431 0 0.3114341434355235 -0.9500044124141287 0.022369414303195154 -0
+	setAttr ".pm[14]" -type "matrix" 0.95010962014512057 0.31172544786604989 0.010906642948482054 0
+		 -0.017334474617848112 0.017856694722059988 0.99969027925819431 0 0.3114341434355235 -0.9500044124141287 0.022369414303195154 0
 		 -29.009953888971161 -18.392591632193707 -70.519273114490915 1;
-	setAttr ".pm[15]" -type "matrix" 0.99337677088950327 0.1143837234782016 0.010906642948482053 -0
-		 -0.013391339978224642 0.020976595773892097 0.99969027925819409 0 0.11411951222613494 -0.99321515606287492 0.022369414303195154 -0
+	setAttr ".pm[15]" -type "matrix" 0.99337677088950327 0.1143837234782016 0.010906642948482053 0
+		 -0.013391339978224642 0.020976595773892097 0.99969027925819409 0 0.11411951222613494 -0.99321515606287492 0.022369414303195154 0
 		 -46.368128053588592 -13.397499283361238 -69.502066361996569 1;
-	setAttr ".pm[16]" -type "matrix" 0.99337677088950327 0.1143837234782016 0.010906642948482053 -0
-		 -0.013391339978224642 0.020976595773892097 0.99969027925819409 0 0.11411951222613494 -0.99321515606287492 0.022369414303195154 -0
+	setAttr ".pm[16]" -type "matrix" 0.99337677088950327 0.1143837234782016 0.010906642948482053 0
+		 -0.013391339978224642 0.020976595773892097 0.99969027925819409 0 0.11411951222613494 -0.99321515606287492 0.022369414303195154 0
 		 -64.4026632589662 -12.082538201895915 -69.621124338750491 1;
-	setAttr ".pm[17]" -type "matrix" 0.95010962014512035 0.31172544786604972 0.010906642948482049 -0
-		 -0.017334474617848109 0.017856694722059977 0.99969027925819387 0 0.31143414343552339 -0.95000441241412825 0.022369414303195147 -0
+	setAttr ".pm[17]" -type "matrix" 0.95010962014512035 0.31172544786604972 0.010906642948482049 0
+		 -0.017334474617848109 0.017856694722059977 0.99969027925819387 0 0.31143414343552339 -0.95000441241412825 0.022369414303195147 0
 		 -29.009953888971147 -18.39259163219371 -70.519273114490815 1;
-	setAttr ".pm[18]" -type "matrix" 0.99337677088950327 0.1143837234782016 0.010906642948482053 -0
-		 -0.013391339978224642 0.020976595773892097 0.99969027925819409 0 0.11411951222613494 -0.99321515606287492 0.02236941430319515 -0
+	setAttr ".pm[18]" -type "matrix" 0.99337677088950327 0.1143837234782016 0.010906642948482053 0
+		 -0.013391339978224642 0.020976595773892097 0.99969027925819409 0 0.11411951222613494 -0.99321515606287492 0.02236941430319515 0
 		 -46.368128054256651 -13.397499286616888 -69.502066267006953 1;
-	setAttr ".pm[19]" -type "matrix" 0.99337677088950327 0.1143837234782016 0.010906642948482053 -0
-		 -0.013391339978224642 0.020976595773892097 0.99969027925819409 0 0.11411951222613494 -0.99321515606287492 0.02236941430319515 -0
+	setAttr ".pm[19]" -type "matrix" 0.99337677088950327 0.1143837234782016 0.010906642948482053 0
+		 -0.013391339978224642 0.020976595773892097 0.99969027925819409 0 0.11411951222613494 -0.99321515606287492 0.02236941430319515 0
 		 -64.402663258785807 -12.082538201016671 -69.621124364404054 1;
-	setAttr ".pm[20]" -type "matrix" 0.95010962014512057 0.31172544786604989 0.010906642948482054 -0
-		 -0.017334474617848112 0.017856694722059988 0.99969027925819431 0 0.3114341434355235 -0.9500044124141287 0.022369414303195154 -0
+	setAttr ".pm[20]" -type "matrix" 0.95010962014512057 0.31172544786604989 0.010906642948482054 0
+		 -0.017334474617848112 0.017856694722059988 0.99969027925819431 0 0.3114341434355235 -0.9500044124141287 0.022369414303195154 0
 		 -29.009953888971154 -18.392591632193714 -70.519273114490858 1;
-	setAttr ".pm[21]" -type "matrix" 0.99337677088950327 0.11438372347820158 0.010906642948482049 -0
-		 -0.013391339978224642 0.020976595773892093 0.99969027925819387 0 0.11411951222613494 -0.99321515606287492 0.022369414303195147 -0
+	setAttr ".pm[21]" -type "matrix" 0.99337677088950327 0.11438372347820158 0.010906642948482049 0
+		 -0.013391339978224642 0.020976595773892093 0.99969027925819387 0 0.11411951222613494 -0.99321515606287492 0.022369414303195147 0
 		 -46.368128053588599 -13.397499283361237 -69.502066361996498 1;
-	setAttr ".pm[22]" -type "matrix" 0.99337677088950327 0.1143837234782016 0.010906642948482053 -0
-		 -0.013391339978224642 0.020976595773892097 0.99969027925819409 0 0.11411951222613494 -0.99321515606287492 0.022369414303195154 -0
+	setAttr ".pm[22]" -type "matrix" 0.99337677088950327 0.1143837234782016 0.010906642948482053 0
+		 -0.013391339978224642 0.020976595773892097 0.99969027925819409 0 0.11411951222613494 -0.99321515606287492 0.022369414303195154 0
 		 -64.402663258966214 -12.082538201895916 -69.621124338750477 1;
-	setAttr ".pm[23]" -type "matrix" 0.95010962014512035 0.31172544786604989 0.010906642948482138 -0
-		 0.017334474617848261 -0.017856694722060171 -0.9996902792581942 0 -0.3114341434355235 0.95000441241412859 -0.022369414303195417 -0
+	setAttr ".pm[23]" -type "matrix" 0.95010962014512035 0.31172544786604989 0.010906642948482138 0
+		 0.017334474617848261 -0.017856694722060171 -0.9996902792581942 0 -0.3114341434355235 0.95000441241412859 -0.022369414303195417 0
 		 19.248713472155757 15.189987436343623 70.407229946113986 1;
-	setAttr ".pm[24]" -type "matrix" 0.95010962014512035 0.31172544786604989 0.010906642948482138 -0
-		 0.017334474617848261 -0.017856694722060171 -0.9996902792581942 0 -0.3114341434355235 0.95000441241412859 -0.022369414303195417 -0
+	setAttr ".pm[24]" -type "matrix" 0.95010962014512035 0.31172544786604989 0.010906642948482138 0
+		 0.017334474617848261 -0.017856694722060171 -0.9996902792581942 0 -0.3114341434355235 0.95000441241412859 -0.022369414303195417 0
 		 29.009854676640693 18.392561170085074 70.519281523773785 1;
-	setAttr ".pm[25]" -type "matrix" 0.99337677088950327 0.11438372347820158 0.010906642948482138 -0
-		 0.01339133997822475 -0.020976595773892312 -0.9996902792581942 0 -0.11411951222613494 0.99321515606287503 -0.022369414303195417 -0
+	setAttr ".pm[25]" -type "matrix" 0.99337677088950327 0.11438372347820158 0.010906642948482138 0
+		 0.01339133997822475 -0.020976595773892312 -0.9996902792581942 0 -0.11411951222613494 0.99321515606287503 -0.022369414303195417 0
 		 46.368018045887936 13.397484982922217 69.50202248485644 1;
-	setAttr ".pm[26]" -type "matrix" 0.99337677088950327 0.11438372347820158 0.010906642948482138 -0
-		 0.01339133997822475 -0.020976595773892312 -0.9996902792581942 0 -0.11411951222613494 0.99321515606287503 -0.022369414303195417 -0
+	setAttr ".pm[26]" -type "matrix" 0.99337677088950327 0.11438372347820158 0.010906642948482138 0
+		 0.01339133997822475 -0.020976595773892312 -0.9996902792581942 0 -0.11411951222613494 0.99321515606287503 -0.022369414303195417 0
 		 64.402574891075446 12.082532869588931 69.621149481972267 1;
-	setAttr ".pm[27]" -type "matrix" 0.9501092441758201 0.31172673657021666 0.010902561118139592 -0
-		 0.017341359656223382 -0.017890700486870192 -0.99968955185165509 0 -0.31143490712655431 0.95000334975376366 -0.022403885370681179 -0
+	setAttr ".pm[27]" -type "matrix" 0.9501092441758201 0.31172673657021666 0.010902561118139592 0
+		 0.017341359656223382 -0.017890700486870192 -0.99968955185165509 0 -0.31143490712655431 0.95000334975376366 -0.022403885370681179 0
 		 29.009352453062714 18.394989166534867 70.518854820547446 1;
-	setAttr ".pm[28]" -type "matrix" 0.99337666163326088 0.11438506145219896 0.010902561118139592 -0
-		 0.013391249071707724 -0.021011291415257566 -0.99968955185165487 0 -0.11412047393284688 0.99321426859950002 -0.022403885370681175 -0
+	setAttr ".pm[28]" -type "matrix" 0.99337666163326088 0.11438506145219896 0.010902561118139592 0
+		 0.013391249071707724 -0.021011291415257566 -0.99968955185165487 0 -0.11412047393284688 0.99321426859950002 -0.022403885370681175 0
 		 46.368014107514533 13.399964319301702 69.501595559434591 1;
-	setAttr ".pm[29]" -type "matrix" 0.99337666163326088 0.11438506145219896 0.010902561118139619 -0
-		 0.013391249071707724 -0.021011291415257323 -0.99968955185165487 0 -0.11412047393284688 0.99321426859950002 -0.022403885370680932 -0
+	setAttr ".pm[29]" -type "matrix" 0.99337666163326088 0.11438506145219896 0.010902561118139619 0
+		 0.013391249071707724 -0.021011291415257323 -0.99968955185165487 0 -0.11412047393284688 0.99321426859950002 -0.022403885370680932 0
 		 64.402570954015147 12.085012212367825 69.620722428394075 1;
-	setAttr ".pm[30]" -type "matrix" 0.95010962014512046 0.31172544786604994 0.010906642948482139 -0
-		 0.017334474617848261 -0.017856694722060171 -0.99969027925819443 0 -0.31143414343552356 0.9500044124141287 -0.022369414303195421 -0
+	setAttr ".pm[30]" -type "matrix" 0.95010962014512046 0.31172544786604994 0.010906642948482139 0
+		 0.017334474617848261 -0.017856694722060171 -0.99969027925819443 0 -0.31143414343552356 0.9500044124141287 -0.022369414303195421 0
 		 29.009854676640696 18.392561170085063 70.519281523773799 1;
-	setAttr ".pm[31]" -type "matrix" 0.99337677088950338 0.1143837234782016 0.010906642948482138 -0
-		 0.01339133997822475 -0.020976595773892312 -0.9996902792581942 0 -0.11411951222613495 0.99321515606287514 -0.022369414303195417 -0
+	setAttr ".pm[31]" -type "matrix" 0.99337677088950338 0.1143837234782016 0.010906642948482138 0
+		 0.01339133997822475 -0.020976595773892312 -0.9996902792581942 0 -0.11411951222613495 0.99321515606287514 -0.022369414303195417 0
 		 46.368018045887922 13.39748498292221 69.50202248485644 1;
-	setAttr ".pm[32]" -type "matrix" 0.99337677088950338 0.1143837234782016 0.010906642948482138 -0
-		 0.01339133997822475 -0.020976595773892312 -0.9996902792581942 0 -0.11411951222613495 0.99321515606287514 -0.022369414303195417 -0
+	setAttr ".pm[32]" -type "matrix" 0.99337677088950338 0.1143837234782016 0.010906642948482138 0
+		 0.01339133997822475 -0.020976595773892312 -0.9996902792581942 0 -0.11411951222613495 0.99321515606287514 -0.022369414303195417 0
 		 64.402574891075417 12.082532869588928 69.621149481972282 1;
-	setAttr ".pm[33]" -type "matrix" 1 -0 0 -0 -0 1 -0 0 0 -0 1 -0 -0.00011396408081054688 -39.47693758061159 -20.759640090675646 1;
-	setAttr ".pm[34]" -type "matrix" 0.99337688019944337 0.11438238563284861 0.010910716849010162 -0
-		 0.013391425836498152 -0.02094192487304641 -0.9996910050093869 0 -0.11411855063611055 0.99321604177517731 -0.022334967229962057 -0
+	setAttr ".pm[33]" -type "matrix" 1 0 0 0 0 1 0 0 0 0 1 0 -0.00011396408081054688 -39.47693758061159 -20.759640090675646 1;
+	setAttr ".pm[34]" -type "matrix" 0.99337688019944337 0.11438238563284861 0.010910716849010162 0
+		 0.013391425836498152 -0.02094192487304641 -0.9996910050093869 0 -0.11411855063611055 0.99321604177517731 -0.022334967229962057 0
 		 64.402579174271807 12.080055210758827 69.621575634038066 1;
-	setAttr ".pm[35]" -type "matrix" 0.9677780833356916 -0.13749430534540966 -0.21095235815861038 -0
-		 -0.22913930878878661 -0.82823980631335925 -0.51138439593500062 0 -0.10440669797906912 0.54324408808158386 -0.83305768238550892 -0
+	setAttr ".pm[35]" -type "matrix" 0.9677780833356916 -0.13749430534540966 -0.21095235815861038 0
+		 -0.22913930878878661 -0.82823980631335925 -0.51138439593500062 0 -0.10440669797906912 0.54324408808158386 -0.83305768238550892 0
 		 95.694898823637942 54.670933432335616 15.578702122885915 1;
-	setAttr ".pm[36]" -type "matrix" 0.98649986207870544 -0.1374943053454096 -0.088956945295341344 -0
-		 -0.16376208984055324 -0.82823980631335903 -0.53591118776254609 0 7.0533466030309138e-06 0.54324408808158375 -0.83957480948076213 -0
+	setAttr ".pm[36]" -type "matrix" 0.98649986207870544 -0.1374943053454096 -0.088956945295341344 0
+		 -0.16376208984055324 -0.82823980631335903 -0.53591118776254609 0 7.0533466030309138e-06 0.54324408808158375 -0.83957480948076213 0
 		 102.6275900709836 54.670870894044072 28.563703461418182 1;
-	setAttr ".pm[37]" -type "matrix" 0.89924411071736088 -0.41231892621117727 -0.14612711051753771 -0
-		 -0.34286322240202072 -0.87177900765238669 0.34992309518053 0 -0.27167046225941749 -0.26456467055274285 -0.92531113417653899 -0
+	setAttr ".pm[37]" -type "matrix" 0.89924411071736088 -0.41231892621117727 -0.14612711051753771 0
+		 -0.34286322240202072 -0.87177900765238669 0.34992309518053 0 -0.27167046225941749 -0.26456467055274285 -0.92531113417653899 0
 		 99.218184468880267 36.503861969901351 -32.102271186302808 1;
-	setAttr ".pm[38]" -type "matrix" 0.98775871538459248 -0.054585600240128401 -0.14612711051753763 -0
-		 -1.3789879069123199e-06 -0.93677843029041574 0.34992309518052989 0 -0.15598948740180599 -0.34563938547140222 -0.92531113417653887 -0
+	setAttr ".pm[38]" -type "matrix" 0.98775871538459248 -0.054585600240128401 -0.14612711051753763 0
+		 -1.3789879069123199e-06 -0.93677843029041574 0.34992309518052989 0 -0.15598948740180599 -0.34563938547140222 -0.92531113417653887 0
 		 85.540093212500523 72.867601706473792 -32.102247979874392 1;
-	setAttr ".pm[39]" -type "matrix" 0.69623558401505348 -0.71769378494960845 -0.013101244060086656 -0
-		 0.63657482326039549 0.60890210307083892 0.47329771103070573 0 -0.33170545057658229 -0.33786663037449238 0.8808051056489008 -0
+	setAttr ".pm[39]" -type "matrix" 0.69623558401505348 -0.71769378494960845 -0.013101244060086656 0
+		 0.63657482326039549 0.60890210307083892 0.47329771103070573 0 -0.33170545057658229 -0.33786663037449238 0.8808051056489008 0
 		 14.973398225956833 -89.356848888517519 -33.68458935399881 1;
-	setAttr ".pm[40]" -type "matrix" 0.87926262078173589 -0.47615711808195221 -0.013101244060086658 -0
-		 0.42492667804918882 0.77163890195814733 0.47329771103070573 0 -0.21525464449835438 -0.42172005392761969 0.88080510564890102 -0
+	setAttr ".pm[40]" -type "matrix" 0.87926262078173589 -0.47615711808195221 -0.013101244060086658 0
+		 0.42492667804918882 0.77163890195814733 0.47329771103070573 0 -0.21525464449835438 -0.42172005392761969 0.88080510564890102 0
 		 44.930798245771157 -79.55018729836921 -33.684579892947831 1;
-	setAttr ".pm[41]" -type "matrix" 0.99337677088950338 0.11438372347820162 0.010906642948482058 -0
-		 -0.013391339978224693 0.020976595773892538 0.99969027925819409 0 0.11411951222613495 -0.99321515606287503 0.022369414303195619 -0
+	setAttr ".pm[41]" -type "matrix" 0.99337677088950338 0.11438372347820162 0.010906642948482058 0
+		 -0.013391339978224693 0.020976595773892538 0.99969027925819409 0 0.11411951222613495 -0.99321515606287503 0.022369414303195619 0
 		 -64.4026632589662 -12.082538201895957 -69.621124338750462 1;
-	setAttr ".pm[42]" -type "matrix" 0.96777700734486549 -0.13749687599813923 -0.21095561889973205 -0
-		 0.22913962549910022 0.82825796038127142 0.51135485046217044 -0 0.10441597617581677 -0.54321575838317582 0.8330749928808584 -0
+	setAttr ".pm[42]" -type "matrix" 0.96777700734486549 -0.13749687599813923 -0.21095561889973205 0
+		 0.22913962549910022 0.82825796038127142 0.51135485046217044 0 0.10441597617581677 -0.54321575838317582 0.8330749928808584 0
 		 -95.694849303641575 -54.67188222665461 -15.576365137851367 1;
-	setAttr ".pm[43]" -type "matrix" 0.98649919996326374 -0.1374968759981392 -0.088960314537400942 -0
-		 0.16376607851396141 0.82825796038127131 0.53588191105244054 -0 8.4654505627668245e-16 -0.54321575838317571 0.83959313946946457 -0
+	setAttr ".pm[43]" -type "matrix" 0.98649919996326374 -0.1374968759981392 -0.088960314537400942 0
+		 0.16376607851396141 0.82825796038127131 0.53588191105244054 0 8.4654505627668245e-16 -0.54321575838317571 0.83959313946946457 0
 		 -102.62784556774902 -54.671882226654581 -28.561409463399393 1;
-	setAttr ".pm[44]" -type "matrix" 0.89924233536220854 -0.41232282986869828 -0.14612702098308303 -0
-		 0.34285750103707324 0.87176822791222575 -0.34995555544296192 0 0.2716835590810287 0.26459410570125608 0.92529887223167939 -0
+	setAttr ".pm[44]" -type "matrix" 0.89924233536220854 -0.41232282986869828 -0.14612702098308303 0
+		 0.34285750103707324 0.87176822791222575 -0.34995555544296192 0 0.2716835590810287 0.26459410570125608 0.92529887223167939 0
 		 -99.21765833853641 -36.502743084345454 32.104462229327083 1;
-	setAttr ".pm[45]" -type "matrix" 0.9877584919564526 -0.054589882822039117 -0.14612702098308297 -0
-		 -2.4910629115026954e-15 0.93676630448293152 -0.34995555544296186 0 0.15599090219597517 0.34567157169612306 0.92529887223167939 -0
+	setAttr ".pm[45]" -type "matrix" 0.9877584919564526 -0.054589882822039117 -0.14612702098308297 0
+		 -2.4910629115026954e-15 0.93676630448293152 -0.34995555544296186 0 0.15599090219597517 0.34567157169612306 0.92529887223167939 0
 		 -85.540070862473627 -72.866379667429371 32.104462229327083 1;
-	setAttr ".pm[46]" -type "matrix" 0.69623768270315844 -0.71769180695800783 -0.01309806892200509 -0
-		 -0.63658343255397687 -0.60891664125917644 -0.47326742693263713 0 0.3316845226746829 0.33784463030066414 -0.88082142525887408 -0
+	setAttr ".pm[46]" -type "matrix" 0.69623768270315844 -0.71769180695800783 -0.01309806892200509 0
+		 -0.63658343255397687 -0.60891664125917644 -0.47326742693263713 0 0.3316845226746829 0.33784463030066414 -0.88082142525887408 0
 		 -14.973052222159296 89.357706761615106 33.682242710218901 1;
-	setAttr ".pm[47]" -type "matrix" 0.87926403052549151 -0.47615460221926087 -0.013098068922005116 -0
-		 -0.42493053666025005 -0.77165535157749821 -0.4732674269326369 0 0.215241268435447 0.42169279477745952 -0.88082142525887352 -0
+	setAttr ".pm[47]" -type "matrix" 0.87926403052549151 -0.47615460221926087 -0.013098068922005116 0
+		 -0.42493053666025005 -0.77165535157749821 -0.4732674269326369 0 0.215241268435447 0.42169279477745952 -0.88082142525887352 0
 		 -44.930760287767953 79.551134632214385 33.682242710218901 1;
-	setAttr ".pm[48]" -type "matrix" 1 -0 0 -0 -0 1 -0 0 0 -0 1 -0 -57.234499755847601 -69.065608241714656 4.776973220974206 1;
-	setAttr ".pm[49]" -type "matrix" 1 -0 0 -0 -0 1 -0 0 0 -0 1 -0 -41.20835753003562 -69.73181655392753 6.6606244485114727 1;
-	setAttr ".pm[50]" -type "matrix" 1 -0 0 -0 -0 1 -0 0 0 -0 1 -0 57.234400000000022 -69.065600000000018 4.7769750000000011 1;
-	setAttr ".pm[51]" -type "matrix" 1 -0 0 -0 -0 1 -0 0 0 -0 1 -0 41.208250000000014 -69.731800000000007 6.6606250000000076 1;
+	setAttr ".pm[48]" -type "matrix" 1 0 0 0 0 1 0 0 0 0 1 0 -57.234499755847601 -69.065608241714656 4.776973220974206 1;
+	setAttr ".pm[49]" -type "matrix" 1 0 0 0 0 1 0 0 0 0 1 0 -41.20835753003562 -69.73181655392753 6.6606244485114727 1;
+	setAttr ".pm[50]" -type "matrix" 1 0 0 0 0 1 0 0 0 0 1 0 57.234400000000022 -69.065600000000018 4.7769750000000011 1;
+	setAttr ".pm[51]" -type "matrix" 1 0 0 0 0 1 0 0 0 0 1 0 41.208250000000014 -69.731800000000007 6.6606250000000076 1;
 	setAttr ".gm" -type "matrix" 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1;
 	setAttr -s 52 ".ma";
 	setAttr -s 52 ".dpf[0:51]"  4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
@@ -19198,52 +19405,78 @@ createNode dagPose -n "bindPose2";
 	setAttr ".bp" yes;
 createNode ngst2SkinLayerData -n "ngSkinToolsData_skinCluster4";
 	rename -uid "919B5683-4719-C185-A807-F7A17A88D662";
-	setAttr ".ld" -type "ngst2SkinLayerDataStorage" 16 45888 {
-"mrkeZGEIAAAEAAAADAAAAEJhc2Ugd2VpZ2h0cwEAEQEE8D8BJAkBBPA//ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggAAQgOEEMmIEMBAf4YQ/4YQ/4YQ/4YQ/4YQ/4YQ/4YQ/4YQ/4YQ/4YQ/4YQ/4YQ/4YQ/4YQ/4Y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",
-"/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhD/hhDEhhDDhNDEDQAAAAzDhJDBAAABRAUAgAAAAMAFmOGYAUAAAAGAAAABwAAAAgAAAAJAAAACgAAAAsaf4bwlQ0AAAAOAAAADwAAABAAAAARAAAAEgAAABMAAAAUAAAAFQAAABYAAAAXAAAAGAAAABkAAAAaAAAAGwAAABwAAAAdAAAAHgAAAB8AAAAgAAAAIQAAACIAAAAjAAAAJAAAACUAAAAmAAAAJwAAACgAAAApAAAAKgAAACsAAAAsAAAALQAAAC4AAAAvAAAAMAAAADEAAAAyAAHKCawgQXJtIExheWVyAekJAS4ch/4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAGZERyQV9JcCAADwP5nsYd8U8D8clgEBARAM+SxgBgEIaXoZQAw3xi8AARgQMDwG8QEdGBEoCH6lZgUgCHpsFgUIERgIXlzuBWgREBEICOlcjAUoDCcWrLpOUAARKAQBVYHDGYgIlFmmMlAACLY4pzIQAAy8wA==",
-"ygUBqBFADEoE3FNuYAARKAQxxKFTFPA/VDyKBwFADKUk/QMBCARPQwEiGYABDgEYDDDAvRwBWAwquA8VARARGBEIBNo8oY8U8D/3tWTDASgRGAQ/O6FzRlAACIYUJQVYBKo6CTgRMAw4mXp8LmAACBF6HSWoESAMi9JRFy4gABEYEQgIf+ppBVgREJ4IAAhbLzwFOAzxebaXAWAEgCgJmAiMqy0FGD5IAARvKsGUEPA/e7sgUiAADDXSWJ4hCAz83RTLAQgRQATYl8GLRhABCJJpnAVIDOwu7DouMAAIwV3YBRgRQAhCgVMyEAAEygM2UAAEH4vhLxlgDBCv+nIB0BFAXggACHuXKEVYDCFY1hougAAIQirlMoABEUAsxuBd2QIA8D8V5f7gLmAABJMpQUEZgBEwBCekCZgMbPPFOC4wAAiRIKwy0AARMAyzCW3SASgMNQQ40C6QAAw3ChsrARgRKBEIDFa1Mp8BkAjaidcy0AMEuuxJ6BEoXggACLcnRkVYDATw9ZMBcAwmUaEvAVAIbrQCUgABDPiZR8gBiAzECGdKAQg+WAAIRSd5BdgI15rMMkAACFCYDGVoPjAADKk1TJABSAgxAoIFOD4gAAwc84BMASAMFxutIwEIESAMruDYrC4QAAyVXOo0LhAAESi+CAAIJpuGJWgI+qwxBcAMfzA7DQFYDGrJ6woBCARcCw53CQzwP5I+DoMJEPA/JZFGBbgMsh3UHgEgPnAACJxJ9QVADHy1rH0uIAAE5l5J+BEwCGq5HAVIERAIENOSMhAACCrPKDJAAQwPnzYYLlAACKRepTIwABFIvggADHUu4R9BAAiEFmMFUAwlhGGeAWgIQ2tEBRAEiscOhwoU8D8tTKUwASgMtTx1RAEgBLKrDtoJeQAIXA2wBTARgAwGQ8YnQWAREAxtLIsSATgREP4IAF4IAAzIYNrVAWgMjKlALAGACDFOGQWYBO6+yegMwv2cEAEYDOZlE8ABKAhLQKAl+AwTdMsLAeA+mAAIcuacRZAIYpThBUgRIAg1VKYyEAAMwrJHjAFQESARCAi3Dt0luAwRHjOZTiAADN21doABGAxK8s1lAQgROD4IAAxQ91F2AbgMHIizJwEoDC73/HABCBEoDDcJCCYuEAAQRDFjmwM9oAi0slIysAAIoEBSJcgRQAipmI8yIAARGL4IAAhWekMlUATXUOngAIxhPxAA8D/zxGlACErjowVoCCFIQgUICOWoHwUICJS8MCWYvnAAPjAACCdfVwVQDOA8eEohMAgO7a5lyAwQxN9JARAMFYB7NgGQBGZ2DicNDPA/8GEOzpMM8D/Z3gGpWdARWAxO6SHwATAI6GbgBVgRGAyyVg==",
-"lAwBGAkQxgEAHCDVpp+17vk+XjoAGDTwIGAskAziYAD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQC2AQB5eAiglzRlsAiHFp0ycANJ0BTwP2o/UopheAxzaudpAQgRGD4IAAiIh6AyMAwRIAyjAcBMgQgMakHvrwEIeGHlYs8AK+Q/4XoUrkfh7D+YMEAhIivkP+TOx0JT4ewVOBFADBCFbQrBKAzouSuqLoAADPjpaGABUAkoGQEYxU/8e7065Q0YGegJIj4QAFQAACok/Ny2thA/if1B//065T8GglQOAWgMwSuKVgEICI5E7aVgVkAAGVAIR/Q5MkABCNmFZZ2wGSgMkJjRIQFYCNYTRKUYEVgMaswGBAEYERA+CAAMSMfxsQHwCNg5ERJIDAggOj5ymAAEBa0BQhDwP1RiZTKYAAEWTmgABIoaFngIBL+XDiMTFPA/4QQKG04oABFACM9+BRIADAwqAQLlASgMO+QAXAEIESB+CAAMx6imdyHYDIq9tD8B2BEwBEEjNugIERh+CAAMVZJbC06AAAh7U7wlWAwd2jK5TiAAflgADKJ9c6su2AcRMAj9majSEAsECeoJ4AjLmGsliAgnTMkSeAoMG45wzy4IAQQ1ly4gB/4BAP4BAP4BAP4BAP4BAP4BAL4BABDwP7/XQWXoKboU8D9nWHUNLuABAI4OXw+dGBEoEQgIqf2URSAJEP4BAP4BAP4BAP4BAMYBABgnAIn9z7eVYvAJ3gEAGCPmSZMsiw0VWDhhaRZTOo73PuA4GjI7jvcVGH4BABjvPMwhYYMDYuABMFMVUbHlSvE9zJGOIxNqKAD+AQD+AQC+AQAYFncF9b7uljUoGESSydMsUfQVEBg2fbLjUeLzFRD+AQD+AQD+AQD+AQD+AQD+AQBeAQAY01+vG1hT0P6oAf6oAf6oAcKoAfB5fgkdrgbXTT5E6V4Ck6bjP4X2ABCVpuM/Kza6/woZ5j8qb5DMFhnmPwcYNcdoq+c/jecb4Gir5z9Z0CdKUZ3nP1LUKNdhnec/N2dEaW8Q6j8d3ZXPeBDqP1UOLbKdb+s/IQgwp51v6z9VDi2ynW/rP8M6ZMq0b+s/4XoWMAtpEBDwP6hJihKAEBCLVeV7LSo4CwBVDUgMkid+bcFwGDmWqMqnb+sVOAiIOn4SEAkRSAzPGzM8bogGDAxLJjUuIAAE1n4W4BERQAiM2FDdqBDwP0SE0XKYChE4XggAHhgMDOsyIfQueAAM3AkgMQEQCJDG0QVwDNCCbfoBEBi516wTKuHsFfheWAA+GAAsdh93jaRv6z+D5/UGISgMWZP8nwFQCHYSmgVgCAqyIgUIETgxWBEQfggALO4pNw==",
-"YKlv6z+Qao00DugKDC9xP10BYARUewE6DPA/9xkWCAoEhJkO4qQA8BX4AR4BKH4IACzg/vC9SOHsP/JzmwUBYAzLsEkyTjgACJwZDjLgAQjC1hsy+BEEoDgJgBFwDG+GlxpOSAARIP4IAN4IAAzPe+5/AegIPjN2EnAUDN1oLkIBqAw9OVQTAQgIi3NkEvAUDKLB3hEh0Aiv4pdlIAz7/5pqASAMOcCGhwEIPsAADASt1M0BGAjm46VFYAyD1fVfARARKAS68BYwEwi3r7ZlOAg1aLoq6A7+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQDeAQAmkBFpwv4QAKYQAAyImz96gcg4rMdKE+3/7z/mOp5q2f/vFYgsGx6W8PT/7z8oB55XgYgoMSjXrez/7z+vShMSIB8M3GbsHwEYDGnY+5wBCCyS/kLW+//vP04d4JUBEAzPWg8jAQgIqfndxRgIdmTmEjgbCHTveyqQDv4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAN4BAP5oHaZoHRbiHBlwDNA5u4EOGB0Iz2FHEmAjCCdzcxKIOAjSnEYSyC4M7i0cLQEgBG29DgNCEPA/DZbIBSgI84kNEugtDDVSbhQBIAy1JNZyDmAiDAnAmCMOGC4MNQAG1wEQDEeZW/UBIAgHPK4SKCIMeYESaAEQCLJCOQUQPpAA/hAA3hAADLtaTAcBmAyqg/GaAQgIfpPVErAlCF8qdxJIOQgw7p0SEDIMAVMuxQEgDCAm9yABCAxezo5DAQgM8TlBWQEICKGyegU4DEloFP4BEBHQBOlNFkgwBELiFuA6COtBcBLgLhEg3ggADAWNoWsOOB8MhOOAcwFwDI6PAlUBCATBEAFSFPA//noK9yGIDMESqXQBGASgwRYIPhDZOyoqBU0IDhyHDrVDDg==",
-"yUP+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQC+AQA0Hs9q7V1o5T/KdL51gcgeYEKmAQAY0Do6p6NbyBoAEV4BACawEl4iAPYBAEDwP6j3myWEzOU/3MO6TpXdx/5oAFpoAIYBADhZdTwLd/roP67DxUKnLehCiAAUOmJYpUwKGRhYJsQE7BMM1j+GsNNv93XVP8xO+FUSuNRCOAD+AQD+AQBeAQA4wsufW7/D6D9hCPedgOPG/rgAYrgAOM5ZeB7H4NU/fg7Cl7I86aJoADQrIKLcplfnP3TvPbCBHH6oAuYBADRd75HLz0/WPwqRzxvuRqagAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BALYBAB7IChEB/hAAhhAAGPZ/rNn1i+dC8AgUcQ0aOYBjHrALPogAxgEAGBZ3T9ZBaNNCaAD+AQBeAQAUqkf24lhN/sAAHPA/g35WltlzEUj+AQA+AQAc8D9gQ5jAZsP+YABmYAA0O9rrxjDZ5j9ocSadIyn+oApmoAr+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD2AQDxIP4IAN4IAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BADYBAAAA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/g==",
-"AQD+AQD+AQD+AQD+AQD+AQCKAQCg96+tKBUS2j9pGBCYLM/XP8bNWjlh59c/rgigEOi60z/An8S9aiu3PwAaDAvwT2C6Wo4038E/uIaUG4c2yj/45fATCjPaP2IDNtX7GN8/pLfFFekv4D9fIMCw/3/gP9b9FjK89uA/nux7vns24T//9f+f/ULhPyrHW7AXeOA/DVf+AQD6AQAA8A3gGQh48zHVNNV07T83gEj8ZWfsPy6G6YVoouw/Y5yMAIYm7kIwAAnBGUC2EAD+AQD+AQD+AQDmAQAAD/77AP77AP77AOb7AP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAOIBADjDYSolRC/VP2YWgxT9btQabBEZATgQEFeo713mP5aZZEy32ehCIAAYTHExFhfp6Q0YHrQR/gEAxgEAWK4QyLT3ZtQ/CU9RrJoI6j86sJE76FznDZj+AQAZARi4CWwAIyLVYlgAOJsqDtMjFsw/DfHo9GJJz0IoABTWdp5qzdYZGFjonf0J9vnkP7InFkgEReU/mtgD1faj5UI4ADYBADzwPz3tI4sMtek/f4+dZLZS/ugAGehYYIZx5THTsz+A11FLUtiqPwBADTWXvztikACY99CAkQLxzD/pPYLYH0fqPw3vVu+V7+8/Tuxkvezu3T9AJCRoEo6nYkAAXgEAGKjUp2FFQr0NOEDwPxnTw3CcD+U/B8b3oDUNyw0YhgEAmJy/u0ayUNE/I4Twk9/46T+PJFaCoWvrPy4UGmbL298/III22+1xmaJQABj5o5vR3Yi8OjAAQPA/UAg3GhjY5D+9u8GQR+TKOiAA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA5gEAGBQAp0wU6NBCUAgUHuXLjf84ZogKfgEAGH4MI5Sl5uYVWBR1RNgU30sZEAkBJtALFEG9oxB+fSYADBSg50d9SEKm6AgUuBCSXR/SHtgKHPA/rXATOk5l5sAAEQEU+gJT00wYEUhA8D+Bh5mETCvmP1BElmXGgLcV4N4BABRBec9+MnkeGA1A8D8jeKncuBvnP5DGxbTdrg==",
-"yO5gAAVgVIpLKHKeTdI/pmO2GLf16T+gSfDao0P+0Asm0Av+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQDeAQCYAiipa/X24j/L8/ezaRjkPx2ZUmNPDOQ/qfuv94si5j8IbEeokhrtGkAj8FLwP2hRadwyiOs/Ut4aOV5y6T8EjQf2eubiP0/+ZBWCc+A/qZB01C2g3z9Cv3+eAADfP1ME0puHEt4/tyYIgwiT3T/0EwDABHrdP6xxSJ/QD98/AP75Iv75Ilr5InhqcFZZVlm0PzX+ux3QxLw/kM6z0Lvsuj/QOTb3n5etLRD+AQD+AQD+AQD+AQDuAQAJAQAp/kMB/kMB/kMB/kMB7kMBKUP+AQD+AQD+AQDiAQAYZ2Zmts+AU2KMAxiamZkpEDVPYiAA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEAtgEAHmQtEQg+AQBeGAD+AQD+AQD+AQD+AQD+AQD+AQD+AQDeAQBREBEIPgEAXhgA/gEA/gEA/gEA/gEA/gEA/gEA/gEA3gEAURARCD4BABEYPggA/gEA/gEA/gEA/gEA/gEAngEAfngBESD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQARAXFQEQimAQA44d9RryBE0z+omW3OIpnM/gAOWgAOEZgRCD4BAF4YAGYBABiLn9yIL0bRDbDGQAA2AQARQBzwPyT7yX/ubh7UN/4BAOYBADTcSnDTzSvJPwPhxDaTWhHoXgEAGcAJIhEQRgEAWBPPUcOZhe0/iOJK23pS7j9YXhkNiPzvDTiGAQBUww==",
-"8hCpEGpgP9mJTaGJCOE/vL192R6HHvBWngEAIPA/awXLU7dX7KJ4AJ4BAFTFbaf2eVHCP+n18kwaEuA/70smkXA0puAAFICLzEXkbhGYZkgBtgEA/kgAEUj+AQD+AQD+AQD+AQD+AQDeAQA+wAH+EAD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQCGAQAYNDMzg8ZPbiIgCBhnZmb2dJjWFRD+AQD+AQD+AQD+AQAJAWaIBhgE57nXtDLSojABGPsKcb0HCs4VMBQYBq7gbW8eBE8RAV5wABzwP5De20TBWx5UQv4BAGYBADj+8Mz2ZqnTP3Y3TTPnD+0NsD6YAOYBADS6D61GjsjRP1yOzpJI1DEA/mAAGWAUwGwfSrh4HtALEVgRCL4BAD44AJ4QABEo/ggA/ggA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA5gEAACz+OyT+OyT+OyT+OyT+OyT+OyT+OyT+OyT+OyT+OyT+OyT+OyT+OyT+OyT+OyT+OyT+OyT+OyT+OyT+OyT+OyT+OyT+OyT+OyT+OyT+OyT+OyT+OyQiOyQ+xCs+AQARIP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAJ4BAD6wAv4QABEQEUi+CAD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQ==",
-"AP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAIYBAAAq/qM4/qM4/qM4/qM4/qM4/qM4/qM4/qM4/qM4/qM4/qM4/qM4/qM4/qM4/qM4/qM4/qM4/qM4/qM4/qM4/qM4/qM4/qM4/qM4/qM4/qM4/qM4/qM4/qM4oqM4fjxAfgEAPkAA/gEAflAAfiAA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEAvgEAfpACESARAV4QAD4YAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAA==",
-"/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA1gEAAAD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQBKAQAALv6UGf6UGf6UGf6UGf6UGf6UGf6UGf6UGf6UGf6UGf6UGf6UGf6UGf6UGf6UGf6UGf6UGf6UGf6UGf6UGf6UGf6UGf6UGf6UGf6UGeKUGQTwP8l7EQg+AQBeGAD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQCeAQA+wAT+EAD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQ==",
-"AP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAJ4BAB4oN94IAOYBAAAv5jsA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEAugEAftwFfgEAPkAAPgEAniAAEQHeMAARARFAEQG+EAD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQC+AQCxYN4IAP4BAN54ABE4/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEAhgEAAC3+ozb+ow==",
-"Nv6jNv6jNv6jNv6jNv6jNv6jNv6jNv6jNv6jNv6jNv6jNiKjNh70OV4IAH4BAD44AD4BAJ4gABEB3jAAEQERQBEBvhAA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEAUbARCD4BAF4YAP4BAP4BAP4BAP4BAP4BAP4BAP4BAN4BAD4QAv4QABEQEUi+CAD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQDGAQAAK/5zOf5zOf5zOf5zOf5zOf5zOf5zOf5zOf5zOf5zOf5zOf5zOf5zOf5zOf5zOf5zOf5zOWJzOX78PX4BAD5AAD4BAJ4gABEB3jAAEQERQBEBvhAA/gEA/gEA/gEA/gEA/gEA/gEA/gEAPgEAUQARCD4BAF4YAP4BAF4BABFwEQg+AQBeGADeAQA+UABeEAARGL4IAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAA==",
-"/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEAtgEAAAD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQDuAQANAQAY/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQl/sQlKsQlHLudTGS7kgQ/XhMNGBY7hJEhpg9iIAD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQDeAQA4a4F+AV1o5T9iNARQ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",
-"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"};
+	setAttr ".ld" -type "ngst2SkinLayerDataStorage" 16 72009 {
+"ifEnZGEIAAAGAAAADAAAAEJhc2Ugd2VpZ2h0cwEAEQEE8D8BJAkBBPA//ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggA/ggAAQgOEEMmIEMBAf4YQ/4YQ/4YQ/4YQ/4YQ/4YQ/4YQ/4YQ/4YQ/4YQ/4YQ/4YQ/4YQ/4YQ/4Y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E8HTn1jTP8XUT2uGS9E/SKINmNiy0D85mV8QlAjKP+JGiCgONMg/q6xbbGPxyD8gsaMietLJPxPZZRjB08k/mPCZt9/ZyD+ao7ZGu7nGPztr0HHn1cQ/AAD+OiL+OiJWOiJ8cNMddcspFT8W4AlntIgaP88cxAa5eRI/zQ==",
+"5I10hezrPv62AP62AFa2AP4BAP4BAMYBAAAs/rMA/rMAxrMA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEAWgEAJsQrVmEGESD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQCeAQA+sAL+EAAREBFIvggA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEAhgEAACr+ozj+ozj+ozj+ozj+ozj+ozj+ozj+ozj+ozj+ozj+ozj+ozj+ozj+ozj+ozj+ozj+ozj+ozj+ozj+ozj+ozj+ozj+ozj+ozj+ozj+ozj+ozj+ozj+oziiozh+PEB+AQA+QAD+AQB+UAB+IAD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQC+AQB+kAIRIBEBXhAAPhgA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/g==",
+"AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQAZAQAu/gs4/gs4/gs4/gs4/gs4/gs4/gs4/gs4/gs4/gs4/gs4/gs4/gs4/gs4/gs4/gs4/gs4/gs4/gs4/gs4/gs4/gs4/gs4/gs4/gs44gs4HpQ+EQg+AQBeGAD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQCeAQA+wAT+EAD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQDuAQANAQAA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/g==",
+"AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQCOAQAE8D8W5jHeCADmAQAAL+Y7AP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BALoBAH7cBX4BAD5AAD4BAJ4gABEB3jAAEQERQBEBvhAA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEAvgEAsWDeCAD+AQDeeAAROP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAA==",
+"/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEAhgEAAC3+ozb+ozb+ozb+ozb+ozb+ozb+ozb+ozb+ozb+ozb+ozb+ozb+ozYiozYe9DleCAB+AQA+OAA+AQCeIAARAd4wABEBEUARAb4QAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAFGwEQg+AQBeGAD+AQD+AQD+AQD+AQD+AQD+AQD+AQDeAQA+EAL+EAAREBFIvggA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/gEA/g==",
+"AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQD+AQDGAQAAK/5zOf5zOf5zOf5zOf5zOf5zOf5zOf5zOf5zOf5zOf5zOf5zOf5zOf5zOf5zOf5zOf5zOWJzOX78PX4BAD5AAD4BAJ4gABEB3jAAEQERQBEBvhAA/gEA/gEA/gEA/gEA/gEA/gEA/gEAPgEAUQARCD4BAF4YAP4BAF4BABFwEQg+AQBeGADeAQA+UABeEAARGL4IAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4BAP4B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"};
 	setAttr ".imo" -type "string" "{}";
 createNode multiplyDivide -n "L_Arm_RK_03_Twist_Jnt_ParentMult";
 	rename -uid "058F36BC-4FF3-D6BB-F345-449F8543CF01";
@@ -19321,12 +19554,6 @@ createNode unitConversion -n "unitConversion11";
 createNode unitConversion -n "unitConversion12";
 	rename -uid "DE73B5EC-4F5C-A83E-8218-7DA6FF65CAEC";
 	setAttr ".cf" 0.017453292519943295;
-createNode animCurveTU -n "Toad_Trooper_V3_visibility";
-	rename -uid "D45FC464-4D7B-4BE9-AB31-C8BDCCAAF11A";
-	setAttr ".tan" 9;
-	setAttr ".wgt" no;
-	setAttr ".ktv[0]"  24 1;
-	setAttr ".kot[0]"  5;
 createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_530__pntx";
 	rename -uid "0B4F34C3-4939-377E-7B96-C483C7F8A75C";
 	setAttr ".tan" 18;
@@ -20047,13 +20274,1978 @@ createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_2112__pntz";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_10__pntx";
+	rename -uid "78239616-4F0C-6A3C-0DF0-489BA79A9180";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_10__pnty";
+	rename -uid "0756BC59-41B1-9392-30E7-C5BEA66156F7";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_10__pntz";
+	rename -uid "958A001B-4FE1-CBA1-6447-4C832277837E";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1177__pntx";
+	rename -uid "D270E1AF-4B20-56B2-E625-80B93BA714CF";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1177__pnty";
+	rename -uid "6307C995-4C89-709B-3F36-AAA6222688F3";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1177__pntz";
+	rename -uid "2A74A104-4324-90BA-2FEA-2F8F31E0FA18";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1178__pntx";
+	rename -uid "DC4ADE7B-49DD-1A4C-BD42-D784F9379C77";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1178__pnty";
+	rename -uid "ADE82529-4591-5DCC-46DD-AF899D37756B";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1178__pntz";
+	rename -uid "EF39885E-46ED-EEF7-2AD6-5891D4FF8D3E";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1179__pntx";
+	rename -uid "611A9D5A-4C1A-EE85-2F9B-37B8E73253B8";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1179__pnty";
+	rename -uid "3E62879C-4420-3F44-B53E-AEB9A6F49AD8";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1179__pntz";
+	rename -uid "1A117EE0-4A97-38B1-1F47-E398DCBA7D7F";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1180__pntx";
+	rename -uid "13D8C962-4E73-7ABD-1545-3DA4AB422FC5";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1180__pnty";
+	rename -uid "FC641802-4105-8137-CFCF-3A89590C5C9D";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1180__pntz";
+	rename -uid "A7976DE1-44F7-E550-AD74-CEA74F6262D9";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1181__pntx";
+	rename -uid "8F6FA4EF-47BB-7725-958F-75AFBE6AC71A";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1181__pnty";
+	rename -uid "4FEDD5E4-438E-C220-4839-64AC3726D929";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1181__pntz";
+	rename -uid "C4AAB19E-4F51-6F45-BD72-E4A2F743D5EA";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1182__pntx";
+	rename -uid "531194C1-4A1C-8FDB-1291-9CB8F33B9AE3";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1182__pnty";
+	rename -uid "0778025E-4EAB-8A50-0E14-3FA7215A3BAF";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1182__pntz";
+	rename -uid "E03090D2-4694-56AC-96E8-A9AABAF12298";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1183__pntx";
+	rename -uid "2716F38D-49A3-4A39-AE02-679A46FDF86F";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1183__pnty";
+	rename -uid "28231774-491E-6F46-F302-14A0D0A8AB94";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1183__pntz";
+	rename -uid "E61451B5-499E-A2AC-7A40-F78BF44CCD89";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1184__pntx";
+	rename -uid "2012950C-48D6-0C89-5D07-A2AE9A646C3C";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1184__pnty";
+	rename -uid "06591F09-45D1-44CB-8E1F-FB8A6681B29F";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1184__pntz";
+	rename -uid "39BEF7C4-4F36-B3A1-C24E-57860E3DE9A6";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1185__pntx";
+	rename -uid "CC85B9FD-4200-F3D2-B4D9-BAA029E5523F";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1185__pnty";
+	rename -uid "78891FF1-439A-E760-3A09-5DA698B1F448";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1185__pntz";
+	rename -uid "63D2A3FC-4669-FE30-B1E0-54A52B677B32";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1186__pntx";
+	rename -uid "E739ABC1-433E-5C0D-0CEC-BCBEE96E2DDC";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1186__pnty";
+	rename -uid "E7462123-42E7-F306-0A52-4E812093F601";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1186__pntz";
+	rename -uid "60776853-45D4-EE7F-554E-3588D76C674F";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1187__pntx";
+	rename -uid "B6B4A6F8-41AD-0931-B463-ACB322454EFD";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1187__pnty";
+	rename -uid "FBED415A-4593-D391-8330-CABCD3C86075";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1187__pntz";
+	rename -uid "9A67D2C2-4A54-AD5D-E35B-D88B5904A9DC";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1188__pntx";
+	rename -uid "D82E2FF7-4BD9-9C29-D615-19ACD3B9AB7B";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1188__pnty";
+	rename -uid "D84F708E-44C5-74D1-6EB7-71AB8DED5CCB";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1188__pntz";
+	rename -uid "756E5046-4E01-A4BF-2E2E-59ABA61CDCD0";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1189__pntx";
+	rename -uid "F236414F-4BE2-A686-051A-819E7EFD4549";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1189__pnty";
+	rename -uid "2952BF73-46BF-A5A1-105F-6DBC6D6E7366";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1189__pntz";
+	rename -uid "9F53392B-43EE-075B-6D18-DCBBB7B32DD5";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1190__pntx";
+	rename -uid "F859E9FE-4A73-8A2F-F4C0-E5BA5DD7F222";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1190__pnty";
+	rename -uid "8E0F4668-492D-8BA4-8C9C-DF86A91D51A1";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1190__pntz";
+	rename -uid "85BC0BDC-4AE6-5823-6255-CC821FE3825F";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1191__pntx";
+	rename -uid "C52740EF-4701-EE58-4AC6-5499EEA65D44";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1191__pnty";
+	rename -uid "10E6FCF6-4BDE-51A2-A4E6-7788C374664B";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1191__pntz";
+	rename -uid "C9A1D58B-450D-3286-10CA-FB88F784983A";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1192__pntx";
+	rename -uid "8E0BEBAA-45D6-5B64-DA10-E78F7536FB06";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1192__pnty";
+	rename -uid "FAB366D8-4F73-7145-DBC5-3DAF79734D54";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1192__pntz";
+	rename -uid "27A3F977-4C47-64B1-B882-B19F4D541850";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1193__pntx";
+	rename -uid "9955E9E6-4241-521D-5F93-4796AF2C45D6";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1193__pnty";
+	rename -uid "84D8F013-4D46-5868-DE91-4C8433DE6967";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1193__pntz";
+	rename -uid "39439BAE-436A-F3E7-BD4B-12AFEEFB6423";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1194__pntx";
+	rename -uid "334FFFD8-43F0-F151-5004-768328A5839A";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1194__pnty";
+	rename -uid "6A7D86D1-4BBA-B07A-F016-F991AFF54DC2";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1194__pntz";
+	rename -uid "C6BD2450-40B2-9532-FF3C-A28CBEA0B63C";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1195__pntx";
+	rename -uid "EE011065-4784-40E7-545E-B79050A55A7F";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1195__pnty";
+	rename -uid "BC7CBD93-4236-F5FA-2253-C5A6984BF281";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1195__pntz";
+	rename -uid "CB68D24F-4905-B84B-BB06-BCB208C7DC7B";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1196__pntx";
+	rename -uid "2539FD8F-4C1D-BC17-4796-1BA4F885C51B";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1196__pnty";
+	rename -uid "01A38CE3-419C-A848-9AC1-CE9E88C6EC59";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1196__pntz";
+	rename -uid "20D5D94F-4C1D-4EF0-CAA8-E6838FFEFD48";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1197__pntx";
+	rename -uid "28CC16B5-4A8B-067F-37B3-16BDFD9D4F63";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1197__pnty";
+	rename -uid "646C1BDD-4CDB-D8C0-4C2E-518748BFADF5";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1197__pntz";
+	rename -uid "8195027A-4809-4CD3-B155-DC97F1C9FB38";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1198__pntx";
+	rename -uid "3CF802EE-49EB-10B7-9E84-989819BF0283";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1198__pnty";
+	rename -uid "E3F5889F-4FA8-2AED-E6CA-69823D937F56";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1198__pntz";
+	rename -uid "78D00BCA-4C67-2A6D-EEFD-D79083F82B0E";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1199__pntx";
+	rename -uid "CB92C547-4C8E-3216-E5D3-3AAFAF20A756";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1199__pnty";
+	rename -uid "1A92FC33-4A88-6A44-7FA5-BFA8C3B34ED3";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1199__pntz";
+	rename -uid "4F8C5179-4E8B-CBDA-2F63-72B43A2CA99E";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1200__pntx";
+	rename -uid "97F4CC71-40C1-F697-4804-398D4B5D762E";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1200__pnty";
+	rename -uid "FE84739C-40AE-8081-DF9C-498EABFF350B";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1200__pntz";
+	rename -uid "26D34083-4105-FCE3-AE23-23A586731365";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1201__pntx";
+	rename -uid "5D4893E2-4D51-B0BE-EAE5-A287E743C3F8";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1201__pnty";
+	rename -uid "E7129B07-4E85-8650-A1D9-3388A4FDCDD6";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1201__pntz";
+	rename -uid "3030D8EF-4E8B-CB2C-53EB-52BAB8C5298D";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1202__pntx";
+	rename -uid "AE0F9005-4099-8EF1-A66E-1F8E87E42035";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1202__pnty";
+	rename -uid "3167A8A8-4355-4214-CDC4-3B860B382C82";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1202__pntz";
+	rename -uid "7586C4D8-41D6-05C3-BE8E-69AC655B3196";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1203__pntx";
+	rename -uid "648152CE-46D6-7B7E-515A-3FA961A3A0F4";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1203__pnty";
+	rename -uid "821F22E8-4B7B-75C1-F5B5-12BA57342E54";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1203__pntz";
+	rename -uid "A45AF6B1-4E2D-A60B-CD2E-FC999DD27D10";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1204__pntx";
+	rename -uid "A0A9898C-43F1-870D-3E46-B79692D3BB03";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1204__pnty";
+	rename -uid "54ADE6D4-4ED7-BC8E-2CB6-878510208696";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1204__pntz";
+	rename -uid "E30D588E-4DB3-8A69-88E5-ED999A92FB32";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1205__pntx";
+	rename -uid "1C486B61-4B41-D783-0845-FEA5234797BE";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1205__pnty";
+	rename -uid "44734656-46B7-51D8-68DB-A28A5050C97C";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1205__pntz";
+	rename -uid "638F16AB-4C81-CEA6-88A0-6696F747FA70";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1206__pntx";
+	rename -uid "9D3123C6-42ED-DDBD-0841-34A533E59E18";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1206__pnty";
+	rename -uid "95CAB364-47F9-D88B-EA89-15B041699315";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1206__pntz";
+	rename -uid "C263378A-4B01-33E5-3B7F-93B66A6F052D";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1207__pntx";
+	rename -uid "95ABAF7E-4BEF-CA72-A78C-82B56C2275C3";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1207__pnty";
+	rename -uid "06AF4326-4869-6D9E-5951-1283E68515AF";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1207__pntz";
+	rename -uid "BDC663EF-44BC-332B-73FE-DA8838F7E3DB";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1208__pntx";
+	rename -uid "8B930320-4CF7-B42D-8BE7-F9995CDCB716";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1208__pnty";
+	rename -uid "0061EC56-4CCA-FB72-FAA6-BAA6781E1771";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1208__pntz";
+	rename -uid "B15C9C74-4925-BB33-7688-DB842324E8FC";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1209__pntx";
+	rename -uid "25AC0E70-4031-18D7-4A85-17817ED3583E";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1209__pnty";
+	rename -uid "281707DE-4440-10BD-4F50-9F95A9F7C836";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1209__pntz";
+	rename -uid "6EACC6D5-4932-CF1C-169B-598BF601684E";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1210__pntx";
+	rename -uid "2A60F66C-4EFF-82BA-CB96-CF85C59A3066";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1210__pnty";
+	rename -uid "58D121BA-42AF-0743-B891-CAAE85077C57";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1210__pntz";
+	rename -uid "737202AC-4577-1126-2505-AA945BCBE266";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1211__pntx";
+	rename -uid "1E676CDD-4BA5-257D-BD45-27B465D70340";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1211__pnty";
+	rename -uid "799A55DC-4311-E23A-C424-00843B02E8C2";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1211__pntz";
+	rename -uid "D939108B-439A-4CC9-F976-1D9211920540";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1212__pntx";
+	rename -uid "BA8C5216-4D9E-3692-8E33-65AA78FA8F3A";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1212__pnty";
+	rename -uid "98969AC9-4381-4BA7-8404-4E827B931838";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1212__pntz";
+	rename -uid "2DA04F7B-4DF0-5B26-4D01-2987D401189E";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1213__pntx";
+	rename -uid "2F0F609C-4C82-DE17-508A-BDB02244CF12";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1213__pnty";
+	rename -uid "BC4DDAE9-4C2C-62FE-790F-3B8FD4964CEE";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1213__pntz";
+	rename -uid "08BB9B15-4352-3A88-B851-15B7B0BAAFCA";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1214__pntx";
+	rename -uid "A4724FC9-4859-548C-3DD0-6ABD28723282";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1214__pnty";
+	rename -uid "4103DA13-480A-C208-274C-809A286C8B50";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1214__pntz";
+	rename -uid "5DB26CEE-4B82-BE9E-BBA0-A8B2FCE59517";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1215__pntx";
+	rename -uid "C4672D30-43EA-8390-A47D-0988D7FACB74";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1215__pnty";
+	rename -uid "1F170953-4B88-B732-5C33-35AE042E1467";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1215__pntz";
+	rename -uid "59BA4B07-4D1B-A332-1B60-BD8E9FDDDFFD";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1216__pntx";
+	rename -uid "AAB4ADD0-4724-52AE-E50A-9BBF60992342";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1216__pnty";
+	rename -uid "D23FCCBD-4968-CE16-3FB9-A88899E60E49";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1216__pntz";
+	rename -uid "4ECA061D-418B-F3C0-FC00-B7A058F0A1AC";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1217__pntx";
+	rename -uid "CFE3E2B8-4F2E-9F58-DB83-CAB07B559630";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1217__pnty";
+	rename -uid "04D051E6-429D-004C-D645-C69EEAF2CC26";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1217__pntz";
+	rename -uid "D47B77EA-4D01-9E01-C292-B6B85FC1026E";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1218__pntx";
+	rename -uid "F60E159B-40C6-E935-7275-C5A421B16C8D";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1218__pnty";
+	rename -uid "AC3DB2A7-400B-9AAE-D110-C99324BEDEBF";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1218__pntz";
+	rename -uid "4626598B-4DDA-B849-32C7-3D841F8ABF46";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1219__pntx";
+	rename -uid "59587E4F-4E01-E7E3-C444-62A061C6602F";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1219__pnty";
+	rename -uid "1433521B-4A8C-5E9C-CC3E-DF88C5F2D060";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1219__pntz";
+	rename -uid "F81BCDFC-49EA-1EA7-E32C-B1970908131C";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1220__pntx";
+	rename -uid "CC1B3E88-42E3-F45B-F4D5-FD82850AB23D";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1220__pnty";
+	rename -uid "CC5876E4-4ACD-1105-1D5F-F4AFEB197E9D";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1220__pntz";
+	rename -uid "8B24C09B-4C89-51F3-F9AC-35878D75D2D2";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1221__pntx";
+	rename -uid "77ED1898-470A-8984-6BE6-CEAF263151D0";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1221__pnty";
+	rename -uid "A4524A0F-4655-6809-6CDA-B3A023ECEBF9";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1221__pntz";
+	rename -uid "9CE7CF7E-4A64-136C-DF61-49BC8F2F349E";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1222__pntx";
+	rename -uid "092652C5-4993-5B29-2DAA-A8ACFD30A494";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1222__pnty";
+	rename -uid "DCD91C9E-4129-FB88-5087-63B5DFC7833C";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1222__pntz";
+	rename -uid "F1EF96B8-41A8-E537-2B88-ACA12F5EE1BE";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1223__pntx";
+	rename -uid "FE1CDA42-40DB-1B68-9C3B-A6BD52FA547A";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1223__pnty";
+	rename -uid "CD81A44C-4D8D-F83A-9084-938E23DB274E";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1223__pntz";
+	rename -uid "9C2185D2-47F5-9236-330B-8AA542801DF2";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1224__pntx";
+	rename -uid "817B891F-4D8B-7C92-CCC5-BF9B740B9297";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1224__pnty";
+	rename -uid "927E5DAB-4FC5-3F6D-139E-24B7B00D3C0E";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1224__pntz";
+	rename -uid "FFD8A4C9-4046-F701-F6A7-3DAE272E2B30";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1225__pntx";
+	rename -uid "61A7087B-43C1-DDF6-6907-F79AE06D7CCD";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1225__pnty";
+	rename -uid "0B24E963-4A37-95E4-192A-F1BC6C80B2C1";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1225__pntz";
+	rename -uid "C28F1548-4B8D-6B1D-FC18-DBA61E0D5E57";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1226__pntx";
+	rename -uid "AE4E24EF-45EB-E034-556E-6BBC04A49C3E";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1226__pnty";
+	rename -uid "573DD7AA-47DE-2BC4-82D5-5E850F89308E";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1226__pntz";
+	rename -uid "D2D06DA0-44B0-6E06-42FF-ACB084F19DD6";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1227__pntx";
+	rename -uid "91E7BB60-4D27-5B54-9035-14AEB4228752";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1227__pnty";
+	rename -uid "F8538C72-4BD3-9379-FF9B-AAA5FD2632F8";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1227__pntz";
+	rename -uid "A9604F7C-4134-33EF-2A53-A29D88F4E671";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1228__pntx";
+	rename -uid "4CF8DB58-464D-F871-FFFC-D2918D68A19D";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1228__pnty";
+	rename -uid "A8BBE44F-4835-D55E-F73F-B4B218D1D9AA";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1228__pntz";
+	rename -uid "57F87BC0-41F8-A5AE-6BF2-7C92A4AA4D38";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1229__pntx";
+	rename -uid "17CDA1EA-4B0B-9142-0193-1196E08F0601";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1229__pnty";
+	rename -uid "016BBF12-49C9-AAF4-3AFB-1E961464FE2B";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1229__pntz";
+	rename -uid "1CD41F3E-4ADE-DBA9-F7F8-B99BE0C4B1B0";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1230__pntx";
+	rename -uid "1BA4F696-4C18-0D5C-CD62-2D9351742E9A";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1230__pnty";
+	rename -uid "2738DCE2-42AE-2333-9828-A59A00D74CEA";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1230__pntz";
+	rename -uid "45A228DE-4C17-5989-9D1B-539579C1426A";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1231__pntx";
+	rename -uid "4714FEE6-40E7-528F-D27B-BEA0E37190CE";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1231__pnty";
+	rename -uid "8503DF7B-484B-E1CB-539C-BEAD878EE35C";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1231__pntz";
+	rename -uid "ECD2FDB9-47B3-A471-1514-8880F4D7F25C";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1232__pntx";
+	rename -uid "844A9892-4820-B28F-0272-B7860ED40DFB";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1232__pnty";
+	rename -uid "C1FAA24A-4DFB-B46F-0471-2F8696A75C0B";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1232__pntz";
+	rename -uid "02FECD05-47BA-E699-8F31-7E9E0C92443E";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1233__pntx";
+	rename -uid "D3AC42CF-42A2-5B75-CDE1-7AA3A8C52B98";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1233__pnty";
+	rename -uid "A0EE296C-4EC1-D34F-601E-6BB1215CA8F7";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1233__pntz";
+	rename -uid "B4163EF7-4AF0-1497-924C-5A9A3879909E";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1234__pntx";
+	rename -uid "A5FAB5A8-473D-72D3-B7ED-E696A8855352";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1234__pnty";
+	rename -uid "2DB34686-47BB-D8C0-4FC2-218ED9947F3D";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1234__pntz";
+	rename -uid "E8D970AB-4C00-13B0-A78F-5C887E1DB545";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1235__pntx";
+	rename -uid "69B00AFE-40A9-D8C8-CF5F-FAB66707E3EF";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1235__pnty";
+	rename -uid "EEAA6FEA-48BD-783F-3394-D8B56B507472";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1235__pntz";
+	rename -uid "04C5E22C-4B66-4717-B105-6992FAB006CA";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1236__pntx";
+	rename -uid "8DC6BBD5-4DD7-3C0B-4927-588A2CAF0365";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1236__pnty";
+	rename -uid "4222583A-4898-4229-15E3-25A118FE23AD";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1236__pntz";
+	rename -uid "575022D7-468F-CA8D-4AF0-D5AA76CDF001";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1237__pntx";
+	rename -uid "FAA4B20A-4F5F-0D08-B510-68A192A8D321";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1237__pnty";
+	rename -uid "94CECBDF-4B71-97D2-54D1-BDBB4920EE32";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1237__pntz";
+	rename -uid "76D2DD79-4ACB-C75D-AC63-77A073D01D2E";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1238__pntx";
+	rename -uid "8F24E672-4E28-937F-0E18-CF9FE9872BD8";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1238__pnty";
+	rename -uid "621E527B-4227-83EE-D036-98844F7C0F87";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1238__pntz";
+	rename -uid "BA341286-48B3-86F5-CEB4-04AEEFFBB1CE";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1239__pntx";
+	rename -uid "3C792758-4A26-6008-218D-E3BA41B53446";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1239__pnty";
+	rename -uid "580A49C7-4565-6401-6ECE-2096C020FCD2";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1239__pntz";
+	rename -uid "281F08DC-4771-4582-9F84-949346218CEC";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1240__pntx";
+	rename -uid "9C5EC10B-48D8-F599-D145-4095589EAD88";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1240__pnty";
+	rename -uid "45042112-4067-444E-137A-3A96B2486FF4";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1240__pntz";
+	rename -uid "BEDD8C4C-49EA-E8AB-2E4E-75ACAB9423D5";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1245__pntx";
+	rename -uid "1B08EECA-4CB9-0658-5493-BF82D2F13ACC";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1245__pnty";
+	rename -uid "3EA9E73F-422B-A807-3B12-E79287F3675B";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1245__pntz";
+	rename -uid "E88A6166-4198-24C4-6CD4-FD804CDB7C89";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1246__pntx";
+	rename -uid "8C3A028D-43D9-BEF1-CA89-D3B8FDDF68E7";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1246__pnty";
+	rename -uid "E08F3AEB-45B3-20D2-6417-9589837D0345";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1246__pntz";
+	rename -uid "674CD20A-4772-2611-8353-EBAA8FD3D032";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1247__pntx";
+	rename -uid "D9BA0D75-4E86-807B-DDE2-49A2394048A6";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1247__pnty";
+	rename -uid "DFC70142-474C-C899-C668-69BAD1B1DC11";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1247__pntz";
+	rename -uid "957ABB83-45F6-F27A-5C1F-B280BE106D6C";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1248__pntx";
+	rename -uid "A7635A93-40C9-FAB1-C5B1-5B9740C35B67";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1248__pnty";
+	rename -uid "456FA287-41A8-6F58-1FEC-0F9EF78CD61E";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1248__pntz";
+	rename -uid "B937107D-4ACC-9D8A-1E51-A580B0073F38";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1249__pntx";
+	rename -uid "05C0F971-4DC0-149B-F898-E08828883617";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1249__pnty";
+	rename -uid "146F4875-47DD-A784-D92B-07B867B0E5BE";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1249__pntz";
+	rename -uid "F1FEA72A-486E-120A-C485-E7BB8EBD3AA1";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1250__pntx";
+	rename -uid "56021B2C-468E-2E82-C8D2-9980F8305E4F";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1250__pnty";
+	rename -uid "562E9938-405A-31F2-4D25-C1ACC2822C89";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1250__pntz";
+	rename -uid "016A5640-4BB3-74DC-8510-66897BB0DDE6";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1251__pntx";
+	rename -uid "17537AEF-4F88-F37F-C9E7-9AA0F5944BCE";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1251__pnty";
+	rename -uid "3B460C68-4F31-0596-4BF7-D8A51185E4EF";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1251__pntz";
+	rename -uid "38D2B353-4FD7-DBFF-E88D-04AABFC6ADE8";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1252__pntx";
+	rename -uid "95F9051D-4DC0-A515-B460-0DAA56CD80C1";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1252__pnty";
+	rename -uid "3D5FC9B9-404F-8CFD-6B2D-3CB4AA736563";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1252__pntz";
+	rename -uid "15308413-4D92-CF62-6DC8-A792A3CAF0B1";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1253__pntx";
+	rename -uid "7BC1D9EE-42FE-A409-D5AE-599FC94CC934";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1253__pnty";
+	rename -uid "F5195A2D-4AE2-1991-7DB5-3784D3D506D3";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1253__pntz";
+	rename -uid "86C3C307-4DBE-8699-20B6-50B9936CD3F1";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1254__pntx";
+	rename -uid "5F1746C2-478C-7DD9-3418-158A8D1E03D5";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1254__pnty";
+	rename -uid "3994216E-4658-AE41-C408-FCB6A1724D80";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1254__pntz";
+	rename -uid "E81D8CF1-4066-F90C-7259-EDBC84CCE37E";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1255__pntx";
+	rename -uid "D934A5C8-4682-55E3-1D2A-529F9C07271B";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1255__pnty";
+	rename -uid "F443F192-4B11-25AC-A87B-DA9D77B443B5";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1255__pntz";
+	rename -uid "98746E5E-468F-7102-83F7-DB9C2DB3295C";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1256__pntx";
+	rename -uid "C3CC9EC0-4729-21E8-81EB-208103376F6D";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1256__pnty";
+	rename -uid "5ECF3524-4E04-D08E-73F0-EF9749D65D9C";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1256__pntz";
+	rename -uid "7CF4EC36-4D2A-D571-D817-B3934680F27B";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1257__pntx";
+	rename -uid "AA0B0F4A-40CB-8FDF-7062-59815D7B1FE5";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1257__pnty";
+	rename -uid "DFE66A32-47EC-7B34-39D6-7B9BF32BA766";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_1257__pntz";
+	rename -uid "9E1E801F-4F76-09A0-C888-32B00654D52A";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_13__pntx";
+	rename -uid "4124F50A-4015-1A97-5F7F-D193FD0D3ADC";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_13__pnty";
+	rename -uid "94A37547-44C0-2497-8ADA-98B001A89D2B";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_13__pntz";
+	rename -uid "65E142F4-4AC0-066E-4070-7386D6759498";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_14__pntx";
+	rename -uid "92C7149E-4F45-E229-61A5-44AC193947BE";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_14__pnty";
+	rename -uid "FEDAFD34-4790-5E29-0505-70982F2B095C";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_14__pntz";
+	rename -uid "F3317DE4-477B-F09F-BDEE-C0ACE8FA156C";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_17__pntx";
+	rename -uid "6C1CD423-45E0-5F4D-80BB-E2B162315728";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_17__pnty";
+	rename -uid "D60AE319-415E-8E18-B833-1093964E682C";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_17__pntz";
+	rename -uid "07C784E2-4B63-1ADA-2455-C8B85A656D83";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_18__pntx";
+	rename -uid "49EBAB7D-4789-0ED7-E120-87A845EF2570";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_18__pnty";
+	rename -uid "47B8911C-4E86-87EC-27CC-ADA7AB9EC146";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_18__pntz";
+	rename -uid "B3C44F98-49D9-6B62-DC9A-BC934503F4B5";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_21__pntx";
+	rename -uid "3CD28774-43CE-A3D1-7068-CD94F5BFCC6A";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_21__pnty";
+	rename -uid "62016C69-42AE-A800-487D-1D9B18EC2047";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_21__pntz";
+	rename -uid "F2B84554-4E71-786C-6E98-309F8FF4BB4A";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_22__pntx";
+	rename -uid "4010A052-44EB-21C6-FB0C-C3AB889CA67A";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_22__pnty";
+	rename -uid "33EC76D0-4F98-2BAD-0644-7FB74237631B";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_22__pntz";
+	rename -uid "1B0BEE87-4D73-77ED-5700-DEBB80BC8168";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_25__pntx";
+	rename -uid "710E678C-4383-32B4-1EAE-7A8F500B1984";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_25__pnty";
+	rename -uid "E06454AC-4E57-A7D9-0E09-15A31423951F";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_25__pntz";
+	rename -uid "BD0EF42B-4D93-0EEE-8964-5D9D96D63D56";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_27__pntx";
+	rename -uid "F16B662E-41EF-C85E-E97B-2EB8CAD66454";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_27__pnty";
+	rename -uid "9346849D-4B30-2CF6-BDF4-C0A2B29D8E98";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_27__pntz";
+	rename -uid "B6697692-493B-CDAF-4785-458F2BD5DEA6";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_29__pntx";
+	rename -uid "CD966884-4EDD-5923-2F3E-508C77A9850C";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_29__pnty";
+	rename -uid "B8020E51-46CF-C4A6-2355-238749434A42";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_29__pntz";
+	rename -uid "284E9749-4023-E82A-0587-56A1A7ED2245";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_2__pntx";
+	rename -uid "CECBE454-435F-C0CE-EAC6-8098BEBD5B48";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_2__pnty";
+	rename -uid "3B958F90-43E5-2403-5C91-83A2F2FF8706";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_2__pntz";
+	rename -uid "4243B717-47F9-8A16-4B2B-44A0E5DD3217";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_31__pntx";
+	rename -uid "733E837E-42C5-9B29-BD45-60A39B800DAB";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_31__pnty";
+	rename -uid "98DDC89F-4B98-BDC3-DB50-969EAF2E682C";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_31__pntz";
+	rename -uid "66F1EB33-4ED6-655E-C446-0CA7D619329D";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_33__pntx";
+	rename -uid "667B5568-41C6-FAF1-AB19-B08AB1AC64EA";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_33__pnty";
+	rename -uid "5D890411-4229-77E6-5382-EEA6092E0389";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_33__pntz";
+	rename -uid "B38A8C8B-4C6E-C746-1A54-03BFA24CDA34";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_35__pntx";
+	rename -uid "14DF46B6-4C9A-A4AD-A92E-7595D1D6D64A";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_35__pnty";
+	rename -uid "FB096126-4EC4-FB22-B154-A5A2FFD5B135";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_35__pntz";
+	rename -uid "A7C6AE4A-4E6E-214B-B58C-F59D7F1A6EC7";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_36__pntx";
+	rename -uid "1E942440-4ED5-6157-5085-98958A2431FE";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_36__pnty";
+	rename -uid "A7BE4AC3-440A-EF92-69F6-16B9060810AC";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_36__pntz";
+	rename -uid "970138BF-4784-0E8C-7815-67BD525A75CA";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_37__pntx";
+	rename -uid "EB2BB2E5-40AD-17D2-D2DA-C6BA56BEFFF9";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_37__pnty";
+	rename -uid "2298F82A-4A12-BAAE-1A06-4C884E5FB3D2";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_37__pntz";
+	rename -uid "8CD5236D-4149-0A5E-4817-8392848FD7DC";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_38__pntx";
+	rename -uid "01262639-4E0A-60D3-477D-94A2C9DAB49F";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_38__pnty";
+	rename -uid "6DE6115B-41B0-257D-A7A3-A8AF8F92CF68";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_38__pntz";
+	rename -uid "7A1C4825-4453-4FF9-5226-97A3940EFB4B";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_39__pntx";
+	rename -uid "B451DEAF-472E-98E8-C9EB-31B9D85E34D0";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_39__pnty";
+	rename -uid "BD929233-459E-8847-24D8-029C70406AC5";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_39__pntz";
+	rename -uid "C117D4AF-4A7B-8433-783F-4EA029F76703";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_3__pntx";
+	rename -uid "3E81E51D-4146-8281-CF4E-919B9BC7116F";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_3__pnty";
+	rename -uid "B2417C9D-4C98-479C-C4EC-FEAAD500A398";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_3__pntz";
+	rename -uid "D5062D1F-448B-0C5B-36A0-85A403276138";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_40__pntx";
+	rename -uid "69EF399B-401A-4215-7A8E-49996796E764";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_40__pnty";
+	rename -uid "00D1A6A4-4A1E-CE61-DF6D-B1A0DFDE9C16";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_40__pntz";
+	rename -uid "EAB1E030-4754-B892-B797-D88D0BB21CBC";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_41__pntx";
+	rename -uid "004A6787-45AB-57C3-4F7C-C0909D7257D5";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_41__pnty";
+	rename -uid "F12376D0-4204-7A1E-DF74-5ABFE6D88EDE";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_41__pntz";
+	rename -uid "8777D868-44D5-1BF3-E667-308D8A1F48B5";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_42__pntx";
+	rename -uid "EDC41B8C-4C23-814B-011B-9DA5B31F7DC9";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_42__pnty";
+	rename -uid "876CAC51-4F41-A912-869B-34A637E0BBF3";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_42__pntz";
+	rename -uid "A0ECE951-4994-FF14-3A49-5BA83CA3FD90";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_43__pntx";
+	rename -uid "132EECF1-4336-EDD9-BB6F-4B80E05F9851";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_43__pnty";
+	rename -uid "CBDE5C8E-4964-B170-8686-129B7633D652";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_43__pntz";
+	rename -uid "D274250F-4BA1-EE85-6227-0E8B154D21C3";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_44__pntx";
+	rename -uid "0810FCA1-4767-0BBC-B9A5-2994A275BC32";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_44__pnty";
+	rename -uid "157EE849-4F27-EA5F-99A4-5589257344DE";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_44__pntz";
+	rename -uid "C8BE2D42-4B9D-7FD3-90B0-C0A1A75E7600";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_45__pntx";
+	rename -uid "DBE95B69-42A0-9CD8-A470-4888D1C465DF";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_45__pnty";
+	rename -uid "21DDFA20-406A-4227-8B16-5FA8EDF7BAA0";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_45__pntz";
+	rename -uid "D284E24C-4E2C-8FA3-ABE2-D9BFC8EB41E0";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_46__pntx";
+	rename -uid "E9D64C89-4146-F32A-206F-779E524086F3";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_46__pnty";
+	rename -uid "E9BD5AB8-468A-3C78-7C5F-C3B648FE803D";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_46__pntz";
+	rename -uid "C872C458-40D9-6370-7565-7E941E9DD7BE";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_47__pntx";
+	rename -uid "32C15DB1-4C7C-0FFE-3C3B-278895851BDD";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_47__pnty";
+	rename -uid "C213E377-41A8-CE5C-9DD2-2DA26C28CF30";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_47__pntz";
+	rename -uid "004B736D-4BD6-DF5C-B5A0-1CA7C285BE38";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_48__pntx";
+	rename -uid "9F63773D-4A4F-8E28-1321-F7B924EDE04C";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_48__pnty";
+	rename -uid "EC3A080D-4E29-6A3D-F6EF-F98B6E46A898";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_48__pntz";
+	rename -uid "A66854CA-47B3-D4C7-2284-60AD7E93FE95";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_49__pntx";
+	rename -uid "67FA238E-4744-4B51-DB7A-3EACAA401A8C";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_49__pnty";
+	rename -uid "B12618B3-42BB-95AD-FB3C-D38B16B1E4CB";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_49__pntz";
+	rename -uid "E170F4A0-4313-AEA8-2C0C-BB9898B55E83";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_4__pntx";
+	rename -uid "3F4CCD6C-4580-0BCE-8211-E0A50E0AECA7";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_4__pnty";
+	rename -uid "523BFCC0-4E3A-7CBB-3E34-01A395573078";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_4__pntz";
+	rename -uid "CA2069FC-441F-FE2D-FCB2-869E0449CEFF";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_50__pntx";
+	rename -uid "96E8864E-49D9-A003-2CE9-0BB267F52AD7";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_50__pnty";
+	rename -uid "70F1387B-4C97-0407-4615-99B423EE970E";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_50__pntz";
+	rename -uid "66EFDC92-4ADD-3E04-17ED-EAB13A400A2A";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_51__pntx";
+	rename -uid "1A810B01-4181-F654-7A1E-EA85FCD29958";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_51__pnty";
+	rename -uid "C6BD9486-4E99-52DF-FDA2-FEBA69778C17";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_51__pntz";
+	rename -uid "B9B9DDD7-4C51-A653-6E81-7490C618F3AC";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_52__pntx";
+	rename -uid "A88CFAE6-49D4-E45C-50D2-648137F15EA4";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_52__pnty";
+	rename -uid "FAA9ACFC-4A3E-44FD-3395-83887617A926";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_52__pntz";
+	rename -uid "EFCCAEAD-4115-8F33-91BF-D098D0A811E9";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_53__pntx";
+	rename -uid "594AEBEC-48B6-B7F4-415A-84B5DDDF2B22";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_53__pnty";
+	rename -uid "8FCB7882-49F2-5224-95BD-B4ABA84528F1";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_53__pntz";
+	rename -uid "D7574576-4934-9371-8B02-37979EE127DC";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_5__pntx";
+	rename -uid "8C99B670-4A0F-3B9C-94AC-EB9201FB88CB";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_5__pnty";
+	rename -uid "A802551C-4079-5280-7289-038BBFBA7423";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_5__pntz";
+	rename -uid "FA7ADF8C-406C-ADE7-5977-2D8192C276FC";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_815__pntx";
+	rename -uid "F6F99453-446A-6753-36F8-2AA30A1B5121";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_815__pnty";
+	rename -uid "79331F43-47EE-102D-4829-50AA4897F3FF";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_815__pntz";
+	rename -uid "17A0AED7-4615-5E5D-8A61-5B976D0D736F";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_816__pntx";
+	rename -uid "C2E4DC32-4E27-B423-041F-2D838DAA1F09";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_816__pnty";
+	rename -uid "B22F3D36-4852-BAF1-E94D-35B3D9C49222";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_816__pntz";
+	rename -uid "8193EFFF-46CE-A237-8FDA-3C83A56D277B";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_817__pntx";
+	rename -uid "CC38E170-4520-8174-3C93-FEBF3B579970";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_817__pnty";
+	rename -uid "E2080E27-401B-3BF6-2911-E1B400920A71";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_817__pntz";
+	rename -uid "AE1FA73F-4A68-0BFB-E19F-968C91B8D77D";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_818__pntx";
+	rename -uid "68FC29E9-457F-F47D-BAD8-0393A3E0E354";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_818__pnty";
+	rename -uid "2A65D4AE-4D59-CA7C-94D7-AC875228A4C3";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_818__pntz";
+	rename -uid "6FFB5537-4C84-B2E2-CC8B-7EAC2C9665BC";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_819__pntx";
+	rename -uid "4064C6B1-45C7-E1F4-D3C0-728D2BC27C88";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_819__pnty";
+	rename -uid "72ACE99F-4D9E-42CC-27EE-95B21A43CE85";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_819__pntz";
+	rename -uid "398F3C66-43A1-E555-FF76-A491B3CE7C20";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_820__pntx";
+	rename -uid "B7F12B7C-4877-30D1-9157-1597AC56C998";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_820__pnty";
+	rename -uid "8E230F17-408E-9756-3E92-79BB9C41E23B";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_820__pntz";
+	rename -uid "C8452D9E-4BCA-FF4B-CA67-B98F1F2083C0";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_821__pntx";
+	rename -uid "2D5B1D5C-4624-7FB8-35A9-62A7431BECE2";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_821__pnty";
+	rename -uid "DE939420-4E49-CE1E-5F19-FC93270271B6";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_821__pntz";
+	rename -uid "B9AC4AC7-4541-2F31-9E08-82BE655C1D51";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_822__pntx";
+	rename -uid "B1595841-419D-1C64-36EC-D6910277748C";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_822__pnty";
+	rename -uid "69CAB2D8-4E90-8E4E-0F27-429309611153";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_822__pntz";
+	rename -uid "228A9900-4007-E018-4E17-389659272711";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_823__pntx";
+	rename -uid "51D133D3-4FF9-65FE-2B32-129E30337E61";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_823__pnty";
+	rename -uid "FC811C94-4465-BC08-7CB5-EAA874C40A41";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_823__pntz";
+	rename -uid "1022B065-40F3-10A4-CF9C-3092ED9854A0";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_824__pntx";
+	rename -uid "E5DB7003-43A4-5FA4-28F9-A78617EB30E4";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_824__pnty";
+	rename -uid "BAC292B3-4591-1264-65EA-D48DC57FD3D0";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_824__pntz";
+	rename -uid "DAC5DEF2-412C-2A6C-75BA-FEBFD2FC51C7";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_825__pntx";
+	rename -uid "344DAEC8-4290-6E93-C41B-588A1ACEFC6E";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_825__pnty";
+	rename -uid "7BC46F4D-469F-45B1-A454-C3A5408F867C";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_825__pntz";
+	rename -uid "EFB9BFA1-4965-5731-8AB2-ADBFEBCA3A45";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_826__pntx";
+	rename -uid "5D6D3CAF-4F56-7BEC-D5DA-3996E412720E";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_826__pnty";
+	rename -uid "D1B3F824-4540-01C0-0636-EBA8BD8084D2";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_826__pntz";
+	rename -uid "D17D1808-4B92-0370-F029-85A66D0ACA04";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_827__pntx";
+	rename -uid "569F4373-4A9D-673F-8DE3-4AA0C024FCA8";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_827__pnty";
+	rename -uid "8E573837-4134-36FC-0D1C-C386CEF02152";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_827__pntz";
+	rename -uid "D05A83FB-4091-034D-D1D0-63905F2E055C";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_828__pntx";
+	rename -uid "2918E6B9-4AC7-44D4-03B7-83B647EC3E1B";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_828__pnty";
+	rename -uid "D3A4D5F8-4E6D-E718-FC5E-DCB6DE0265BE";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_828__pntz";
+	rename -uid "94714531-4C80-B390-025D-928C627FA104";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_829__pntx";
+	rename -uid "941F7C42-4F47-A130-02FA-1380244F8618";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_829__pnty";
+	rename -uid "B6C0399E-4624-9E1A-92FA-DC99E5EC5DE2";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_829__pntz";
+	rename -uid "9270EFC0-4D29-4455-FD92-7A8FDC111918";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_830__pntx";
+	rename -uid "A00368F6-461F-BAF4-071F-D3B37EC0ED7C";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_830__pnty";
+	rename -uid "5E510A44-47D3-875C-51D5-D1A681F91899";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_830__pntz";
+	rename -uid "7CABFB14-4CDB-F2BE-7A93-0294956B7761";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_831__pntx";
+	rename -uid "14347C6D-4030-FA06-6549-A7998261C403";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_831__pnty";
+	rename -uid "106C3110-4249-6251-0390-CCB29765E355";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_831__pntz";
+	rename -uid "B110259B-4C48-B782-99C4-3BA7F06F0FA8";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_832__pntx";
+	rename -uid "06C93777-4344-B404-8813-E3BA21FBFFC2";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_832__pnty";
+	rename -uid "C9B205B0-4AF2-7E62-DF56-9CA2926415D4";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_832__pntz";
+	rename -uid "5673FC8C-4D76-D51E-46F6-C69E4774095A";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_9__pntx";
+	rename -uid "87D0E1BC-4C2C-19D2-D5BD-AF8888CFC306";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_9__pnty";
+	rename -uid "AA49241A-4B7F-2247-35E3-A3A59289F4FA";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
+createNode animCurveTL -n "Toad_Trooper_V3Shape_pnts_9__pntz";
+	rename -uid "4779C178-449B-07C1-E9B0-63AA7D3628ED";
+	setAttr ".tan" 18;
+	setAttr ".wgt" no;
+	setAttr ".ktv[0]"  14 0;
 select -ne :time1;
 	setAttr -av -k on ".cch";
 	setAttr -av -cb on ".ihi";
 	setAttr -av -k on ".nds";
 	setAttr -cb on ".bnm";
-	setAttr -k on ".o" 14;
-	setAttr -av ".unw" 14;
+	setAttr -k on ".o" 24;
+	setAttr -av ".unw" 24;
 	setAttr -av -k on ".etw";
 	setAttr -av -k on ".tps";
 	setAttr -av -k on ".tms";
@@ -20866,21 +23058,21 @@ connectAttr "L_Arm_RK_01_Jnt_parentConstraint1.w1" "L_Arm_RK_01_Jnt_parentConstr
 		;
 connectAttr "COG_Ctrl.IKFK" "L_Arm_RK_01_Jnt_parentConstraint1.w0";
 connectAttr "L_Arm_RK_01_Jnt_rev.ox" "L_Arm_RK_01_Jnt_parentConstraint1.w1";
-connectAttr "L_Arm_IK_01_Jnt_scaleConstraint1.csx" "L_Arm_IK_01_Jnt.sx";
-connectAttr "L_Arm_IK_01_Jnt_scaleConstraint1.csy" "L_Arm_IK_01_Jnt.sy";
-connectAttr "L_Arm_IK_01_Jnt_scaleConstraint1.csz" "L_Arm_IK_01_Jnt.sz";
-connectAttr "L_Arm_Clav_Jnt.s" "L_Arm_IK_01_Jnt.is";
 connectAttr "L_Arm_IK_01_Jnt_parentConstraint1.ctx" "L_Arm_IK_01_Jnt.tx";
 connectAttr "L_Arm_IK_01_Jnt_parentConstraint1.cty" "L_Arm_IK_01_Jnt.ty";
 connectAttr "L_Arm_IK_01_Jnt_parentConstraint1.ctz" "L_Arm_IK_01_Jnt.tz";
 connectAttr "L_Arm_IK_01_Jnt_parentConstraint1.crx" "L_Arm_IK_01_Jnt.rx";
 connectAttr "L_Arm_IK_01_Jnt_parentConstraint1.cry" "L_Arm_IK_01_Jnt.ry";
 connectAttr "L_Arm_IK_01_Jnt_parentConstraint1.crz" "L_Arm_IK_01_Jnt.rz";
+connectAttr "L_Arm_IK_01_Jnt_scaleConstraint1.csx" "L_Arm_IK_01_Jnt.sx";
+connectAttr "L_Arm_IK_01_Jnt_scaleConstraint1.csy" "L_Arm_IK_01_Jnt.sy";
+connectAttr "L_Arm_IK_01_Jnt_scaleConstraint1.csz" "L_Arm_IK_01_Jnt.sz";
+connectAttr "L_Arm_Clav_Jnt.s" "L_Arm_IK_01_Jnt.is";
 connectAttr "L_Arm_IK_01_Jnt.s" "L_Arm_IK_02_Jnt.is";
-connectAttr "L_Arm_IK_02_Jnt.s" "L_Arm_IK_03_Jnt.is";
 connectAttr "L_Arm_IK_03_Jnt_orientConstraint1.crx" "L_Arm_IK_03_Jnt.rx";
 connectAttr "L_Arm_IK_03_Jnt_orientConstraint1.cry" "L_Arm_IK_03_Jnt.ry";
 connectAttr "L_Arm_IK_03_Jnt_orientConstraint1.crz" "L_Arm_IK_03_Jnt.rz";
+connectAttr "L_Arm_IK_02_Jnt.s" "L_Arm_IK_03_Jnt.is";
 connectAttr "L_Arm_IK_03_Jnt.ro" "L_Arm_IK_03_Jnt_orientConstraint1.cro";
 connectAttr "L_Arm_IK_03_Jnt.pim" "L_Arm_IK_03_Jnt_orientConstraint1.cpim";
 connectAttr "L_Arm_IK_03_Jnt.jo" "L_Arm_IK_03_Jnt_orientConstraint1.cjo";
@@ -20914,26 +23106,26 @@ connectAttr "L_Arm_IK_01_Ctrl.s" "L_Arm_IK_01_Jnt_scaleConstraint1.tg[0].ts";
 connectAttr "L_Arm_IK_01_Ctrl.pm" "L_Arm_IK_01_Jnt_scaleConstraint1.tg[0].tpm";
 connectAttr "L_Arm_IK_01_Jnt_scaleConstraint1.w0" "L_Arm_IK_01_Jnt_scaleConstraint1.tg[0].tw"
 		;
-connectAttr "L_Arm_FK_01_Jnt_scaleConstraint1.csx" "L_Arm_FK_01_Jnt.sx";
-connectAttr "L_Arm_FK_01_Jnt_scaleConstraint1.csy" "L_Arm_FK_01_Jnt.sy";
-connectAttr "L_Arm_FK_01_Jnt_scaleConstraint1.csz" "L_Arm_FK_01_Jnt.sz";
-connectAttr "L_Arm_Clav_Jnt.s" "L_Arm_FK_01_Jnt.is";
 connectAttr "L_Arm_FK_01_Jnt_parentConstraint1.ctx" "L_Arm_FK_01_Jnt.tx";
 connectAttr "L_Arm_FK_01_Jnt_parentConstraint1.cty" "L_Arm_FK_01_Jnt.ty";
 connectAttr "L_Arm_FK_01_Jnt_parentConstraint1.ctz" "L_Arm_FK_01_Jnt.tz";
 connectAttr "L_Arm_FK_01_Jnt_parentConstraint1.crx" "L_Arm_FK_01_Jnt.rx";
 connectAttr "L_Arm_FK_01_Jnt_parentConstraint1.cry" "L_Arm_FK_01_Jnt.ry";
 connectAttr "L_Arm_FK_01_Jnt_parentConstraint1.crz" "L_Arm_FK_01_Jnt.rz";
-connectAttr "L_Arm_FK_02_Jnt_scaleConstraint1.csx" "L_Arm_FK_02_Jnt.sx";
-connectAttr "L_Arm_FK_02_Jnt_scaleConstraint1.csy" "L_Arm_FK_02_Jnt.sy";
-connectAttr "L_Arm_FK_02_Jnt_scaleConstraint1.csz" "L_Arm_FK_02_Jnt.sz";
-connectAttr "L_Arm_FK_01_Jnt.s" "L_Arm_FK_02_Jnt.is";
+connectAttr "L_Arm_FK_01_Jnt_scaleConstraint1.csx" "L_Arm_FK_01_Jnt.sx";
+connectAttr "L_Arm_FK_01_Jnt_scaleConstraint1.csy" "L_Arm_FK_01_Jnt.sy";
+connectAttr "L_Arm_FK_01_Jnt_scaleConstraint1.csz" "L_Arm_FK_01_Jnt.sz";
+connectAttr "L_Arm_Clav_Jnt.s" "L_Arm_FK_01_Jnt.is";
 connectAttr "L_Arm_FK_02_Jnt_parentConstraint1.ctx" "L_Arm_FK_02_Jnt.tx";
 connectAttr "L_Arm_FK_02_Jnt_parentConstraint1.cty" "L_Arm_FK_02_Jnt.ty";
 connectAttr "L_Arm_FK_02_Jnt_parentConstraint1.ctz" "L_Arm_FK_02_Jnt.tz";
 connectAttr "L_Arm_FK_02_Jnt_parentConstraint1.crx" "L_Arm_FK_02_Jnt.rx";
 connectAttr "L_Arm_FK_02_Jnt_parentConstraint1.cry" "L_Arm_FK_02_Jnt.ry";
 connectAttr "L_Arm_FK_02_Jnt_parentConstraint1.crz" "L_Arm_FK_02_Jnt.rz";
+connectAttr "L_Arm_FK_02_Jnt_scaleConstraint1.csx" "L_Arm_FK_02_Jnt.sx";
+connectAttr "L_Arm_FK_02_Jnt_scaleConstraint1.csy" "L_Arm_FK_02_Jnt.sy";
+connectAttr "L_Arm_FK_02_Jnt_scaleConstraint1.csz" "L_Arm_FK_02_Jnt.sz";
+connectAttr "L_Arm_FK_01_Jnt.s" "L_Arm_FK_02_Jnt.is";
 connectAttr "L_Arm_FK_02_Jnt.s" "L_Arm_FK_03_Jnt.is";
 connectAttr "L_Arm_FK_02_Jnt.ro" "L_Arm_FK_02_Jnt_parentConstraint1.cro";
 connectAttr "L_Arm_FK_02_Jnt.pim" "L_Arm_FK_02_Jnt_parentConstraint1.cpim";
@@ -21091,21 +23283,21 @@ connectAttr "R_Arm_RK_01_Jnt_parentConstraint1.w1" "R_Arm_RK_01_Jnt_parentConstr
 		;
 connectAttr "COG_Ctrl.IKFK" "R_Arm_RK_01_Jnt_parentConstraint1.w0";
 connectAttr "R_Arm_RK_01_Jnt_rev.ox" "R_Arm_RK_01_Jnt_parentConstraint1.w1";
-connectAttr "R_Arm_IK_01_Jnt_scaleConstraint1.csx" "R_Arm_IK_01_Jnt.sx";
-connectAttr "R_Arm_IK_01_Jnt_scaleConstraint1.csy" "R_Arm_IK_01_Jnt.sy";
-connectAttr "R_Arm_IK_01_Jnt_scaleConstraint1.csz" "R_Arm_IK_01_Jnt.sz";
-connectAttr "R_Arm_Clav_Jnt.s" "R_Arm_IK_01_Jnt.is";
 connectAttr "R_Arm_IK_01_Jnt_parentConstraint1.ctx" "R_Arm_IK_01_Jnt.tx";
 connectAttr "R_Arm_IK_01_Jnt_parentConstraint1.cty" "R_Arm_IK_01_Jnt.ty";
 connectAttr "R_Arm_IK_01_Jnt_parentConstraint1.ctz" "R_Arm_IK_01_Jnt.tz";
 connectAttr "R_Arm_IK_01_Jnt_parentConstraint1.crx" "R_Arm_IK_01_Jnt.rx";
 connectAttr "R_Arm_IK_01_Jnt_parentConstraint1.cry" "R_Arm_IK_01_Jnt.ry";
 connectAttr "R_Arm_IK_01_Jnt_parentConstraint1.crz" "R_Arm_IK_01_Jnt.rz";
+connectAttr "R_Arm_IK_01_Jnt_scaleConstraint1.csx" "R_Arm_IK_01_Jnt.sx";
+connectAttr "R_Arm_IK_01_Jnt_scaleConstraint1.csy" "R_Arm_IK_01_Jnt.sy";
+connectAttr "R_Arm_IK_01_Jnt_scaleConstraint1.csz" "R_Arm_IK_01_Jnt.sz";
+connectAttr "R_Arm_Clav_Jnt.s" "R_Arm_IK_01_Jnt.is";
 connectAttr "R_Arm_IK_01_Jnt.s" "R_Arm_IK_02_Jnt.is";
-connectAttr "R_Arm_IK_02_Jnt.s" "R_Arm_IK_03_Jnt.is";
 connectAttr "R_Arm_IK_03_Jnt_orientConstraint1.crx" "R_Arm_IK_03_Jnt.rx";
 connectAttr "R_Arm_IK_03_Jnt_orientConstraint1.cry" "R_Arm_IK_03_Jnt.ry";
 connectAttr "R_Arm_IK_03_Jnt_orientConstraint1.crz" "R_Arm_IK_03_Jnt.rz";
+connectAttr "R_Arm_IK_02_Jnt.s" "R_Arm_IK_03_Jnt.is";
 connectAttr "R_Arm_IK_03_Jnt.ro" "R_Arm_IK_03_Jnt_orientConstraint1.cro";
 connectAttr "R_Arm_IK_03_Jnt.pim" "R_Arm_IK_03_Jnt_orientConstraint1.cpim";
 connectAttr "R_Arm_IK_03_Jnt.jo" "R_Arm_IK_03_Jnt_orientConstraint1.cjo";
@@ -21139,26 +23331,26 @@ connectAttr "R_Arm_IK_01_Ctrl.s" "R_Arm_IK_01_Jnt_scaleConstraint1.tg[0].ts";
 connectAttr "R_Arm_IK_01_Ctrl.pm" "R_Arm_IK_01_Jnt_scaleConstraint1.tg[0].tpm";
 connectAttr "R_Arm_IK_01_Jnt_scaleConstraint1.w0" "R_Arm_IK_01_Jnt_scaleConstraint1.tg[0].tw"
 		;
-connectAttr "R_Arm_FK_01_Jnt_scaleConstraint1.csx" "R_Arm_FK_01_Jnt.sx";
-connectAttr "R_Arm_FK_01_Jnt_scaleConstraint1.csy" "R_Arm_FK_01_Jnt.sy";
-connectAttr "R_Arm_FK_01_Jnt_scaleConstraint1.csz" "R_Arm_FK_01_Jnt.sz";
-connectAttr "R_Arm_Clav_Jnt.s" "R_Arm_FK_01_Jnt.is";
 connectAttr "R_Arm_FK_01_Jnt_parentConstraint1.ctx" "R_Arm_FK_01_Jnt.tx";
 connectAttr "R_Arm_FK_01_Jnt_parentConstraint1.cty" "R_Arm_FK_01_Jnt.ty";
 connectAttr "R_Arm_FK_01_Jnt_parentConstraint1.ctz" "R_Arm_FK_01_Jnt.tz";
 connectAttr "R_Arm_FK_01_Jnt_parentConstraint1.crx" "R_Arm_FK_01_Jnt.rx";
 connectAttr "R_Arm_FK_01_Jnt_parentConstraint1.cry" "R_Arm_FK_01_Jnt.ry";
 connectAttr "R_Arm_FK_01_Jnt_parentConstraint1.crz" "R_Arm_FK_01_Jnt.rz";
-connectAttr "R_Arm_FK_02_Jnt_scaleConstraint1.csx" "R_Arm_FK_02_Jnt.sx";
-connectAttr "R_Arm_FK_02_Jnt_scaleConstraint1.csy" "R_Arm_FK_02_Jnt.sy";
-connectAttr "R_Arm_FK_02_Jnt_scaleConstraint1.csz" "R_Arm_FK_02_Jnt.sz";
-connectAttr "R_Arm_FK_01_Jnt.s" "R_Arm_FK_02_Jnt.is";
+connectAttr "R_Arm_FK_01_Jnt_scaleConstraint1.csx" "R_Arm_FK_01_Jnt.sx";
+connectAttr "R_Arm_FK_01_Jnt_scaleConstraint1.csy" "R_Arm_FK_01_Jnt.sy";
+connectAttr "R_Arm_FK_01_Jnt_scaleConstraint1.csz" "R_Arm_FK_01_Jnt.sz";
+connectAttr "R_Arm_Clav_Jnt.s" "R_Arm_FK_01_Jnt.is";
 connectAttr "R_Arm_FK_02_Jnt_parentConstraint1.ctx" "R_Arm_FK_02_Jnt.tx";
 connectAttr "R_Arm_FK_02_Jnt_parentConstraint1.cty" "R_Arm_FK_02_Jnt.ty";
 connectAttr "R_Arm_FK_02_Jnt_parentConstraint1.ctz" "R_Arm_FK_02_Jnt.tz";
 connectAttr "R_Arm_FK_02_Jnt_parentConstraint1.crx" "R_Arm_FK_02_Jnt.rx";
 connectAttr "R_Arm_FK_02_Jnt_parentConstraint1.cry" "R_Arm_FK_02_Jnt.ry";
 connectAttr "R_Arm_FK_02_Jnt_parentConstraint1.crz" "R_Arm_FK_02_Jnt.rz";
+connectAttr "R_Arm_FK_02_Jnt_scaleConstraint1.csx" "R_Arm_FK_02_Jnt.sx";
+connectAttr "R_Arm_FK_02_Jnt_scaleConstraint1.csy" "R_Arm_FK_02_Jnt.sy";
+connectAttr "R_Arm_FK_02_Jnt_scaleConstraint1.csz" "R_Arm_FK_02_Jnt.sz";
+connectAttr "R_Arm_FK_01_Jnt.s" "R_Arm_FK_02_Jnt.is";
 connectAttr "R_Arm_FK_02_Jnt.s" "R_Arm_FK_03_Jnt.is";
 connectAttr "R_Arm_FK_02_Jnt.ro" "R_Arm_FK_02_Jnt_parentConstraint1.cro";
 connectAttr "R_Arm_FK_02_Jnt.pim" "R_Arm_FK_02_Jnt_parentConstraint1.cpim";
@@ -21899,8 +24091,223 @@ connectAttr "R_Arm_RK_01_Jnt.pm" "R_Arm_RK_02_Twist_Jnt_pointConstraint1.tg[1].t
 connectAttr "R_Arm_RK_02_Twist_Jnt_pointConstraint1.w1" "R_Arm_RK_02_Twist_Jnt_pointConstraint1.tg[1].tw"
 		;
 connectAttr "Geometry.di" "Geometry_Node.do";
-connectAttr "Toad_Trooper_V3_visibility.o" "Toad_Trooper_V3.v";
 connectAttr "skinCluster4.og[0]" "Toad_Trooper_V3Shape.i";
+connectAttr "Toad_Trooper_V3Shape_pnts_2__pntx.o" "Toad_Trooper_V3Shape.pt[2].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_2__pnty.o" "Toad_Trooper_V3Shape.pt[2].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_2__pntz.o" "Toad_Trooper_V3Shape.pt[2].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_3__pntx.o" "Toad_Trooper_V3Shape.pt[3].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_3__pnty.o" "Toad_Trooper_V3Shape.pt[3].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_3__pntz.o" "Toad_Trooper_V3Shape.pt[3].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_4__pntx.o" "Toad_Trooper_V3Shape.pt[4].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_4__pnty.o" "Toad_Trooper_V3Shape.pt[4].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_4__pntz.o" "Toad_Trooper_V3Shape.pt[4].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_5__pntx.o" "Toad_Trooper_V3Shape.pt[5].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_5__pnty.o" "Toad_Trooper_V3Shape.pt[5].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_5__pntz.o" "Toad_Trooper_V3Shape.pt[5].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_9__pntx.o" "Toad_Trooper_V3Shape.pt[9].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_9__pnty.o" "Toad_Trooper_V3Shape.pt[9].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_9__pntz.o" "Toad_Trooper_V3Shape.pt[9].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_10__pntx.o" "Toad_Trooper_V3Shape.pt[10].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_10__pnty.o" "Toad_Trooper_V3Shape.pt[10].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_10__pntz.o" "Toad_Trooper_V3Shape.pt[10].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_13__pntx.o" "Toad_Trooper_V3Shape.pt[13].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_13__pnty.o" "Toad_Trooper_V3Shape.pt[13].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_13__pntz.o" "Toad_Trooper_V3Shape.pt[13].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_14__pntx.o" "Toad_Trooper_V3Shape.pt[14].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_14__pnty.o" "Toad_Trooper_V3Shape.pt[14].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_14__pntz.o" "Toad_Trooper_V3Shape.pt[14].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_17__pntx.o" "Toad_Trooper_V3Shape.pt[17].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_17__pnty.o" "Toad_Trooper_V3Shape.pt[17].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_17__pntz.o" "Toad_Trooper_V3Shape.pt[17].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_18__pntx.o" "Toad_Trooper_V3Shape.pt[18].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_18__pnty.o" "Toad_Trooper_V3Shape.pt[18].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_18__pntz.o" "Toad_Trooper_V3Shape.pt[18].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_21__pntx.o" "Toad_Trooper_V3Shape.pt[21].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_21__pnty.o" "Toad_Trooper_V3Shape.pt[21].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_21__pntz.o" "Toad_Trooper_V3Shape.pt[21].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_22__pntx.o" "Toad_Trooper_V3Shape.pt[22].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_22__pnty.o" "Toad_Trooper_V3Shape.pt[22].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_22__pntz.o" "Toad_Trooper_V3Shape.pt[22].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_25__pntx.o" "Toad_Trooper_V3Shape.pt[25].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_25__pnty.o" "Toad_Trooper_V3Shape.pt[25].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_25__pntz.o" "Toad_Trooper_V3Shape.pt[25].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_27__pntx.o" "Toad_Trooper_V3Shape.pt[27].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_27__pnty.o" "Toad_Trooper_V3Shape.pt[27].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_27__pntz.o" "Toad_Trooper_V3Shape.pt[27].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_29__pntx.o" "Toad_Trooper_V3Shape.pt[29].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_29__pnty.o" "Toad_Trooper_V3Shape.pt[29].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_29__pntz.o" "Toad_Trooper_V3Shape.pt[29].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_31__pntx.o" "Toad_Trooper_V3Shape.pt[31].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_31__pnty.o" "Toad_Trooper_V3Shape.pt[31].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_31__pntz.o" "Toad_Trooper_V3Shape.pt[31].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_33__pntx.o" "Toad_Trooper_V3Shape.pt[33].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_33__pnty.o" "Toad_Trooper_V3Shape.pt[33].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_33__pntz.o" "Toad_Trooper_V3Shape.pt[33].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_35__pntx.o" "Toad_Trooper_V3Shape.pt[35].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_35__pnty.o" "Toad_Trooper_V3Shape.pt[35].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_35__pntz.o" "Toad_Trooper_V3Shape.pt[35].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_36__pntx.o" "Toad_Trooper_V3Shape.pt[36].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_36__pnty.o" "Toad_Trooper_V3Shape.pt[36].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_36__pntz.o" "Toad_Trooper_V3Shape.pt[36].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_37__pntx.o" "Toad_Trooper_V3Shape.pt[37].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_37__pnty.o" "Toad_Trooper_V3Shape.pt[37].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_37__pntz.o" "Toad_Trooper_V3Shape.pt[37].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_38__pntx.o" "Toad_Trooper_V3Shape.pt[38].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_38__pnty.o" "Toad_Trooper_V3Shape.pt[38].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_38__pntz.o" "Toad_Trooper_V3Shape.pt[38].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_39__pntx.o" "Toad_Trooper_V3Shape.pt[39].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_39__pnty.o" "Toad_Trooper_V3Shape.pt[39].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_39__pntz.o" "Toad_Trooper_V3Shape.pt[39].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_40__pntx.o" "Toad_Trooper_V3Shape.pt[40].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_40__pnty.o" "Toad_Trooper_V3Shape.pt[40].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_40__pntz.o" "Toad_Trooper_V3Shape.pt[40].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_41__pntx.o" "Toad_Trooper_V3Shape.pt[41].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_41__pnty.o" "Toad_Trooper_V3Shape.pt[41].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_41__pntz.o" "Toad_Trooper_V3Shape.pt[41].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_42__pntx.o" "Toad_Trooper_V3Shape.pt[42].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_42__pnty.o" "Toad_Trooper_V3Shape.pt[42].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_42__pntz.o" "Toad_Trooper_V3Shape.pt[42].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_43__pntx.o" "Toad_Trooper_V3Shape.pt[43].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_43__pnty.o" "Toad_Trooper_V3Shape.pt[43].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_43__pntz.o" "Toad_Trooper_V3Shape.pt[43].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_44__pntx.o" "Toad_Trooper_V3Shape.pt[44].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_44__pnty.o" "Toad_Trooper_V3Shape.pt[44].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_44__pntz.o" "Toad_Trooper_V3Shape.pt[44].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_45__pntx.o" "Toad_Trooper_V3Shape.pt[45].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_45__pnty.o" "Toad_Trooper_V3Shape.pt[45].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_45__pntz.o" "Toad_Trooper_V3Shape.pt[45].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_46__pntx.o" "Toad_Trooper_V3Shape.pt[46].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_46__pnty.o" "Toad_Trooper_V3Shape.pt[46].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_46__pntz.o" "Toad_Trooper_V3Shape.pt[46].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_47__pntx.o" "Toad_Trooper_V3Shape.pt[47].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_47__pnty.o" "Toad_Trooper_V3Shape.pt[47].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_47__pntz.o" "Toad_Trooper_V3Shape.pt[47].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_48__pntx.o" "Toad_Trooper_V3Shape.pt[48].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_48__pnty.o" "Toad_Trooper_V3Shape.pt[48].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_48__pntz.o" "Toad_Trooper_V3Shape.pt[48].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_49__pntx.o" "Toad_Trooper_V3Shape.pt[49].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_49__pnty.o" "Toad_Trooper_V3Shape.pt[49].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_49__pntz.o" "Toad_Trooper_V3Shape.pt[49].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_50__pntx.o" "Toad_Trooper_V3Shape.pt[50].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_50__pnty.o" "Toad_Trooper_V3Shape.pt[50].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_50__pntz.o" "Toad_Trooper_V3Shape.pt[50].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_51__pntx.o" "Toad_Trooper_V3Shape.pt[51].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_51__pnty.o" "Toad_Trooper_V3Shape.pt[51].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_51__pntz.o" "Toad_Trooper_V3Shape.pt[51].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_52__pntx.o" "Toad_Trooper_V3Shape.pt[52].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_52__pnty.o" "Toad_Trooper_V3Shape.pt[52].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_52__pntz.o" "Toad_Trooper_V3Shape.pt[52].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_53__pntx.o" "Toad_Trooper_V3Shape.pt[53].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_53__pnty.o" "Toad_Trooper_V3Shape.pt[53].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_53__pntz.o" "Toad_Trooper_V3Shape.pt[53].pz"
+		;
 connectAttr "Toad_Trooper_V3Shape_pnts_530__pntx.o" "Toad_Trooper_V3Shape.pt[530].px"
 		;
 connectAttr "Toad_Trooper_V3Shape_pnts_530__pnty.o" "Toad_Trooper_V3Shape.pt[530].py"
@@ -21918,6 +24325,114 @@ connectAttr "Toad_Trooper_V3Shape_pnts_542__pntx.o" "Toad_Trooper_V3Shape.pt[542
 connectAttr "Toad_Trooper_V3Shape_pnts_542__pnty.o" "Toad_Trooper_V3Shape.pt[542].py"
 		;
 connectAttr "Toad_Trooper_V3Shape_pnts_542__pntz.o" "Toad_Trooper_V3Shape.pt[542].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_815__pntx.o" "Toad_Trooper_V3Shape.pt[815].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_815__pnty.o" "Toad_Trooper_V3Shape.pt[815].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_815__pntz.o" "Toad_Trooper_V3Shape.pt[815].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_816__pntx.o" "Toad_Trooper_V3Shape.pt[816].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_816__pnty.o" "Toad_Trooper_V3Shape.pt[816].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_816__pntz.o" "Toad_Trooper_V3Shape.pt[816].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_817__pntx.o" "Toad_Trooper_V3Shape.pt[817].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_817__pnty.o" "Toad_Trooper_V3Shape.pt[817].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_817__pntz.o" "Toad_Trooper_V3Shape.pt[817].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_818__pntx.o" "Toad_Trooper_V3Shape.pt[818].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_818__pnty.o" "Toad_Trooper_V3Shape.pt[818].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_818__pntz.o" "Toad_Trooper_V3Shape.pt[818].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_819__pntx.o" "Toad_Trooper_V3Shape.pt[819].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_819__pnty.o" "Toad_Trooper_V3Shape.pt[819].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_819__pntz.o" "Toad_Trooper_V3Shape.pt[819].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_820__pntx.o" "Toad_Trooper_V3Shape.pt[820].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_820__pnty.o" "Toad_Trooper_V3Shape.pt[820].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_820__pntz.o" "Toad_Trooper_V3Shape.pt[820].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_821__pntx.o" "Toad_Trooper_V3Shape.pt[821].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_821__pnty.o" "Toad_Trooper_V3Shape.pt[821].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_821__pntz.o" "Toad_Trooper_V3Shape.pt[821].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_822__pntx.o" "Toad_Trooper_V3Shape.pt[822].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_822__pnty.o" "Toad_Trooper_V3Shape.pt[822].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_822__pntz.o" "Toad_Trooper_V3Shape.pt[822].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_823__pntx.o" "Toad_Trooper_V3Shape.pt[823].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_823__pnty.o" "Toad_Trooper_V3Shape.pt[823].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_823__pntz.o" "Toad_Trooper_V3Shape.pt[823].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_824__pntx.o" "Toad_Trooper_V3Shape.pt[824].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_824__pnty.o" "Toad_Trooper_V3Shape.pt[824].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_824__pntz.o" "Toad_Trooper_V3Shape.pt[824].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_825__pntx.o" "Toad_Trooper_V3Shape.pt[825].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_825__pnty.o" "Toad_Trooper_V3Shape.pt[825].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_825__pntz.o" "Toad_Trooper_V3Shape.pt[825].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_826__pntx.o" "Toad_Trooper_V3Shape.pt[826].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_826__pnty.o" "Toad_Trooper_V3Shape.pt[826].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_826__pntz.o" "Toad_Trooper_V3Shape.pt[826].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_827__pntx.o" "Toad_Trooper_V3Shape.pt[827].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_827__pnty.o" "Toad_Trooper_V3Shape.pt[827].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_827__pntz.o" "Toad_Trooper_V3Shape.pt[827].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_828__pntx.o" "Toad_Trooper_V3Shape.pt[828].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_828__pnty.o" "Toad_Trooper_V3Shape.pt[828].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_828__pntz.o" "Toad_Trooper_V3Shape.pt[828].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_829__pntx.o" "Toad_Trooper_V3Shape.pt[829].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_829__pnty.o" "Toad_Trooper_V3Shape.pt[829].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_829__pntz.o" "Toad_Trooper_V3Shape.pt[829].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_830__pntx.o" "Toad_Trooper_V3Shape.pt[830].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_830__pnty.o" "Toad_Trooper_V3Shape.pt[830].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_830__pntz.o" "Toad_Trooper_V3Shape.pt[830].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_831__pntx.o" "Toad_Trooper_V3Shape.pt[831].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_831__pnty.o" "Toad_Trooper_V3Shape.pt[831].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_831__pntz.o" "Toad_Trooper_V3Shape.pt[831].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_832__pntx.o" "Toad_Trooper_V3Shape.pt[832].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_832__pnty.o" "Toad_Trooper_V3Shape.pt[832].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_832__pntz.o" "Toad_Trooper_V3Shape.pt[832].pz"
 		;
 connectAttr "Toad_Trooper_V3Shape_pnts_875__pntx.o" "Toad_Trooper_V3Shape.pt[875].px"
 		;
@@ -22092,6 +24607,468 @@ connectAttr "Toad_Trooper_V3Shape_pnts_1137__pntx.o" "Toad_Trooper_V3Shape.pt[11
 connectAttr "Toad_Trooper_V3Shape_pnts_1137__pnty.o" "Toad_Trooper_V3Shape.pt[1137].py"
 		;
 connectAttr "Toad_Trooper_V3Shape_pnts_1137__pntz.o" "Toad_Trooper_V3Shape.pt[1137].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1177__pntx.o" "Toad_Trooper_V3Shape.pt[1177].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1177__pnty.o" "Toad_Trooper_V3Shape.pt[1177].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1177__pntz.o" "Toad_Trooper_V3Shape.pt[1177].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1178__pntx.o" "Toad_Trooper_V3Shape.pt[1178].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1178__pnty.o" "Toad_Trooper_V3Shape.pt[1178].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1178__pntz.o" "Toad_Trooper_V3Shape.pt[1178].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1179__pntx.o" "Toad_Trooper_V3Shape.pt[1179].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1179__pnty.o" "Toad_Trooper_V3Shape.pt[1179].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1179__pntz.o" "Toad_Trooper_V3Shape.pt[1179].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1180__pntx.o" "Toad_Trooper_V3Shape.pt[1180].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1180__pnty.o" "Toad_Trooper_V3Shape.pt[1180].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1180__pntz.o" "Toad_Trooper_V3Shape.pt[1180].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1181__pntx.o" "Toad_Trooper_V3Shape.pt[1181].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1181__pnty.o" "Toad_Trooper_V3Shape.pt[1181].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1181__pntz.o" "Toad_Trooper_V3Shape.pt[1181].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1182__pntx.o" "Toad_Trooper_V3Shape.pt[1182].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1182__pnty.o" "Toad_Trooper_V3Shape.pt[1182].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1182__pntz.o" "Toad_Trooper_V3Shape.pt[1182].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1183__pntx.o" "Toad_Trooper_V3Shape.pt[1183].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1183__pnty.o" "Toad_Trooper_V3Shape.pt[1183].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1183__pntz.o" "Toad_Trooper_V3Shape.pt[1183].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1184__pntx.o" "Toad_Trooper_V3Shape.pt[1184].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1184__pnty.o" "Toad_Trooper_V3Shape.pt[1184].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1184__pntz.o" "Toad_Trooper_V3Shape.pt[1184].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1185__pntx.o" "Toad_Trooper_V3Shape.pt[1185].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1185__pnty.o" "Toad_Trooper_V3Shape.pt[1185].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1185__pntz.o" "Toad_Trooper_V3Shape.pt[1185].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1186__pntx.o" "Toad_Trooper_V3Shape.pt[1186].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1186__pnty.o" "Toad_Trooper_V3Shape.pt[1186].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1186__pntz.o" "Toad_Trooper_V3Shape.pt[1186].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1187__pntx.o" "Toad_Trooper_V3Shape.pt[1187].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1187__pnty.o" "Toad_Trooper_V3Shape.pt[1187].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1187__pntz.o" "Toad_Trooper_V3Shape.pt[1187].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1188__pntx.o" "Toad_Trooper_V3Shape.pt[1188].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1188__pnty.o" "Toad_Trooper_V3Shape.pt[1188].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1188__pntz.o" "Toad_Trooper_V3Shape.pt[1188].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1189__pntx.o" "Toad_Trooper_V3Shape.pt[1189].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1189__pnty.o" "Toad_Trooper_V3Shape.pt[1189].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1189__pntz.o" "Toad_Trooper_V3Shape.pt[1189].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1190__pntx.o" "Toad_Trooper_V3Shape.pt[1190].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1190__pnty.o" "Toad_Trooper_V3Shape.pt[1190].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1190__pntz.o" "Toad_Trooper_V3Shape.pt[1190].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1191__pntx.o" "Toad_Trooper_V3Shape.pt[1191].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1191__pnty.o" "Toad_Trooper_V3Shape.pt[1191].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1191__pntz.o" "Toad_Trooper_V3Shape.pt[1191].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1192__pntx.o" "Toad_Trooper_V3Shape.pt[1192].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1192__pnty.o" "Toad_Trooper_V3Shape.pt[1192].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1192__pntz.o" "Toad_Trooper_V3Shape.pt[1192].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1193__pntx.o" "Toad_Trooper_V3Shape.pt[1193].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1193__pnty.o" "Toad_Trooper_V3Shape.pt[1193].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1193__pntz.o" "Toad_Trooper_V3Shape.pt[1193].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1194__pntx.o" "Toad_Trooper_V3Shape.pt[1194].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1194__pnty.o" "Toad_Trooper_V3Shape.pt[1194].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1194__pntz.o" "Toad_Trooper_V3Shape.pt[1194].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1195__pntx.o" "Toad_Trooper_V3Shape.pt[1195].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1195__pnty.o" "Toad_Trooper_V3Shape.pt[1195].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1195__pntz.o" "Toad_Trooper_V3Shape.pt[1195].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1196__pntx.o" "Toad_Trooper_V3Shape.pt[1196].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1196__pnty.o" "Toad_Trooper_V3Shape.pt[1196].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1196__pntz.o" "Toad_Trooper_V3Shape.pt[1196].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1197__pntx.o" "Toad_Trooper_V3Shape.pt[1197].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1197__pnty.o" "Toad_Trooper_V3Shape.pt[1197].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1197__pntz.o" "Toad_Trooper_V3Shape.pt[1197].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1198__pntx.o" "Toad_Trooper_V3Shape.pt[1198].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1198__pnty.o" "Toad_Trooper_V3Shape.pt[1198].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1198__pntz.o" "Toad_Trooper_V3Shape.pt[1198].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1199__pntx.o" "Toad_Trooper_V3Shape.pt[1199].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1199__pnty.o" "Toad_Trooper_V3Shape.pt[1199].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1199__pntz.o" "Toad_Trooper_V3Shape.pt[1199].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1200__pntx.o" "Toad_Trooper_V3Shape.pt[1200].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1200__pnty.o" "Toad_Trooper_V3Shape.pt[1200].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1200__pntz.o" "Toad_Trooper_V3Shape.pt[1200].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1201__pntx.o" "Toad_Trooper_V3Shape.pt[1201].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1201__pnty.o" "Toad_Trooper_V3Shape.pt[1201].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1201__pntz.o" "Toad_Trooper_V3Shape.pt[1201].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1202__pntx.o" "Toad_Trooper_V3Shape.pt[1202].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1202__pnty.o" "Toad_Trooper_V3Shape.pt[1202].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1202__pntz.o" "Toad_Trooper_V3Shape.pt[1202].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1203__pntx.o" "Toad_Trooper_V3Shape.pt[1203].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1203__pnty.o" "Toad_Trooper_V3Shape.pt[1203].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1203__pntz.o" "Toad_Trooper_V3Shape.pt[1203].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1204__pntx.o" "Toad_Trooper_V3Shape.pt[1204].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1204__pnty.o" "Toad_Trooper_V3Shape.pt[1204].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1204__pntz.o" "Toad_Trooper_V3Shape.pt[1204].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1205__pntx.o" "Toad_Trooper_V3Shape.pt[1205].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1205__pnty.o" "Toad_Trooper_V3Shape.pt[1205].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1205__pntz.o" "Toad_Trooper_V3Shape.pt[1205].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1206__pntx.o" "Toad_Trooper_V3Shape.pt[1206].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1206__pnty.o" "Toad_Trooper_V3Shape.pt[1206].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1206__pntz.o" "Toad_Trooper_V3Shape.pt[1206].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1207__pntx.o" "Toad_Trooper_V3Shape.pt[1207].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1207__pnty.o" "Toad_Trooper_V3Shape.pt[1207].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1207__pntz.o" "Toad_Trooper_V3Shape.pt[1207].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1208__pntx.o" "Toad_Trooper_V3Shape.pt[1208].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1208__pnty.o" "Toad_Trooper_V3Shape.pt[1208].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1208__pntz.o" "Toad_Trooper_V3Shape.pt[1208].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1209__pntx.o" "Toad_Trooper_V3Shape.pt[1209].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1209__pnty.o" "Toad_Trooper_V3Shape.pt[1209].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1209__pntz.o" "Toad_Trooper_V3Shape.pt[1209].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1210__pntx.o" "Toad_Trooper_V3Shape.pt[1210].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1210__pnty.o" "Toad_Trooper_V3Shape.pt[1210].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1210__pntz.o" "Toad_Trooper_V3Shape.pt[1210].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1211__pntx.o" "Toad_Trooper_V3Shape.pt[1211].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1211__pnty.o" "Toad_Trooper_V3Shape.pt[1211].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1211__pntz.o" "Toad_Trooper_V3Shape.pt[1211].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1212__pntx.o" "Toad_Trooper_V3Shape.pt[1212].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1212__pnty.o" "Toad_Trooper_V3Shape.pt[1212].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1212__pntz.o" "Toad_Trooper_V3Shape.pt[1212].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1213__pntx.o" "Toad_Trooper_V3Shape.pt[1213].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1213__pnty.o" "Toad_Trooper_V3Shape.pt[1213].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1213__pntz.o" "Toad_Trooper_V3Shape.pt[1213].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1214__pntx.o" "Toad_Trooper_V3Shape.pt[1214].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1214__pnty.o" "Toad_Trooper_V3Shape.pt[1214].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1214__pntz.o" "Toad_Trooper_V3Shape.pt[1214].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1215__pntx.o" "Toad_Trooper_V3Shape.pt[1215].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1215__pnty.o" "Toad_Trooper_V3Shape.pt[1215].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1215__pntz.o" "Toad_Trooper_V3Shape.pt[1215].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1216__pntx.o" "Toad_Trooper_V3Shape.pt[1216].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1216__pnty.o" "Toad_Trooper_V3Shape.pt[1216].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1216__pntz.o" "Toad_Trooper_V3Shape.pt[1216].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1217__pntx.o" "Toad_Trooper_V3Shape.pt[1217].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1217__pnty.o" "Toad_Trooper_V3Shape.pt[1217].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1217__pntz.o" "Toad_Trooper_V3Shape.pt[1217].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1218__pntx.o" "Toad_Trooper_V3Shape.pt[1218].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1218__pnty.o" "Toad_Trooper_V3Shape.pt[1218].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1218__pntz.o" "Toad_Trooper_V3Shape.pt[1218].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1219__pntx.o" "Toad_Trooper_V3Shape.pt[1219].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1219__pnty.o" "Toad_Trooper_V3Shape.pt[1219].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1219__pntz.o" "Toad_Trooper_V3Shape.pt[1219].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1220__pntx.o" "Toad_Trooper_V3Shape.pt[1220].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1220__pnty.o" "Toad_Trooper_V3Shape.pt[1220].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1220__pntz.o" "Toad_Trooper_V3Shape.pt[1220].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1221__pntx.o" "Toad_Trooper_V3Shape.pt[1221].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1221__pnty.o" "Toad_Trooper_V3Shape.pt[1221].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1221__pntz.o" "Toad_Trooper_V3Shape.pt[1221].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1222__pntx.o" "Toad_Trooper_V3Shape.pt[1222].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1222__pnty.o" "Toad_Trooper_V3Shape.pt[1222].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1222__pntz.o" "Toad_Trooper_V3Shape.pt[1222].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1223__pntx.o" "Toad_Trooper_V3Shape.pt[1223].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1223__pnty.o" "Toad_Trooper_V3Shape.pt[1223].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1223__pntz.o" "Toad_Trooper_V3Shape.pt[1223].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1224__pntx.o" "Toad_Trooper_V3Shape.pt[1224].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1224__pnty.o" "Toad_Trooper_V3Shape.pt[1224].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1224__pntz.o" "Toad_Trooper_V3Shape.pt[1224].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1225__pntx.o" "Toad_Trooper_V3Shape.pt[1225].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1225__pnty.o" "Toad_Trooper_V3Shape.pt[1225].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1225__pntz.o" "Toad_Trooper_V3Shape.pt[1225].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1226__pntx.o" "Toad_Trooper_V3Shape.pt[1226].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1226__pnty.o" "Toad_Trooper_V3Shape.pt[1226].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1226__pntz.o" "Toad_Trooper_V3Shape.pt[1226].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1227__pntx.o" "Toad_Trooper_V3Shape.pt[1227].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1227__pnty.o" "Toad_Trooper_V3Shape.pt[1227].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1227__pntz.o" "Toad_Trooper_V3Shape.pt[1227].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1228__pntx.o" "Toad_Trooper_V3Shape.pt[1228].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1228__pnty.o" "Toad_Trooper_V3Shape.pt[1228].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1228__pntz.o" "Toad_Trooper_V3Shape.pt[1228].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1229__pntx.o" "Toad_Trooper_V3Shape.pt[1229].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1229__pnty.o" "Toad_Trooper_V3Shape.pt[1229].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1229__pntz.o" "Toad_Trooper_V3Shape.pt[1229].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1230__pntx.o" "Toad_Trooper_V3Shape.pt[1230].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1230__pnty.o" "Toad_Trooper_V3Shape.pt[1230].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1230__pntz.o" "Toad_Trooper_V3Shape.pt[1230].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1231__pntx.o" "Toad_Trooper_V3Shape.pt[1231].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1231__pnty.o" "Toad_Trooper_V3Shape.pt[1231].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1231__pntz.o" "Toad_Trooper_V3Shape.pt[1231].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1232__pntx.o" "Toad_Trooper_V3Shape.pt[1232].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1232__pnty.o" "Toad_Trooper_V3Shape.pt[1232].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1232__pntz.o" "Toad_Trooper_V3Shape.pt[1232].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1233__pntx.o" "Toad_Trooper_V3Shape.pt[1233].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1233__pnty.o" "Toad_Trooper_V3Shape.pt[1233].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1233__pntz.o" "Toad_Trooper_V3Shape.pt[1233].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1234__pntx.o" "Toad_Trooper_V3Shape.pt[1234].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1234__pnty.o" "Toad_Trooper_V3Shape.pt[1234].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1234__pntz.o" "Toad_Trooper_V3Shape.pt[1234].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1235__pntx.o" "Toad_Trooper_V3Shape.pt[1235].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1235__pnty.o" "Toad_Trooper_V3Shape.pt[1235].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1235__pntz.o" "Toad_Trooper_V3Shape.pt[1235].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1236__pntx.o" "Toad_Trooper_V3Shape.pt[1236].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1236__pnty.o" "Toad_Trooper_V3Shape.pt[1236].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1236__pntz.o" "Toad_Trooper_V3Shape.pt[1236].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1237__pntx.o" "Toad_Trooper_V3Shape.pt[1237].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1237__pnty.o" "Toad_Trooper_V3Shape.pt[1237].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1237__pntz.o" "Toad_Trooper_V3Shape.pt[1237].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1238__pntx.o" "Toad_Trooper_V3Shape.pt[1238].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1238__pnty.o" "Toad_Trooper_V3Shape.pt[1238].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1238__pntz.o" "Toad_Trooper_V3Shape.pt[1238].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1239__pntx.o" "Toad_Trooper_V3Shape.pt[1239].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1239__pnty.o" "Toad_Trooper_V3Shape.pt[1239].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1239__pntz.o" "Toad_Trooper_V3Shape.pt[1239].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1240__pntx.o" "Toad_Trooper_V3Shape.pt[1240].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1240__pnty.o" "Toad_Trooper_V3Shape.pt[1240].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1240__pntz.o" "Toad_Trooper_V3Shape.pt[1240].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1245__pntx.o" "Toad_Trooper_V3Shape.pt[1245].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1245__pnty.o" "Toad_Trooper_V3Shape.pt[1245].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1245__pntz.o" "Toad_Trooper_V3Shape.pt[1245].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1246__pntx.o" "Toad_Trooper_V3Shape.pt[1246].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1246__pnty.o" "Toad_Trooper_V3Shape.pt[1246].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1246__pntz.o" "Toad_Trooper_V3Shape.pt[1246].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1247__pntx.o" "Toad_Trooper_V3Shape.pt[1247].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1247__pnty.o" "Toad_Trooper_V3Shape.pt[1247].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1247__pntz.o" "Toad_Trooper_V3Shape.pt[1247].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1248__pntx.o" "Toad_Trooper_V3Shape.pt[1248].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1248__pnty.o" "Toad_Trooper_V3Shape.pt[1248].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1248__pntz.o" "Toad_Trooper_V3Shape.pt[1248].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1249__pntx.o" "Toad_Trooper_V3Shape.pt[1249].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1249__pnty.o" "Toad_Trooper_V3Shape.pt[1249].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1249__pntz.o" "Toad_Trooper_V3Shape.pt[1249].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1250__pntx.o" "Toad_Trooper_V3Shape.pt[1250].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1250__pnty.o" "Toad_Trooper_V3Shape.pt[1250].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1250__pntz.o" "Toad_Trooper_V3Shape.pt[1250].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1251__pntx.o" "Toad_Trooper_V3Shape.pt[1251].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1251__pnty.o" "Toad_Trooper_V3Shape.pt[1251].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1251__pntz.o" "Toad_Trooper_V3Shape.pt[1251].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1252__pntx.o" "Toad_Trooper_V3Shape.pt[1252].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1252__pnty.o" "Toad_Trooper_V3Shape.pt[1252].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1252__pntz.o" "Toad_Trooper_V3Shape.pt[1252].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1253__pntx.o" "Toad_Trooper_V3Shape.pt[1253].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1253__pnty.o" "Toad_Trooper_V3Shape.pt[1253].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1253__pntz.o" "Toad_Trooper_V3Shape.pt[1253].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1254__pntx.o" "Toad_Trooper_V3Shape.pt[1254].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1254__pnty.o" "Toad_Trooper_V3Shape.pt[1254].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1254__pntz.o" "Toad_Trooper_V3Shape.pt[1254].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1255__pntx.o" "Toad_Trooper_V3Shape.pt[1255].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1255__pnty.o" "Toad_Trooper_V3Shape.pt[1255].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1255__pntz.o" "Toad_Trooper_V3Shape.pt[1255].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1256__pntx.o" "Toad_Trooper_V3Shape.pt[1256].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1256__pnty.o" "Toad_Trooper_V3Shape.pt[1256].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1256__pntz.o" "Toad_Trooper_V3Shape.pt[1256].pz"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1257__pntx.o" "Toad_Trooper_V3Shape.pt[1257].px"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1257__pnty.o" "Toad_Trooper_V3Shape.pt[1257].py"
+		;
+connectAttr "Toad_Trooper_V3Shape_pnts_1257__pntz.o" "Toad_Trooper_V3Shape.pt[1257].pz"
 		;
 connectAttr "Toad_Trooper_V3Shape_pnts_2097__pntx.o" "Toad_Trooper_V3Shape.pt[2097].px"
 		;
