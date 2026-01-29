@@ -1,6 +1,6 @@
 //Maya ASCII 2026 scene
 //Name: TITANANIM.ma
-//Last modified: Wed, Jan 21, 2026 07:12:15 PM
+//Last modified: Wed, Jan 28, 2026 02:38:04 PM
 //Codeset: 1252
 file -rdi 1 -ns "TITANRIGMA" -rfn "TITANRIGMARN" -op "v=0;" -typ "mayaAscii"
 		 "C:/Users/vigor/Repositories/MAYA/Maya/PortfolioRigging//TITAN/Scenes/TITANRIGMA.ma";
@@ -9,13 +9,14 @@ requires maya "2026";
 requires "stereoCamera" "10.0";
 requires -nodeType "aiOptions" -nodeType "aiAOVDriver" -nodeType "aiAOVFilter" -nodeType "aiStandardSurface"
 		 -nodeType "aiImagerDenoiserOidn" "mtoa" "5.5.4.2";
+requires "stereoCamera" "10.0";
 currentUnit -l centimeter -a degree -t film;
 fileInfo "application" "maya";
 fileInfo "product" "Maya 2026";
 fileInfo "version" "2026";
 fileInfo "cutIdentifier" "202510291147-60ec9eda33";
 fileInfo "osv" "Windows 11 Home v2009 (Build: 26200)";
-fileInfo "UUID" "80B954BB-4E42-BF31-3A47-CBA2A01A1A76";
+fileInfo "UUID" "4543FD4B-4C76-7EFB-C6E4-84A9C300119A";
 createNode transform -s -n "persp";
 	rename -uid "D12E1B0C-4A4C-C901-B5A8-C5B0DC521EAE";
 	setAttr ".v" no;
@@ -85,37 +86,89 @@ createNode camera -s -n "sideShape" -p "side";
 	setAttr ".ai_translator" -type "string" "orthographic";
 createNode transform -n "ShowcaseCam";
 	rename -uid "7DEFBE92-42CE-8F82-B3BD-4DAD5CD79868";
-	setAttr ".t" -type "double3" 39.199581802837201 76.047388271212057 1073.743830136704 ;
-	setAttr ".r" -type "double3" 1.2000000000000948 -359.60000000003441 1.3977387559100402e-17 ;
+	setAttr ".t" -type "double3" 1035.4866095290326 160.91628865548338 -220.71734646365445 ;
+	setAttr ".r" -type "double3" 1.1999999999987803 459.59999999988889 0 ;
 	setAttr ".rpt" -type "double3" -4.1118908877573205e-14 2.4326704819606925e-15 1.5792163112351864e-14 ;
 createNode camera -n "ShowcaseCamShape" -p "ShowcaseCam";
 	rename -uid "E4ED421C-4BDE-593F-2402-9ABB7AB29AF7";
 	setAttr -k off ".v";
 	setAttr ".fl" 34.999999999999979;
-	setAttr ".coi" 1213.603452424959;
+	setAttr ".coi" 1098.7173263613026;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
-	setAttr ".tp" -type "double3" 0 17.311815635136515 -45.596718131196432 ;
+	setAttr ".tp" -type "double3" -1.228179931640625 219.29536497592926 -326.65226745605469 ;
 	setAttr ".hc" -type "string" "viewSet -p %camera";
+createNode transform -n "CameraRig_Grp";
+	rename -uid "5512588B-4DE4-4AF4-583B-BE9121E82213";
+	addAttr -ci true -sn "globalScale" -ln "globalScale" -dv 1 -min 0.001 -at "double";
+	setAttr ".t" -type "double3" 0 173.47419121417531 0 ;
+	setAttr -k on ".globalScale" 45;
+createNode transform -n "Cam_Aim_Loc" -p "CameraRig_Grp";
+	rename -uid "51AD91CB-49B3-8928-A809-B5AA14E10CDB";
+createNode locator -n "Cam_Aim_LocShape" -p "Cam_Aim_Loc";
+	rename -uid "8A029DFC-4113-533D-0381-55935208E8BB";
+	setAttr -k off ".v";
+createNode transform -n "Cam_Orbit_Grp" -p "CameraRig_Grp";
+	rename -uid "685B0BCD-4316-50C1-60D7-B189B8E24423";
+createNode transform -n "Cam_Anim_Grp" -p "Cam_Orbit_Grp";
+	rename -uid "B3837146-4219-0B40-A1FF-7D80870E8CF8";
+	setAttr ".t" -type "double3" 0 0 20 ;
+createNode transform -n "Cam_Rot_Grp" -p "Cam_Anim_Grp";
+	rename -uid "4FB0303C-4E22-B30D-8974-968EA8EA710F";
+createNode transform -n "Turntable_Cam1" -p "Cam_Rot_Grp";
+	rename -uid "D2B5DF9F-4AA4-B98B-806D-99A168C4FB2E";
+	setAttr ".t" -type "double3" 16.251656408701631 1.019905627376118 4.1939781246571055 ;
+	setAttr -k off ".rx";
+	setAttr -k off ".ry";
+	setAttr -k off ".rz";
+	setAttr -l on -k off ".sx";
+	setAttr -l on -k off ".sy";
+	setAttr -l on -k off ".sz";
+createNode camera -n "Turntable_CamShape1" -p "Turntable_Cam1";
+	rename -uid "E2109843-43BF-BDAE-1FAB-BDBBCEC6EB7B";
+	setAttr -k off ".v";
+	setAttr ".rnd" no;
+	setAttr ".coi" 28.956698206114108;
+	setAttr ".imn" -type "string" "Turntable_Cam1";
+	setAttr ".den" -type "string" "Turntable_Cam1_depth";
+	setAttr ".man" -type "string" "Turntable_Cam1_mask";
+createNode aimConstraint -n "Turntable_Cam1_aimConstraint1" -p "Turntable_Cam1";
+	rename -uid "7FF5EDC0-4E42-BDE4-EED9-69835321CBD2";
+	addAttr -dcb 0 -ci true -sn "w0" -ln "Cam_Aim_LocW0" -dv 1 -at "double";
+	setAttr -k on ".nds";
+	setAttr -k off ".v";
+	setAttr -k off ".tx";
+	setAttr -k off ".ty";
+	setAttr -k off ".tz";
+	setAttr -k off ".rx";
+	setAttr -k off ".ry";
+	setAttr -k off ".rz";
+	setAttr -k off ".sx";
+	setAttr -k off ".sy";
+	setAttr -k off ".sz";
+	setAttr ".erp" yes;
+	setAttr ".a" -type "double3" 0 0 -1 ;
+	setAttr ".wut" 0;
+	setAttr -k on ".w0";
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "96627178-4F27-39C7-96CE-E69BD6727093";
+	rename -uid "A85523E5-48C6-69AD-F1C9-4580890E1287";
 	setAttr -s 14 ".lnk";
 	setAttr -s 14 ".slnk";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "D061AC62-4D4B-3AF4-038A-66B240CBB57F";
+	rename -uid "4D0D3C39-41B9-0CE2-CB6E-B8A84007A06E";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "30ADE3F0-469E-25C8-E5A1-7892B1C613DB";
 	setAttr ".ufem" -type "stringArray" 0  ;
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "A27B0121-4F12-A170-4346-C9AF7F0A75A3";
+	rename -uid "095C37D7-4591-72EC-C732-498F79CF5069";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "9A8E2CD8-4746-7075-77D3-7884506C6B68";
 	setAttr ".g" yes;
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "6ADB3680-4F6F-FE19-AB33-58AE05CEF300";
+	rename -uid "20C775E9-4E96-340B-AC4F-2C9DA226F314";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "A59BA90A-495D-8B5D-83BB-36A757E1034C";
+	rename -uid "76FD19B9-4FAE-AF6D-0826-23B315469FCB";
 createNode reference -n "TITANRIGMARN";
 	rename -uid "7D813707-4C52-4DA8-7D27-CA80BCC12482";
 	setAttr -s 449 ".phl";
@@ -2898,70 +2951,73 @@ createNode reference -n "TITANRIGMARN";
 		2 "TITANRIGMA:skinCluster8" "wl[912:919].w" (" 20 71 0 72 0 74 0 75 0 77 0 78 0 81 0 84 0.99039990300000003 85 5.8500000000000001e-07 86 0.0095995119999999993 87 0 88 0 89 0 90 0 91 0 92 0 93 0 94 0 95 0 96 0 40 10 0 14 0 15 0 19 0 38 0 54 0 55 0 56 0 57 0 58 0 59 0 60 0 61 0 62 0 64 0 66 0 67 0 68 0 69 0 70 0 71 0 72 0 74 0 75 0 77 0 78 0 81 0 84 0.98818955600000002 85 7.3499999999999995e-07 86 0.011809709 87 0 88 0 89 0 90 0 91 0 92 0 93 0 94 0 95 0 96 0 40 10 0 14 0 15 0 19 0 38 0 54 0 55 0 56 0 57 0 58 0 59 0 60 0 61 0 62 0 64 0 66 0 67 0 68 0 69 0 70 0 71 0 72 0 74 0 75 0 77 0 78 0 81 0 84 0.93099674899999996 85 3.039e-06 86 0.069000212000000005 87 0 88 0 89 0 90 0 91 0 92 0 93 0 94 0 95 0 96 0 40 10 0 14 0 15 0 19 0 38 0 54 0 55 0 56 0 57 0 58 0 59 0 60 0 61 0 62 0 64 0 66 0 67 0 68 0 69 0 70 0 71 0 72 0 74 0 75 0 77 0 78 0 81 0 84 0.93688964500000005 85 2.4420000000000001e-06 86 0.063107913000000002 87 0 88 0 89 0 90 0 91 0 92 0 93 0 94 0 95 0 96 0 40 10 0 14 0 15 0 19 0 38 0 54 0 55 0 56 0 57 0 58 0 59 0 60 0 61 0 62 0 64 0 66 0 67 0 68 0 69 0 70"
 		+ " 0 71 0 72 0 74 0 75 0 77 0 78 0 81 0 84 0.92376787199999999 85 3.771e-06 86 0.076228356999999997 87 0 88 0 89 0 90 0 91 0 92 0 93 0 94 0 95 0 96 0 40 10 0 14 0 15 0 19 0 38 0 54 0 55 0 56 0 57 0 58 0 59 0 60 0 61 0 62 0 64 0 66 0 67 0 68 0 69 0 70 0 71 0 72 0 74 0 75 0 77 0 78 0 81 0 84 0.91517464700000006 85 4.6410000000000001e-06 86 0.084820712000000006 87 0 88 0 89 0 90 0 91 0 92 0 93 0 94 0 95 0 96 0 40 10 0 14 0 15 0 19 0 38 0 54 0 55 0 56 0 57 0 58 0 59 0 60 0 61 0 62 0 64 0 66 0 67 0 68 0 69 0 70 0 71 0 72 0 74 0 75 0 77 0 78 0 81 0 84 0.92720213600000001 85 3.4230000000000001e-06 86 0.072794441000000001 87 0 88 0 89 0 90 0 91 0 92 0 93 0 94 0 95 0 96 0 40 10 0 14 0 15 0 19 0 38 0 54 0 55 0 56 0 57 0 58 0 59 0 60 0 61 0 62 0 64 0 66 0 67 0 68 0 69 0 70 0 71 0 72 0 74 0 75 0 77 0 78 0 81 0 84 0.91889577099999997 85 4.2640000000000002e-06 86 0.081099964999999996 87 0 88 0 89 0 90 0 91 0 92 0 93 0 94 0 95 0 96 0"
 		)
-		"TITANRIGMARN" 495
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp" 
+		"TITANRIGMARN" 498
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl" 
+		"scaleX" " -k 0"
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl" 
+		"scaleY" " -k 0"
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl" 
+		"scaleZ" " -k 0"
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl" 
+		"globalScale" " -k 1 1.5"
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp" 
 		"rotate" " -type \"double3\" 0 0 0"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl" 
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl" 
 		"rotatePivotTranslate" " -type \"double3\" 0 0 0"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl" 
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl" 
 		"rotatePivotTranslate" " -type \"double3\" 0 0 0"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl|TITANRIGMA:L_Leg_IK_02_Ctrl_Grp" 
-		"translate" " -type \"double3\" -15.32260007810132763 -52.0164000049590598 13.76963989435689228"
-		
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl|TITANRIGMA:L_Leg_IK_02_Ctrl_Grp" 
-		"rotate" " -type \"double3\" 0 0 0"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl|TITANRIGMA:L_Leg_IK_02_Ctrl_Grp|TITANRIGMA:L_Leg_IK_02_Ctrl" 
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl|TITANRIGMA:L_Leg_IK_02_Ctrl_Grp|TITANRIGMA:L_Leg_IK_02_Ctrl" 
 		"rotatePivotTranslate" " -type \"double3\" 0 0 0"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl|TITANRIGMA:R_Leg_IK_02_Ctrl_Grp" 
-		"translate" " -type \"double3\" 15.32260743181773677 -52.01639849429307816 13.76964338287322853"
-		
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl|TITANRIGMA:R_Leg_IK_02_Ctrl_Grp" 
-		"rotate" " -type \"double3\" 0 0 0"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl|TITANRIGMA:R_Leg_IK_02_Ctrl_Grp|TITANRIGMA:R_Leg_IK_02_Ctrl" 
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl" 
 		"rotatePivotTranslate" " -type \"double3\" 0 0 0"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:R_Leg_PV_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Offset_Ctrl_Grp" 
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl|TITANRIGMA:R_Leg_IK_02_Ctrl_Grp|TITANRIGMA:R_Leg_IK_02_Ctrl" 
+		"rotatePivotTranslate" " -type \"double3\" 0 0 0"
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:R_Leg_PV_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Offset_Ctrl_Grp" 
 		"translate" " -type \"double3\" 0 0 0"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:R_Leg_PV_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Ctrl" 
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:R_Leg_PV_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Ctrl" 
 		"rotate" " -type \"double3\" 0 0 0"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:R_Leg_PV_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Ctrl" 
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:R_Leg_PV_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Ctrl" 
 		"scale" " -type \"double3\" 1 1 1"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:R_Leg_PV_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Ctrl" 
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:R_Leg_PV_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Ctrl" 
 		"rotatePivotTranslate" " -type \"double3\" 0 0 0"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:L_Leg_PV_Ctrl_Grp|TITANRIGMA:L_Leg_PV_Offset_Ctrl_Grp" 
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:L_Leg_PV_Ctrl_Grp|TITANRIGMA:L_Leg_PV_Offset_Ctrl_Grp" 
 		"translate" " -type \"double3\" -71.47925449898428951 -24.35131837752626183 121.11401002170532593"
 		
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:L_Leg_PV_Ctrl_Grp|TITANRIGMA:L_Leg_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Leg_PV_Ctrl" 
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:L_Leg_PV_Ctrl_Grp|TITANRIGMA:L_Leg_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Leg_PV_Ctrl" 
 		"rotate" " -type \"double3\" 0 0 0"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:L_Leg_PV_Ctrl_Grp|TITANRIGMA:L_Leg_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Leg_PV_Ctrl" 
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:L_Leg_PV_Ctrl_Grp|TITANRIGMA:L_Leg_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Leg_PV_Ctrl" 
 		"scale" " -type \"double3\" 1 1 1"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp" 
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp" 
 		"translate" " -type \"double3\" 0 114.53970670525885112 -16.30464340296654058"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp" 
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp" 
 		"rotate" " -type \"double3\" 0 0 0"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl" 
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl" 
 		"rotatePivotTranslate" " -type \"double3\" 0 0 0"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl" 
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl" 
 		"rotatePivotTranslate" " -type \"double3\" 0 0 0"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl|TITANRIGMA:R_Arm_IK_02_Ctrl_Grp|TITANRIGMA:R_Arm_IK_02_Ctrl" 
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl|TITANRIGMA:R_Arm_IK_02_Ctrl_Grp|TITANRIGMA:R_Arm_IK_02_Ctrl" 
 		"rotatePivotTranslate" " -type \"double3\" 0 0 0"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl" 
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl" 
 		"rotatePivotTranslate" " -type \"double3\" 0 0 0"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl|TITANRIGMA:L_Arm_IK_02_Ctrl_Grp|TITANRIGMA:L_Arm_IK_02_Ctrl" 
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl|TITANRIGMA:L_Arm_IK_02_Ctrl_Grp|TITANRIGMA:L_Arm_IK_02_Ctrl" 
 		"rotatePivotTranslate" " -type \"double3\" 0 0 0"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:FK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_FK_01_Ctrl_Grp|TITANRIGMA:L_Arm_FK_01_Ctrl|TITANRIGMA:L_Arm_FK_02_Ctrl_Grp" 
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:FK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_FK_01_Ctrl_Grp|TITANRIGMA:L_Arm_FK_01_Ctrl|TITANRIGMA:L_Arm_FK_02_Ctrl_Grp" 
 		"rotate" " -type \"double3\" 0 0 0"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl" 
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl" 
 		"rotatePivotTranslate" " -type \"double3\" 0 0 0"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl" 
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl" 
 		"rotatePivotTranslate" " -type \"double3\" 0 0 0"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl" 
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl" 
 		"scale" " -type \"double3\" 1 1 1"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl" 
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl" 
 		"rotatePivotTranslate" " -type \"double3\" 0 0 0"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl" 
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Cap_Ctrl_Grp|TITANRIGMA:Cap_Ctrl" 
+		"rotate" " -type \"double3\" 0 0 0"
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl" 
 		"rotatePivotTranslate" " -type \"double3\" 0 0 0"
-		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:R_Ft_02_Ctrl_Grp|TITANRIGMA:R_Ft_02_Ctrl" 
+		2 "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:R_Ft_02_Ctrl_Grp|TITANRIGMA:R_Ft_02_Ctrl" 
 		"rotatePivotTranslate" " -type \"double3\" 0 0 0"
+		2 "TITANRIGMA:SKEL" "visibility" " 0"
 		2 "TITANRIGMA:GEO" "displayType" " 2"
 		2 "TITANRIGMA:skinCluster7" "blendWeights" " -s 2711"
 		2 "TITANRIGMA:skinCluster7" "bw[0:499]" " 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"
@@ -3001,893 +3057,893 @@ createNode reference -n "TITANRIGMARN";
 		"TITANRIGMARN.placeHolderList[4]" "TITANRIGMA:set3.dsm"
 		5 3 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Geometry_Grp|TITANRIGMA:Mushroom_Flat_Mini|TITANRIGMA:Mushroom_Flat_MiniShape.instObjGroups" 
 		"TITANRIGMARN.placeHolderList[5]" "TITANRIGMA:set3.dsm"
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[6]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[7]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[8]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[9]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[10]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[11]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[12]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[13]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[14]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[15]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[16]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[17]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[18]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[19]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[20]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[21]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[22]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[23]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[24]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[25]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[26]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[27]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[28]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[29]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[30]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[31]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[32]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[33]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[34]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[35]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[36]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[37]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[38]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl|TITANRIGMA:L_Leg_IK_02_Ctrl_Grp|TITANRIGMA:L_Leg_IK_02_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl|TITANRIGMA:L_Leg_IK_02_Ctrl_Grp|TITANRIGMA:L_Leg_IK_02_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[39]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl|TITANRIGMA:L_Leg_IK_02_Ctrl_Grp|TITANRIGMA:L_Leg_IK_02_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl|TITANRIGMA:L_Leg_IK_02_Ctrl_Grp|TITANRIGMA:L_Leg_IK_02_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[40]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl|TITANRIGMA:L_Leg_IK_02_Ctrl_Grp|TITANRIGMA:L_Leg_IK_02_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl|TITANRIGMA:L_Leg_IK_02_Ctrl_Grp|TITANRIGMA:L_Leg_IK_02_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[41]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl|TITANRIGMA:L_Leg_IK_02_Ctrl_Grp|TITANRIGMA:L_Leg_IK_02_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl|TITANRIGMA:L_Leg_IK_02_Ctrl_Grp|TITANRIGMA:L_Leg_IK_02_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[42]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl|TITANRIGMA:L_Leg_IK_02_Ctrl_Grp|TITANRIGMA:L_Leg_IK_02_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl|TITANRIGMA:L_Leg_IK_02_Ctrl_Grp|TITANRIGMA:L_Leg_IK_02_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[43]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl|TITANRIGMA:L_Leg_IK_02_Ctrl_Grp|TITANRIGMA:L_Leg_IK_02_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl|TITANRIGMA:L_Leg_IK_02_Ctrl_Grp|TITANRIGMA:L_Leg_IK_02_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[44]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl|TITANRIGMA:L_Leg_IK_02_Ctrl_Grp|TITANRIGMA:L_Leg_IK_02_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl|TITANRIGMA:L_Leg_IK_02_Ctrl_Grp|TITANRIGMA:L_Leg_IK_02_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[45]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl|TITANRIGMA:L_Leg_IK_02_Ctrl_Grp|TITANRIGMA:L_Leg_IK_02_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl|TITANRIGMA:L_Leg_IK_02_Ctrl_Grp|TITANRIGMA:L_Leg_IK_02_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[46]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl|TITANRIGMA:L_Leg_IK_02_Ctrl_Grp|TITANRIGMA:L_Leg_IK_02_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl_Grp|TITANRIGMA:L_Leg_IK_01_Ctrl|TITANRIGMA:L_Leg_IK_02_Ctrl_Grp|TITANRIGMA:L_Leg_IK_02_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[47]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[48]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[49]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[50]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[51]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[52]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[53]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[54]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[55]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[56]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl|TITANRIGMA:R_Leg_IK_02_Ctrl_Grp|TITANRIGMA:R_Leg_IK_02_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl|TITANRIGMA:R_Leg_IK_02_Ctrl_Grp|TITANRIGMA:R_Leg_IK_02_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[57]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl|TITANRIGMA:R_Leg_IK_02_Ctrl_Grp|TITANRIGMA:R_Leg_IK_02_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl|TITANRIGMA:R_Leg_IK_02_Ctrl_Grp|TITANRIGMA:R_Leg_IK_02_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[58]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl|TITANRIGMA:R_Leg_IK_02_Ctrl_Grp|TITANRIGMA:R_Leg_IK_02_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl|TITANRIGMA:R_Leg_IK_02_Ctrl_Grp|TITANRIGMA:R_Leg_IK_02_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[59]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl|TITANRIGMA:R_Leg_IK_02_Ctrl_Grp|TITANRIGMA:R_Leg_IK_02_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl|TITANRIGMA:R_Leg_IK_02_Ctrl_Grp|TITANRIGMA:R_Leg_IK_02_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[60]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl|TITANRIGMA:R_Leg_IK_02_Ctrl_Grp|TITANRIGMA:R_Leg_IK_02_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl|TITANRIGMA:R_Leg_IK_02_Ctrl_Grp|TITANRIGMA:R_Leg_IK_02_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[61]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl|TITANRIGMA:R_Leg_IK_02_Ctrl_Grp|TITANRIGMA:R_Leg_IK_02_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl|TITANRIGMA:R_Leg_IK_02_Ctrl_Grp|TITANRIGMA:R_Leg_IK_02_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[62]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl|TITANRIGMA:R_Leg_IK_02_Ctrl_Grp|TITANRIGMA:R_Leg_IK_02_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl|TITANRIGMA:R_Leg_IK_02_Ctrl_Grp|TITANRIGMA:R_Leg_IK_02_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[63]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl|TITANRIGMA:R_Leg_IK_02_Ctrl_Grp|TITANRIGMA:R_Leg_IK_02_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl|TITANRIGMA:R_Leg_IK_02_Ctrl_Grp|TITANRIGMA:R_Leg_IK_02_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[64]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl|TITANRIGMA:R_Leg_IK_02_Ctrl_Grp|TITANRIGMA:R_Leg_IK_02_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:IK_Leg_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl_Grp|TITANRIGMA:R_Leg_IK_01_Ctrl|TITANRIGMA:R_Leg_IK_02_Ctrl_Grp|TITANRIGMA:R_Leg_IK_02_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[65]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:R_Leg_PV_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:R_Leg_PV_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[66]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:R_Leg_PV_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:R_Leg_PV_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[67]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:R_Leg_PV_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:R_Leg_PV_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Leg_PV_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[68]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:L_Leg_PV_Ctrl_Grp|TITANRIGMA:L_Leg_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Leg_PV_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:L_Leg_PV_Ctrl_Grp|TITANRIGMA:L_Leg_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Leg_PV_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[69]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:L_Leg_PV_Ctrl_Grp|TITANRIGMA:L_Leg_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Leg_PV_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:L_Leg_PV_Ctrl_Grp|TITANRIGMA:L_Leg_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Leg_PV_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[70]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:L_Leg_PV_Ctrl_Grp|TITANRIGMA:L_Leg_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Leg_PV_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Hip_Ctrl_Grp|TITANRIGMA:Hip_Ctrl|TITANRIGMA:L_Leg_PV_Ctrl_Grp|TITANRIGMA:L_Leg_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Leg_PV_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[71]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[72]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[73]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[74]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[75]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[76]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[77]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[78]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[79]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[80]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[81]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[82]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[83]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[84]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[85]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[86]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[87]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[88]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[89]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[90]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[91]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[92]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[93]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[94]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[95]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[96]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[97]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:L_Arm_PV_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[98]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[99]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[100]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[101]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[102]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[103]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[104]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[105]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[106]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Offset_Ctrl_Grp|TITANRIGMA:R_Arm_PV_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[107]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[108]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[109]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[110]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[111]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[112]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[113]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[114]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[115]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[116]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl|TITANRIGMA:R_Arm_IK_02_Ctrl_Grp|TITANRIGMA:R_Arm_IK_02_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl|TITANRIGMA:R_Arm_IK_02_Ctrl_Grp|TITANRIGMA:R_Arm_IK_02_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[117]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl|TITANRIGMA:R_Arm_IK_02_Ctrl_Grp|TITANRIGMA:R_Arm_IK_02_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl|TITANRIGMA:R_Arm_IK_02_Ctrl_Grp|TITANRIGMA:R_Arm_IK_02_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[118]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl|TITANRIGMA:R_Arm_IK_02_Ctrl_Grp|TITANRIGMA:R_Arm_IK_02_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl|TITANRIGMA:R_Arm_IK_02_Ctrl_Grp|TITANRIGMA:R_Arm_IK_02_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[119]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl|TITANRIGMA:R_Arm_IK_02_Ctrl_Grp|TITANRIGMA:R_Arm_IK_02_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl|TITANRIGMA:R_Arm_IK_02_Ctrl_Grp|TITANRIGMA:R_Arm_IK_02_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[120]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl|TITANRIGMA:R_Arm_IK_02_Ctrl_Grp|TITANRIGMA:R_Arm_IK_02_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl|TITANRIGMA:R_Arm_IK_02_Ctrl_Grp|TITANRIGMA:R_Arm_IK_02_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[121]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl|TITANRIGMA:R_Arm_IK_02_Ctrl_Grp|TITANRIGMA:R_Arm_IK_02_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl|TITANRIGMA:R_Arm_IK_02_Ctrl_Grp|TITANRIGMA:R_Arm_IK_02_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[122]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl|TITANRIGMA:R_Arm_IK_02_Ctrl_Grp|TITANRIGMA:R_Arm_IK_02_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl|TITANRIGMA:R_Arm_IK_02_Ctrl_Grp|TITANRIGMA:R_Arm_IK_02_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[123]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl|TITANRIGMA:R_Arm_IK_02_Ctrl_Grp|TITANRIGMA:R_Arm_IK_02_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl|TITANRIGMA:R_Arm_IK_02_Ctrl_Grp|TITANRIGMA:R_Arm_IK_02_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[124]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl|TITANRIGMA:R_Arm_IK_02_Ctrl_Grp|TITANRIGMA:R_Arm_IK_02_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl_Grp|TITANRIGMA:R_Arm_IK_01_Ctrl|TITANRIGMA:R_Arm_IK_02_Ctrl_Grp|TITANRIGMA:R_Arm_IK_02_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[125]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[126]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[127]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[128]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[129]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[130]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[131]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[132]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[133]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[134]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl|TITANRIGMA:L_Arm_IK_02_Ctrl_Grp|TITANRIGMA:L_Arm_IK_02_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl|TITANRIGMA:L_Arm_IK_02_Ctrl_Grp|TITANRIGMA:L_Arm_IK_02_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[135]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl|TITANRIGMA:L_Arm_IK_02_Ctrl_Grp|TITANRIGMA:L_Arm_IK_02_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl|TITANRIGMA:L_Arm_IK_02_Ctrl_Grp|TITANRIGMA:L_Arm_IK_02_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[136]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl|TITANRIGMA:L_Arm_IK_02_Ctrl_Grp|TITANRIGMA:L_Arm_IK_02_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl|TITANRIGMA:L_Arm_IK_02_Ctrl_Grp|TITANRIGMA:L_Arm_IK_02_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[137]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl|TITANRIGMA:L_Arm_IK_02_Ctrl_Grp|TITANRIGMA:L_Arm_IK_02_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl|TITANRIGMA:L_Arm_IK_02_Ctrl_Grp|TITANRIGMA:L_Arm_IK_02_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[138]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl|TITANRIGMA:L_Arm_IK_02_Ctrl_Grp|TITANRIGMA:L_Arm_IK_02_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl|TITANRIGMA:L_Arm_IK_02_Ctrl_Grp|TITANRIGMA:L_Arm_IK_02_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[139]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl|TITANRIGMA:L_Arm_IK_02_Ctrl_Grp|TITANRIGMA:L_Arm_IK_02_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl|TITANRIGMA:L_Arm_IK_02_Ctrl_Grp|TITANRIGMA:L_Arm_IK_02_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[140]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl|TITANRIGMA:L_Arm_IK_02_Ctrl_Grp|TITANRIGMA:L_Arm_IK_02_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl|TITANRIGMA:L_Arm_IK_02_Ctrl_Grp|TITANRIGMA:L_Arm_IK_02_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[141]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl|TITANRIGMA:L_Arm_IK_02_Ctrl_Grp|TITANRIGMA:L_Arm_IK_02_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl|TITANRIGMA:L_Arm_IK_02_Ctrl_Grp|TITANRIGMA:L_Arm_IK_02_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[142]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl|TITANRIGMA:L_Arm_IK_02_Ctrl_Grp|TITANRIGMA:L_Arm_IK_02_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:IK_Arm_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl_Grp|TITANRIGMA:L_Arm_IK_01_Ctrl|TITANRIGMA:L_Arm_IK_02_Ctrl_Grp|TITANRIGMA:L_Arm_IK_02_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[143]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[144]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[145]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[146]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[147]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[148]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[149]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[150]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[151]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[152]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[153]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[154]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[155]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[156]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[157]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[158]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[159]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[160]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[161]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl.translateX" 
 		"TITANRIGMARN.placeHolderList[162]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl.translateY" 
 		"TITANRIGMARN.placeHolderList[163]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[164]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[165]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[166]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[167]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[168]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[169]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl_Grp|TITANRIGMA:Lwr_Jaw_Cntrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[170]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl.translateX" 
 		"TITANRIGMARN.placeHolderList[171]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl.translateY" 
 		"TITANRIGMARN.placeHolderList[172]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[173]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[174]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[175]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[176]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[177]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[178]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Head_Look_Ctrl_Grp|TITANRIGMA:Head_Look_Ctrl|TITANRIGMA:Head_Ctrl_Grp|TITANRIGMA:Head_Ctrl|TITANRIGMA:Face_Ctrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl_Grp|TITANRIGMA:Uppr_Jaw_Cntrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[179]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[180]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[181]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[182]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[183]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[184]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[185]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_04_Ctrl_Grp|TITANRIGMA:L_Flap_04_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_04_Ctrl_Grp|TITANRIGMA:L_Flap_04_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[186]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_04_Ctrl_Grp|TITANRIGMA:L_Flap_04_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_04_Ctrl_Grp|TITANRIGMA:L_Flap_04_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[187]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_04_Ctrl_Grp|TITANRIGMA:L_Flap_04_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_04_Ctrl_Grp|TITANRIGMA:L_Flap_04_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[188]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_04_Ctrl_Grp|TITANRIGMA:L_Flap_04_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_04_Ctrl_Grp|TITANRIGMA:L_Flap_04_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[189]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_04_Ctrl_Grp|TITANRIGMA:L_Flap_04_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_04_Ctrl_Grp|TITANRIGMA:L_Flap_04_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[190]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_04_Ctrl_Grp|TITANRIGMA:L_Flap_04_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_04_Ctrl_Grp|TITANRIGMA:L_Flap_04_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[191]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_04_Ctrl_Grp|TITANRIGMA:L_Flap_04_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_04_Ctrl_Grp|TITANRIGMA:L_Flap_04_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[192]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_04_Ctrl_Grp|TITANRIGMA:L_Flap_04_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_04_Ctrl_Grp|TITANRIGMA:L_Flap_04_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[193]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_04_Ctrl_Grp|TITANRIGMA:L_Flap_04_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_04_Ctrl_Grp|TITANRIGMA:L_Flap_04_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[194]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_03_Ctrl_Grp|TITANRIGMA:L_Flap_03_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_03_Ctrl_Grp|TITANRIGMA:L_Flap_03_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[195]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_03_Ctrl_Grp|TITANRIGMA:L_Flap_03_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_03_Ctrl_Grp|TITANRIGMA:L_Flap_03_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[196]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_03_Ctrl_Grp|TITANRIGMA:L_Flap_03_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_03_Ctrl_Grp|TITANRIGMA:L_Flap_03_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[197]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_03_Ctrl_Grp|TITANRIGMA:L_Flap_03_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_03_Ctrl_Grp|TITANRIGMA:L_Flap_03_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[198]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_03_Ctrl_Grp|TITANRIGMA:L_Flap_03_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_03_Ctrl_Grp|TITANRIGMA:L_Flap_03_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[199]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_03_Ctrl_Grp|TITANRIGMA:L_Flap_03_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_03_Ctrl_Grp|TITANRIGMA:L_Flap_03_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[200]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_03_Ctrl_Grp|TITANRIGMA:L_Flap_03_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_03_Ctrl_Grp|TITANRIGMA:L_Flap_03_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[201]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_03_Ctrl_Grp|TITANRIGMA:L_Flap_03_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_03_Ctrl_Grp|TITANRIGMA:L_Flap_03_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[202]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_03_Ctrl_Grp|TITANRIGMA:L_Flap_03_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_03_Ctrl_Grp|TITANRIGMA:L_Flap_03_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[203]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_02_Ctrl_Grp|TITANRIGMA:L_Flap_02_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_02_Ctrl_Grp|TITANRIGMA:L_Flap_02_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[204]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_02_Ctrl_Grp|TITANRIGMA:L_Flap_02_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_02_Ctrl_Grp|TITANRIGMA:L_Flap_02_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[205]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_02_Ctrl_Grp|TITANRIGMA:L_Flap_02_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_02_Ctrl_Grp|TITANRIGMA:L_Flap_02_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[206]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_02_Ctrl_Grp|TITANRIGMA:L_Flap_02_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_02_Ctrl_Grp|TITANRIGMA:L_Flap_02_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[207]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_02_Ctrl_Grp|TITANRIGMA:L_Flap_02_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_02_Ctrl_Grp|TITANRIGMA:L_Flap_02_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[208]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_02_Ctrl_Grp|TITANRIGMA:L_Flap_02_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_02_Ctrl_Grp|TITANRIGMA:L_Flap_02_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[209]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_02_Ctrl_Grp|TITANRIGMA:L_Flap_02_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_02_Ctrl_Grp|TITANRIGMA:L_Flap_02_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[210]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_02_Ctrl_Grp|TITANRIGMA:L_Flap_02_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_02_Ctrl_Grp|TITANRIGMA:L_Flap_02_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[211]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_02_Ctrl_Grp|TITANRIGMA:L_Flap_02_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_02_Ctrl_Grp|TITANRIGMA:L_Flap_02_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[212]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_01_Ctrl_Grp|TITANRIGMA:L_Flap_01_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_01_Ctrl_Grp|TITANRIGMA:L_Flap_01_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[213]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_01_Ctrl_Grp|TITANRIGMA:L_Flap_01_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_01_Ctrl_Grp|TITANRIGMA:L_Flap_01_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[214]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_01_Ctrl_Grp|TITANRIGMA:L_Flap_01_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_01_Ctrl_Grp|TITANRIGMA:L_Flap_01_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[215]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_01_Ctrl_Grp|TITANRIGMA:L_Flap_01_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_01_Ctrl_Grp|TITANRIGMA:L_Flap_01_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[216]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_01_Ctrl_Grp|TITANRIGMA:L_Flap_01_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_01_Ctrl_Grp|TITANRIGMA:L_Flap_01_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[217]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_01_Ctrl_Grp|TITANRIGMA:L_Flap_01_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_01_Ctrl_Grp|TITANRIGMA:L_Flap_01_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[218]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_01_Ctrl_Grp|TITANRIGMA:L_Flap_01_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_01_Ctrl_Grp|TITANRIGMA:L_Flap_01_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[219]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_01_Ctrl_Grp|TITANRIGMA:L_Flap_01_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_01_Ctrl_Grp|TITANRIGMA:L_Flap_01_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[220]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_01_Ctrl_Grp|TITANRIGMA:L_Flap_01_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:L_Flap_01_Ctrl_Grp|TITANRIGMA:L_Flap_01_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[221]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Back_Flap_Ctrl_Grp|TITANRIGMA:Back_Flap_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Back_Flap_Ctrl_Grp|TITANRIGMA:Back_Flap_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[222]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Back_Flap_Ctrl_Grp|TITANRIGMA:Back_Flap_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Back_Flap_Ctrl_Grp|TITANRIGMA:Back_Flap_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[223]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Back_Flap_Ctrl_Grp|TITANRIGMA:Back_Flap_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Back_Flap_Ctrl_Grp|TITANRIGMA:Back_Flap_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[224]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Back_Flap_Ctrl_Grp|TITANRIGMA:Back_Flap_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Back_Flap_Ctrl_Grp|TITANRIGMA:Back_Flap_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[225]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Back_Flap_Ctrl_Grp|TITANRIGMA:Back_Flap_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Back_Flap_Ctrl_Grp|TITANRIGMA:Back_Flap_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[226]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Back_Flap_Ctrl_Grp|TITANRIGMA:Back_Flap_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Back_Flap_Ctrl_Grp|TITANRIGMA:Back_Flap_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[227]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Back_Flap_Ctrl_Grp|TITANRIGMA:Back_Flap_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Back_Flap_Ctrl_Grp|TITANRIGMA:Back_Flap_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[228]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Back_Flap_Ctrl_Grp|TITANRIGMA:Back_Flap_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Back_Flap_Ctrl_Grp|TITANRIGMA:Back_Flap_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[229]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Back_Flap_Ctrl_Grp|TITANRIGMA:Back_Flap_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Back_Flap_Ctrl_Grp|TITANRIGMA:Back_Flap_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[230]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_03_Ctrl_Grp|TITANRIGMA:R_Flap_04_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_03_Ctrl_Grp|TITANRIGMA:R_Flap_04_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[231]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_03_Ctrl_Grp|TITANRIGMA:R_Flap_04_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_03_Ctrl_Grp|TITANRIGMA:R_Flap_04_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[232]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_03_Ctrl_Grp|TITANRIGMA:R_Flap_04_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_03_Ctrl_Grp|TITANRIGMA:R_Flap_04_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[233]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_03_Ctrl_Grp|TITANRIGMA:R_Flap_04_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_03_Ctrl_Grp|TITANRIGMA:R_Flap_04_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[234]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_03_Ctrl_Grp|TITANRIGMA:R_Flap_04_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_03_Ctrl_Grp|TITANRIGMA:R_Flap_04_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[235]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_03_Ctrl_Grp|TITANRIGMA:R_Flap_04_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_03_Ctrl_Grp|TITANRIGMA:R_Flap_04_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[236]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_03_Ctrl_Grp|TITANRIGMA:R_Flap_04_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_03_Ctrl_Grp|TITANRIGMA:R_Flap_04_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[237]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_03_Ctrl_Grp|TITANRIGMA:R_Flap_04_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_03_Ctrl_Grp|TITANRIGMA:R_Flap_04_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[238]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_03_Ctrl_Grp|TITANRIGMA:R_Flap_04_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_03_Ctrl_Grp|TITANRIGMA:R_Flap_04_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[239]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_02_Ctrl_Grp|TITANRIGMA:R_Flap_02_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_02_Ctrl_Grp|TITANRIGMA:R_Flap_02_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[240]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_02_Ctrl_Grp|TITANRIGMA:R_Flap_02_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_02_Ctrl_Grp|TITANRIGMA:R_Flap_02_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[241]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_02_Ctrl_Grp|TITANRIGMA:R_Flap_02_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_02_Ctrl_Grp|TITANRIGMA:R_Flap_02_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[242]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_02_Ctrl_Grp|TITANRIGMA:R_Flap_02_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_02_Ctrl_Grp|TITANRIGMA:R_Flap_02_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[243]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_02_Ctrl_Grp|TITANRIGMA:R_Flap_02_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_02_Ctrl_Grp|TITANRIGMA:R_Flap_02_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[244]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_02_Ctrl_Grp|TITANRIGMA:R_Flap_02_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_02_Ctrl_Grp|TITANRIGMA:R_Flap_02_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[245]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_02_Ctrl_Grp|TITANRIGMA:R_Flap_02_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_02_Ctrl_Grp|TITANRIGMA:R_Flap_02_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[246]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_02_Ctrl_Grp|TITANRIGMA:R_Flap_02_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_02_Ctrl_Grp|TITANRIGMA:R_Flap_02_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[247]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_02_Ctrl_Grp|TITANRIGMA:R_Flap_02_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_02_Ctrl_Grp|TITANRIGMA:R_Flap_02_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[248]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_01_Ctrl_Grp|TITANRIGMA:R_Flap_01_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_01_Ctrl_Grp|TITANRIGMA:R_Flap_01_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[249]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_01_Ctrl_Grp|TITANRIGMA:R_Flap_01_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_01_Ctrl_Grp|TITANRIGMA:R_Flap_01_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[250]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_01_Ctrl_Grp|TITANRIGMA:R_Flap_01_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_01_Ctrl_Grp|TITANRIGMA:R_Flap_01_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[251]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_01_Ctrl_Grp|TITANRIGMA:R_Flap_01_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_01_Ctrl_Grp|TITANRIGMA:R_Flap_01_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[252]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_01_Ctrl_Grp|TITANRIGMA:R_Flap_01_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_01_Ctrl_Grp|TITANRIGMA:R_Flap_01_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[253]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_01_Ctrl_Grp|TITANRIGMA:R_Flap_01_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_01_Ctrl_Grp|TITANRIGMA:R_Flap_01_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[254]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_01_Ctrl_Grp|TITANRIGMA:R_Flap_01_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_01_Ctrl_Grp|TITANRIGMA:R_Flap_01_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[255]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_01_Ctrl_Grp|TITANRIGMA:R_Flap_01_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_01_Ctrl_Grp|TITANRIGMA:R_Flap_01_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[256]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_01_Ctrl_Grp|TITANRIGMA:R_Flap_01_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:R_Flap_01_Ctrl_Grp|TITANRIGMA:R_Flap_01_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[257]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Front_Flap_Ctrl_Grp|TITANRIGMA:Front_Flap_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Front_Flap_Ctrl_Grp|TITANRIGMA:Front_Flap_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[258]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Front_Flap_Ctrl_Grp|TITANRIGMA:Front_Flap_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Front_Flap_Ctrl_Grp|TITANRIGMA:Front_Flap_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[259]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Front_Flap_Ctrl_Grp|TITANRIGMA:Front_Flap_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Front_Flap_Ctrl_Grp|TITANRIGMA:Front_Flap_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[260]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Front_Flap_Ctrl_Grp|TITANRIGMA:Front_Flap_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Front_Flap_Ctrl_Grp|TITANRIGMA:Front_Flap_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[261]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Front_Flap_Ctrl_Grp|TITANRIGMA:Front_Flap_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Front_Flap_Ctrl_Grp|TITANRIGMA:Front_Flap_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[262]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Front_Flap_Ctrl_Grp|TITANRIGMA:Front_Flap_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Front_Flap_Ctrl_Grp|TITANRIGMA:Front_Flap_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[263]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Front_Flap_Ctrl_Grp|TITANRIGMA:Front_Flap_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Front_Flap_Ctrl_Grp|TITANRIGMA:Front_Flap_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[264]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Front_Flap_Ctrl_Grp|TITANRIGMA:Front_Flap_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Front_Flap_Ctrl_Grp|TITANRIGMA:Front_Flap_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[265]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Front_Flap_Ctrl_Grp|TITANRIGMA:Front_Flap_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Front_Flap_Ctrl_Grp|TITANRIGMA:Front_Flap_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[266]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Cap_Ctrl_Grp|TITANRIGMA:Cap_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Cap_Ctrl_Grp|TITANRIGMA:Cap_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[267]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Cap_Ctrl_Grp|TITANRIGMA:Cap_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Cap_Ctrl_Grp|TITANRIGMA:Cap_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[268]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Cap_Ctrl_Grp|TITANRIGMA:Cap_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:Mushroom_Ctrl_Grp|TITANRIGMA:Mushroom_Ctrl|TITANRIGMA:Cap_Ctrl_Grp|TITANRIGMA:Cap_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[269]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[270]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[271]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[272]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[273]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[274]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[275]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[276]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[277]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[278]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[279]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[280]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[281]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[282]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[283]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[284]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[285]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[286]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[287]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[288]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[289]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[290]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[291]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[292]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[293]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[294]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[295]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[296]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl|TITANRIGMA:R_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_03_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl|TITANRIGMA:R_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_03_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[297]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl|TITANRIGMA:R_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_03_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl|TITANRIGMA:R_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_03_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[298]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl|TITANRIGMA:R_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_03_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl|TITANRIGMA:R_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_03_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[299]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl|TITANRIGMA:R_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_03_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl|TITANRIGMA:R_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_03_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[300]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl|TITANRIGMA:R_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_03_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl|TITANRIGMA:R_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_03_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[301]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl|TITANRIGMA:R_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_03_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl|TITANRIGMA:R_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_03_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[302]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl|TITANRIGMA:R_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_03_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl|TITANRIGMA:R_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_03_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[303]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl|TITANRIGMA:R_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_03_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl|TITANRIGMA:R_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_03_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[304]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl|TITANRIGMA:R_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_03_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_01_Ctrl|TITANRIGMA:R_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_02_Ctrl|TITANRIGMA:R_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pntr_Fngr_03_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[305]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[306]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[307]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[308]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[309]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[310]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[311]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[312]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[313]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[314]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[315]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[316]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[317]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[318]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[319]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[320]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[321]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[322]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[323]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl|TITANRIGMA:R_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_03_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl|TITANRIGMA:R_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_03_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[324]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl|TITANRIGMA:R_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_03_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl|TITANRIGMA:R_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_03_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[325]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl|TITANRIGMA:R_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_03_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl|TITANRIGMA:R_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_03_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[326]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl|TITANRIGMA:R_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_03_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl|TITANRIGMA:R_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_03_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[327]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl|TITANRIGMA:R_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_03_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl|TITANRIGMA:R_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_03_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[328]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl|TITANRIGMA:R_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_03_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl|TITANRIGMA:R_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_03_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[329]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl|TITANRIGMA:R_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_03_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl|TITANRIGMA:R_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_03_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[330]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl|TITANRIGMA:R_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_03_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl|TITANRIGMA:R_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_03_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[331]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl|TITANRIGMA:R_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_03_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_01_Ctrl|TITANRIGMA:R_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_02_Ctrl|TITANRIGMA:R_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:R_Pnky_Fngr_03_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[332]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[333]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[334]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[335]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[336]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[337]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[338]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[339]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[340]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[341]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl|TITANRIGMA:R_Thmb_02_Ctrl_Grp|TITANRIGMA:R_Thmb_02_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl|TITANRIGMA:R_Thmb_02_Ctrl_Grp|TITANRIGMA:R_Thmb_02_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[342]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl|TITANRIGMA:R_Thmb_02_Ctrl_Grp|TITANRIGMA:R_Thmb_02_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl|TITANRIGMA:R_Thmb_02_Ctrl_Grp|TITANRIGMA:R_Thmb_02_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[343]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl|TITANRIGMA:R_Thmb_02_Ctrl_Grp|TITANRIGMA:R_Thmb_02_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl|TITANRIGMA:R_Thmb_02_Ctrl_Grp|TITANRIGMA:R_Thmb_02_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[344]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl|TITANRIGMA:R_Thmb_02_Ctrl_Grp|TITANRIGMA:R_Thmb_02_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl|TITANRIGMA:R_Thmb_02_Ctrl_Grp|TITANRIGMA:R_Thmb_02_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[345]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl|TITANRIGMA:R_Thmb_02_Ctrl_Grp|TITANRIGMA:R_Thmb_02_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl|TITANRIGMA:R_Thmb_02_Ctrl_Grp|TITANRIGMA:R_Thmb_02_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[346]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl|TITANRIGMA:R_Thmb_02_Ctrl_Grp|TITANRIGMA:R_Thmb_02_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl|TITANRIGMA:R_Thmb_02_Ctrl_Grp|TITANRIGMA:R_Thmb_02_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[347]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl|TITANRIGMA:R_Thmb_02_Ctrl_Grp|TITANRIGMA:R_Thmb_02_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl|TITANRIGMA:R_Thmb_02_Ctrl_Grp|TITANRIGMA:R_Thmb_02_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[348]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl|TITANRIGMA:R_Thmb_02_Ctrl_Grp|TITANRIGMA:R_Thmb_02_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl|TITANRIGMA:R_Thmb_02_Ctrl_Grp|TITANRIGMA:R_Thmb_02_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[349]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl|TITANRIGMA:R_Thmb_02_Ctrl_Grp|TITANRIGMA:R_Thmb_02_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:R_Hand_Ctrl_Grp|TITANRIGMA:R_Hand_Ctrl|TITANRIGMA:R_Thmb_01_Ctrl_Grp|TITANRIGMA:R_Thmb_01_Ctrl|TITANRIGMA:R_Thmb_02_Ctrl_Grp|TITANRIGMA:R_Thmb_02_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[350]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[351]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[352]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[353]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[354]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[355]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[356]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[357]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[358]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[359]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[360]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[361]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[362]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[363]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[364]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[365]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[366]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[367]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[368]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[369]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[370]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[371]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[372]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[373]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[374]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[375]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[376]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[377]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl|TITANRIGMA:L_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_03_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl|TITANRIGMA:L_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_03_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[378]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl|TITANRIGMA:L_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_03_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl|TITANRIGMA:L_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_03_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[379]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl|TITANRIGMA:L_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_03_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl|TITANRIGMA:L_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_03_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[380]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl|TITANRIGMA:L_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_03_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl|TITANRIGMA:L_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_03_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[381]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl|TITANRIGMA:L_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_03_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl|TITANRIGMA:L_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_03_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[382]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl|TITANRIGMA:L_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_03_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl|TITANRIGMA:L_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_03_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[383]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl|TITANRIGMA:L_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_03_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl|TITANRIGMA:L_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_03_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[384]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl|TITANRIGMA:L_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_03_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl|TITANRIGMA:L_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_03_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[385]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl|TITANRIGMA:L_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_03_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pntr_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_01_Ctrl|TITANRIGMA:L_Pntr_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_02_Ctrl|TITANRIGMA:L_Pntr_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pntr_Fngr_03_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[386]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[387]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[388]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[389]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[390]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[391]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[392]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[393]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[394]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[395]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[396]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[397]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[398]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[399]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[400]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[401]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[402]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[403]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[404]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl|TITANRIGMA:L_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_03_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl|TITANRIGMA:L_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_03_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[405]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl|TITANRIGMA:L_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_03_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl|TITANRIGMA:L_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_03_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[406]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl|TITANRIGMA:L_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_03_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl|TITANRIGMA:L_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_03_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[407]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl|TITANRIGMA:L_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_03_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl|TITANRIGMA:L_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_03_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[408]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl|TITANRIGMA:L_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_03_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl|TITANRIGMA:L_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_03_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[409]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl|TITANRIGMA:L_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_03_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl|TITANRIGMA:L_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_03_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[410]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl|TITANRIGMA:L_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_03_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl|TITANRIGMA:L_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_03_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[411]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl|TITANRIGMA:L_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_03_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl|TITANRIGMA:L_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_03_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[412]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl|TITANRIGMA:L_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_03_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Pnky_Fngr_01_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_01_Ctrl|TITANRIGMA:L_Pnky_Fngr_02_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_02_Ctrl|TITANRIGMA:L_Pnky_Fngr_03_Ctrl_Grp|TITANRIGMA:L_Pnky_Fngr_03_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[413]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[414]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[415]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[416]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[417]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[418]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[419]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[420]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[421]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[422]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl|TITANRIGMA:L_Thmb_02_Ctrl_Grp|TITANRIGMA:L_Thmb_02_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl|TITANRIGMA:L_Thmb_02_Ctrl_Grp|TITANRIGMA:L_Thmb_02_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[423]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl|TITANRIGMA:L_Thmb_02_Ctrl_Grp|TITANRIGMA:L_Thmb_02_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl|TITANRIGMA:L_Thmb_02_Ctrl_Grp|TITANRIGMA:L_Thmb_02_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[424]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl|TITANRIGMA:L_Thmb_02_Ctrl_Grp|TITANRIGMA:L_Thmb_02_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl|TITANRIGMA:L_Thmb_02_Ctrl_Grp|TITANRIGMA:L_Thmb_02_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[425]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl|TITANRIGMA:L_Thmb_02_Ctrl_Grp|TITANRIGMA:L_Thmb_02_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl|TITANRIGMA:L_Thmb_02_Ctrl_Grp|TITANRIGMA:L_Thmb_02_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[426]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl|TITANRIGMA:L_Thmb_02_Ctrl_Grp|TITANRIGMA:L_Thmb_02_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl|TITANRIGMA:L_Thmb_02_Ctrl_Grp|TITANRIGMA:L_Thmb_02_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[427]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl|TITANRIGMA:L_Thmb_02_Ctrl_Grp|TITANRIGMA:L_Thmb_02_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl|TITANRIGMA:L_Thmb_02_Ctrl_Grp|TITANRIGMA:L_Thmb_02_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[428]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl|TITANRIGMA:L_Thmb_02_Ctrl_Grp|TITANRIGMA:L_Thmb_02_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl|TITANRIGMA:L_Thmb_02_Ctrl_Grp|TITANRIGMA:L_Thmb_02_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[429]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl|TITANRIGMA:L_Thmb_02_Ctrl_Grp|TITANRIGMA:L_Thmb_02_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl|TITANRIGMA:L_Thmb_02_Ctrl_Grp|TITANRIGMA:L_Thmb_02_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[430]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl|TITANRIGMA:L_Thmb_02_Ctrl_Grp|TITANRIGMA:L_Thmb_02_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:Transform_Ctrl_Grp|TITANRIGMA:Transform_Ctrl|TITANRIGMA:Uppr_Body_Ab_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ab_Ctrl|TITANRIGMA:Uppr_Body_Ctrl_Grp|TITANRIGMA:Uppr_Body_Ctrl|TITANRIGMA:L_Hand_Ctrl_Grp|TITANRIGMA:L_Hand_Ctrl|TITANRIGMA:L_Thmb_01_Ctrl_Grp|TITANRIGMA:L_Thmb_01_Ctrl|TITANRIGMA:L_Thmb_02_Ctrl_Grp|TITANRIGMA:L_Thmb_02_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[431]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:L_Ft_02_Ctrl_Grp|TITANRIGMA:L_Ft_02_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:L_Ft_02_Ctrl_Grp|TITANRIGMA:L_Ft_02_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[432]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:L_Ft_02_Ctrl_Grp|TITANRIGMA:L_Ft_02_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:L_Ft_02_Ctrl_Grp|TITANRIGMA:L_Ft_02_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[433]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:L_Ft_02_Ctrl_Grp|TITANRIGMA:L_Ft_02_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:L_Ft_02_Ctrl_Grp|TITANRIGMA:L_Ft_02_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[434]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:L_Ft_02_Ctrl_Grp|TITANRIGMA:L_Ft_02_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:L_Ft_02_Ctrl_Grp|TITANRIGMA:L_Ft_02_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[435]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:L_Ft_02_Ctrl_Grp|TITANRIGMA:L_Ft_02_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:L_Ft_02_Ctrl_Grp|TITANRIGMA:L_Ft_02_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[436]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:L_Ft_02_Ctrl_Grp|TITANRIGMA:L_Ft_02_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:L_Ft_02_Ctrl_Grp|TITANRIGMA:L_Ft_02_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[437]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:L_Ft_02_Ctrl_Grp|TITANRIGMA:L_Ft_02_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:L_Ft_02_Ctrl_Grp|TITANRIGMA:L_Ft_02_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[438]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:L_Ft_02_Ctrl_Grp|TITANRIGMA:L_Ft_02_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:L_Ft_02_Ctrl_Grp|TITANRIGMA:L_Ft_02_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[439]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:L_Ft_02_Ctrl_Grp|TITANRIGMA:L_Ft_02_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:L_Ft_02_Ctrl_Grp|TITANRIGMA:L_Ft_02_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[440]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:R_Ft_02_Ctrl_Grp|TITANRIGMA:R_Ft_02_Ctrl.translateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:R_Ft_02_Ctrl_Grp|TITANRIGMA:R_Ft_02_Ctrl.translateX" 
 		"TITANRIGMARN.placeHolderList[441]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:R_Ft_02_Ctrl_Grp|TITANRIGMA:R_Ft_02_Ctrl.translateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:R_Ft_02_Ctrl_Grp|TITANRIGMA:R_Ft_02_Ctrl.translateY" 
 		"TITANRIGMARN.placeHolderList[442]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:R_Ft_02_Ctrl_Grp|TITANRIGMA:R_Ft_02_Ctrl.translateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:R_Ft_02_Ctrl_Grp|TITANRIGMA:R_Ft_02_Ctrl.translateZ" 
 		"TITANRIGMARN.placeHolderList[443]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:R_Ft_02_Ctrl_Grp|TITANRIGMA:R_Ft_02_Ctrl.rotateX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:R_Ft_02_Ctrl_Grp|TITANRIGMA:R_Ft_02_Ctrl.rotateX" 
 		"TITANRIGMARN.placeHolderList[444]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:R_Ft_02_Ctrl_Grp|TITANRIGMA:R_Ft_02_Ctrl.rotateY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:R_Ft_02_Ctrl_Grp|TITANRIGMA:R_Ft_02_Ctrl.rotateY" 
 		"TITANRIGMARN.placeHolderList[445]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:R_Ft_02_Ctrl_Grp|TITANRIGMA:R_Ft_02_Ctrl.rotateZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:R_Ft_02_Ctrl_Grp|TITANRIGMA:R_Ft_02_Ctrl.rotateZ" 
 		"TITANRIGMARN.placeHolderList[446]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:R_Ft_02_Ctrl_Grp|TITANRIGMA:R_Ft_02_Ctrl.scaleX" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:R_Ft_02_Ctrl_Grp|TITANRIGMA:R_Ft_02_Ctrl.scaleX" 
 		"TITANRIGMARN.placeHolderList[447]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:R_Ft_02_Ctrl_Grp|TITANRIGMA:R_Ft_02_Ctrl.scaleY" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:R_Ft_02_Ctrl_Grp|TITANRIGMA:R_Ft_02_Ctrl.scaleY" 
 		"TITANRIGMARN.placeHolderList[448]" ""
-		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:R_Ft_02_Ctrl_Grp|TITANRIGMA:R_Ft_02_Ctrl.scaleZ" 
+		5 4 "TITANRIGMARN" "|TITANRIGMA:TitanTruffle_Char|TITANRIGMA:Control_Grp|TITANRIGMA:COG_Ctrl_Grp|TITANRIGMA:COG_Ctrl|TITANRIGMA:R_Ft_02_Ctrl_Grp|TITANRIGMA:R_Ft_02_Ctrl.scaleZ" 
 		"TITANRIGMARN.placeHolderList[449]" "";
 	setAttr ".ptag" -type "string" "";
 lockNode -l 1 ;
@@ -3952,457 +4008,556 @@ createNode animCurveTL -n "L_Ft_02_Ctrl_translateX";
 	rename -uid "67F37CAA-41B5-B10A-50C2-46A094257261";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Ft_02_Ctrl_translateY";
 	rename -uid "5A5A1871-4FCE-BBA3-94D8-E0B289550287";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Ft_02_Ctrl_translateZ";
 	rename -uid "A960DAD5-47DC-1F90-CFE3-D08330122624";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Arm_IK_01_Ctrl_translateX";
 	rename -uid "6504CF91-40C2-668C-8000-5890A51B1B90";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Arm_IK_01_Ctrl_translateY";
 	rename -uid "A2B9EE51-4A6A-36BB-EF71-C58DCC37E948";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Arm_IK_01_Ctrl_translateZ";
 	rename -uid "5D5716D9-471F-B615-8AAC-1A919E392C8A";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Arm_PV_Ctrl_translateX";
 	rename -uid "00649B3E-41D9-4C2C-08A6-169F84B2C56E";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Arm_PV_Ctrl_translateY";
 	rename -uid "D1C0517C-465D-B395-36FE-2CA07E38E750";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Arm_PV_Ctrl_translateZ";
 	rename -uid "3341B702-48B9-2456-83B7-5E8CCD1139A5";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Thmb_01_Ctrl_translateX";
 	rename -uid "4524B9D4-4D61-964A-6684-F9849E77C5DD";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Thmb_01_Ctrl_translateY";
 	rename -uid "96087EFD-434A-58D5-537C-28B3A64DF849";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Thmb_01_Ctrl_translateZ";
 	rename -uid "03C6A087-4E80-94C4-2F73-509277B66723";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Pntr_Fngr_03_Ctrl_translateX";
 	rename -uid "EBD2E711-4F30-11E3-FB70-EF9A39F559FD";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTL -n "R_Pntr_Fngr_03_Ctrl_translateY";
 	rename -uid "F501CA66-494C-34F2-EF22-B0B5268005AD";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTL -n "R_Pntr_Fngr_03_Ctrl_translateZ";
 	rename -uid "EA390EED-4BAF-A7BB-10EF-A3911A4200B4";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTL -n "Lwr_Jaw_Cntrl_translateX";
 	rename -uid "3CECD080-422A-2EAC-5DA1-0C8854FA24A6";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "Lwr_Jaw_Cntrl_translateY";
 	rename -uid "0F5BFD73-4455-9804-C7E3-51A61A0C07C3";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "Lwr_Jaw_Cntrl_translateZ";
 	rename -uid "62900E0F-46A4-FFCF-AD39-BC8FCC86B8BB";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Flap_02_Ctrl_translateX";
 	rename -uid "F0F6962F-4332-91D1-4184-669C4D8CE8E3";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Flap_02_Ctrl_translateY";
 	rename -uid "E24647C7-4C10-3F39-9FE7-9297F3DF3D4C";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Flap_02_Ctrl_translateZ";
 	rename -uid "3F937493-42F1-7F86-F92C-319974D3AC5F";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Pntr_Fngr_01_Ctrl_translateX";
 	rename -uid "4B6E1200-4EC9-8A1F-3E31-77B13A275040";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTL -n "R_Pntr_Fngr_01_Ctrl_translateY";
 	rename -uid "8543531C-4012-77FD-8E99-5B8C9ED0A213";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTL -n "R_Pntr_Fngr_01_Ctrl_translateZ";
 	rename -uid "6E8F142A-4E24-867D-75A6-EAB88C936C95";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTL -n "Hip_Ctrl_translateX";
 	rename -uid "A85493B8-4242-73BE-AD52-C0A3CD09A3A8";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 4 ".ktv[0:3]"  1 0 11 0 14 0 26 0;
+	setAttr -s 4 ".ktv[0:3]"  1 0 11 0 14 0 24 0;
 createNode animCurveTL -n "Hip_Ctrl_translateY";
 	rename -uid "8FD00E12-4960-6855-BAA0-17A15CE53A44";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 4 ".ktv[0:3]"  1 0 11 0 14 0 26 0;
+	setAttr -s 4 ".ktv[0:3]"  1 0 11 0 14 0 24 0;
 createNode animCurveTL -n "Hip_Ctrl_translateZ";
 	rename -uid "D1CA2F14-4813-C1D6-B986-129E1C9E7E08";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 4 ".ktv[0:3]"  1 0 11 0 14 0 26 0;
+	setAttr -s 4 ".ktv[0:3]"  1 0 11 0 14 0 24 0;
 createNode animCurveTL -n "R_Pnky_Fngr_02_Ctrl_translateX";
 	rename -uid "6BAF270E-48B5-DF5E-2552-1FB9EDAFFC98";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTL -n "R_Pnky_Fngr_02_Ctrl_translateY";
 	rename -uid "52BC00B4-4BC6-1417-AA25-C49EACFCE78C";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTL -n "R_Pnky_Fngr_02_Ctrl_translateZ";
 	rename -uid "CEB033C0-4B18-94AA-A623-B798850E2A64";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTL -n "Back_Flap_Ctrl_translateX";
 	rename -uid "3DD34FDE-46B4-7F3B-BB90-14A5A7688B4F";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "Back_Flap_Ctrl_translateY";
 	rename -uid "13927F8B-4FF7-0C46-1F48-7E8CE35D37C8";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "Back_Flap_Ctrl_translateZ";
 	rename -uid "2AC9FC71-4626-78BF-C058-D28F293B2B29";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Flap_04_Ctrl_translateX";
 	rename -uid "96877F8C-4182-E0E2-1261-5F813CBB8490";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Flap_04_Ctrl_translateY";
 	rename -uid "6418F8E8-4753-ABB6-C58C-648A0BDB413B";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Flap_04_Ctrl_translateZ";
 	rename -uid "E53A71CC-4B3B-66E6-01B8-869A5F5C5416";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Arm_PV_Ctrl_translateX";
 	rename -uid "175AA9A8-40A8-343E-2A01-24BBA6A20C25";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Arm_PV_Ctrl_translateY";
 	rename -uid "6C8E4984-413B-C5F9-9590-74A6EC9DAFE0";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Arm_PV_Ctrl_translateZ";
 	rename -uid "804B9349-4F29-2CA3-1B00-498C91CD6996";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Leg_IK_01_Ctrl_translateX";
 	rename -uid "5A4D0E5A-4E13-656F-34D9-378C1ED144B5";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Leg_IK_01_Ctrl_translateY";
 	rename -uid "AC3E5093-4F73-BEE3-B455-E2BCBC2033B2";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Leg_IK_01_Ctrl_translateZ";
 	rename -uid "615B4FCE-4922-1A1B-A365-5FB3DE2B911D";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Leg_IK_02_Ctrl_translateX";
 	rename -uid "C18C3058-4A13-4C65-F5B5-2DA219B25009";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
 	setAttr -s 8 ".ktv[0:7]"  1 -2.2794161256994148 5 -2.1557746466452898
-		 8 -12.545893835360362 11 -14.687723205820713 14 -5.4249165368772871 18 -4.290103393870794
-		 21 0 26 -2.2794161256994148;
+		 8 -12.545893835360362 11 -14.687723205820713 14 -5.4249165368772871 18 -7.4146526055030222
+		 21 -4.5437906480596606 24 1.2406387968626995;
+	setAttr -s 8 ".kit[7]"  1;
+	setAttr -s 8 ".kot[7]"  1;
+	setAttr -s 8 ".kix[7]"  0.80313131251888681;
+	setAttr -s 8 ".kiy[7]"  0.5958020601270948;
+	setAttr -s 8 ".kox[7]"  0.80313131251888681;
+	setAttr -s 8 ".koy[7]"  0.5958020601270948;
 createNode animCurveTL -n "R_Leg_IK_02_Ctrl_translateY";
 	rename -uid "CA8E4327-44C7-7D37-0E29-95849CF92A86";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
 	setAttr -s 8 ".ktv[0:7]"  1 -4.2618763933500121 5 21.651532628810443
-		 8 11.755882882415778 11 14.644616500378451 14 12.215871942410041 18 1.1254446457400555
-		 21 0 26 -4.2618763933500121;
+		 8 11.755882882415778 11 14.644616500378451 14 12.215871942410041 18 -2.8796590890782436
+		 21 2.4935265096080168 24 7.3005534310622799;
+	setAttr -s 8 ".kit[7]"  1;
+	setAttr -s 8 ".kot[7]"  1;
+	setAttr -s 8 ".kix[7]"  0.0064315435852439389;
+	setAttr -s 8 ".kiy[7]"  0.99997931740967072;
+	setAttr -s 8 ".kox[7]"  0.0064315435852439389;
+	setAttr -s 8 ".koy[7]"  0.99997931740967072;
 createNode animCurveTL -n "R_Leg_IK_02_Ctrl_translateZ";
 	rename -uid "F6DA40E2-4241-3B1C-CFE7-3FA0164C07B7";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
 	setAttr -s 8 ".ktv[0:7]"  1 -40.338482669292503 5 -40.674278488060814
-		 8 -8.1697407200726442 11 22.66662547602137 14 26.74851056656702 18 2.0346235338646963
-		 21 0 26 -40.338482669292503;
+		 8 -8.1697407200726442 11 22.66662547602137 14 26.74851056656702 18 -8.629774069750221
+		 21 -45.74389345210129 24 -51.025159873906823;
+	setAttr -s 8 ".kit[7]"  1;
+	setAttr -s 8 ".kot[7]"  1;
+	setAttr -s 8 ".kix[7]"  0.44458418885579193;
+	setAttr -s 8 ".kiy[7]"  -0.89573707024965621;
+	setAttr -s 8 ".kox[7]"  0.44458418885579193;
+	setAttr -s 8 ".koy[7]"  -0.89573707024965621;
 createNode animCurveTL -n "L_Pnky_Fngr_03_Ctrl_translateX";
 	rename -uid "E9C87657-4924-753D-9586-2F9D44E507C3";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Pnky_Fngr_03_Ctrl_translateY";
 	rename -uid "C0A51F71-49B5-D5BB-B548-79A51381C020";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Pnky_Fngr_03_Ctrl_translateZ";
 	rename -uid "5E232942-48F9-FDF9-60E2-409C02991068";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Leg_IK_02_Ctrl_translateX";
 	rename -uid "0C747193-4D8D-B869-5ACD-D8B5D5D7B552";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 8 ".ktv[0:7]"  1 11.082119004633121 5 0 8 6.492574829011005
-		 11 6.492574829011005 14 -4.6064975061124702 18 4.1456401732036774 21 -2.4830252855277668
-		 26 11.082119004633121;
+	setAttr -s 8 ".ktv[0:7]"  1 11.082119004633121 5 0 8 9.095055141139996
+		 11 6.492574829011005 14 -2.9258099390350853 18 4.1456401732036774 21 -1.6291201597880371
+		 24 11.082119004633121;
 createNode animCurveTL -n "L_Leg_IK_02_Ctrl_translateY";
 	rename -uid "492BDD46-4ACE-6CB1-1E4F-2DBE339B453D";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 8 ".ktv[0:7]"  1 0.21248074695596914 5 0 8 -7.5127461817937728
-		 11 3.9382675855728504 14 12.982162455385623 18 17.440670613252838 21 14.427279580546415
-		 26 0.21248074695596914;
+	setAttr -s 8 ".ktv[0:7]"  1 0.21248074695596914 5 0 8 -7.7907839833401171
+		 11 3.9382675855728504 14 14.586962587597347 18 17.440670613252838 21 14.855676264295973
+		 24 0.21248074695596914;
 createNode animCurveTL -n "L_Leg_IK_02_Ctrl_translateZ";
 	rename -uid "F705BEBF-4646-5513-C1E8-53A7E0F0596D";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 8 ".ktv[0:7]"  1 15.352817477833684 5 0 8 -20.228842045195016
-		 11 -37.230896943604577 14 -51.017960344433874 18 -19.736925384096068 21 -29.27687361107747
-		 26 15.352817477833684;
+	setAttr -s 8 ".ktv[0:7]"  1 15.352817477833684 5 0 8 -34.396468447031829
+		 11 -37.230896943604577 14 -46.291377460381419 18 -19.736925384096068 21 1.7759403252054111
+		 24 15.352817477833684;
 createNode animCurveTL -n "Uppr_Body_Ctrl_translateX";
 	rename -uid "577384B2-4A0E-45F8-A8C0-BE970D09CA00";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "Uppr_Body_Ctrl_translateY";
 	rename -uid "670C2156-4AEB-711C-F643-3287A961AD69";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "Uppr_Body_Ctrl_translateZ";
 	rename -uid "9338B02A-4A0F-A870-02EE-F8B3D7240FDF";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Leg_IK_01_Ctrl_translateX";
 	rename -uid "7EA8670E-4AA7-E432-2F11-93992E33AA21";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Leg_IK_01_Ctrl_translateY";
 	rename -uid "1A1CA798-451E-1E16-CF4A-6A995888D5E9";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Leg_IK_01_Ctrl_translateZ";
 	rename -uid "5D4EB65D-4549-1B03-F8A5-E79E0F80E8F0";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Thmb_02_Ctrl_translateX";
 	rename -uid "CEC1D8D0-446B-E45C-908C-2FAA6ECB7B5E";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Thmb_02_Ctrl_translateY";
 	rename -uid "8A7EA829-40D8-5E02-36D9-EF84390A6320";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Thmb_02_Ctrl_translateZ";
 	rename -uid "445E768D-4804-288E-01CE-F6881AFF9478";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "Uppr_Body_Ab_Ctrl_translateX";
 	rename -uid "AD9ACCFB-4273-2AB3-F87A-DB948E5D1EB3";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 4 ".ktv[0:3]"  1 0 5 0 8 0 26 0;
+	setAttr -s 4 ".ktv[0:3]"  1 0 5 0 8 0 24 0;
 createNode animCurveTL -n "Uppr_Body_Ab_Ctrl_translateY";
 	rename -uid "E9057C46-4646-6150-533D-52B2553AD948";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 4 ".ktv[0:3]"  1 0 5 0 8 0 26 0;
+	setAttr -s 4 ".ktv[0:3]"  1 0 5 0 8 0 24 0;
 createNode animCurveTL -n "Uppr_Body_Ab_Ctrl_translateZ";
 	rename -uid "68D80573-4134-6172-C688-CB85A7B1BD88";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 4 ".ktv[0:3]"  1 0 5 0 8 0 26 0;
+	setAttr -s 4 ".ktv[0:3]"  1 0 5 0 8 0 24 0;
 createNode animCurveTL -n "R_Ft_02_Ctrl_translateX";
 	rename -uid "21861D2A-47AC-F4C8-7184-8B813EEDBF7B";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Ft_02_Ctrl_translateY";
 	rename -uid "1806973B-466E-4B44-F318-A682CC00BB8B";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Ft_02_Ctrl_translateZ";
 	rename -uid "A39B3579-4707-4188-F048-56844F65A376";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Arm_IK_02_Ctrl_translateX";
 	rename -uid "E843D983-48CD-4981-F19B-02A1D5109FE1";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 7 ".ktv[0:6]"  1 90.000000000000014 5 73.171454978430063
-		 8 73.171454978430077 11 98.397317280922593 14 150 18 150 26 90.000000000000014;
+	setAttr -s 8 ".ktv[0:7]"  1 90.000000000000014 5 73.171454978430063
+		 8 73.171454978430077 11 98.397317280922593 14 150 18 149.99999999999994 21 123.0930367663147
+		 24 90.000000000000014;
+	setAttr -s 8 ".kit[6:7]"  18 9;
+	setAttr -s 8 ".kot[6:7]"  18 9;
 createNode animCurveTL -n "L_Arm_IK_02_Ctrl_translateY";
 	rename -uid "0473636E-4BB0-D5AA-AB8A-26ACA68AF965";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 7 ".ktv[0:6]"  1 -88.850310060911255 5 -68.349578312246493
-		 8 -47.410184211607906 11 -30.048893655884086 14 -30 18 -45 26 -88.850310060911255;
+	setAttr -s 8 ".ktv[0:7]"  1 -88.850310060911255 5 -68.349578312246493
+		 8 -47.410184211607906 11 -30.048893655884086 14 -30 18 -65 21 -74.861788615542991
+		 24 -88.850310060911255;
+	setAttr -s 8 ".kit[6:7]"  18 9;
+	setAttr -s 8 ".kot[6:7]"  18 9;
 createNode animCurveTL -n "L_Arm_IK_02_Ctrl_translateZ";
 	rename -uid "941C04FA-44C7-A054-EA77-49A8D6CC2813";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 7 ".ktv[0:6]"  1 0.021715517966710063 5 -36.011018502847641
-		 8 19.140195602449996 11 64.867223231860166 14 100 18 100 26 0.021715517966710063;
+	setAttr -s 8 ".ktv[0:7]"  1 0.021715517966710063 5 -36.011018502847641
+		 8 19.140195602449996 11 64.867223231860166 14 100 18 99.999999999999957 21 46.282537438872303
+		 24 0.021715517966710063;
+	setAttr -s 8 ".kit[6:7]"  18 9;
+	setAttr -s 8 ".kot[6:7]"  18 9;
 createNode animCurveTL -n "R_Thmb_02_Ctrl_translateX";
 	rename -uid "32FB916B-456E-CDE9-E5F2-6AB1B747B95A";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Thmb_02_Ctrl_translateY";
 	rename -uid "7D7C8C9D-4BE8-2688-4EBB-5DB1ECC41860";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Thmb_02_Ctrl_translateZ";
 	rename -uid "363D10CF-4EEB-5708-C835-21914E139EEB";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Flap_04_Ctrl_translateX";
 	rename -uid "7DAB09BB-46F4-EA39-289D-97A0535770ED";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Flap_04_Ctrl_translateY";
 	rename -uid "E99EB8D4-450E-74C5-818A-0D93D1B2B6F9";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Flap_04_Ctrl_translateZ";
 	rename -uid "0E20EFFC-40ED-4F1B-3FD9-16AC8B1B97FC";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "Uppr_Jaw_Cntrl_translateX";
 	rename -uid "5D39122A-4960-8C0E-62F8-D193E0418240";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "Uppr_Jaw_Cntrl_translateY";
 	rename -uid "3DCD2419-4441-ABBC-2377-8CB110298B05";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "Uppr_Jaw_Cntrl_translateZ";
 	rename -uid "AEF78C89-4D5C-B7FC-5EA6-F79A23EF71FE";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Flap_01_Ctrl_translateX";
 	rename -uid "D1782929-4A69-8483-52A7-029A49899734";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Flap_01_Ctrl_translateY";
 	rename -uid "B2DDEB72-4278-3CC8-2A13-B5BD2AE2A543";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Flap_01_Ctrl_translateZ";
 	rename -uid "DDA00025-4B66-E777-68DD-A885EDCFAD91";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Pnky_Fngr_01_Ctrl_translateX";
 	rename -uid "3B3FE2C6-4FF9-FDCE-D277-EEB1285AC412";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Pnky_Fngr_01_Ctrl_translateY";
 	rename -uid "D4617725-4ACB-3FDD-8D53-0FA22B78CE44";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Pnky_Fngr_01_Ctrl_translateZ";
 	rename -uid "9960B5D5-4653-92BE-EB2E-6DBA103E92C1";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Pnky_Fngr_03_Ctrl_translateX";
 	rename -uid "717C1ED6-45BA-D351-7F11-75B95C6AB6FC";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTL -n "R_Pnky_Fngr_03_Ctrl_translateY";
 	rename -uid "BEB7501B-4C8D-CA59-A8CF-D3B0A5B6726E";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTL -n "R_Pnky_Fngr_03_Ctrl_translateZ";
 	rename -uid "02917EE9-43E2-B725-7B31-C6BD48E85196";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTL -n "Head_Look_Ctrl_translateX";
 	rename -uid "01D090F6-44FD-23BA-443E-CAA311E27EB6";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 9 ".ktv[0:8]"  1 0 4 0 7 0 10 0 13 0 16 0 19 0 22 0 26 0;
+	setAttr -s 9 ".ktv[0:8]"  1 0 4 0 7 0 10 0 13 0 16 0 19 0 22 0 24 0;
 	setAttr -s 9 ".kit[0:8]"  9 18 18 18 18 18 18 18 
 		9;
 	setAttr -s 9 ".kot[0:8]"  9 18 18 18 18 18 18 18 
@@ -4411,7 +4566,7 @@ createNode animCurveTL -n "Head_Look_Ctrl_translateY";
 	rename -uid "8D994375-476B-D249-DF5B-C4A6D1941196";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 9 ".ktv[0:8]"  1 0 4 0 7 0 10 0 13 0 16 0 19 0 22 0 26 0;
+	setAttr -s 9 ".ktv[0:8]"  1 0 4 0 7 0 10 0 13 0 16 0 19 0 22 0 24 0;
 	setAttr -s 9 ".kit[0:8]"  9 18 18 18 18 18 18 18 
 		9;
 	setAttr -s 9 ".kot[0:8]"  9 18 18 18 18 18 18 18 
@@ -4420,7 +4575,7 @@ createNode animCurveTL -n "Head_Look_Ctrl_translateZ";
 	rename -uid "A9FF6CD9-4F3B-A400-7319-0688AD42531E";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 9 ".ktv[0:8]"  1 0 4 0 7 0 10 0 13 0 16 0 19 0 22 0 26 0;
+	setAttr -s 9 ".ktv[0:8]"  1 0 4 0 7 0 10 0 13 0 16 0 19 0 22 0 24 0;
 	setAttr -s 9 ".kit[0:8]"  9 18 18 18 18 18 18 18 
 		9;
 	setAttr -s 9 ".kot[0:8]"  9 18 18 18 18 18 18 18 
@@ -4429,1284 +4584,1599 @@ createNode animCurveTL -n "Transform_Ctrl_translateX";
 	rename -uid "84942E61-4F93-8A7B-7913-7FA066A43DF7";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 9 ".ktv[0:8]"  1 0 5 0 8 0 11 0 14 0 18 0 21 0 24 0 26 0;
+	setAttr -s 8 ".ktv[0:7]"  1 0 5 0 8 0 11 0 14 0 18 0 21 0 24 0;
 createNode animCurveTL -n "Transform_Ctrl_translateY";
 	rename -uid "2956D208-4415-4A62-917A-C192900BC9A3";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 9 ".ktv[0:8]"  1 8 5 0 8 8 11 8 14 0 18 0 21 0 24 0 26 8;
+	setAttr -s 8 ".ktv[0:7]"  1 8 5 0 8 8 11 8 14 0 18 0 21 0 24 8;
 createNode animCurveTL -n "Transform_Ctrl_translateZ";
 	rename -uid "504B741E-4405-C222-98A9-3686C6770959";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 9 ".ktv[0:8]"  1 0 5 0 8 0 11 0 14 0 18 0 21 0 24 0 26 0;
+	setAttr -s 8 ".ktv[0:7]"  1 0 5 0 8 0 11 0 14 0 18 0 21 0 24 0;
 createNode animCurveTL -n "R_Pnky_Fngr_01_Ctrl_translateX";
 	rename -uid "50EBCDC5-4C1D-3EAC-D9AA-75A844FA1983";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTL -n "R_Pnky_Fngr_01_Ctrl_translateY";
 	rename -uid "64B0A6F6-4CB7-875E-1C1F-DE9024BC31F1";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTL -n "R_Pnky_Fngr_01_Ctrl_translateZ";
 	rename -uid "FD004841-40F3-81CC-AA32-4393C46E010C";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTL -n "L_Pntr_Fngr_01_Ctrl_translateX";
 	rename -uid "114DFC2D-4745-5CEB-813D-A693624333C3";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Pntr_Fngr_01_Ctrl_translateY";
 	rename -uid "80AB656F-49A5-B0E9-EE52-3C9234FD76C1";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Pntr_Fngr_01_Ctrl_translateZ";
 	rename -uid "3177BEB2-418A-B754-9E7F-13A88D511F50";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Flap_02_Ctrl_translateX";
 	rename -uid "40D3471C-4709-BDFE-3F18-E8B851674B63";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Flap_02_Ctrl_translateY";
 	rename -uid "4469633C-4B40-FF28-0C96-519C6AD271BB";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Flap_02_Ctrl_translateZ";
 	rename -uid "9D4028C9-4878-06AB-6ADA-3192C87A4F7F";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Pntr_Fngr_02_Ctrl_translateX";
 	rename -uid "41E125E3-449C-0B9D-FCB1-76957F823BC3";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTL -n "R_Pntr_Fngr_02_Ctrl_translateY";
 	rename -uid "450988D4-41EF-6A0B-7E1B-968AD2BD3049";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTL -n "R_Pntr_Fngr_02_Ctrl_translateZ";
 	rename -uid "29898A89-4119-9C6F-6365-9AACA2DB2F58";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTL -n "Front_Flap_Ctrl_translateX";
 	rename -uid "4153FDE7-465A-A727-7446-38BCDF2A0AF1";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "Front_Flap_Ctrl_translateY";
 	rename -uid "B4469A12-4260-E7AB-B956-099B9EA134A8";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "Front_Flap_Ctrl_translateZ";
 	rename -uid "5F817225-4B9A-29D5-BCEB-E7A59FCDDA02";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Hand_Ctrl_translateX";
 	rename -uid "8CD03B7F-4E1E-2B36-5BF5-0183BF175624";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 39 0;
+	setAttr -s 3 ".ktv[0:2]"  1 0 8 0 39 0;
+	setAttr -s 3 ".kit[1:2]"  18 9;
+	setAttr -s 3 ".kot[1:2]"  18 9;
 createNode animCurveTL -n "R_Hand_Ctrl_translateY";
 	rename -uid "73C3A779-40F2-87AE-D47B-D186CD3240CE";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 39 0;
+	setAttr -s 3 ".ktv[0:2]"  1 0 8 0 39 0;
+	setAttr -s 3 ".kit[1:2]"  18 9;
+	setAttr -s 3 ".kot[1:2]"  18 9;
 createNode animCurveTL -n "R_Hand_Ctrl_translateZ";
 	rename -uid "15DFAF75-4D7E-5718-521F-ECADD26BA56B";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 39 0;
+	setAttr -s 3 ".ktv[0:2]"  1 0 8 0 39 0;
+	setAttr -s 3 ".kit[1:2]"  18 9;
+	setAttr -s 3 ".kot[1:2]"  18 9;
 createNode animCurveTL -n "L_Flap_01_Ctrl_translateX";
 	rename -uid "1F0C74C4-49B3-E1B2-F64B-7BA1E0CF496B";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Flap_01_Ctrl_translateY";
 	rename -uid "0CCF1F26-4FCE-655B-3705-28B1CD5723B2";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Flap_01_Ctrl_translateZ";
 	rename -uid "A47CA3D3-41D1-6EC6-7A46-EAACDBE84918";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Thmb_01_Ctrl_translateX";
 	rename -uid "82BD8648-4F8C-DEED-F4B5-E080CCF77F29";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Thmb_01_Ctrl_translateY";
 	rename -uid "D4DF50E2-459F-AC26-C958-2A81E4208F53";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Thmb_01_Ctrl_translateZ";
 	rename -uid "A5C44487-4A1B-55F2-C44F-3899C2DFECFD";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "R_Arm_IK_02_Ctrl_translateX";
 	rename -uid "A668EE82-4AFB-E9B3-9280-A184F9D2B03D";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 9 ".ktv[0:8]"  1 -150 5 -150 8 -127.13804969463443 11 -105.01083693203579
-		 14 -105.01083693203579 17 -102.26776378536304 20 -106.16447152317602 23 -122.63389169551031
-		 26 -150;
+	setAttr -s 9 ".ktv[0:8]"  1 -150 5 -150.00000000000009 8 -128.27941141882266
+		 11 -105.01083693203579 14 -105.01083693203579 17 -102.26776378536304 20 -106.16447152317602
+		 23 -122.63389169551031 24 -150;
 	setAttr -s 9 ".kit[5:8]"  18 18 18 9;
 	setAttr -s 9 ".kot[5:8]"  18 18 18 9;
 createNode animCurveTL -n "R_Arm_IK_02_Ctrl_translateY";
 	rename -uid "12DB51CD-4DA4-F365-64E2-AD8197A15E71";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 9 ".ktv[0:8]"  1 -30 5 -45 8 -59.846084291689429 11 -79.616490326020596
+	setAttr -s 9 ".ktv[0:8]"  1 -30 5 -65 8 -73.572725277012623 11 -79.616490326020596
 		 14 -69.063397236404953 17 -58.802287068617453 20 -49.875467128031943 23 -41.317367736834456
-		 26 -30;
+		 24 -30;
 	setAttr -s 9 ".kit[5:8]"  18 18 18 9;
 	setAttr -s 9 ".kot[5:8]"  18 18 18 9;
 createNode animCurveTL -n "R_Arm_IK_02_Ctrl_translateZ";
 	rename -uid "CF296D11-40A0-4BB9-8E2C-4895330C879F";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 9 ".ktv[0:8]"  1 100 5 100 8 83.973601685966855 11 23.386490559422242
+	setAttr -s 9 ".ktv[0:8]"  1 100 5 100 8 75.85239103139007 11 23.386490559422242
 		 14 -29.025270642406994 17 -7.3344449936371587 20 23.85033440480645 23 56.343787016207429
-		 26 100;
+		 24 100;
 	setAttr -s 9 ".kit[5:8]"  18 18 18 9;
 	setAttr -s 9 ".kot[5:8]"  18 18 18 9;
 createNode animCurveTL -n "Head_Ctrl_translateX";
 	rename -uid "CC8AB199-4585-CD90-A8CC-89AF2BB7E4C1";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "Head_Ctrl_translateY";
 	rename -uid "C08B6C73-4378-C416-F9F9-8290007793F4";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "Head_Ctrl_translateZ";
 	rename -uid "E82A7E8E-44E0-C4B4-3204-2D90D1175F6E";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Pnky_Fngr_02_Ctrl_translateX";
 	rename -uid "DFDA2D54-47B0-A1F6-BC87-398025147419";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Pnky_Fngr_02_Ctrl_translateY";
 	rename -uid "1F261C20-4279-58DB-90CA-F9B9954ECF3F";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Pnky_Fngr_02_Ctrl_translateZ";
 	rename -uid "AD9A88AA-47BA-B2D7-40D3-8E816AF8B85E";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Pntr_Fngr_03_Ctrl_translateX";
 	rename -uid "AC3C9545-4F09-53DC-8C9A-3BA8573175A9";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Pntr_Fngr_03_Ctrl_translateY";
 	rename -uid "E8E456F8-4E3C-2666-0400-12B28B813E04";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Pntr_Fngr_03_Ctrl_translateZ";
 	rename -uid "DF388567-4591-93CD-644C-9ABED93B5589";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "COG_Ctrl_translateX";
 	rename -uid "A538C4B4-4C8E-8A7B-ED45-BA83721C7D20";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr ".ktv[0]"  1 0;
 createNode animCurveTL -n "COG_Ctrl_translateY";
 	rename -uid "7010CEBD-49CA-A90C-D3F3-2C852DAC4C2B";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr ".ktv[0]"  1 0;
 createNode animCurveTL -n "COG_Ctrl_translateZ";
 	rename -uid "FD77D3B6-4EAE-70E6-86EA-20B79165DEA6";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 -412.98123024295063 26 0;
+	setAttr ".ktv[0]"  1 -81.813339145257942;
 createNode animCurveTL -n "L_Hand_Ctrl_translateX";
 	rename -uid "F56B55B5-429A-4A54-7AF5-DFBE553B0553";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Hand_Ctrl_translateY";
 	rename -uid "3CC687B1-4E8C-4453-E2CF-9D9ADC009C61";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Hand_Ctrl_translateZ";
 	rename -uid "65F5EE96-41EA-7BB8-7260-05AD59F29CAD";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Arm_IK_01_Ctrl_translateX";
 	rename -uid "34E9AE20-4DBD-33F4-44A4-01A330E61BB3";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Arm_IK_01_Ctrl_translateY";
 	rename -uid "3AC6580C-4BF7-6EBD-212E-13A7C67AA8BC";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Arm_IK_01_Ctrl_translateZ";
 	rename -uid "D356BB16-4037-D9B2-1DC3-B8AE303C21B7";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Flap_03_Ctrl_translateX";
 	rename -uid "78535A6F-48F6-AAAA-9245-75B1CF85110C";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Flap_03_Ctrl_translateY";
 	rename -uid "F67DE0C0-4C48-E0FF-29AF-369FA779E71F";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Flap_03_Ctrl_translateZ";
 	rename -uid "04925A90-4BF4-6925-A8FE-F7951921976A";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "Mushroom_Ctrl_translateX";
 	rename -uid "EC75D143-4623-68A9-0E9B-2A81B9489CB5";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0.55125045849956233 26 0.55125045849956233;
+	setAttr -s 2 ".ktv[0:1]"  1 0.55125045849956233 24 0.55125045849956233;
 createNode animCurveTL -n "Mushroom_Ctrl_translateY";
 	rename -uid "C64B7FDA-4B06-146E-DAE2-C88D236D38AF";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 -3.6917321648366439 26 -3.6917321648366439;
+	setAttr -s 2 ".ktv[0:1]"  1 -3.6917321648366439 24 -3.6917321648366439;
 createNode animCurveTL -n "Mushroom_Ctrl_translateZ";
 	rename -uid "3EAD71DD-4248-9F95-8F65-75BE3B29223A";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 -9.707828628846741 26 -9.707828628846741;
+	setAttr -s 2 ".ktv[0:1]"  1 -9.707828628846741 24 -9.707828628846741;
 createNode animCurveTL -n "L_Pntr_Fngr_02_Ctrl_translateX";
 	rename -uid "0A9566D5-49F7-E958-1FF9-B995492AB0E1";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Pntr_Fngr_02_Ctrl_translateY";
 	rename -uid "FECE2279-4268-10D0-0C79-EFB87E46B8C1";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTL -n "L_Pntr_Fngr_02_Ctrl_translateZ";
 	rename -uid "02A435F3-4AFF-FE67-00E6-9DAB08E8076F";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "R_Arm_IK_02_Ctrl_rotateX";
 	rename -uid "6B8B23D9-4A44-65D6-B766-00B7445894E0";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 5 ".ktv[0:4]"  1 119.99999999999999 5 119.99999999999999
-		 11 116.50926426545784 14 80.401351607406056 26 119.99999999999999;
+	setAttr -s 6 ".ktv[0:5]"  1 119.99999999999999 5 119.99999999999999
+		 8 121.29271431868774 11 116.50926426545784 14 80.401351607406056 24 119.99999999999999;
+	setAttr -s 6 ".kit[2:5]"  18 9 9 9;
+	setAttr -s 6 ".kot[2:5]"  18 9 9 9;
 createNode animCurveTA -n "R_Arm_IK_02_Ctrl_rotateY";
 	rename -uid "F277C49D-419C-B58F-BF5E-1BAC6992A414";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 5 ".ktv[0:4]"  1 -40 5 -10 11 -8.2343480073405093 14 -8.2343480073405448
-		 26 -40;
+	setAttr -s 6 ".ktv[0:5]"  1 -40 5 -10 8 -6.8818877702757479 11 -8.2343480073405093
+		 14 -8.2343480073405448 24 -40;
+	setAttr -s 6 ".kit[2:5]"  18 9 9 9;
+	setAttr -s 6 ".kot[2:5]"  18 9 9 9;
 createNode animCurveTA -n "R_Arm_IK_02_Ctrl_rotateZ";
 	rename -uid "A3D59501-4D70-CF27-A11D-44867391FB85";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 5 ".ktv[0:4]"  1 -110 5 -90 11 -88.740619056707033 14 -88.740619056707018
-		 26 -110;
+	setAttr -s 6 ".ktv[0:5]"  1 -110 5 -90 8 -87.880804369547619 11 -88.740619056707033
+		 14 -88.740619056707018 24 -110;
+	setAttr -s 6 ".kit[2:5]"  18 9 9 9;
+	setAttr -s 6 ".kot[2:5]"  18 9 9 9;
 createNode animCurveTA -n "L_Arm_IK_02_Ctrl_rotateX";
 	rename -uid "B92C4B9D-45EC-D683-934C-DA927F28967B";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 7 ".ktv[0:6]"  1 101.07644212089104 5 101.07644212089104
-		 8 103.0577024756891 11 111.73514695041668 14 119.99999999999999 18 119.99999999999999
-		 26 101.07644212089104;
+	setAttr -s 8 ".ktv[0:7]"  1 101.07644212089104 5 101.07644212089104
+		 8 103.0577024756891 11 111.73514695041668 14 119.99999999999999 18 118.03853647973891
+		 21 112.32466444488777 24 101.07644212089104;
+	setAttr -s 8 ".kit[6:7]"  18 9;
+	setAttr -s 8 ".kot[6:7]"  18 9;
 createNode animCurveTA -n "L_Arm_IK_02_Ctrl_rotateY";
 	rename -uid "68E6928F-4A18-A70A-0208-159BDC199DEC";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 7 ".ktv[0:6]"  1 -11.27283956482488 5 -11.27283956482488
-		 8 18.645704936615481 11 53.046362376939179 14 40 18 10 26 -11.27283956482488;
+	setAttr -s 8 ".ktv[0:7]"  1 -11.27283956482488 5 -11.27283956482488
+		 8 18.645704936615481 11 53.046362376939179 14 40 18 26.960905034153587 21 11.234399081579674
+		 24 -11.27283956482488;
+	setAttr -s 8 ".kit[6:7]"  18 9;
+	setAttr -s 8 ".kot[6:7]"  18 9;
 createNode animCurveTA -n "L_Arm_IK_02_Ctrl_rotateZ";
 	rename -uid "56111246-413C-9A5A-93E6-7D814F0AADF9";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 7 ".ktv[0:6]"  1 98.915603082224948 5 98.915603082224948
-		 8 96.382163949521185 11 100.66517181055849 14 110 18 90 26 98.915603082224948;
+	setAttr -s 8 ".ktv[0:7]"  1 98.915603082224948 5 98.915603082224948
+		 8 96.382163949521185 11 100.66517181055849 14 110 18 88.592201462748719 21 92.981933341746313
+		 24 98.915603082224948;
+	setAttr -s 8 ".kit[6:7]"  18 9;
+	setAttr -s 8 ".kot[6:7]"  18 9;
 createNode animCurveTU -n "L_Ft_02_Ctrl_scaleX";
 	rename -uid "8A79990F-467A-9D60-9620-9A8A38CF3AC3";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Ft_02_Ctrl_scaleY";
 	rename -uid "B1F13290-4E7F-B940-2EA5-A4B13AA69FB3";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Ft_02_Ctrl_scaleZ";
 	rename -uid "C90B534C-4911-810C-ADF1-96823913E7B0";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Arm_IK_01_Ctrl_scaleX";
 	rename -uid "54EE7333-4C8A-9ED2-42AF-E180C11E79CB";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Arm_IK_01_Ctrl_scaleY";
 	rename -uid "D03C5323-474F-F788-ED9D-20989B6BB3D9";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Arm_IK_01_Ctrl_scaleZ";
 	rename -uid "0F0FC0B7-47F9-9CA9-C671-D892083D4B6C";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Arm_PV_Ctrl_scaleX";
 	rename -uid "E073156E-4EE1-947E-B8B2-D697759B8838";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Arm_PV_Ctrl_scaleY";
 	rename -uid "0BCC6D91-46F0-8E81-24C9-C5BCFD8AED9F";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Arm_PV_Ctrl_scaleZ";
 	rename -uid "C33BE4A7-4933-7D3E-EB1E-A3B29BCE3D95";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Thmb_01_Ctrl_scaleX";
 	rename -uid "BB540F43-4CAD-C4E0-7106-87B620F217A9";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Thmb_01_Ctrl_scaleY";
 	rename -uid "52ADAED9-426B-176D-ABC9-5FBC95BC77C2";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Thmb_01_Ctrl_scaleZ";
 	rename -uid "5D9ECC0D-46B6-6D6D-EA64-82B01FE308B0";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Pntr_Fngr_03_Ctrl_scaleX";
 	rename -uid "35199AE2-4D3D-EB7F-28FD-0BBD1AFBE389";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTU -n "R_Pntr_Fngr_03_Ctrl_scaleY";
 	rename -uid "C9022F76-4D66-85FB-558C-449FA4BF5D5E";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTU -n "R_Pntr_Fngr_03_Ctrl_scaleZ";
 	rename -uid "5C6A1FF7-448A-E470-5155-8AB2B521A040";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTU -n "Lwr_Jaw_Cntrl_scaleX";
 	rename -uid "8BA555E3-41A1-8EA5-732D-BB84E1F597C8";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "Lwr_Jaw_Cntrl_scaleY";
 	rename -uid "1F65BB8C-49C3-8CD9-5746-5F98400500F1";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "Lwr_Jaw_Cntrl_scaleZ";
 	rename -uid "AE1432A3-4F3C-49B4-3007-6CB1072EB4BE";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Flap_02_Ctrl_scaleX";
 	rename -uid "20BED59C-4813-250D-8CE4-7F93D58015BE";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Flap_02_Ctrl_scaleY";
 	rename -uid "9ED8840C-4ACA-CF80-A53F-3D808F2BA67C";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Flap_02_Ctrl_scaleZ";
 	rename -uid "B25C4DA3-42BA-14DF-D876-8FB98C4356B2";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Pntr_Fngr_01_Ctrl_scaleX";
 	rename -uid "703B4325-4CA2-ACA7-9D0F-5F9138B7D7FE";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTU -n "R_Pntr_Fngr_01_Ctrl_scaleY";
 	rename -uid "08861ACB-4187-3E3C-4FF6-A9994B0A29B5";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTU -n "R_Pntr_Fngr_01_Ctrl_scaleZ";
 	rename -uid "2D570812-4014-4005-AD7C-BBB7BE8E9595";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTU -n "Hip_Ctrl_scaleX";
 	rename -uid "F26D69FF-4ADD-F3DA-92E8-1C85EB9325AA";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "Hip_Ctrl_scaleY";
 	rename -uid "7E598436-4F2A-F1EF-E50B-03BD8142414D";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "Hip_Ctrl_scaleZ";
 	rename -uid "3DE9EFCF-4D0E-80E9-33D2-7DB6672D9B6B";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Pnky_Fngr_02_Ctrl_scaleX";
 	rename -uid "D9E54B23-4211-F7E3-C98D-58AA7926A169";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTU -n "R_Pnky_Fngr_02_Ctrl_scaleY";
 	rename -uid "C097DDFB-4BA3-7625-B935-2D97553AFABA";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTU -n "R_Pnky_Fngr_02_Ctrl_scaleZ";
 	rename -uid "2E8F9C07-42C7-AD3E-6952-A789A1EBCE45";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTU -n "Back_Flap_Ctrl_scaleX";
 	rename -uid "F92AEEA3-4FD7-75A7-CCEB-059D3268105C";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "Back_Flap_Ctrl_scaleY";
 	rename -uid "9D957626-48EF-E47C-FE13-25AC9C9E579A";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "Back_Flap_Ctrl_scaleZ";
 	rename -uid "53F68756-4808-C688-4EC3-E7AD16BDE3EC";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Flap_04_Ctrl_scaleX";
 	rename -uid "023149DA-4989-CF2A-183F-12BDEF7CB958";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Flap_04_Ctrl_scaleY";
 	rename -uid "80788A6E-416D-08E1-A4C3-8CB27E378661";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Flap_04_Ctrl_scaleZ";
 	rename -uid "55D516AD-4752-0C24-B020-14BA039E481C";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Arm_PV_Ctrl_scaleX";
 	rename -uid "66602959-4AAC-5512-5AC8-249AAD82B551";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Arm_PV_Ctrl_scaleY";
 	rename -uid "5F935098-4167-D828-A16F-AEBE86E0B2C5";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Arm_PV_Ctrl_scaleZ";
 	rename -uid "933027B5-41CE-CF4E-F49D-999D485E5363";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Leg_IK_01_Ctrl_scaleX";
 	rename -uid "E1B28E69-40CE-A18D-19B4-1AA5A8745FD0";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Leg_IK_01_Ctrl_scaleY";
 	rename -uid "4FE038AC-43C4-2ECB-24F9-BBBB741092A8";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Leg_IK_01_Ctrl_scaleZ";
 	rename -uid "0FE81B9F-412C-5DFB-D913-D2A4D49C6585";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Leg_IK_02_Ctrl_scaleX";
 	rename -uid "35956343-4B1E-215F-52B6-EDA4A960B8D6";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTU -n "R_Leg_IK_02_Ctrl_scaleY";
 	rename -uid "3359D6DD-4F80-D131-65EE-64BD3C48425E";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTU -n "R_Leg_IK_02_Ctrl_scaleZ";
 	rename -uid "D768A8A5-46D9-E4AD-3B27-059581A16680";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTU -n "L_Pnky_Fngr_03_Ctrl_scaleX";
 	rename -uid "2CF3B038-43BF-8407-3CB4-BD8D099EE571";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Pnky_Fngr_03_Ctrl_scaleY";
 	rename -uid "7177059F-4C17-0A14-78CD-B58006BAD329";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Pnky_Fngr_03_Ctrl_scaleZ";
 	rename -uid "C53FD5F5-4035-76B4-7768-729743C1A655";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Leg_IK_02_Ctrl_scaleX";
 	rename -uid "0952EB50-4490-FC6C-246C-83879665914F";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Leg_IK_02_Ctrl_scaleY";
 	rename -uid "02053292-4D38-C4BD-2EC3-D88A7B85103F";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Leg_IK_02_Ctrl_scaleZ";
 	rename -uid "A0A16D84-40FF-2DFC-1C26-B1B7414EEC46";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "Uppr_Body_Ctrl_scaleX";
 	rename -uid "E170DB7D-4D6A-C1A5-B41A-498A8DE9D563";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "Uppr_Body_Ctrl_scaleY";
 	rename -uid "DD6E19AB-489F-459B-6455-FBA62E8C1A7E";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "Uppr_Body_Ctrl_scaleZ";
 	rename -uid "3F30E9D3-4C80-251A-B64A-83AF6A02B189";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Leg_IK_01_Ctrl_scaleX";
 	rename -uid "81A04506-4C15-FF8E-C27F-688ECF63933E";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Leg_IK_01_Ctrl_scaleY";
 	rename -uid "99971881-4681-7611-AEEB-8881E234A94F";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Leg_IK_01_Ctrl_scaleZ";
 	rename -uid "9E9042D4-475E-A50A-D9AF-7FB7B0676355";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Thmb_02_Ctrl_scaleX";
 	rename -uid "8E449E64-4E38-ABAA-3CDB-12B582D37101";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Thmb_02_Ctrl_scaleY";
 	rename -uid "BB842BAC-4898-EF9A-D888-448D47FDB795";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Thmb_02_Ctrl_scaleZ";
 	rename -uid "A1546C41-47BC-A3A1-0855-B8AF5D90CAA8";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "Uppr_Body_Ab_Ctrl_scaleX";
 	rename -uid "E82D744C-4776-D7BF-D2FA-21AAA51AD7EB";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "Uppr_Body_Ab_Ctrl_scaleY";
 	rename -uid "5F15D80C-4DAA-8B42-3FB9-BDAEC6188DFE";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "Uppr_Body_Ab_Ctrl_scaleZ";
 	rename -uid "CE2DBDF6-49A3-2369-1BFD-33B1C11D7C09";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Ft_02_Ctrl_scaleX";
 	rename -uid "78199429-4AF0-96A0-462B-6B8C204E4CD4";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Ft_02_Ctrl_scaleY";
 	rename -uid "D288790D-4E6B-29F9-045C-98863EF247A8";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Ft_02_Ctrl_scaleZ";
 	rename -uid "21851C0F-4A4B-CA9A-B246-DD899EFC63EC";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Arm_IK_02_Ctrl_scaleX";
 	rename -uid "ABFF9DDD-4D0C-5B51-D6EB-E8AC07F55EED";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Arm_IK_02_Ctrl_scaleY";
 	rename -uid "A6C06E09-4F55-CB0D-0D59-428AD1E559A5";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Arm_IK_02_Ctrl_scaleZ";
 	rename -uid "E5362DDC-457D-120D-858C-B3A1714DF6B9";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Thmb_02_Ctrl_scaleX";
 	rename -uid "23D787D9-4C4C-3D7C-DFD4-31BBF4F88BD6";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Thmb_02_Ctrl_scaleY";
 	rename -uid "1DEE541A-4F3B-DEED-1A53-B09370578716";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Thmb_02_Ctrl_scaleZ";
 	rename -uid "FF87C9A1-42AE-7FD9-6137-ECA88D2A46BB";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Flap_04_Ctrl_scaleX";
 	rename -uid "ABF3E711-450B-E6A6-F6CE-0B9FFBBEB790";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Flap_04_Ctrl_scaleY";
 	rename -uid "90EAA1DE-4326-726D-124D-8FB2EBF80570";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Flap_04_Ctrl_scaleZ";
 	rename -uid "D777EED8-4737-90B7-61FF-07BD12F325C7";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "Uppr_Jaw_Cntrl_scaleX";
 	rename -uid "EF8E2F05-48FF-95F8-965A-01AF1E0A4463";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "Uppr_Jaw_Cntrl_scaleY";
 	rename -uid "33C65030-4AEB-E35F-F970-D0ACE36790CE";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "Uppr_Jaw_Cntrl_scaleZ";
 	rename -uid "20391A53-433A-A069-9036-AEB0D1EDD430";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Flap_01_Ctrl_scaleX";
 	rename -uid "096854D3-4AD1-B4FD-4A7A-7C999C3B8AC2";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Flap_01_Ctrl_scaleY";
 	rename -uid "53BD8314-4B20-F8DC-D0B8-9C9242CAF37D";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Flap_01_Ctrl_scaleZ";
 	rename -uid "E7349622-4DEB-1AE0-1E52-6A9A43E3B92C";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Pnky_Fngr_01_Ctrl_scaleX";
 	rename -uid "DEE48071-49E6-1BDF-19DB-5C84C5B48803";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Pnky_Fngr_01_Ctrl_scaleY";
 	rename -uid "B107652E-4892-87FB-E8AB-39AE4CC91A65";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Pnky_Fngr_01_Ctrl_scaleZ";
 	rename -uid "DCA087F1-4A84-DD63-42A6-0292FDBFC631";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Pnky_Fngr_03_Ctrl_scaleX";
 	rename -uid "A1169C1D-4DDD-06DA-7290-C7914E055FF9";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTU -n "R_Pnky_Fngr_03_Ctrl_scaleY";
 	rename -uid "DCA5FE6A-44CA-33F9-AF3E-29AF5B567462";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTU -n "R_Pnky_Fngr_03_Ctrl_scaleZ";
 	rename -uid "A61FCB11-4459-A446-A4A7-5D9115AD419E";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTU -n "Head_Look_Ctrl_scaleX";
 	rename -uid "F5DE73DA-44D1-38DD-E43E-0BB007F8958A";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "Head_Look_Ctrl_scaleY";
 	rename -uid "5A9E0CFE-453E-A56E-368C-B68654C47341";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "Head_Look_Ctrl_scaleZ";
 	rename -uid "B2E155B2-4516-19D9-7161-BA97524EDE7F";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "Transform_Ctrl_scaleX";
 	rename -uid "AF3690CD-4432-3DF4-7E08-409F50FBB854";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "Transform_Ctrl_scaleY";
 	rename -uid "4F22DE25-4EFE-913B-614A-C3B85EAFFC76";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "Transform_Ctrl_scaleZ";
 	rename -uid "7C193EE9-426B-8B99-1B2C-B38FC817C145";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Pnky_Fngr_01_Ctrl_scaleX";
 	rename -uid "168B6D87-4110-1251-E96F-AAB8B1A6C1F4";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTU -n "R_Pnky_Fngr_01_Ctrl_scaleY";
 	rename -uid "924F8095-4C37-FC0B-B55C-E8803D000E4D";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTU -n "R_Pnky_Fngr_01_Ctrl_scaleZ";
 	rename -uid "7E948B7D-48FD-CFDC-F479-6DB4453A21B3";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTU -n "L_Pntr_Fngr_01_Ctrl_scaleX";
 	rename -uid "8439D00E-4B63-0652-D0F9-5AA46554BC8D";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Pntr_Fngr_01_Ctrl_scaleY";
 	rename -uid "65136DBF-4421-CA12-CBA9-21BDE1B7FE33";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Pntr_Fngr_01_Ctrl_scaleZ";
 	rename -uid "6416E067-4873-2B59-1A0A-0F97D0F4996A";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Flap_02_Ctrl_scaleX";
 	rename -uid "6F0AC143-45E4-2AC3-D25F-0886E2F82601";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Flap_02_Ctrl_scaleY";
 	rename -uid "7D1262E9-405D-2029-5841-8789292378B3";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Flap_02_Ctrl_scaleZ";
 	rename -uid "527E0F69-475A-63AA-7FAD-95B04ED8DC81";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Pntr_Fngr_02_Ctrl_scaleX";
 	rename -uid "8530D407-4122-923F-52A6-94A291B3BC98";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTU -n "R_Pntr_Fngr_02_Ctrl_scaleY";
 	rename -uid "AC480E6C-4F19-9C13-B84C-6E95CF93EA80";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTU -n "R_Pntr_Fngr_02_Ctrl_scaleZ";
 	rename -uid "7374E6C8-4384-BA15-0FC9-72914371840B";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
+	setAttr -s 2 ".kit[1]"  1;
+	setAttr -s 2 ".kot[1]"  1;
+	setAttr -s 2 ".kix[1]"  1;
+	setAttr -s 2 ".kiy[1]"  0;
+	setAttr -s 2 ".kox[1]"  1;
+	setAttr -s 2 ".koy[1]"  0;
 createNode animCurveTU -n "Front_Flap_Ctrl_scaleX";
 	rename -uid "D24D61B7-4A8A-88F5-D135-1BADC8BFFEF9";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "Front_Flap_Ctrl_scaleY";
 	rename -uid "8B6BCB46-45DD-056D-68BB-19851F8CC231";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "Front_Flap_Ctrl_scaleZ";
 	rename -uid "E3731D39-4D07-9CFD-27F2-DD9F8296757A";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Hand_Ctrl_scaleX";
 	rename -uid "DA08C0BB-4486-A900-72EE-4C9F1A9421D2";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 39 1;
+	setAttr -s 5 ".ktv[0:4]"  1 1 5 0.75 8 0.75 11 1 39 1;
+	setAttr -s 5 ".kit[0:4]"  9 18 18 18 9;
+	setAttr -s 5 ".kot[0:4]"  9 18 18 18 9;
 createNode animCurveTU -n "R_Hand_Ctrl_scaleY";
 	rename -uid "FE311FCD-4BE9-F146-72A7-419E251BD9A2";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 39 1;
+	setAttr -s 5 ".ktv[0:4]"  1 1 5 1 8 1 11 1 39 1;
+	setAttr -s 5 ".kit[0:4]"  9 18 18 18 9;
+	setAttr -s 5 ".kot[0:4]"  9 18 18 18 9;
 createNode animCurveTU -n "R_Hand_Ctrl_scaleZ";
 	rename -uid "FF608988-4A60-8409-73EE-4883FB08E74B";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 39 1;
+	setAttr -s 5 ".ktv[0:4]"  1 1 5 1 8 1 11 1 39 1;
+	setAttr -s 5 ".kit[0:4]"  9 18 18 18 9;
+	setAttr -s 5 ".kot[0:4]"  9 18 18 18 9;
 createNode animCurveTU -n "L_Flap_01_Ctrl_scaleX";
 	rename -uid "7A3F8D0C-4194-146A-98D3-5C923BA7B900";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Flap_01_Ctrl_scaleY";
 	rename -uid "CD187580-4A90-F931-103A-B281B3968927";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Flap_01_Ctrl_scaleZ";
 	rename -uid "3D1C94DC-43E0-CD61-3E70-0AA0F65C8548";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Thmb_01_Ctrl_scaleX";
 	rename -uid "FC205319-4F23-6BCC-D70E-FAB038B4E2E6";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Thmb_01_Ctrl_scaleY";
 	rename -uid "7CD0C337-406C-0712-2DB2-D59F2E451103";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Thmb_01_Ctrl_scaleZ";
 	rename -uid "A8D230B1-40D9-E755-DF8F-9D88EAE1941A";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "R_Arm_IK_02_Ctrl_scaleX";
 	rename -uid "F30511EB-4962-8FB5-8D23-6A8D5A00F2D3";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 3 ".ktv[0:2]"  1 1 5 1 24 1;
+	setAttr -s 3 ".kit[1:2]"  18 9;
+	setAttr -s 3 ".kot[1:2]"  18 9;
 createNode animCurveTU -n "R_Arm_IK_02_Ctrl_scaleY";
 	rename -uid "22DF3A2A-4E79-72D6-E931-38AAF9DC976F";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 3 ".ktv[0:2]"  1 1 5 1 24 1;
+	setAttr -s 3 ".kit[1:2]"  18 9;
+	setAttr -s 3 ".kot[1:2]"  18 9;
 createNode animCurveTU -n "R_Arm_IK_02_Ctrl_scaleZ";
 	rename -uid "ABE34B8A-4A8C-5D46-30BE-C1AD48D974B6";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 3 ".ktv[0:2]"  1 1 5 1 24 1;
+	setAttr -s 3 ".kit[1:2]"  18 9;
+	setAttr -s 3 ".kot[1:2]"  18 9;
 createNode animCurveTU -n "Head_Ctrl_scaleX";
 	rename -uid "170C253A-45BF-6A80-A18B-2882CF50B3A9";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "Head_Ctrl_scaleY";
 	rename -uid "2232D247-4BF6-6483-0FA3-D79B26EBD326";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "Head_Ctrl_scaleZ";
 	rename -uid "5603BA16-4418-1AE9-2877-ADA4EFBF4521";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Pnky_Fngr_02_Ctrl_scaleX";
 	rename -uid "66827E9A-4A82-0D66-4892-76A07D766AA9";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Pnky_Fngr_02_Ctrl_scaleY";
 	rename -uid "BA001E62-4365-CF9A-F935-35B6701D7A6E";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Pnky_Fngr_02_Ctrl_scaleZ";
 	rename -uid "0E9CDAB0-4D23-99FA-FA15-BFB508D38D78";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Pntr_Fngr_03_Ctrl_scaleX";
 	rename -uid "83919190-4EB6-DE98-4C92-F6A378689A12";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Pntr_Fngr_03_Ctrl_scaleY";
 	rename -uid "EC4AEB5C-40F7-61B9-1277-519EC0E4A073";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Pntr_Fngr_03_Ctrl_scaleZ";
 	rename -uid "9A48E357-46AF-C373-437E-1BA8D28F8FB0";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Hand_Ctrl_scaleX";
 	rename -uid "CA026A48-4DB3-FF8D-5A97-92ABEFCD4683";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 5 ".ktv[0:4]"  1 1 14 1 18 0.75 21 0.75 24 1;
+	setAttr -s 5 ".kit[0:4]"  9 18 18 18 9;
+	setAttr -s 5 ".kot[0:4]"  9 18 18 18 9;
 createNode animCurveTU -n "L_Hand_Ctrl_scaleY";
 	rename -uid "F9BB06DE-4EF5-58E0-9268-4FB487F64A94";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 5 ".ktv[0:4]"  1 1 14 1 18 1 21 1 24 1;
+	setAttr -s 5 ".kit[0:4]"  9 18 18 18 9;
+	setAttr -s 5 ".kot[0:4]"  9 18 18 18 9;
 createNode animCurveTU -n "L_Hand_Ctrl_scaleZ";
 	rename -uid "6EAF4CAC-435C-14B9-58AE-65B5087B5FF8";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 5 ".ktv[0:4]"  1 1 14 1 18 1 21 1 24 1;
+	setAttr -s 5 ".kit[0:4]"  9 18 18 18 9;
+	setAttr -s 5 ".kot[0:4]"  9 18 18 18 9;
 createNode animCurveTU -n "L_Arm_IK_01_Ctrl_scaleX";
 	rename -uid "04866053-451C-C422-805B-358F4FBD0F2E";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Arm_IK_01_Ctrl_scaleY";
 	rename -uid "A23B0879-4166-2AD5-78DB-069CC6C79F89";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Arm_IK_01_Ctrl_scaleZ";
 	rename -uid "9A4EFF85-4D59-EECA-6FC6-B49478BF1D40";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Flap_03_Ctrl_scaleX";
 	rename -uid "B31B8010-46CB-AC24-CA66-D69CA36C1173";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Flap_03_Ctrl_scaleY";
 	rename -uid "958333D8-42A3-77EE-ED0F-41A5A59DA9CB";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Flap_03_Ctrl_scaleZ";
 	rename -uid "304F8BB9-4C5B-ADFC-3A2F-D8B9EA350EF4";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Pntr_Fngr_02_Ctrl_scaleX";
 	rename -uid "0FADF195-4B86-C3FF-5755-8D9DB1A13466";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Pntr_Fngr_02_Ctrl_scaleY";
 	rename -uid "27FB741D-42EA-8B19-FAF4-4597CC2BB14C";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTU -n "L_Pntr_Fngr_02_Ctrl_scaleZ";
 	rename -uid "BDB0AEF6-42EE-3EA2-7CF4-8C9E67E0C3B1";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 1 26 1;
+	setAttr -s 2 ".ktv[0:1]"  1 1 24 1;
 createNode animCurveTA -n "L_Ft_02_Ctrl_rotateX";
 	rename -uid "DFF991F1-49BC-517F-111F-75BB4479D88E";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 5 ".ktv[0:4]"  1 0 11 0 14 0 17 0 24 0;
+	setAttr -s 5 ".kit[0:4]"  9 18 18 18 9;
+	setAttr -s 5 ".kot[0:4]"  9 18 18 18 9;
 createNode animCurveTA -n "L_Ft_02_Ctrl_rotateY";
 	rename -uid "A3E4EAC5-471F-A4C4-2CB7-25BEDDEAB30C";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 5 ".ktv[0:4]"  1 0 11 0 14 0 17 0 24 0;
+	setAttr -s 5 ".kit[0:4]"  9 18 18 18 9;
+	setAttr -s 5 ".kot[0:4]"  9 18 18 18 9;
 createNode animCurveTA -n "L_Ft_02_Ctrl_rotateZ";
 	rename -uid "5B01C9C0-401B-9B09-22A9-E78140092166";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 5 ".ktv[0:4]"  1 0 11 0 14 26.967743219525396 17 0 24 0;
+	setAttr -s 5 ".kit[0:4]"  9 18 18 18 9;
+	setAttr -s 5 ".kot[0:4]"  9 18 18 18 9;
 createNode animCurveTA -n "R_Arm_IK_01_Ctrl_rotateX";
 	rename -uid "16155C0B-42C2-AF65-534D-2EABB7EDCE56";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "R_Arm_IK_01_Ctrl_rotateY";
 	rename -uid "3FB202EE-4E36-146C-4309-098E6DD7AD54";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "R_Arm_IK_01_Ctrl_rotateZ";
 	rename -uid "1E5DBBD2-4382-9CCD-141B-2B9593468E23";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Arm_PV_Ctrl_rotateX";
 	rename -uid "009D8BC3-4618-8957-F26B-96905CA1B6C9";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Arm_PV_Ctrl_rotateY";
 	rename -uid "81B2A1BD-45A8-194C-0141-E485131FA214";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Arm_PV_Ctrl_rotateZ";
 	rename -uid "0E34C2E0-45FA-CDDF-01DA-47800AF1A788";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Thmb_01_Ctrl_rotateX";
 	rename -uid "FF68ECEA-49F5-0EFB-6E1A-3D9EA621423A";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 -34.684725736614737 26 -34.684725736614737;
+	setAttr -s 2 ".ktv[0:1]"  1 -34.684725736614737 24 -34.684725736614737;
 createNode animCurveTA -n "L_Thmb_01_Ctrl_rotateY";
 	rename -uid "7A3E2D50-40EE-C65A-2B41-E9B762594B5A";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 -52.532392268712201 26 -52.532392268712201;
+	setAttr -s 2 ".ktv[0:1]"  1 -52.532392268712201 24 -52.532392268712201;
 createNode animCurveTA -n "L_Thmb_01_Ctrl_rotateZ";
 	rename -uid "7F144085-4F0D-AD0B-D571-45A9CB2D9F94";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 -28.515887259000291 26 -28.515887259000291;
+	setAttr -s 2 ".ktv[0:1]"  1 -28.515887259000291 24 -28.515887259000291;
 createNode animCurveTA -n "R_Pntr_Fngr_03_Ctrl_rotateX";
 	rename -uid "F06542B9-45B8-CD4C-486F-EB9D6B8EE586";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 9 ".ktv[0:8]"  1 -3.4839980624288041 4 -4.7856320727400679
+		 7 -4.586430137712262 10 -3.9206787534338847 13 -6.8695735432388823 16 -5.733393038477848
+		 19 -3.6913793725573378 22 -1.4869205864797688 24 -3.4839980624288041;
+	setAttr -s 9 ".kit[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kot[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kix[8]"  0.98388303128754806;
+	setAttr -s 9 ".kiy[8]"  -0.17881325662384637;
+	setAttr -s 9 ".kox[8]"  0.98388303128754806;
+	setAttr -s 9 ".koy[8]"  -0.17881325662384637;
 createNode animCurveTA -n "R_Pntr_Fngr_03_Ctrl_rotateY";
 	rename -uid "8FCED9BA-4BDE-A4F4-F859-32A78278ED78";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 9 ".ktv[0:8]"  1 4.9415926063697624 4 2.1758460994721673
+		 7 1.6195851153944005 10 1.3062628830086431 13 8.998053371849462 16 8.0287730330865514
+		 19 5.2354735095261704 22 2.1150684787397873 24 4.9415926063697624;
+	setAttr -s 9 ".kit[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kot[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kix[8]"  0.93285851402404274;
+	setAttr -s 9 ".kiy[8]"  -0.3602429635854873;
+	setAttr -s 9 ".kox[8]"  0.93285851402404274;
+	setAttr -s 9 ".koy[8]"  -0.3602429635854873;
 createNode animCurveTA -n "R_Pntr_Fngr_03_Ctrl_rotateZ";
 	rename -uid "0CFD868F-4054-473D-3A2B-3B910F4BC91E";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 -33.560874005346072 26 -33.560874005346072;
+	setAttr -s 9 ".ktv[0:8]"  1 -21.18192110589543 4 -53.166820937743395
+		 7 -52.350723396682355 10 -49.623249551653061 13 -31.851720534159583 16 -30.234436170942256
+		 19 -30.99457919169469 22 -32.487578047839214 24 -21.18192110589543;
+	setAttr -s 9 ".kit[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kot[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kix[8]"  0.21850645209996972;
+	setAttr -s 9 ".kiy[8]"  -0.97583550375597805;
+	setAttr -s 9 ".kox[8]"  0.21850645209996972;
+	setAttr -s 9 ".koy[8]"  -0.97583550375597805;
 createNode animCurveTA -n "Lwr_Jaw_Cntrl_rotateX";
 	rename -uid "8FD35383-49B1-320D-4793-9D970D179ED7";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 -44.510009298462123 26 -44.510009298462123;
+	setAttr -s 2 ".ktv[0:1]"  1 -44.510009298462123 24 -44.510009298462123;
 createNode animCurveTA -n "Lwr_Jaw_Cntrl_rotateY";
 	rename -uid "50ECDF8B-45D6-B126-172A-4CADEBC72CE1";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "Lwr_Jaw_Cntrl_rotateZ";
 	rename -uid "81ECAFBA-427C-5C86-5308-BFA9FE24FA88";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "R_Flap_02_Ctrl_rotateX";
 	rename -uid "84A83CFF-4FD8-99BB-C27D-70A8E9CC178B";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "R_Flap_02_Ctrl_rotateY";
 	rename -uid "C90C717C-4D23-0D7A-54CD-EFB5238A33AC";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "R_Flap_02_Ctrl_rotateZ";
 	rename -uid "B3D662FB-4A9C-78A2-64EF-C5B54D1081CF";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "R_Pntr_Fngr_01_Ctrl_rotateX";
 	rename -uid "806D5399-493B-3078-91D0-E4950809B9E4";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 9 ".ktv[0:8]"  1 6.4322794187931089 4 3.2592103398595333
+		 7 2.5173732903222685 10 2.0428566048222265 13 12.958683234628007 16 11.335117698215733
+		 19 7.3643246551794324 22 2.9725979670760538 24 6.4322794187931089;
+	setAttr -s 9 ".kit[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kot[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kix[8]"  0.91428611803722681;
+	setAttr -s 9 ".kiy[8]"  -0.40506899951047631;
+	setAttr -s 9 ".kox[8]"  0.91428611803722681;
+	setAttr -s 9 ".koy[8]"  -0.40506899951047631;
 createNode animCurveTA -n "R_Pntr_Fngr_01_Ctrl_rotateY";
 	rename -uid "AD4E6A89-47C8-7099-52C0-3592EE228CFD";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 9 ".ktv[0:8]"  1 3.5646958409302467 4 5.5020808079058616
+		 7 5.2730566942767796 10 4.5076368169025649 13 2.3057073826969878 16 1.139745657729119
+		 19 0.63365952649411039 22 0.24591038567733164 24 3.5646958409302467;
+	setAttr -s 9 ".kit[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kot[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kix[8]"  0.965305089359906;
+	setAttr -s 9 ".kiy[8]"  0.26112465309859961;
+	setAttr -s 9 ".kox[8]"  0.965305089359906;
+	setAttr -s 9 ".koy[8]"  0.26112465309859961;
 createNode animCurveTA -n "R_Pntr_Fngr_01_Ctrl_rotateZ";
 	rename -uid "BDE24272-4FF2-7BBD-59C1-C2989FAE4B63";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 -14.167194405405581 26 -14.167194405405581;
+	setAttr -s 9 ".ktv[0:8]"  1 -2.1545561766554231 4 -34.10923235087337
+		 7 -33.279145021393269 10 -30.504916003004585 13 -13.663511881888072 16 -11.934457819687655
+		 19 -12.444673016033352 22 -13.446787991420031 24 -2.1545561766554231;
+	setAttr -s 9 ".kit[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kot[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kix[8]"  0.21870324103218475;
+	setAttr -s 9 ".kiy[8]"  -0.97579141847119055;
+	setAttr -s 9 ".kox[8]"  0.21870324103218475;
+	setAttr -s 9 ".koy[8]"  -0.97579141847119055;
 createNode animCurveTA -n "Hip_Ctrl_rotateX";
 	rename -uid "0E37C55F-4062-2C45-F3AF-4C8510F9F4C5";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 9 ".ktv[0:8]"  1 -25 5 -20 8 -20 11 -20 14 -25 18 -20 21 -20
-		 24 -20 26 -25;
+	setAttr -s 8 ".ktv[0:7]"  1 -25 5 -20 8 -20 11 -20 14 -25 18 -20 21 -20
+		 24 -25;
 createNode animCurveTA -n "Hip_Ctrl_rotateY";
 	rename -uid "A50CE675-4745-7270-B4EC-C7B07DE5485B";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 9 ".ktv[0:8]"  1 20 5 14.999999999999998 8 10 11 0 14 -20
-		 18 -14.999999999999998 21 0 24 0 26 20;
+	setAttr -s 8 ".ktv[0:7]"  1 20 5 14.999999999999998 8 10 11 0 14 -20
+		 18 -14.999999999999998 21 0 24 20;
 createNode animCurveTA -n "Hip_Ctrl_rotateZ";
 	rename -uid "F4537154-45EE-3D82-0595-8BB95BF65E3F";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 9 ".ktv[0:8]"  1 -10 5 -6.0000000000000009 8 -3.0000000000000004
-		 11 0 14 10 18 6.0000000000000009 21 0 24 0 26 -10;
+	setAttr -s 8 ".ktv[0:7]"  1 -10 5 -6.0000000000000009 8 -3.0000000000000004
+		 11 0 14 10 18 6.0000000000000009 21 0 24 -10;
 createNode animCurveTA -n "R_Pnky_Fngr_02_Ctrl_rotateX";
 	rename -uid "F6AE93F5-4542-5416-27E0-6B8ADBB2CE1B";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 9 ".ktv[0:8]"  1 6.0747609190697842 4 4.214679176892921
+		 7 3.4667629695424154 10 2.8411322915221806 13 14.47153612509986 16 12.865314354853828
+		 19 8.3836770590873542 22 3.3863849600160991 24 6.0747609190697842;
+	setAttr -s 9 ".kit[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kot[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kix[8]"  0.96788932048532061;
+	setAttr -s 9 ".kiy[8]"  -0.25137673577812369;
+	setAttr -s 9 ".kox[8]"  0.96788932048532061;
+	setAttr -s 9 ".koy[8]"  -0.25137673577812369;
 createNode animCurveTA -n "R_Pnky_Fngr_02_Ctrl_rotateY";
 	rename -uid "87E03FD4-4068-20DD-4EC1-1AA86B21C68D";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 9 ".ktv[0:8]"  1 0.78564493102903132 4 3.2595720607217564
+		 7 3.1238923736942135 10 2.6704382471344723 13 9.493265532388147 16 7.8703153872351299
+		 19 5.0604689343223992 22 2.0377736681898027 24 0.78564493102903132;
+	setAttr -s 9 ".kit[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kot[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kix[8]"  0.94519870983305054;
+	setAttr -s 9 ".kiy[8]"  0.32649563386044944;
+	setAttr -s 9 ".kox[8]"  0.94519870983305054;
+	setAttr -s 9 ".koy[8]"  0.32649563386044944;
 createNode animCurveTA -n "R_Pnky_Fngr_02_Ctrl_rotateZ";
 	rename -uid "9FAECD35-44D3-8B3B-7DF3-B9B842831E69";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 -51.480771289468322 26 -51.480771289468322;
+	setAttr -s 9 ".ktv[0:8]"  1 -38.949204738680947 4 -70.888304294064511
+		 7 -70.080465732748195 10 -67.38059416576408 13 -53.196343049179276 16 -50.431842019082623
+		 19 -50.671538746885602 22 -51.142327704570441 24 -38.949204738680947;
+	setAttr -s 9 ".kit[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kot[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kix[8]"  0.21880479678598083;
+	setAttr -s 9 ".kiy[8]"  -0.97576865132235391;
+	setAttr -s 9 ".kox[8]"  0.21880479678598083;
+	setAttr -s 9 ".koy[8]"  -0.97576865132235391;
 createNode animCurveTA -n "Back_Flap_Ctrl_rotateX";
 	rename -uid "061B64FD-415A-40F8-BF81-DFBBF3402DBF";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "Back_Flap_Ctrl_rotateY";
 	rename -uid "CB8B66C3-405B-3D2C-CE26-BDB8BF013D88";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "Back_Flap_Ctrl_rotateZ";
 	rename -uid "3084CA02-4F42-1120-A9C4-53A7B8731411";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Flap_04_Ctrl_rotateX";
 	rename -uid "596D395E-456A-7499-FBA3-69B6E78469BE";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Flap_04_Ctrl_rotateY";
 	rename -uid "18D30053-4C28-6FE6-BBDE-C7978E180F1E";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Flap_04_Ctrl_rotateZ";
 	rename -uid "7C5A038B-4E81-E267-E9E2-49A39C2515F3";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "R_Arm_PV_Ctrl_rotateX";
 	rename -uid "32EA620B-4A2D-2BF9-E36F-03986324F33E";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "R_Arm_PV_Ctrl_rotateY";
 	rename -uid "4D6DF885-4631-47E6-CCC0-0DBF115891F7";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "R_Arm_PV_Ctrl_rotateZ";
 	rename -uid "3451CC99-453C-66C6-978A-4280EB57ADE0";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Leg_IK_01_Ctrl_rotateX";
 	rename -uid "C309A797-43E4-D897-6669-E189839ACC35";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Leg_IK_01_Ctrl_rotateY";
 	rename -uid "A02D9C89-4DFC-4F74-19DB-AEBA03726C79";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Leg_IK_01_Ctrl_rotateZ";
 	rename -uid "5A6B9929-471B-FB1D-DB2B-FA81DD652FB0";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "R_Leg_IK_02_Ctrl_rotateX";
 	rename -uid "E43C38DD-4FAA-976F-270D-C4ABE3044366";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
 	setAttr -s 8 ".ktv[0:7]"  1 0 5 51.852475737109209 8 64.388258202544577
-		 11 4.0519131086664908 14 -40.110789933322962 18 -4 21 -10 26 0;
+		 11 4.0519131086664908 14 -40.110789933322962 18 -4 21 15.619227590831382 24 24.926635942843788;
+	setAttr -s 8 ".kit[7]"  1;
+	setAttr -s 8 ".kot[7]"  1;
+	setAttr -s 8 ".kix[7]"  0.1811170229709112;
+	setAttr -s 8 ".kiy[7]"  0.98346155186166506;
+	setAttr -s 8 ".kox[7]"  0.1811170229709112;
+	setAttr -s 8 ".koy[7]"  0.98346155186166506;
 createNode animCurveTA -n "R_Leg_IK_02_Ctrl_rotateY";
 	rename -uid "68BB72C8-4173-8553-7C32-79B2100433FF";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
 	setAttr -s 8 ".ktv[0:7]"  1 -15.307081973640434 5 -15.307081973640393
-		 8 -15.666840117004542 11 -17.101251129173868 14 15.143318310196378 18 10 21 10 26 -15.307081973640434;
+		 8 -15.666840117004542 11 -17.101251129173868 14 15.143318310196378 18 10 21 9.9999999999999751
+		 24 -15.307081973640402;
+	setAttr -s 8 ".kit[7]"  1;
+	setAttr -s 8 ".kot[7]"  1;
+	setAttr -s 8 ".kix[7]"  1;
+	setAttr -s 8 ".kiy[7]"  0;
+	setAttr -s 8 ".kox[7]"  1;
+	setAttr -s 8 ".koy[7]"  0;
 createNode animCurveTA -n "R_Leg_IK_02_Ctrl_rotateZ";
 	rename -uid "4D116C3B-4278-D8E1-10B4-CAA573AF6D28";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
 	setAttr -s 8 ".ktv[0:7]"  1 0 5 0 8 2.1043098903844863 11 0.68401442474904639
-		 14 3.2723914980898319 18 0 21 0 26 0;
+		 14 3.2723914980898319 18 0 21 -4.0370248301448052e-16 24 -8.2438385634766551e-16;
+	setAttr -s 8 ".kit[7]"  1;
+	setAttr -s 8 ".kot[7]"  1;
+	setAttr -s 8 ".kix[7]"  1;
+	setAttr -s 8 ".kiy[7]"  0;
+	setAttr -s 8 ".kox[7]"  1;
+	setAttr -s 8 ".koy[7]"  0;
 createNode animCurveTA -n "L_Pnky_Fngr_03_Ctrl_rotateX";
 	rename -uid "E1AD13B5-488D-EC91-9EE6-B4856E12D4A2";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 4 ".ktv[0:3]"  1 0 4 0 7 0 26 0;
+	setAttr -s 4 ".ktv[0:3]"  1 0 4 0 7 0 24 0;
 	setAttr -s 4 ".kit[0:3]"  9 18 18 9;
 	setAttr -s 4 ".kot[0:3]"  9 18 18 9;
 createNode animCurveTA -n "L_Pnky_Fngr_03_Ctrl_rotateY";
 	rename -uid "D47278D3-45F9-42D5-C97B-6C9053331B89";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 4 ".ktv[0:3]"  1 0 4 0 7 0 26 0;
+	setAttr -s 4 ".ktv[0:3]"  1 0 4 0 7 0 24 0;
 	setAttr -s 4 ".kit[0:3]"  9 18 18 9;
 	setAttr -s 4 ".kot[0:3]"  9 18 18 9;
 createNode animCurveTA -n "L_Pnky_Fngr_03_Ctrl_rotateZ";
@@ -5714,7 +6184,7 @@ createNode animCurveTA -n "L_Pnky_Fngr_03_Ctrl_rotateZ";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -s 4 ".ktv[0:3]"  1 -70.512116273853991 4 -33.453797158399759
-		 7 -66.956610708777447 26 -70.512116273853991;
+		 7 -66.956610708777447 24 -70.512116273853991;
 	setAttr -s 4 ".kit[0:3]"  9 18 18 9;
 	setAttr -s 4 ".kot[0:3]"  9 18 18 9;
 createNode animCurveTA -n "L_Leg_IK_02_Ctrl_rotateX";
@@ -5722,7 +6192,7 @@ createNode animCurveTA -n "L_Leg_IK_02_Ctrl_rotateX";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
 	setAttr -s 8 ".ktv[0:7]"  1 -35 5 -4 8 -0.84565854242544569 11 30.917425668261174
-		 14 31.472581081870853 18 78.755315828320789 21 52.614128207794614 26 -35;
+		 14 53.900230802462644 18 78.755315828320789 21 22.062437946935894 24 -35;
 	setAttr -s 8 ".kit[2:7]"  18 18 9 9 9 9;
 	setAttr -s 8 ".kot[2:7]"  18 18 9 9 9 9;
 createNode animCurveTA -n "L_Leg_IK_02_Ctrl_rotateY";
@@ -5730,8 +6200,8 @@ createNode animCurveTA -n "L_Leg_IK_02_Ctrl_rotateY";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
 	setAttr -s 8 ".ktv[0:7]"  1 -14.999999999999998 5 -10 8 -3.0696707016481253
-		 11 4.3666031865437294 14 10.465610406929168 18 10.465610406929187 21 3.8634151162438251
-		 26 -14.999999999999998;
+		 11 4.3666031865437294 14 10.465610406929169 18 10.465610406929187 21 2.3376375975700205
+		 24 -14.999999999999998;
 	setAttr -s 8 ".kit[2:7]"  18 18 9 9 9 9;
 	setAttr -s 8 ".kot[2:7]"  18 18 9 9 9 9;
 createNode animCurveTA -n "L_Leg_IK_02_Ctrl_rotateZ";
@@ -5739,202 +6209,239 @@ createNode animCurveTA -n "L_Leg_IK_02_Ctrl_rotateZ";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
 	setAttr -s 8 ".ktv[0:7]"  1 -5 5 0 8 0.076421129497830975 11 -0.72571507426319537
-		 14 -1.4244875663900134 18 -1.4244875663900107 21 -2.3514722714000218 26 -5;
+		 14 -1.4244875663900223 18 -1.424487566390011 21 -0.98172673129824861 24 -5;
 	setAttr -s 8 ".kit[2:7]"  18 18 9 9 9 9;
 	setAttr -s 8 ".kot[2:7]"  18 18 9 9 9 9;
 createNode animCurveTA -n "Uppr_Body_Ctrl_rotateX";
 	rename -uid "C992322C-447E-D5FB-2F3C-B5B29E3C741A";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 9 ".ktv[0:8]"  1 0 5 0 8 0 11 0 14 0 18 0 21 0 24 0 26 0;
-	setAttr -s 9 ".kit[7:8]"  18 9;
-	setAttr -s 9 ".kot[7:8]"  18 9;
+	setAttr -s 8 ".ktv[0:7]"  1 0 5 0 8 0 11 0 14 0 18 0 21 0 24 0;
 createNode animCurveTA -n "Uppr_Body_Ctrl_rotateY";
 	rename -uid "6CE488EE-47E5-6BFA-1BAF-1D9C9E8724CB";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 9 ".ktv[0:8]"  1 0 5 -4 8 -8 11 0 14 4 18 8 21 4 24 0 26 0;
-	setAttr -s 9 ".kit[7:8]"  18 9;
-	setAttr -s 9 ".kot[7:8]"  18 9;
+	setAttr -s 8 ".ktv[0:7]"  1 0 5 -4 8 -8 11 0 14 4 18 8 21 4 24 0;
 createNode animCurveTA -n "Uppr_Body_Ctrl_rotateZ";
 	rename -uid "85561455-48BE-540C-F480-24B0633C28B8";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 9 ".ktv[0:8]"  1 0 5 0 8 0 11 0 14 0 18 0 21 0 24 0 26 0;
-	setAttr -s 9 ".kit[7:8]"  18 9;
-	setAttr -s 9 ".kot[7:8]"  18 9;
+	setAttr -s 8 ".ktv[0:7]"  1 0 5 0 8 0 11 0 14 0 18 0 21 0 24 0;
 createNode animCurveTA -n "R_Leg_IK_01_Ctrl_rotateX";
 	rename -uid "7898C870-40EF-8ED0-02DD-51AA42D53617";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 3 ".ktv[0:2]"  1 0 20 0 24 -16.617567698323985;
+	setAttr -s 3 ".kit[1:2]"  18 9;
+	setAttr -s 3 ".kot[1:2]"  18 9;
 createNode animCurveTA -n "R_Leg_IK_01_Ctrl_rotateY";
 	rename -uid "5AA9544E-4AE1-35CA-1970-65B20D9C765C";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 3 ".ktv[0:2]"  1 0 20 0 24 0;
+	setAttr -s 3 ".kit[1:2]"  18 9;
+	setAttr -s 3 ".kot[1:2]"  18 9;
 createNode animCurveTA -n "R_Leg_IK_01_Ctrl_rotateZ";
 	rename -uid "7E3D1523-4994-DC37-594B-3C8916A10C5B";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 3 ".ktv[0:2]"  1 0 20 0 24 0;
+	setAttr -s 3 ".kit[1:2]"  18 9;
+	setAttr -s 3 ".kot[1:2]"  18 9;
 createNode animCurveTA -n "L_Thmb_02_Ctrl_rotateX";
 	rename -uid "A00BC4F6-4448-E564-F083-FEB68063A62E";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 -28.614063969926896 26 -28.614063969926896;
+	setAttr -s 2 ".ktv[0:1]"  1 -28.614063969926896 24 -28.614063969926896;
 createNode animCurveTA -n "L_Thmb_02_Ctrl_rotateY";
 	rename -uid "3A06E21C-4F6C-686A-1605-5BAEEEB8A531";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 2.3359117684477297 26 2.3359117684477297;
+	setAttr -s 2 ".ktv[0:1]"  1 2.3359117684477297 24 2.3359117684477297;
 createNode animCurveTA -n "L_Thmb_02_Ctrl_rotateZ";
 	rename -uid "275AE511-45F3-280A-08D4-F2B0BF88651C";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 -37.719106690369664 26 -37.719106690369664;
+	setAttr -s 2 ".ktv[0:1]"  1 -37.719106690369664 24 -37.719106690369664;
 createNode animCurveTA -n "Uppr_Body_Ab_Ctrl_rotateX";
 	rename -uid "79D8EC6C-4E88-3120-B711-3F801D3F2D88";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
 	setAttr -s 8 ".ktv[0:7]"  1 0 5 3.0000000000000004 8 0 11 0 14 0 18 3.0000000000000004
-		 21 2.2222222222222232 26 0;
+		 21 2.2222222222222232 24 0;
 createNode animCurveTA -n "Uppr_Body_Ab_Ctrl_rotateY";
 	rename -uid "7F564F6C-4102-A92D-CDEA-C9B62192DF13";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
 	setAttr -s 8 ".ktv[0:7]"  1 0 5 -3.0000000000000004 8 0 11 0 14 0
-		 18 -3.0000000000000004 21 -2.2222222222222232 26 0;
+		 18 -3.0000000000000004 21 -2.2222222222222232 24 0;
 createNode animCurveTA -n "Uppr_Body_Ab_Ctrl_rotateZ";
 	rename -uid "45CA7D41-4E8A-493A-9992-0796DC6DFDA9";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
 	setAttr -s 8 ".ktv[0:7]"  1 0 5 6.0000000000000009 8 0 11 0 14 0 18 -6.0000000000000009
-		 21 0 26 0;
+		 21 0 24 0;
 createNode animCurveTA -n "R_Ft_02_Ctrl_rotateX";
 	rename -uid "5184DBAC-4094-C7D2-F6A7-32AFB491CCC8";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 5 ".ktv[0:4]"  1 0 9 0 17 0 21 -1.6606280691953492 24 0;
+	setAttr -s 5 ".kit[0:4]"  9 18 18 18 9;
+	setAttr -s 5 ".kot[0:4]"  9 18 18 18 9;
 createNode animCurveTA -n "R_Ft_02_Ctrl_rotateY";
 	rename -uid "7B6277AA-4CC5-BEEC-467A-81B48F6AE17E";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 5 ".ktv[0:4]"  1 0 9 0 17 0 21 -1.9550812564839031 24 0;
+	setAttr -s 5 ".kit[0:4]"  9 18 18 18 9;
+	setAttr -s 5 ".kot[0:4]"  9 18 18 18 9;
 createNode animCurveTA -n "R_Ft_02_Ctrl_rotateZ";
 	rename -uid "C5372826-4127-61DF-B474-D3ABED008F9F";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 5 ".ktv[0:4]"  1 0 9 50.521867629959665 17 0 21 16.153238382797198
+		 24 0;
+	setAttr -s 5 ".kit[0:4]"  9 18 18 18 9;
+	setAttr -s 5 ".kot[0:4]"  9 18 18 18 9;
 createNode animCurveTA -n "R_Thmb_02_Ctrl_rotateX";
 	rename -uid "2287B36C-44B6-68C8-49A8-B1ABB29E33F4";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "R_Thmb_02_Ctrl_rotateY";
 	rename -uid "8E34D954-4D44-E30D-7214-91B699FEC524";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "R_Thmb_02_Ctrl_rotateZ";
 	rename -uid "65846D17-4252-464C-5153-24936BADBC6D";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "R_Flap_04_Ctrl_rotateX";
 	rename -uid "532834C2-4FC4-4513-829D-8B8C524EB197";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "R_Flap_04_Ctrl_rotateY";
 	rename -uid "3EF2BFFF-437D-C71C-3CB5-81BD94673A99";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "R_Flap_04_Ctrl_rotateZ";
 	rename -uid "DE1D98A2-4048-C18D-F684-C48F1FE23C9E";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "Uppr_Jaw_Cntrl_rotateX";
 	rename -uid "BECD248E-4214-29CB-DC0A-B684D296ECD1";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "Uppr_Jaw_Cntrl_rotateY";
 	rename -uid "EA47BEA6-4ADB-E62E-3F22-D98CC8FED915";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "Uppr_Jaw_Cntrl_rotateZ";
 	rename -uid "39DA2A21-4925-2901-B6CA-98899DF95867";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "R_Flap_01_Ctrl_rotateX";
 	rename -uid "21FD608D-4489-6428-542E-A99C1187F0E8";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "R_Flap_01_Ctrl_rotateY";
 	rename -uid "5D2531CB-41BF-B295-59F5-448483CF43DE";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "R_Flap_01_Ctrl_rotateZ";
 	rename -uid "DF75D8B5-465D-B11A-1FAF-3BAB332F5BA1";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Pnky_Fngr_01_Ctrl_rotateX";
 	rename -uid "41FAE076-4346-DDD6-F03D-10AABD59BEC7";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 8 ".ktv[0:7]"  1 -19.017446621426597 4 -19.82593128452508
+	setAttr -s 8 ".ktv[0:7]"  1 -19.241675762581266 4 -21.206759984399952
 		 7 -19.57904851018931 10 -19.479480939949305 13 -19.396111064339404 16 -19.314726012442776
-		 19 -16.98464036673569 26 -19.017446621426597;
+		 19 -16.98464036673569 24 -19.017446621426597;
 	setAttr -s 8 ".kit[0:7]"  9 18 18 18 18 18 18 9;
 	setAttr -s 8 ".kot[0:7]"  9 18 18 18 18 18 18 9;
 createNode animCurveTA -n "L_Pnky_Fngr_01_Ctrl_rotateY";
 	rename -uid "4AD30DD6-4255-7C7F-88CE-C98D6EFFC6F0";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 8 ".ktv[0:7]"  1 -6.2677821011991437 4 2.5876144113676083
+	setAttr -s 8 ".ktv[0:7]"  1 -1.7918078311492962 4 0.73992071819937344
 		 7 -3.7917784132925831 10 -4.6998527658323148 13 -5.0407766265656839 16 -5.3122033291640207
-		 19 -10.71147085964196 26 -6.2677821011991437;
+		 19 -10.71147085964196 24 -6.2677821011991437;
 	setAttr -s 8 ".kit[0:7]"  9 18 18 18 18 18 18 9;
 	setAttr -s 8 ".kot[0:7]"  9 18 18 18 18 18 18 9;
 createNode animCurveTA -n "L_Pnky_Fngr_01_Ctrl_rotateZ";
 	rename -uid "9DEEE600-4EC8-5569-64EE-098F1242D27E";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 8 ".ktv[0:7]"  1 -12.704012340772213 4 12.009433978415267
+	setAttr -s 8 ".ktv[0:7]"  1 5.4974938178520718 4 5.6951397297084752
 		 7 -5.6862158302919275 10 -8.2599927005105762 13 -9.2262813582697927 16 -9.9955925574612134
-		 19 -26.501712399744598 26 -12.704012340772213;
+		 19 -26.501712399744598 24 -12.704012340772213;
 	setAttr -s 8 ".kit[0:7]"  9 18 18 18 18 18 18 9;
 	setAttr -s 8 ".kot[0:7]"  9 18 18 18 18 18 18 9;
 createNode animCurveTA -n "R_Pnky_Fngr_03_Ctrl_rotateX";
 	rename -uid "6B08CDC8-414E-C875-A095-18A8B9CE6AB9";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 13.037453256584403 26 13.037453256584403;
+	setAttr -s 9 ".ktv[0:8]"  1 15.086347582230939 4 3.2695520103062115
+		 7 3.6761408996825411 10 5.0349987636722444 13 0.62954262125078431 16 3.2805132441055451
+		 19 6.8319919687611659 22 10.544960858572809 24 15.086347582230939;
+	setAttr -s 9 ".kit[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kot[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kix[8]"  0.51831643844509834;
+	setAttr -s 9 ".kiy[8]"  -0.85518890874331877;
+	setAttr -s 9 ".kox[8]"  0.51831643844509834;
+	setAttr -s 9 ".koy[8]"  -0.85518890874331877;
 createNode animCurveTA -n "R_Pnky_Fngr_03_Ctrl_rotateY";
 	rename -uid "B9C0425E-47A8-EB0A-1E34-CEBD304D0DFB";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 13.059498931309736 26 13.059498931309736;
+	setAttr -s 9 ".ktv[0:8]"  1 18.859603343670756 4 23.018022963303192
+		 7 22.603499400471463 10 21.218123120202364 13 32.604328403094186 16 30.005488158923512
+		 19 24.050874199582324 22 17.494461710716116 24 18.859603343670756;
+	setAttr -s 9 ".kit[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kot[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kix[8]"  0.86479655060709859;
+	setAttr -s 9 ".kiy[8]"  0.50212242138552632;
+	setAttr -s 9 ".kox[8]"  0.86479655060709859;
+	setAttr -s 9 ".koy[8]"  0.50212242138552632;
 createNode animCurveTA -n "R_Pnky_Fngr_03_Ctrl_rotateZ";
 	rename -uid "F435702F-4C2B-F1FB-C9F7-DA9ABB072A1A";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 -64.130190569413401 26 -64.130190569413401;
+	setAttr -s 9 ".ktv[0:8]"  1 -51.076173331463131 4 -84.879660003750303
+		 7 -84.015963338546015 10 -81.129408795910166 13 -70.573006734565979 16 -65.708152764715123
+		 19 -64.661184184380446 22 -64.298885670718946 24 -51.076173331463131;
+	setAttr -s 9 ".kit[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kot[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kix[8]"  0.20726979506236354;
+	setAttr -s 9 ".kiy[8]"  -0.97828381978585632;
+	setAttr -s 9 ".kox[8]"  0.20726979506236354;
+	setAttr -s 9 ".koy[8]"  -0.97828381978585632;
 createNode animCurveTA -n "Head_Look_Ctrl_rotateX";
 	rename -uid "9740EFF5-4D17-9E6C-548B-339DB08E84F3";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -s 9 ".ktv[0:8]"  1 -7.2472099852770935 4 -14.292882329273429
 		 7 -9.5607614644908132 10 -8.8221015681583843 13 -8.454382816422596 16 -8.2288080475208343
-		 19 -11.229836532237545 22 -10.502949640360708 26 -7.2472099852770935;
+		 19 -11.229836532237545 22 -10.502949640360708 24 -7.2472099852770935;
 	setAttr -s 9 ".kit[0:8]"  9 18 18 18 18 18 18 18 
 		9;
 	setAttr -s 9 ".kot[0:8]"  9 18 18 18 18 18 18 18 
@@ -5945,7 +6452,7 @@ createNode animCurveTA -n "Head_Look_Ctrl_rotateY";
 	setAttr ".wgt" no;
 	setAttr -s 9 ".ktv[0:8]"  1 0 4 7.1268406477497663 7 8.1859557944335748
 		 10 7.4177175703569525 13 -2.2483449251498486 16 -6.3185333588271346 19 -4.9915300258785971
-		 22 2.0667510827738611 26 0;
+		 22 2.0667510827738611 24 0;
 	setAttr -s 9 ".kit[0:8]"  9 18 18 18 18 18 18 18 
 		9;
 	setAttr -s 9 ".kot[0:8]"  9 18 18 18 18 18 18 18 
@@ -5956,7 +6463,7 @@ createNode animCurveTA -n "Head_Look_Ctrl_rotateZ";
 	setAttr ".wgt" no;
 	setAttr -s 9 ".ktv[0:8]"  1 0 4 -4.3454183383577787 7 1.1014041504115297
 		 10 -0.25193488030758648 13 1.0154943706075481 16 1.5472930665182911 19 3.9829798677811743
-		 22 -2.3556036851926829 26 0;
+		 22 -2.3556036851926829 24 0;
 	setAttr -s 9 ".kit[0:8]"  9 18 18 18 18 18 18 18 
 		9;
 	setAttr -s 9 ".kot[0:8]"  9 18 18 18 18 18 18 18 
@@ -5967,7 +6474,7 @@ createNode animCurveTA -n "Transform_Ctrl_rotateX";
 	setAttr ".wgt" no;
 	setAttr -s 7 ".ktv[0:6]"  1 20.790387788630383 5 20.790387788630383
 		 8 20.790387788630383 11 20.790387788630383 14 20.790387788630383 18 20.790387788630383
-		 26 20.790387788630383;
+		 24 20.790387788630383;
 	setAttr -s 7 ".kit[0:6]"  9 18 18 9 18 18 9;
 	setAttr -s 7 ".kot[0:6]"  9 18 18 9 18 18 9;
 createNode animCurveTA -n "Transform_Ctrl_rotateY";
@@ -5975,278 +6482,371 @@ createNode animCurveTA -n "Transform_Ctrl_rotateY";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr -s 7 ".ktv[0:6]"  1 0 5 -3.0000000000000004 8 0 11 0 14 3.0000000000000004
-		 18 0 26 -3.0000000000000004;
+		 18 0 24 -3.0000000000000004;
 	setAttr -s 7 ".kit[0:6]"  9 18 18 9 18 18 9;
 	setAttr -s 7 ".kot[0:6]"  9 18 18 9 18 18 9;
 createNode animCurveTA -n "Transform_Ctrl_rotateZ";
 	rename -uid "324DD4FB-4C8F-24B1-3D79-818DE06018AE";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 7 ".ktv[0:6]"  1 0 5 0 8 0 11 0 14 0 18 0 26 0;
+	setAttr -s 7 ".ktv[0:6]"  1 0 5 0 8 0 11 0 14 0 18 0 24 0;
 	setAttr -s 7 ".kit[0:6]"  9 18 18 9 18 18 9;
 	setAttr -s 7 ".kot[0:6]"  9 18 18 9 18 18 9;
 createNode animCurveTA -n "R_Pnky_Fngr_01_Ctrl_rotateX";
 	rename -uid "5B601EEE-44E4-39BE-91FB-AEAA28852BCA";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 -26.665514790078802 26 -26.665514790078802;
+	setAttr -s 9 ".ktv[0:8]"  1 -25.405785071219956 4 -18.440512650172408
+		 7 -18.78287836424601 10 -19.927096406315439 13 -13.683299129716096 16 -15.906780670508185
+		 19 -19.748368065413192 22 -23.880134061818893 24 -25.405785071219956;
+	setAttr -s 9 ".kit[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kot[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kix[8]"  0.71688266366013798;
+	setAttr -s 9 ".kiy[8]"  0.6971938371382419;
+	setAttr -s 9 ".kox[8]"  0.71688266366013798;
+	setAttr -s 9 ".koy[8]"  0.6971938371382419;
 createNode animCurveTA -n "R_Pnky_Fngr_01_Ctrl_rotateY";
 	rename -uid "4E557C5C-4555-0148-A7F9-20B5E588E543";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 -10.092457918207083 26 -10.092457918207083;
+	setAttr -s 9 ".ktv[0:8]"  1 -7.7389490263487852 4 -19.691083923804477
+		 7 -19.291541116321486 10 -17.95623191300907 13 -18.882636018612132 16 -17.260573745459606
+		 19 -14.686093644266952 22 -11.940814288697629 24 -7.7389490263487852;
+	setAttr -s 9 ".kit[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kot[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kix[8]"  0.51400445218653312;
+	setAttr -s 9 ".kiy[8]"  -0.8577875163071691;
+	setAttr -s 9 ".kox[8]"  0.51400445218653312;
+	setAttr -s 9 ".koy[8]"  -0.8577875163071691;
 createNode animCurveTA -n "R_Pnky_Fngr_01_Ctrl_rotateZ";
 	rename -uid "4990B687-41F9-6453-599C-2C9BE32206E5";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 -7.7811040035022625 26 -7.7811040035022625;
+	setAttr -s 9 ".ktv[0:8]"  1 5.673226836799099 4 -25.07593704568345
+		 7 -24.35603962030266 10 -21.950075504448044 13 -5.9718430852898603 16 -4.3575285169984941
+		 19 -5.1398690090315817 22 -6.67646597543503 24 5.673226836799099;
+	setAttr -s 9 ".kit[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kot[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kix[8]"  0.22684413599559877;
+	setAttr -s 9 ".kiy[8]"  -0.97393107454501637;
+	setAttr -s 9 ".kox[8]"  0.22684413599559877;
+	setAttr -s 9 ".koy[8]"  -0.97393107454501637;
 createNode animCurveTA -n "L_Pntr_Fngr_01_Ctrl_rotateX";
 	rename -uid "7161BF7A-4FE4-BCE6-A348-EA86A191FA0C";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 5 ".ktv[0:4]"  1 4.3107854788729103 4 1.1496355908120002
+		 7 0.72800673788169901 10 0.56971206087033488 24 0;
+	setAttr -s 5 ".kit[0:4]"  9 18 18 18 9;
+	setAttr -s 5 ".kot[0:4]"  9 18 18 18 9;
 createNode animCurveTA -n "L_Pntr_Fngr_01_Ctrl_rotateY";
 	rename -uid "51841738-4631-D404-C316-7E88180C216B";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 5 ".ktv[0:4]"  1 8.7009585274283605 4 4.0834324224109739
+		 7 3.0934887822541626 10 2.5024073869824512 24 0;
+	setAttr -s 5 ".kit[0:4]"  9 18 18 18 9;
+	setAttr -s 5 ".kot[0:4]"  9 18 18 18 9;
 createNode animCurveTA -n "L_Pntr_Fngr_01_Ctrl_rotateZ";
 	rename -uid "F1DA7417-4301-2ED5-1E5C-BC928E8D13B7";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 -38.437999974405685 26 -38.437999974405685;
+	setAttr -s 5 ".ktv[0:4]"  1 -22.07538514929378 4 -29.56083209580888
+		 7 -31.472342801513303 10 -32.770984539139938 24 -38.437999974405685;
+	setAttr -s 5 ".kit[0:4]"  9 18 18 18 9;
+	setAttr -s 5 ".kot[0:4]"  9 18 18 18 9;
 createNode animCurveTA -n "L_Flap_02_Ctrl_rotateX";
 	rename -uid "2A70D0F4-4358-DC96-E0A8-56ABEADB5851";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Flap_02_Ctrl_rotateY";
 	rename -uid "555EBF0F-4914-141F-819F-9AAB5F7BCF33";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Flap_02_Ctrl_rotateZ";
 	rename -uid "226F5F60-4D27-1C8B-E1B1-05B2ABAB6CE4";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "R_Pntr_Fngr_02_Ctrl_rotateX";
 	rename -uid "C86B52FE-4009-4642-81EA-4DB198E01E74";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0.86029311078292892 26 0.86029311078292892;
+	setAttr -s 9 ".ktv[0:8]"  1 0.5545404385437761 4 -1.7811282417995036
+		 7 -1.6711790779982598 10 -1.3037187519190445 13 2.9038069286900803 16 2.9285467219682366
+		 19 2.4559184553497193 22 1.5276280650169385 24 0.5545404385437761;
+	setAttr -s 9 ".kit[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kot[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kix[8]"  0.95072033586561477;
+	setAttr -s 9 ".kiy[8]"  -0.31004974273747177;
+	setAttr -s 9 ".kox[8]"  0.95072033586561477;
+	setAttr -s 9 ".koy[8]"  -0.31004974273747177;
 createNode animCurveTA -n "R_Pntr_Fngr_02_Ctrl_rotateY";
 	rename -uid "768A4D2F-4EB8-201A-8B81-C785B33EEF0F";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 -0.57746868019647757 26 -0.57746868019647757;
+	setAttr -s 9 ".ktv[0:8]"  1 5.2908951627694281 4 4.203050354110677
+		 7 3.4510317436716154 10 2.7359381080913359 13 10.390434204867075 16 8.8924699415819681
+		 19 5.5599854356751877 22 1.8985122439691628 24 5.2908951627694281;
+	setAttr -s 9 ".kit[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kot[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kix[8]"  0.98866028414297769;
+	setAttr -s 9 ".kiy[8]"  -0.15016937956296819;
+	setAttr -s 9 ".kox[8]"  0.98866028414297769;
+	setAttr -s 9 ".koy[8]"  -0.15016937956296819;
 createNode animCurveTA -n "R_Pntr_Fngr_02_Ctrl_rotateZ";
 	rename -uid "A597430C-4ACE-2E81-4249-AD9841D984FA";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 -56.131095319174669 26 -56.131095319174669;
+	setAttr -s 9 ".ktv[0:8]"  1 -43.535174389560794 4 -75.659977383148913
+		 7 -74.847087667235996 10 -72.130334672044725 13 -53.845481055460056 16 -52.289999574268712
+		 19 -53.16774996910074 22 -54.891741770232358 24 -43.535174389560794;
+	setAttr -s 9 ".kit[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kot[0:8]"  9 18 18 18 18 18 18 18 
+		1;
+	setAttr -s 9 ".kix[8]"  0.21760001048754049;
+	setAttr -s 9 ".kiy[8]"  -0.9760380297077681;
+	setAttr -s 9 ".kox[8]"  0.21760001048754049;
+	setAttr -s 9 ".koy[8]"  -0.9760380297077681;
 createNode animCurveTA -n "Front_Flap_Ctrl_rotateX";
 	rename -uid "269BCFB5-4291-1763-5D52-699D08DB6F8B";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "Front_Flap_Ctrl_rotateY";
 	rename -uid "2EFC9633-4173-70B0-409B-E4918B8E7E96";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "Front_Flap_Ctrl_rotateZ";
 	rename -uid "CF1CCD7F-436A-ECFF-6408-66A6FE087D17";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "R_Hand_Ctrl_rotateX";
 	rename -uid "0F0E0B06-4DAB-BB23-9027-07973628D921";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 39 0;
+	setAttr -s 4 ".ktv[0:3]"  1 0 5 0 8 0 39 0;
+	setAttr -s 4 ".kit[0:3]"  9 18 18 9;
+	setAttr -s 4 ".kot[0:3]"  9 18 18 9;
 createNode animCurveTA -n "R_Hand_Ctrl_rotateY";
 	rename -uid "D4487087-403C-0861-B80A-5590E3AF5000";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 39 0;
+	setAttr -s 4 ".ktv[0:3]"  1 0 5 0 8 0 39 0;
+	setAttr -s 4 ".kit[0:3]"  9 18 18 9;
+	setAttr -s 4 ".kot[0:3]"  9 18 18 9;
 createNode animCurveTA -n "R_Hand_Ctrl_rotateZ";
 	rename -uid "3936BF6F-4BA4-741A-EB48-25B6185B6C30";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 39 0;
+	setAttr -s 4 ".ktv[0:3]"  1 0 5 0 8 0 39 0;
+	setAttr -s 4 ".kit[0:3]"  9 18 18 9;
+	setAttr -s 4 ".kot[0:3]"  9 18 18 9;
 createNode animCurveTA -n "L_Flap_01_Ctrl_rotateX";
 	rename -uid "B2E13EDB-431E-C15D-AF00-129F5E7509AC";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Flap_01_Ctrl_rotateY";
 	rename -uid "E0F1AA82-46C2-4CA3-7507-DAA3AFD1E705";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Flap_01_Ctrl_rotateZ";
 	rename -uid "F49487A4-4E09-4CC9-595E-42B4B5C7C432";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "R_Thmb_01_Ctrl_rotateX";
 	rename -uid "C304ADAA-4769-3D6E-D311-D7A3F74C0ED6";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "R_Thmb_01_Ctrl_rotateY";
 	rename -uid "197C9560-42CC-810C-57EE-DC9D74716625";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 -47.852855890561123 26 -47.852855890561123;
+	setAttr -s 2 ".ktv[0:1]"  1 -47.852855890561123 24 -47.852855890561123;
 createNode animCurveTA -n "R_Thmb_01_Ctrl_rotateZ";
 	rename -uid "E7022FF4-421C-EA53-F13A-7092A479918D";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 -39.94993303226596 26 -39.94993303226596;
+	setAttr -s 2 ".ktv[0:1]"  1 -39.94993303226596 24 -39.94993303226596;
 createNode animCurveTA -n "Head_Ctrl_rotateX";
 	rename -uid "AAA90257-4B1C-4111-0382-3D82712555A7";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "Head_Ctrl_rotateY";
 	rename -uid "6F575AC0-4FD5-2313-FD04-A987EE3791CC";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "Head_Ctrl_rotateZ";
 	rename -uid "BB6CFD27-4D4A-53B8-41A7-228EE2AA888C";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Pnky_Fngr_02_Ctrl_rotateX";
 	rename -uid "3C4A7950-4638-F46A-C63A-1CA1287552A4";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 5 ".ktv[0:4]"  1 3.0718310829413631 4 1.1847913514122268
+		 7 0.84598772131076205 10 0.67741672768537353 24 0;
+	setAttr -s 5 ".kit[0:4]"  9 18 18 18 9;
+	setAttr -s 5 ".kot[0:4]"  9 18 18 18 9;
 createNode animCurveTA -n "L_Pnky_Fngr_02_Ctrl_rotateY";
 	rename -uid "A73D92EE-4F18-A435-C8F3-448B2B9CE264";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 5 ".ktv[0:4]"  1 2.1810581866021623 4 0.44733923041154439
+		 7 0.28327756765811041 10 0.22168290274129734 24 0;
+	setAttr -s 5 ".kit[0:4]"  9 18 18 18 9;
+	setAttr -s 5 ".kot[0:4]"  9 18 18 18 9;
 createNode animCurveTA -n "L_Pnky_Fngr_02_Ctrl_rotateZ";
 	rename -uid "3B22DFEE-4451-B3AB-D351-9A9DC0538631";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 -70.512116273853991 26 -70.512116273853991;
+	setAttr -s 5 ".ktv[0:4]"  1 -52.107803441459914 4 -60.892903633046494
+		 7 -63.027709796794632 10 -64.431298619301273 24 -70.512116273853991;
+	setAttr -s 5 ".kit[0:4]"  9 18 18 18 9;
+	setAttr -s 5 ".kot[0:4]"  9 18 18 18 9;
 createNode animCurveTA -n "L_Pntr_Fngr_03_Ctrl_rotateX";
 	rename -uid "4356F326-43CD-5217-5890-A8BDE4DAF108";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Pntr_Fngr_03_Ctrl_rotateY";
 	rename -uid "E6503448-43F4-C695-7E32-128E36EE4283";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Pntr_Fngr_03_Ctrl_rotateZ";
 	rename -uid "A1528EDF-48E5-3AE1-D94E-CAB1E98713B5";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 -38.437999974405685 26 -38.437999974405685;
+	setAttr -s 2 ".ktv[0:1]"  1 -38.437999974405685 24 -38.437999974405685;
 createNode animCurveTA -n "COG_Ctrl_rotateX";
 	rename -uid "AADAECB7-4180-5C22-2D79-33B5E03EF75C";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr ".ktv[0]"  1 0;
 createNode animCurveTA -n "COG_Ctrl_rotateY";
 	rename -uid "C00CE3D1-4961-0E60-CEE7-3BB1FF43253C";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr ".ktv[0]"  1 0;
 createNode animCurveTA -n "COG_Ctrl_rotateZ";
 	rename -uid "C6429687-456A-DF7A-32E4-4A87539093BA";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr ".ktv[0]"  1 0;
 createNode animCurveTA -n "L_Hand_Ctrl_rotateX";
 	rename -uid "34CC286F-4FDA-D186-B595-3EB2055FCE34";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Hand_Ctrl_rotateY";
 	rename -uid "C2BE9E5A-4494-0900-7269-5696B10BF8AF";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Hand_Ctrl_rotateZ";
 	rename -uid "64206149-40BC-9164-D6B1-918E9A1E3D58";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Arm_IK_01_Ctrl_rotateX";
 	rename -uid "8CEC086B-4CB9-3359-17C7-0197FC3E105C";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Arm_IK_01_Ctrl_rotateY";
 	rename -uid "9AD72F36-42C0-6F32-767C-7285152AE983";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Arm_IK_01_Ctrl_rotateZ";
 	rename -uid "EE7CC696-4585-FBDA-D867-17AAE1A78A11";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Flap_03_Ctrl_rotateX";
 	rename -uid "B38CD733-44A9-63B4-65B3-FAB1BB524974";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Flap_03_Ctrl_rotateY";
 	rename -uid "7CBF1EB5-4275-831A-2389-218A0D8E2DCF";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Flap_03_Ctrl_rotateZ";
 	rename -uid "AEF8C536-4521-36A1-B34C-67A47291F901";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 0 26 0;
+	setAttr -s 2 ".ktv[0:1]"  1 0 24 0;
 createNode animCurveTA -n "L_Pntr_Fngr_02_Ctrl_rotateX";
 	rename -uid "27F7E04B-4E92-26D4-9AEA-9FBFF99ECB16";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 15.335032958161193 26 15.335032958161193;
+	setAttr -s 5 ".ktv[0:4]"  1 8.3611797976110935 4 11.341932701378754
+		 7 12.165355357197425 10 12.751573871141808 24 15.335032958161193;
+	setAttr -s 5 ".kit[0:4]"  9 18 18 18 9;
+	setAttr -s 5 ".kot[0:4]"  9 18 18 18 9;
 createNode animCurveTA -n "L_Pntr_Fngr_02_Ctrl_rotateY";
 	rename -uid "33800D6A-4E75-BED4-1AFB-D3AE90539E86";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 28.513764651200855 26 28.513764651200855;
+	setAttr -s 5 ".ktv[0:4]"  1 34.29141256570599 4 30.303606471701016
+		 7 29.684623790501398 10 29.436052114997466 24 28.513764651200855;
+	setAttr -s 5 ".kit[0:4]"  9 18 18 18 9;
+	setAttr -s 5 ".kot[0:4]"  9 18 18 18 9;
 createNode animCurveTA -n "L_Pntr_Fngr_02_Ctrl_rotateZ";
 	rename -uid "9B387215-46CE-67A5-7D9D-0AB23BD08C07";
-	setAttr ".tan" 9;
+	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr -s 2 ".ktv[0:1]"  1 -54.438186445342282 26 -54.438186445342282;
+	setAttr -s 5 ".ktv[0:4]"  1 -41.275224490468823 4 -47.476957914130324
+		 7 -49.007185140315414 10 -50.023767958146124 24 -54.438186445342282;
+	setAttr -s 5 ".kit[0:4]"  9 18 18 18 9;
+	setAttr -s 5 ".kot[0:4]"  9 18 18 18 9;
 createNode script -n "uiConfigurationScriptNode";
 	rename -uid "BE367E98-42E7-DFBF-661E-6394B9F34920";
 	setAttr ".b" -type "string" (
 		"// Maya Mel UI Configuration File.\n//\n//  This script is machine generated.  Edit at your own risk.\n//\n//\n\nglobal string $gMainPane;\nif (`paneLayout -exists $gMainPane`) {\n\n\tglobal int $gUseScenePanelConfig;\n\tint    $useSceneConfig = $gUseScenePanelConfig;\n\tint    $nodeEditorPanelVisible = stringArrayContains(\"nodeEditorPanel1\", `getPanel -vis`);\n\tint    $nodeEditorWorkspaceControlOpen = (`workspaceControl -exists nodeEditorPanel1Window` && `workspaceControl -q -visible nodeEditorPanel1Window`);\n\tint    $menusOkayInPanels = `optionVar -q allowMenusInPanels`;\n\tint    $nVisPanes = `paneLayout -q -nvp $gMainPane`;\n\tint    $nPanes = 0;\n\tstring $editorName;\n\tstring $panelName;\n\tstring $itemFilterName;\n\tstring $panelConfig;\n\n\t//\n\t//  get current state of the UI\n\t//\n\tsceneUIReplacement -update $gMainPane;\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Top View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Top View\")) -mbv $menusOkayInPanels  $panelName;\n"
-		+ "\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"|top\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 0\n            -activeComponentsXray 0\n            -displayTextures 1\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n"
+		+ "\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"|front\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 0\n            -activeComponentsXray 0\n            -displayTextures 1\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n"
 		+ "            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n"
-		+ "            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -bluePencil 1\n            -greasePencils 0\n            -excludeObjectPreset \"All\" \n            -shadows 0\n            -captureSequenceNumber -1\n            -width 547\n            -height 330\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n"
+		+ "            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -bluePencil 1\n            -greasePencils 0\n            -excludeObjectPreset \"All\" \n            -shadows 0\n            -captureSequenceNumber -1\n            -width 547\n            -height 328\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n"
 		+ "\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Side View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Side View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"|front\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 0\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n"
 		+ "            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n"
 		+ "            -interactiveBackFaceCull 0\n            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -bluePencil 1\n            -greasePencils 0\n            -excludeObjectPreset \"All\" \n"
-		+ "            -shadows 0\n            -captureSequenceNumber -1\n            -width 546\n            -height 329\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Front View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Front View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"|front\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n"
+		+ "            -shadows 0\n            -captureSequenceNumber -1\n            -width 546\n            -height 328\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Front View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Front View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"|front\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n"
 		+ "            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 0\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n"
 		+ "            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n"
-		+ "            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -bluePencil 1\n            -greasePencils 0\n            -excludeObjectPreset \"All\" \n            -shadows 0\n            -captureSequenceNumber -1\n            -width 547\n            -height 329\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Persp View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Persp View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n"
-		+ "        modelEditor -e \n            -camera \"|ShowcaseCam\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 0\n            -activeComponentsXray 0\n            -displayTextures 1\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n"
-		+ "            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 0\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n"
-		+ "            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -bluePencil 1\n            -greasePencils 0\n            -excludeObjectPreset \"All\" \n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1100\n            -height 706\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n"
-		+ "\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"outlinerPanel\" (localizedPanelLabel(\"ToggledOutliner\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\toutlinerPanel -edit -l (localizedPanelLabel(\"ToggledOutliner\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        outlinerEditor -e \n            -docTag \"isolOutln_fromSeln\" \n            -showShapes 0\n            -showAssignedMaterials 0\n            -showTimeEditor 1\n            -showReferenceNodes 1\n            -showReferenceMembers 1\n            -showAttributes 0\n            -showConnected 0\n            -showAnimCurvesOnly 0\n            -showMuteInfo 0\n            -organizeByLayer 1\n            -organizeByClip 1\n            -showAnimLayerWeight 1\n            -autoExpandLayers 1\n            -autoExpand 0\n            -showDagOnly 1\n            -showAssets 1\n            -showContainedOnly 1\n            -showPublishedAsConnected 0\n            -showParentContainers 0\n"
-		+ "            -showContainerContents 1\n            -ignoreDagHierarchy 0\n            -expandConnections 0\n            -showUpstreamCurves 1\n            -showUnitlessCurves 1\n            -showCompounds 1\n            -showLeafs 1\n            -showNumericAttrsOnly 0\n            -highlightActive 1\n            -autoSelectNewObjects 0\n            -doNotSelectNewObjects 0\n            -dropIsParent 1\n            -transmitFilters 0\n            -setFilter \"defaultSetFilter\" \n            -showSetMembers 1\n            -allowMultiSelection 1\n            -alwaysToggleSelect 0\n            -directSelect 0\n            -isSet 0\n            -isSetMember 0\n            -showUfeItems 1\n            -displayMode \"DAG\" \n            -expandObjects 0\n            -setsIgnoreFilters 1\n            -containersIgnoreFilters 0\n            -editAttrName 0\n            -showAttrValues 0\n            -highlightSecondary 0\n            -showUVAttrsOnly 0\n            -showTextureNodesOnly 0\n            -attrAlphaOrder \"default\" \n            -animLayerFilterOptions \"allAffecting\" \n"
-		+ "            -sortOrder \"none\" \n            -longNames 0\n            -niceNames 1\n            -selectCommand \"print(\\\"\\\")\" \n            -showNamespace 1\n            -showPinIcons 0\n            -mapMotionTrails 0\n            -ignoreHiddenAttribute 0\n            -ignoreOutlinerColor 0\n            -renderFilterVisible 0\n            -renderFilterIndex 0\n            -selectionOrder \"chronological\" \n            -expandAttribute 0\n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"outlinerPanel\" (localizedPanelLabel(\"Outliner\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\toutlinerPanel -edit -l (localizedPanelLabel(\"Outliner\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        outlinerEditor -e \n            -showShapes 0\n            -showAssignedMaterials 0\n            -showTimeEditor 1\n            -showReferenceNodes 0\n            -showReferenceMembers 0\n            -showAttributes 0\n"
-		+ "            -showConnected 0\n            -showAnimCurvesOnly 0\n            -showMuteInfo 0\n            -organizeByLayer 1\n            -organizeByClip 1\n            -showAnimLayerWeight 1\n            -autoExpandLayers 1\n            -autoExpand 0\n            -showDagOnly 1\n            -showAssets 1\n            -showContainedOnly 1\n            -showPublishedAsConnected 0\n            -showParentContainers 0\n            -showContainerContents 1\n            -ignoreDagHierarchy 0\n            -expandConnections 0\n            -showUpstreamCurves 1\n            -showUnitlessCurves 1\n            -showCompounds 1\n            -showLeafs 1\n            -showNumericAttrsOnly 0\n            -highlightActive 1\n            -autoSelectNewObjects 0\n            -doNotSelectNewObjects 0\n            -dropIsParent 1\n            -transmitFilters 0\n            -setFilter \"defaultSetFilter\" \n            -showSetMembers 1\n            -allowMultiSelection 1\n            -alwaysToggleSelect 0\n            -directSelect 0\n            -showUfeItems 1\n"
-		+ "            -displayMode \"DAG\" \n            -expandObjects 0\n            -setsIgnoreFilters 1\n            -containersIgnoreFilters 0\n            -editAttrName 0\n            -showAttrValues 0\n            -highlightSecondary 0\n            -showUVAttrsOnly 0\n            -showTextureNodesOnly 0\n            -attrAlphaOrder \"default\" \n            -animLayerFilterOptions \"allAffecting\" \n            -sortOrder \"none\" \n            -longNames 0\n            -niceNames 1\n            -showNamespace 1\n            -showPinIcons 0\n            -mapMotionTrails 0\n            -ignoreHiddenAttribute 0\n            -ignoreOutlinerColor 0\n            -renderFilterVisible 0\n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"graphEditor\" (localizedPanelLabel(\"Graph Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Graph Editor\")) -mbv $menusOkayInPanels  $panelName;\n"
+		+ "            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -bluePencil 1\n            -greasePencils 0\n            -excludeObjectPreset \"All\" \n            -shadows 0\n            -captureSequenceNumber -1\n            -width 547\n            -height 328\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Persp View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Persp View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n"
+		+ "        modelEditor -e \n            -camera \"|CameraRig_Grp|Cam_Orbit_Grp|Cam_Anim_Grp|Cam_Rot_Grp|Turntable_Cam1\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 1\n            -activeComponentsXray 0\n            -displayTextures 1\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n"
+		+ "            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n"
+		+ "            -controlVertices 1\n            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -bluePencil 1\n            -greasePencils 0\n            -excludeObjectPreset \"All\" \n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1100\n            -height 703\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n"
+		+ "            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"outlinerPanel\" (localizedPanelLabel(\"ToggledOutliner\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\toutlinerPanel -edit -l (localizedPanelLabel(\"ToggledOutliner\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        outlinerEditor -e \n            -docTag \"isolOutln_fromSeln\" \n            -showShapes 0\n            -showAssignedMaterials 0\n            -showTimeEditor 1\n            -showReferenceNodes 1\n            -showReferenceMembers 1\n            -showAttributes 0\n            -showConnected 0\n            -showAnimCurvesOnly 0\n            -showMuteInfo 0\n            -organizeByLayer 1\n            -organizeByClip 1\n            -showAnimLayerWeight 1\n            -autoExpandLayers 1\n            -autoExpand 0\n            -showDagOnly 1\n            -showAssets 1\n            -showContainedOnly 1\n            -showPublishedAsConnected 0\n"
+		+ "            -showParentContainers 0\n            -showContainerContents 1\n            -ignoreDagHierarchy 0\n            -expandConnections 0\n            -showUpstreamCurves 1\n            -showUnitlessCurves 1\n            -showCompounds 1\n            -showLeafs 1\n            -showNumericAttrsOnly 0\n            -highlightActive 1\n            -autoSelectNewObjects 0\n            -doNotSelectNewObjects 0\n            -dropIsParent 1\n            -transmitFilters 0\n            -setFilter \"defaultSetFilter\" \n            -showSetMembers 1\n            -allowMultiSelection 1\n            -alwaysToggleSelect 0\n            -directSelect 0\n            -isSet 0\n            -isSetMember 0\n            -showUfeItems 1\n            -displayMode \"DAG\" \n            -expandObjects 0\n            -setsIgnoreFilters 1\n            -containersIgnoreFilters 0\n            -editAttrName 0\n            -showAttrValues 0\n            -highlightSecondary 0\n            -showUVAttrsOnly 0\n            -showTextureNodesOnly 0\n            -attrAlphaOrder \"default\" \n"
+		+ "            -animLayerFilterOptions \"allAffecting\" \n            -sortOrder \"none\" \n            -longNames 0\n            -niceNames 1\n            -selectCommand \"print(\\\"\\\")\" \n            -showNamespace 1\n            -showPinIcons 0\n            -mapMotionTrails 0\n            -ignoreHiddenAttribute 0\n            -ignoreOutlinerColor 0\n            -renderFilterVisible 0\n            -renderFilterIndex 0\n            -selectionOrder \"chronological\" \n            -expandAttribute 0\n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"outlinerPanel\" (localizedPanelLabel(\"Outliner\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\toutlinerPanel -edit -l (localizedPanelLabel(\"Outliner\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        outlinerEditor -e \n            -showShapes 0\n            -showAssignedMaterials 0\n            -showTimeEditor 1\n            -showReferenceNodes 0\n            -showReferenceMembers 0\n"
+		+ "            -showAttributes 0\n            -showConnected 0\n            -showAnimCurvesOnly 0\n            -showMuteInfo 0\n            -organizeByLayer 1\n            -organizeByClip 1\n            -showAnimLayerWeight 1\n            -autoExpandLayers 1\n            -autoExpand 0\n            -showDagOnly 1\n            -showAssets 1\n            -showContainedOnly 1\n            -showPublishedAsConnected 0\n            -showParentContainers 0\n            -showContainerContents 1\n            -ignoreDagHierarchy 0\n            -expandConnections 0\n            -showUpstreamCurves 1\n            -showUnitlessCurves 1\n            -showCompounds 1\n            -showLeafs 1\n            -showNumericAttrsOnly 0\n            -highlightActive 1\n            -autoSelectNewObjects 0\n            -doNotSelectNewObjects 0\n            -dropIsParent 1\n            -transmitFilters 0\n            -setFilter \"defaultSetFilter\" \n            -showSetMembers 1\n            -allowMultiSelection 1\n            -alwaysToggleSelect 0\n            -directSelect 0\n"
+		+ "            -showUfeItems 1\n            -displayMode \"DAG\" \n            -expandObjects 0\n            -setsIgnoreFilters 1\n            -containersIgnoreFilters 0\n            -editAttrName 0\n            -showAttrValues 0\n            -highlightSecondary 0\n            -showUVAttrsOnly 0\n            -showTextureNodesOnly 0\n            -attrAlphaOrder \"default\" \n            -animLayerFilterOptions \"allAffecting\" \n            -sortOrder \"none\" \n            -longNames 0\n            -niceNames 1\n            -showNamespace 1\n            -showPinIcons 0\n            -mapMotionTrails 0\n            -ignoreHiddenAttribute 0\n            -ignoreOutlinerColor 0\n            -renderFilterVisible 0\n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"graphEditor\" (localizedPanelLabel(\"Graph Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Graph Editor\")) -mbv $menusOkayInPanels  $panelName;\n"
 		+ "\n\t\t\t$editorName = ($panelName+\"OutlineEd\");\n            outlinerEditor -e \n                -showShapes 1\n                -showAssignedMaterials 0\n                -showTimeEditor 1\n                -showReferenceNodes 0\n                -showReferenceMembers 0\n                -showAttributes 1\n                -showConnected 1\n                -showAnimCurvesOnly 1\n                -showMuteInfo 0\n                -organizeByLayer 1\n                -organizeByClip 1\n                -showAnimLayerWeight 1\n                -autoExpandLayers 1\n                -autoExpand 1\n                -showDagOnly 0\n                -showAssets 1\n                -showContainedOnly 0\n                -showPublishedAsConnected 0\n                -showParentContainers 0\n                -showContainerContents 0\n                -ignoreDagHierarchy 0\n                -expandConnections 1\n                -showUpstreamCurves 1\n                -showUnitlessCurves 1\n                -showCompounds 0\n                -showLeafs 1\n                -showNumericAttrsOnly 1\n"
 		+ "                -highlightActive 0\n                -autoSelectNewObjects 1\n                -doNotSelectNewObjects 0\n                -dropIsParent 1\n                -transmitFilters 1\n                -setFilter \"0\" \n                -showSetMembers 0\n                -allowMultiSelection 1\n                -alwaysToggleSelect 0\n                -directSelect 0\n                -showUfeItems 1\n                -displayMode \"DAG\" \n                -expandObjects 0\n                -setsIgnoreFilters 1\n                -containersIgnoreFilters 0\n                -editAttrName 0\n                -showAttrValues 0\n                -highlightSecondary 0\n                -showUVAttrsOnly 0\n                -showTextureNodesOnly 0\n                -attrAlphaOrder \"default\" \n                -animLayerFilterOptions \"allAffecting\" \n                -sortOrder \"none\" \n                -longNames 0\n                -niceNames 1\n                -showNamespace 1\n                -showPinIcons 1\n                -mapMotionTrails 1\n                -ignoreHiddenAttribute 0\n"
 		+ "                -ignoreOutlinerColor 0\n                -renderFilterVisible 0\n                $editorName;\n\n\t\t\t$editorName = ($panelName+\"GraphEd\");\n            animCurveEditor -e \n                -displayValues 0\n                -snapTime \"integer\" \n                -snapValue \"none\" \n                -showPlayRangeShades \"on\" \n                -lockPlayRangeShades \"off\" \n                -smoothness \"fine\" \n                -resultSamples 1\n                -resultScreenSamples 0\n                -resultUpdate \"delayed\" \n                -showUpstreamCurves 1\n                -tangentScale 1\n                -tangentLineThickness 1\n                -keyMinScale 1\n                -stackedCurvesMin -1\n                -stackedCurvesMax 1\n                -stackedCurvesSpace 0.2\n                -preSelectionHighlight 1\n                -limitToSelectedCurves 0\n                -constrainDrag 0\n                -valueLinesToggle 0\n                -outliner \"graphEditor1OutlineEd\" \n                -highlightAffectedCurves 0\n                $editorName;\n"
@@ -6267,15 +6867,15 @@ createNode script -n "uiConfigurationScriptNode";
 		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Stereo\")) -mbv $menusOkayInPanels  $panelName;\n{ string $editorName = ($panelName+\"Editor\");\n            stereoCameraView -e \n                -camera \"|persp\" \n                -useInteractiveMode 0\n                -displayLights \"default\" \n                -displayAppearance \"smoothShaded\" \n                -activeOnly 0\n                -ignorePanZoom 0\n                -wireframeOnShaded 0\n                -headsUpDisplay 1\n                -holdOuts 1\n                -selectionHiliteDisplay 1\n                -useDefaultMaterial 0\n                -bufferMode \"double\" \n                -twoSidedLighting 0\n                -backfaceCulling 0\n                -xray 0\n                -jointXray 0\n                -activeComponentsXray 0\n                -displayTextures 0\n                -smoothWireframe 0\n                -lineWidth 1\n                -textureAnisotropic 0\n                -textureHilight 1\n                -textureSampling 2\n"
 		+ "                -textureDisplay \"modulate\" \n                -textureMaxSize 32768\n                -fogging 0\n                -fogSource \"fragment\" \n                -fogMode \"linear\" \n                -fogStart 0\n                -fogEnd 100\n                -fogDensity 0.1\n                -fogColor 0.5 0.5 0.5 1 \n                -depthOfFieldPreview 1\n                -maxConstantTransparency 1\n                -objectFilterShowInHUD 1\n                -isFiltered 0\n                -colorResolution 4 4 \n                -bumpResolution 4 4 \n                -textureCompression 0\n                -transparencyAlgorithm \"frontAndBackCull\" \n                -transpInShadows 0\n                -cullingOverride \"none\" \n                -lowQualityLighting 0\n                -maximumNumHardwareLights 0\n                -occlusionCulling 0\n                -shadingModel 0\n                -useBaseRenderer 0\n                -useReducedRenderer 0\n                -smallObjectCulling 0\n                -smallObjectThreshold -1 \n                -interactiveDisableShadows 0\n"
 		+ "                -interactiveBackFaceCull 0\n                -sortTransparent 1\n                -controllers 1\n                -nurbsCurves 1\n                -nurbsSurfaces 1\n                -polymeshes 1\n                -subdivSurfaces 1\n                -planes 1\n                -lights 1\n                -cameras 1\n                -controlVertices 1\n                -hulls 1\n                -grid 1\n                -imagePlane 1\n                -joints 1\n                -ikHandles 1\n                -deformers 1\n                -dynamics 1\n                -particleInstancers 1\n                -fluids 1\n                -hairSystems 1\n                -follicles 1\n                -nCloths 1\n                -nParticles 1\n                -nRigids 1\n                -dynamicConstraints 1\n                -locators 1\n                -manipulators 1\n                -pluginShapes 1\n                -dimensions 1\n                -handles 1\n                -pivots 1\n                -textures 1\n                -strokes 1\n                -motionTrails 1\n"
-		+ "                -clipGhosts 1\n                -bluePencil 1\n                -greasePencils 0\n                -excludeObjectPreset \"All\" \n                -shadows 0\n                -captureSequenceNumber -1\n                -width 0\n                -height 0\n                -sceneRenderFilter 0\n                -displayMode \"centerEye\" \n                -viewColor 0 0 0 1 \n                -useCustomBackground 1\n                $editorName;\n            stereoCameraView -e -viewSelected 0 $editorName;\n            stereoCameraView -e \n                -pluginObjects \"gpuCacheDisplayFilter\" 1 \n                $editorName; };\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"componentEditorPanel\" (localizedPanelLabel(\"Component Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Component Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n"
-		+ "\t\t}\n\t}\n\n\n\tif ($useSceneConfig) {\n        string $configName = `getPanel -cwl (localizedPanelLabel(\"Current Layout\"))`;\n        if (\"\" != $configName) {\n\t\t\tpanelConfiguration -edit -label (localizedPanelLabel(\"Current Layout\")) \n\t\t\t\t-userCreated false\n\t\t\t\t-defaultImage \"vacantCell.xP:/\"\n\t\t\t\t-image \"\"\n\t\t\t\t-sc false\n\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"single\\\" -ps 1 100 100 $gMainPane;\"\n\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Persp View\")) \n\t\t\t\t\t\"modelPanel\"\n"
-		+ "\t\t\t\t\t\"$panelName = `modelPanel -unParent -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -camera \\\"|ShowcaseCam\\\" \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 1\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 0\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -bluePencil 1\\n    -greasePencils 0\\n    -excludeObjectPreset \\\"All\\\" \\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1100\\n    -height 706\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
-		+ "\t\t\t\t\t\"modelPanel -edit -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -camera \\\"|ShowcaseCam\\\" \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 1\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 0\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -bluePencil 1\\n    -greasePencils 0\\n    -excludeObjectPreset \\\"All\\\" \\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1100\\n    -height 706\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
+		+ "                -clipGhosts 1\n                -bluePencil 1\n                -greasePencils 0\n                -excludeObjectPreset \"All\" \n                -shadows 0\n                -captureSequenceNumber -1\n                -width 0\n                -height 0\n                -sceneRenderFilter 0\n                -displayMode \"centerEye\" \n                -viewColor 0 0 0 1 \n                -useCustomBackground 1\n                $editorName;\n            stereoCameraView -e -viewSelected 0 $editorName;\n            stereoCameraView -e \n                -pluginObjects \"gpuCacheDisplayFilter\" 1 \n                $editorName; };\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\tif ($useSceneConfig) {\n        string $configName = `getPanel -cwl (localizedPanelLabel(\"Current Layout\"))`;\n        if (\"\" != $configName) {\n\t\t\tpanelConfiguration -edit -label (localizedPanelLabel(\"Current Layout\")) \n\t\t\t\t-userCreated false\n\t\t\t\t-defaultImage \"vacantCell.xP:/\"\n\t\t\t\t-image \"\"\n\t\t\t\t-sc false\n\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"single\\\" -ps 1 100 100 $gMainPane;\"\n"
+		+ "\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Persp View\")) \n\t\t\t\t\t\"modelPanel\"\n"
+		+ "\t\t\t\t\t\"$panelName = `modelPanel -unParent -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -camera \\\"|CameraRig_Grp|Cam_Orbit_Grp|Cam_Anim_Grp|Cam_Rot_Grp|Turntable_Cam1\\\" \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 1\\n    -activeComponentsXray 0\\n    -displayTextures 1\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -bluePencil 1\\n    -greasePencils 0\\n    -excludeObjectPreset \\\"All\\\" \\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1100\\n    -height 703\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
+		+ "\t\t\t\t\t\"modelPanel -edit -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -camera \\\"|CameraRig_Grp|Cam_Orbit_Grp|Cam_Anim_Grp|Cam_Rot_Grp|Turntable_Cam1\\\" \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 1\\n    -activeComponentsXray 0\\n    -displayTextures 1\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -bluePencil 1\\n    -greasePencils 0\\n    -excludeObjectPreset \\\"All\\\" \\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1100\\n    -height 703\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
 		+ "\t\t\t\t$configName;\n\n            setNamedPanelLayout (localizedPanelLabel(\"Current Layout\"));\n        }\n\n        panelHistory -e -clear mainPanelHistory;\n        sceneUIReplacement -clear;\n\t}\n\n\ngrid -spacing 150 -size 550 -divisions 5 -displayAxes yes -displayGridLines yes -displayDivisionLines yes -displayPerspectiveLabels no -displayOrthographicLabels no -displayAxesBold yes -perspectiveLabelPosition axis -orthographicLabelPosition edge;\nviewManip -drawCompass 0 -compassAngle 0 -frontParameters \"\" -homeParameters \"\" -selectionLockParameters \"\";\n}\n");
 	setAttr ".st" 3;
 createNode script -n "sceneConfigurationScriptNode";
 	rename -uid "3BF6FB90-407B-65D4-383E-FB99A37F804D";
-	setAttr ".b" -type "string" "playbackOptions -min 1 -max 26 -ast 1 -aet 26 ";
+	setAttr ".b" -type "string" "playbackOptions -min 1 -max 24 -ast 1 -aet 24 ";
 	setAttr ".st" 6;
 createNode animCurveTL -n "R_Leg_PV_Ctrl_translateX";
 	rename -uid "D806CC71-49D6-CCC7-A918-B4A13CBE1D30";
@@ -6283,42 +6883,42 @@ createNode animCurveTL -n "R_Leg_PV_Ctrl_translateX";
 	setAttr ".wgt" no;
 	setAttr -s 8 ".ktv[0:7]"  1 17.244679292937676 5 17.244679292937676
 		 8 17.244679292937676 11 11.35187783838589 14 21.805666335094603 18 22.770392469749254
-		 21 20.242021479217549 26 17.244679292937676;
+		 21 20.242021479217549 24 17.244679292937676;
 createNode animCurveTL -n "R_Leg_PV_Ctrl_translateY";
 	rename -uid "A68803C5-4C01-58E9-6165-67B87AB24B95";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
 	setAttr -s 8 ".ktv[0:7]"  1 40.878635701097991 5 40.878635701097991
 		 8 40.878635701097991 11 42.455618187156553 14 59.781418875629683 18 60.689508255685929
-		 21 61.366129859362637 26 40.878635701097991;
+		 21 61.366129859362637 24 40.878635701097991;
 createNode animCurveTL -n "R_Leg_PV_Ctrl_translateZ";
 	rename -uid "A8E69B1A-47B6-ED17-A841-E69EBEF270EE";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
 	setAttr -s 8 ".ktv[0:7]"  1 40.45959448885219 5 40.45959448885219
 		 8 40.45959448885219 11 -18.960616911448419 14 28.221248417929559 18 34.68257455429665
-		 21 9.187682198856276 26 40.45959448885219;
+		 21 9.187682198856276 24 40.45959448885219;
 createNode animCurveTL -n "L_Leg_PV_Ctrl_translateX";
 	rename -uid "D31C3372-4292-88A3-C605-2FA357E4DA4D";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
 	setAttr -s 7 ".ktv[0:6]"  1 -7.2918509892623966 5 -9.8513487051914268
 		 8 -14.328685721364829 11 -6.841611637667004 14 21.647965938893776 18 -8.9646182933652323
-		 26 -7.2918509892623966;
+		 24 -7.2918509892623966;
 createNode animCurveTL -n "L_Leg_PV_Ctrl_translateY";
 	rename -uid "86B8A988-44B7-410B-510D-F5883D6F3ABA";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
 	setAttr -s 7 ".ktv[0:6]"  1 -5.3800404732419969 5 -8.8667559593213454
 		 8 -13.922164448139858 11 -15.925793991185095 14 71.313219145837749 18 -31.538597834472306
-		 26 -5.3800404732419969;
+		 24 -5.3800404732419969;
 createNode animCurveTL -n "L_Leg_PV_Ctrl_translateZ";
 	rename -uid "32AE7931-4A1A-28D8-B7D7-75B4131D42BA";
 	setAttr ".tan" 9;
 	setAttr ".wgt" no;
 	setAttr -s 7 ".ktv[0:6]"  1 -52.313267941974573 5 -66.169139421424532
 		 8 -98.882460732407111 11 -23.386358044390569 14 93.424610025743362 18 2.3847356453662969
-		 26 -52.313267941974573;
+		 24 -52.313267941974573;
 createNode animCurveTL -n "Cap_Ctrl_translateX";
 	rename -uid "9C3F37CA-4AA5-5145-E543-E39608C355D6";
 	setAttr ".tan" 9;
@@ -6341,17 +6941,18 @@ createNode animCurveTA -n "Mushroom_Ctrl_rotateX";
 	rename -uid "997C9D23-4F57-CCB1-88F4-44B2D9D31769";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr ".ktv[0]"  1 -7.2515051843522187;
+	setAttr -s 9 ".ktv[0:8]"  1 -8 4 -2 7 -2 10 -8 13 -2 16 -2 19 -2 22 -8
+		 24 -8;
 createNode animCurveTA -n "Mushroom_Ctrl_rotateY";
 	rename -uid "4B6D4FA4-4E89-03F4-5D8A-E0BFEC7ECAFA";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr ".ktv[0]"  1 0;
+	setAttr -s 9 ".ktv[0:8]"  1 0 4 0 7 0 10 0 13 0 16 0 19 0 22 0 24 0;
 createNode animCurveTA -n "Mushroom_Ctrl_rotateZ";
 	rename -uid "CF0CE325-4FC4-72EC-098E-58B255BA6D8E";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
-	setAttr ".ktv[0]"  1 0;
+	setAttr -s 9 ".ktv[0:8]"  1 0 4 0 7 0 10 0 13 0 16 0 19 0 22 0 24 0;
 select -ne :time1;
 	setAttr -av -k on ".cch";
 	setAttr -av -cb on ".ihi";
@@ -6630,12 +7231,12 @@ connectAttr "COG_Ctrl_translateZ.o" "TITANRIGMARN.phl[8]";
 connectAttr "COG_Ctrl_rotateX.o" "TITANRIGMARN.phl[9]";
 connectAttr "COG_Ctrl_rotateY.o" "TITANRIGMARN.phl[10]";
 connectAttr "COG_Ctrl_rotateZ.o" "TITANRIGMARN.phl[11]";
-connectAttr "Transform_Ctrl_rotateX.o" "TITANRIGMARN.phl[12]";
-connectAttr "Transform_Ctrl_rotateY.o" "TITANRIGMARN.phl[13]";
-connectAttr "Transform_Ctrl_rotateZ.o" "TITANRIGMARN.phl[14]";
-connectAttr "Transform_Ctrl_translateX.o" "TITANRIGMARN.phl[15]";
-connectAttr "Transform_Ctrl_translateY.o" "TITANRIGMARN.phl[16]";
-connectAttr "Transform_Ctrl_translateZ.o" "TITANRIGMARN.phl[17]";
+connectAttr "Transform_Ctrl_translateX.o" "TITANRIGMARN.phl[12]";
+connectAttr "Transform_Ctrl_translateY.o" "TITANRIGMARN.phl[13]";
+connectAttr "Transform_Ctrl_translateZ.o" "TITANRIGMARN.phl[14]";
+connectAttr "Transform_Ctrl_rotateX.o" "TITANRIGMARN.phl[15]";
+connectAttr "Transform_Ctrl_rotateY.o" "TITANRIGMARN.phl[16]";
+connectAttr "Transform_Ctrl_rotateZ.o" "TITANRIGMARN.phl[17]";
 connectAttr "Transform_Ctrl_scaleX.o" "TITANRIGMARN.phl[18]";
 connectAttr "Transform_Ctrl_scaleY.o" "TITANRIGMARN.phl[19]";
 connectAttr "Transform_Ctrl_scaleZ.o" "TITANRIGMARN.phl[20]";
@@ -7068,6 +7669,23 @@ connectAttr "R_Ft_02_Ctrl_rotateZ.o" "TITANRIGMARN.phl[446]";
 connectAttr "R_Ft_02_Ctrl_scaleX.o" "TITANRIGMARN.phl[447]";
 connectAttr "R_Ft_02_Ctrl_scaleY.o" "TITANRIGMARN.phl[448]";
 connectAttr "R_Ft_02_Ctrl_scaleZ.o" "TITANRIGMARN.phl[449]";
+connectAttr "CameraRig_Grp.globalScale" "CameraRig_Grp.sx";
+connectAttr "CameraRig_Grp.globalScale" "CameraRig_Grp.sy";
+connectAttr "CameraRig_Grp.globalScale" "CameraRig_Grp.sz";
+connectAttr "Turntable_Cam1_aimConstraint1.crx" "Turntable_Cam1.rx";
+connectAttr "Turntable_Cam1_aimConstraint1.cry" "Turntable_Cam1.ry";
+connectAttr "Turntable_Cam1_aimConstraint1.crz" "Turntable_Cam1.rz";
+connectAttr "Turntable_Cam1.pim" "Turntable_Cam1_aimConstraint1.cpim";
+connectAttr "Turntable_Cam1.t" "Turntable_Cam1_aimConstraint1.ct";
+connectAttr "Turntable_Cam1.rp" "Turntable_Cam1_aimConstraint1.crp";
+connectAttr "Turntable_Cam1.rpt" "Turntable_Cam1_aimConstraint1.crt";
+connectAttr "Turntable_Cam1.ro" "Turntable_Cam1_aimConstraint1.cro";
+connectAttr "Cam_Aim_Loc.t" "Turntable_Cam1_aimConstraint1.tg[0].tt";
+connectAttr "Cam_Aim_Loc.rp" "Turntable_Cam1_aimConstraint1.tg[0].trp";
+connectAttr "Cam_Aim_Loc.rpt" "Turntable_Cam1_aimConstraint1.tg[0].trt";
+connectAttr "Cam_Aim_Loc.pm" "Turntable_Cam1_aimConstraint1.tg[0].tpm";
+connectAttr "Turntable_Cam1_aimConstraint1.w0" "Turntable_Cam1_aimConstraint1.tg[0].tw"
+		;
 relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" "set1.message" ":defaultLightSet.message";
